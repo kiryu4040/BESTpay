@@ -16,7 +16,8 @@ final class CatalogVersion {
   final String value;
 
   static AppResult<CatalogVersion> create(String value) {
-    if (!_pattern.hasMatch(value)) {
+    final match = _pattern.matchAsPrefix(value);
+    if (match == null || match.end != value.length) {
       return AppFailure<CatalogVersion>(
         AppError(
           code: AppErrorCode.invalidArgument,

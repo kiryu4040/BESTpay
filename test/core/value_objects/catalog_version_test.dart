@@ -45,6 +45,7 @@ void main() {
         'version 2',
         'version/2',
         'version+2',
+        'v2\n',
         'バージョン2',
       ];
 

@@ -14,7 +14,8 @@ final class StableId {
   final String value;
 
   static AppResult<StableId> create(String value) {
-    if (!_pattern.hasMatch(value)) {
+    final match = _pattern.matchAsPrefix(value);
+    if (match == null || match.end != value.length) {
       return AppFailure<StableId>(
         AppError(
           code: AppErrorCode.invalidArgument,

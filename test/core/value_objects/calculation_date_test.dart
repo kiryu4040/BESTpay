@@ -71,6 +71,7 @@ void main() {
         '2026/09/04',
         ' 2026-09-04',
         '2026-09-04 ',
+        '2026-09-04\n',
         '2026-02-29',
       ];
 
@@ -94,6 +95,15 @@ void main() {
       final localDateTime = DateTime(2026, 9, 14);
       final error = _failure(
         CalculationDate.fromUtc(localDateTime),
+      );
+
+      expect(error.code, AppErrorCode.invalidArgument);
+      expect(error.operation, 'calculationDate.fromUtc');
+    });
+
+    test('rejects a UTC date outside the stable four-digit year range', () {
+      final error = _failure(
+        CalculationDate.fromUtc(DateTime.utc(10000, 1, 1)),
       );
 
       expect(error.code, AppErrorCode.invalidArgument);

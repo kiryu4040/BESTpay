@@ -47,6 +47,7 @@ void main() {
         'card name',
         'card-name',
         'card.name',
+        'card\n',
         'カード',
       ];
 

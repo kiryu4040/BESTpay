@@ -39,12 +39,11 @@ final class CalculationDate implements Comparable<CalculationDate> {
       return _invalid('calculationDate.fromUtc');
     }
 
-    return AppSuccess<CalculationDate>(
-      CalculationDate._(
-        value.year,
-        value.month,
-        value.day,
-      ),
+    return _createForOperation(
+      value.year,
+      value.month,
+      value.day,
+      'calculationDate.fromUtc',
     );
   }
 
@@ -54,7 +53,7 @@ final class CalculationDate implements Comparable<CalculationDate> {
       r'^([0-9]{4})-([0-9]{2})-([0-9]{2})$',
     ).firstMatch(value);
 
-    if (match == null) {
+    if (match == null || match.end != value.length) {
       return _invalid('calculationDate.parse');
     }
 
