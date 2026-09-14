@@ -98,8 +98,9 @@ final class ArchitectureChecker {
         continue;
       }
 
-      final uri = match.group(1)!;
-      final rule = _findRule(layer, uri);
+      final importUri = match.group(1)!;
+      final normalizedUri = _normalizeImportUri(file, importUri);
+      final rule = _findRule(layer, normalizedUri);
       if (rule == null) {
         continue;
       }
@@ -162,6 +163,21 @@ final class ArchitectureChecker {
             'ARCH-CORE-006',
             'core must not import legacy',
             'Use a legacy adapter outside core.',
+          );
+        }
+        if (_isPackage(uri, 'package:bestpay/composition')) {
+          return const _ImportRule(
+            'ARCH-CORE-007',
+            'core must not import composition',
+            'Create and connect concrete dependencies in composition.',
+          );
+        }
+        if (uri.startsWith('package:') &&
+            !_isPackage(uri, 'package:bestpay/core')) {
+          return const _ImportRule(
+            'ARCH-CORE-008',
+            'core must depend only on the Dart SDK or other core code',
+            'Move package-dependent behavior to an outer layer.',
           );
         }
 
@@ -306,6 +322,40 @@ final class ArchitectureChecker {
     }
 
     return null;
+  }
+
+  String _normalizeImportUri(File sourceFile, String uri) {
+    final parsedUri = Uri.parse(uri);
+    if (parsedUri.hasScheme) {
+      return uri;
+    }
+
+    final resolvedPath = File.fromUri(
+      sourceFile.parent.uri.resolve(uri),
+    ).absolute.path;
+    final libPath = Directory(
+      '${rootDirectory.path}${Platform.pathSeparator}lib',
+    ).absolute.path;
+
+    final comparableResolvedPath =
+        Platform.isWindows ? resolvedPath.toLowerCase() : resolvedPath;
+    final comparableLibPath =
+        Platform.isWindows ? libPath.toLowerCase() : libPath;
+
+    final isInsideLib = comparableResolvedPath == comparableLibPath ||
+        comparableResolvedPath.startsWith(
+          '$comparableLibPath${Platform.pathSeparator}',
+        );
+    if (!isInsideLib) {
+      return uri;
+    }
+
+    final relativePath = resolvedPath
+        .substring(libPath.length)
+        .replaceFirst(RegExp(r'^[\\/]'), '')
+        .replaceAll(r'\', '/');
+
+    return 'package:bestpay/$relativePath';
   }
 
   bool _isPackage(String uri, String packagePrefix) {

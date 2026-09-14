@@ -150,6 +150,50 @@ import 'package:bestpay/legacy/adapter.dart';
     expect(violations.single.ruleId, 'ARCH-CORE-001');
     expect(architectureExitCode(violations), 1);
   });
+  test('detects a relative infrastructure import in domain', () async {
+    await _writeSource(
+      temporaryRoot,
+      'lib/domain/example.dart',
+      "import '../infrastructure/database.dart';\n",
+    );
+
+    final violations = await ArchitectureChecker(
+      rootDirectory: temporaryRoot,
+    ).check();
+
+    expect(violations, hasLength(1));
+    expect(violations.single.ruleId, 'ARCH-DOMAIN-004');
+    expect(violations.single.path, 'lib/domain/example.dart');
+  });
+  test('detects a third-party package import in core', () async {
+    await _writeSource(
+      temporaryRoot,
+      'lib/core/example.dart',
+      "import 'package:sqflite/sqflite.dart';\n",
+    );
+
+    final violations = await ArchitectureChecker(
+      rootDirectory: temporaryRoot,
+    ).check();
+
+    expect(violations, hasLength(1));
+    expect(violations.single.ruleId, 'ARCH-CORE-008');
+  });
+
+  test('detects a composition import in core', () async {
+    await _writeSource(
+      temporaryRoot,
+      'lib/core/example.dart',
+      "import 'package:bestpay/composition/root.dart';\n",
+    );
+
+    final violations = await ArchitectureChecker(
+      rootDirectory: temporaryRoot,
+    ).check();
+
+    expect(violations, hasLength(1));
+    expect(violations.single.ruleId, 'ARCH-CORE-007');
+  });
 }
 
 Future<void> _writeSource(
