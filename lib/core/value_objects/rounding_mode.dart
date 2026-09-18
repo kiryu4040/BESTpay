@@ -11,6 +11,14 @@ enum RoundingMode {
   /// Rounds toward positive infinity.
   ceiling,
 
-  /// Rounds the nearest value, with exact halves moving away from zero.
+  /// Rounds to the nearest value, with exact halves moving away from zero.
   halfAwayFromZero,
+
+  /// Rounds to the nearest value, with exact halves moving to the even value.
+  halfToEven,
+
+  /// Requires an exact whole-number result.
+  ///
+  /// An operation using this mode must fail if a fractional part exists.
+  exact,
 }

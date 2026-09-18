@@ -6,18 +6,24 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('StableId', () {
-    test('accepts lowercase identifiers with digits and underscores', () {
-      final shortest = _success(StableId.create('a'));
-      final paymentId = _success(
-        StableId.create('mizuho_rakuten_card_2026'),
-      );
+    test('accepts identifiers at the minimum and maximum lengths', () {
+      final minimum = _success(StableId.create('abc'));
+      final maximumValue = 'a${List<String>.filled(79, '1').join()}';
+      final maximum = _success(StableId.create(maximumValue));
 
-      expect(shortest.value, 'a');
+      expect(minimum.value, 'abc');
+      expect(maximum.value, maximumValue);
+      expect(maximum.value.length, StableId.maximumLength);
+    });
+
+    test('accepts lowercase identifiers with digits and underscores', () {
+      final paymentId = _success(StableId.create('mizuho_rakuten_card_2026'));
+
       expect(paymentId.value, 'mizuho_rakuten_card_2026');
     });
 
-    test('rejects empty and whitespace-only values', () {
-      for (final value in <String>['', ' ', '   ']) {
+    test('rejects values shorter than the minimum length', () {
+      for (final value in <String>['', 'a', 'ab']) {
         final error = _failure(StableId.create(value));
 
         expect(error.code, AppErrorCode.invalidArgument);
@@ -26,13 +32,20 @@ void main() {
       }
     });
 
+    test('rejects values longer than the maximum length', () {
+      final value = 'a${List<String>.filled(80, '1').join()}';
+
+      expect(value.length, StableId.maximumLength + 1);
+
+      final error = _failure(StableId.create(value));
+
+      expect(error.code, AppErrorCode.invalidArgument);
+      expect(error.operation, 'stableId.create');
+      expect(error.retryable, isFalse);
+    });
+
     test('rejects invalid starting characters and uppercase letters', () {
-      final invalidValues = <String>[
-        '1card',
-        '_card',
-        'Card',
-        'cardName',
-      ];
+      final invalidValues = <String>['1card', '_card', 'Card', 'cardName'];
 
       for (final value in invalidValues) {
         final error = _failure(StableId.create(value));
@@ -60,18 +73,9 @@ void main() {
     });
 
     test('does not trim or normalize input automatically', () {
-      expect(
-        StableId.create(' card'),
-        isA<AppFailure<StableId>>(),
-      );
-      expect(
-        StableId.create('card '),
-        isA<AppFailure<StableId>>(),
-      );
-      expect(
-        StableId.create('CARD'),
-        isA<AppFailure<StableId>>(),
-      );
+      expect(StableId.create(' card'), isA<AppFailure<StableId>>());
+      expect(StableId.create('card '), isA<AppFailure<StableId>>());
+      expect(StableId.create('CARD'), isA<AppFailure<StableId>>());
     });
 
     test('uses the validated string for equality and hashCode', () {

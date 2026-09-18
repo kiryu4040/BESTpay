@@ -36,6 +36,8 @@ final class MicrosYen implements Comparable<MicrosYen> {
   }
 
   /// Converts this value to whole yen using an explicit rounding policy.
+  ///
+  /// [RoundingMode.exact] throws a [StateError] when a fractional yen exists.
   MoneyYen toMoneyYen(RoundingMode mode) {
     final quotient = micros ~/ microsPerYen;
     final remainder = micros.remainder(microsPerYen);
@@ -48,11 +50,47 @@ final class MicrosYen implements Comparable<MicrosYen> {
       RoundingMode.towardZero => quotient,
       RoundingMode.floor => remainder < 0 ? quotient - 1 : quotient,
       RoundingMode.ceiling => remainder > 0 ? quotient + 1 : quotient,
-      RoundingMode.halfAwayFromZero =>
-        remainder.abs() * 2 >= microsPerYen ? quotient + micros.sign : quotient,
+      RoundingMode.halfAwayFromZero => _roundHalfAwayFromZero(
+        quotient: quotient,
+        remainder: remainder,
+      ),
+      RoundingMode.halfToEven => _roundHalfToEven(
+        quotient: quotient,
+        remainder: remainder,
+      ),
+      RoundingMode.exact => throw StateError(
+        'Cannot convert fractional micros to whole yen in exact mode.',
+      ),
     };
 
     return MoneyYen(rounded);
+  }
+
+  static int _roundHalfAwayFromZero({
+    required int quotient,
+    required int remainder,
+  }) {
+    final doubledAbsoluteRemainder = remainder.abs() * 2;
+
+    if (doubledAbsoluteRemainder < microsPerYen) {
+      return quotient;
+    }
+
+    return quotient + remainder.sign;
+  }
+
+  static int _roundHalfToEven({required int quotient, required int remainder}) {
+    final doubledAbsoluteRemainder = remainder.abs() * 2;
+
+    if (doubledAbsoluteRemainder < microsPerYen) {
+      return quotient;
+    }
+
+    if (doubledAbsoluteRemainder > microsPerYen) {
+      return quotient + remainder.sign;
+    }
+
+    return quotient.isEven ? quotient : quotient + remainder.sign;
   }
 
   @override

@@ -102,7 +102,33 @@ final class Rational implements Comparable<Rational> {
       RoundingMode.halfAwayFromZero => remainder.abs() * 2 >= denominator
           ? quotient + numerator.sign
           : quotient,
+      RoundingMode.halfToEven => _roundHalfToEven(
+          quotient: quotient,
+          remainder: remainder,
+          denominator: denominator,
+        ),
+      RoundingMode.exact => throw StateError(
+          'Cannot round a non-integer rational value in exact mode.',
+        ),
     };
+  }
+
+  static int _roundHalfToEven({
+    required int quotient,
+    required int remainder,
+    required int denominator,
+  }) {
+    final doubledAbsoluteRemainder = remainder.abs() * 2;
+
+    if (doubledAbsoluteRemainder < denominator) {
+      return quotient;
+    }
+
+    if (doubledAbsoluteRemainder > denominator) {
+      return quotient + remainder.sign;
+    }
+
+    return quotient.isEven ? quotient : quotient + remainder.sign;
   }
 
   @override

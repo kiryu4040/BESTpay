@@ -1,0 +1,1990 @@
+# BESTpay v2 統合作業チェックポイント
+
+文書ID：BP-INTEGRATION-CHECKPOINT-2026-09-18
+文書バージョン：1.0.0
+作成日：2026-09-18
+タイムゾーン：Asia/Tokyo
+ステータス：active
+対象リポジトリ：https://github.com/kiryu4040/BESTpay
+レビュー基準コミット：4a19b992a9be6668349137dc26c7ab6177d31f1b
+
+---
+
+# 0. この文書の目的
+
+この文書は、BESTpay v2の118文書統合作業で確定した判断を、会話履歴や作業環境が失われても再開できるように保存するチェックポイントである。
+
+対象資料：
+
+- 最上位統合調整仕様：3文書
+- 原文：001～115の115文書
+- 合計：118文書
+- GitHubリポジトリ：kiryu4040/BESTpay
+- 主要商品の公式一次情報
+
+この文書は118原文の代替ではない。原文、統合仕様、公式一次情報、実装コードの関係と、統合作業中に確定した判断を保存する。
+
+本書と後日作成される正式な統合仕様が競合する場合は、正式な統合仕様を優先する。それまでは、本書を統合作業の再開点として使用する。
+
+---
+
+# 1. 正式名称
+
+正式な製品名：
+
+```text
+BESTpay
+```
+
+対象版：
+
+```text
+BESTpay v2
+```
+
+リポジトリ：
+
+```text
+kiryu4040/BESTpay
+```
+
+既存文書中の次の名称は旧称として扱う。
+
+```text
+Maxpay
+Maxpay v2
+```
+
+旧称を説明する必要がない箇所では、次へ置換する。
+
+```text
+Maxpay    → BESTpay
+Maxpay v2 → BESTpay v2
+```
+
+ただし、applicationId、Android namespace、Bundle ID、リリース署名、既存配布版の識別子は、製品表示名とは別概念である。配布済みアプリとの照合が終わるまで変更しない。
+
+---
+
+# 2. 正本の優先順位
+
+文書、商品情報、実装、テストが競合する場合は、次の順序で判定する。
+
+1. 最上位統合調整仕様
+2. statusがactiveかつauthorityLevelがnormativeの文書
+3. 銀行、カード会社等の公式規約、FAQ、商品ページ、告知
+4. statusがactiveかつauthorityLevelがsupportingの文書
+5. 実装コード
+6. 自動テスト
+7. draft文書
+8. historical、superseded、archived文書
+
+既存コードや既存テストが動作していることだけを理由に、BESTpay v2の正本とは判定しない。
+
+---
+
+# 3. GitHub基準状態
+
+確認済みmainコミット：
+
+```text
+4a19b992a9be6668349137dc26c7ab6177d31f1b
+```
+
+確認済みブランチ：
+
+```text
+main
+docs/pr-00-baseline
+test/pr-01-characterization
+test/pr-01b-characterization-gaps
+feature/pr-02-v2-core-foundation
+feature/pr-03-common-value-objects
+```
+
+PR-03までmainへ取り込まれている。
+
+現行pubspec：
+
+```text
+name: bestpay
+version: 1.1.0+2
+```
+
+アプリバージョン、Android側バージョン、配布済みAPKの関係は未照合である。一方的に変更しない。
+
+---
+
+# 4. 初期設定の正本
+
+```text
+locale                     = ja-JP
+timezone                   = Asia/Tokyo
+currency                   = JPY
+defaultRankingMode         = confirmedValue
+includeConditionalResults  = false
+saveTransactionHistory     = false
+ownedInstruments           = empty
+favorites                  = empty
+recentMerchants             = empty
+conditionStates            = unknown when not entered
+pointValues                = unset
+selectedInstrumentIds      = empty
+selectedRouteIds           = empty
+```
+
+`selectedInstrumentIds`が空の場合：
+
+```text
+保有中かつ有効な全決済手段を比較
+```
+
+`selectedRouteIds`が空の場合：
+
+```text
+各決済手段で有効な全経路を比較
+```
+
+初回起動時に特定カードを保有済みとして自動登録しない。
+
+デモデータは、デバッグビルドまたは明示的なデモモードに限定する。
+
+---
+
+# 5. 主要用語
+
+```text
+PaymentInstrument  決済手段
+PaymentMode        同一決済手段内の支払いモード
+PaymentRoute       決済経路
+FundingRelation    資金供給・チャージ・引落関係
+RewardRule         還元ルール
+PaymentPlan        決済プラン
+PointAmount        ポイント数
+PointValue         ポイントの金銭的価値
+UsagePeriodState   月間・年間・個別期間の利用状態
+TransactionRecord  任意保存する取引記録
+```
+
+日付・時刻：
+
+```text
+transactionAt
+postingAt
+settlementDataReceivedAt
+billingAt
+```
+
+日付基準：
+
+```text
+transactionDate
+postingDate
+settlementDataReceivedDate
+billingDate
+entryDate
+campaignRegistrationDate
+periodEndDate
+```
+
+---
+
+# 6. IDとバージョン
+
+## 6.1 StableId
+
+確定形式：
+
+```text
+^[a-z][a-z0-9_]{2,79}$
+```
+
+制約：
+
+- 3文字以上
+- 80文字以下
+- 小文字英字で開始
+- 小文字英字、数字、アンダースコアのみ
+- 前後空白禁止
+- 自動trim禁止
+- 自動小文字変換禁止
+- 改行禁止
+- 表示名をIDにしない
+- enum indexをIDにしない
+
+現行実装は長さ制限がなく、`a`を許可しているため修正が必要。
+
+## 6.2 CatalogVersion
+
+確定形式：
+
+```text
+YYYY.MM.DD.REVISION
+```
+
+例：
+
+```text
+2026.09.17.1
+2026.09.17.2
+```
+
+制約：
+
+- 年は4桁
+- 月は01～12
+- 日は実在日
+- REVISIONは1以上の整数
+- 前後空白禁止
+- 改行禁止
+- 大文字・英字・ハイフン・アンダースコア禁止
+- 完全一致で比較
+- SemVerとして比較しない
+
+現行実装は`v2`、`catalog-v2_1`、`V2-beta.1`等を許可するため修正が必要。
+
+---
+
+# 7. 数値計算
+
+金額、ポイント、率の確定計算に`double`を使用しない。
+
+使用する型：
+
+```text
+MoneyYen
+PointAmount
+Rational
+Rate
+MicrosYen
+```
+
+## 7.1 MoneyYen
+
+共通値オブジェクトでは負数を許可する。
+
+用途：
+
+- 返金
+- 取消
+- 調整
+- 差分
+
+通常購入額等の非負制約はDomain型で実施する。
+
+## 7.2 PointAmount
+
+共通値オブジェクトでは負数を許可する。
+
+通常付与ポイントはDomain型で0以上に制約する。
+
+## 7.3 Rate
+
+率はRationalで保持する。
+
+例：
+
+```text
+0.5%  = 1 / 200
+1.0%  = 1 / 100
+1.25% = 1 / 80
+1.5%  = 3 / 200
+```
+
+## 7.4 丸め
+
+対応する丸め：
+
+```text
+towardZero
+floor
+ceiling
+halfAwayFromZero
+exact
+```
+
+`exact`は割り切れない場合にエラーとする。
+
+enum indexを保存しない。安定した文字列名を保存する。
+
+---
+
+# 8. 条件評価
+
+条件評価値：
+
+```text
+satisfied
+notSatisfied
+unknown
+notApplicable
+```
+
+型名は既存コードへの影響を抑えるため、当面`TriState`を維持する。ただし実態は4状態である。
+
+## 8.1 NOT
+
+```text
+satisfied     → notSatisfied
+notSatisfied  → satisfied
+unknown       → unknown
+notApplicable → notApplicable
+```
+
+## 8.2 AND
+
+`notApplicable`は評価対象外として扱う。
+
+優先順位：
+
+1. notSatisfied
+2. unknown
+3. satisfied
+4. 全要素notApplicableならnotApplicable
+
+二項表：
+
+| A | B | A AND B |
+|---|---|---|
+| satisfied | satisfied | satisfied |
+| satisfied | notSatisfied | notSatisfied |
+| satisfied | unknown | unknown |
+| satisfied | notApplicable | satisfied |
+| notSatisfied | satisfied | notSatisfied |
+| notSatisfied | notSatisfied | notSatisfied |
+| notSatisfied | unknown | notSatisfied |
+| notSatisfied | notApplicable | notSatisfied |
+| unknown | satisfied | unknown |
+| unknown | notSatisfied | notSatisfied |
+| unknown | unknown | unknown |
+| unknown | notApplicable | unknown |
+| notApplicable | satisfied | satisfied |
+| notApplicable | notSatisfied | notSatisfied |
+| notApplicable | unknown | unknown |
+| notApplicable | notApplicable | notApplicable |
+
+## 8.3 OR
+
+優先順位：
+
+1. satisfied
+2. unknown
+3. notSatisfied
+4. 全要素notApplicableならnotApplicable
+
+二項表：
+
+| A | B | A OR B |
+|---|---|---|
+| satisfied | satisfied | satisfied |
+| satisfied | notSatisfied | satisfied |
+| satisfied | unknown | satisfied |
+| satisfied | notApplicable | satisfied |
+| notSatisfied | satisfied | satisfied |
+| notSatisfied | notSatisfied | notSatisfied |
+| notSatisfied | unknown | unknown |
+| notSatisfied | notApplicable | notSatisfied |
+| unknown | satisfied | satisfied |
+| unknown | notSatisfied | unknown |
+| unknown | unknown | unknown |
+| unknown | notApplicable | unknown |
+| notApplicable | satisfied | satisfied |
+| notApplicable | notSatisfied | notSatisfied |
+| notApplicable | unknown | unknown |
+| notApplicable | notApplicable | notApplicable |
+
+## 8.4 nullable bool変換
+
+既存の`toNullableBool()`は後方互換のため残す。
+
+```text
+satisfied     → true
+notSatisfied  → false
+unknown       → null
+notApplicable → null
+```
+
+ただし、この変換は`unknown`と`notApplicable`の区別を失うため、永続化、条件判定、監査ログには使用しない。
+
+`fromNullableBool(null)`は`unknown`を返す。`notApplicable`は明示的に生成する。
+
+---
+
+# 9. confidence
+
+計算結果のconfidence：
+
+```text
+confirmed
+estimated
+conditional
+unknown
+ineligible
+```
+
+条件の`unknown`を暗黙にtrueまたはfalseへ変換しない。
+
+カテゴリ名だけで加盟店を推測した場合は原則`estimated`とする。
+
+一次情報と対象加盟店が明示的に一致する場合に`confirmed`へ昇格できる。
+
+---
+
+# 10. 日付と有効期間
+
+有効期間：
+
+```text
+[validFrom, validUntilExclusive)
+```
+
+判定：
+
+```text
+validFrom <= date
+date < validUntilExclusive
+```
+
+`validUntilExclusive`がnullなら終了なし。
+
+汎用`ValidityPeriod`は空期間を表現できる。
+
+```text
+start == end
+```
+
+ただしactiveカタログ項目は空期間を禁止する。
+
+active項目：
+
+```text
+validFrom < validUntilExclusive
+```
+
+内部処理はUTCを基準とする。日本の制度日付へ変換するときはAsia/Tokyoを明示する。端末の暗黙タイムゾーンへ依存しない。
+
+同一処理中にClockを複数回呼ばず、開始時に基準時刻を1回取得する。
+
+---
+
+# 11. Favorite
+
+FavoriteのentityType：
+
+```text
+merchant
+instrument
+paymentPlan
+searchPreset
+```
+
+一意キー：
+
+```text
+(entityType, entityId)
+```
+
+参照先が廃止された場合：
+
+1. `id_migrations`を確認
+2. renameは自動移行
+3. mergeは移行可能性を検証
+4. splitはユーザー選択
+5. removeはneedsReview
+6. 黙って削除しない
+
+---
+
+# 12. カタログファイル
+
+対象：
+
+```text
+catalog_manifest.json
+payment_instruments.json
+payment_routes.json
+payment_modes.json
+funding_relations.json
+merchant_groups.json
+merchants.json
+merchant_categories.json
+point_programs.json
+condition_definitions.json
+reward_rules.json
+sources.json
+id_migrations.json
+```
+
+共通ルート：
+
+```json
+{
+  "schemaVersion": "1.0.0",
+  "catalogVersion": "2026.09.17.1",
+  "generatedAt": "2026-09-17T00:00:00+09:00",
+  "items": []
+}
+```
+
+`items`が0件でも省略しない。
+
+禁止：
+
+```text
+空ファイル
+null
+空オブジェクトをitemsの代わりにする
+```
+
+---
+
+# 13. spec_manifest.json
+
+正本ルート：
+
+```json
+{
+  "schemaVersion": "1.0.0",
+  "manifestVersion": "2026.09.18.1",
+  "generatedAt": "2026-09-18T00:00:00+09:00",
+  "timezone": "Asia/Tokyo",
+  "productName": "BESTpay",
+  "productVersion": "BESTpay v2",
+  "repository": {
+    "url": "https://github.com/kiryu4040/BESTpay",
+    "reviewedCommit": "4a19b992a9be6668349137dc26c7ab6177d31f1b"
+  },
+  "precedence": [
+    "integrationSpecification",
+    "activeNormativeDocument",
+    "officialPrimarySource",
+    "activeSupportingDocument",
+    "implementationCode",
+    "automatedTest",
+    "draftDocument",
+    "historicalDocument"
+  ],
+  "documents": []
+}
+```
+
+各文書：
+
+```text
+documentId
+sequence
+sourceFile
+title
+documentVersion
+status
+effectiveFrom
+effectiveUntilExclusive
+authorityLevel
+sourceUrl
+supersedes
+supersededBy
+contentHash
+notes
+```
+
+status：
+
+```text
+draft
+review
+active
+deprecated
+superseded
+archived
+```
+
+authorityLevel：
+
+```text
+normative
+supporting
+informative
+historical
+generated
+```
+
+---
+
+# 14. カタログモデル
+
+## 14.1 PaymentInstrument
+
+```text
+id
+name
+shortName
+instrumentType
+issuerName
+partnerInstitutionName
+availableBrandIds
+annualFee
+supportedModeIds
+supportedRouteIds
+validFrom
+validUntilExclusive
+status
+sourceIds
+lastVerifiedAt
+displayClaims
+tags
+notes
+```
+
+カード本体に固定還元率を保持しない。
+
+## 14.2 PaymentMode
+
+```text
+id
+instrumentId
+name
+modeType
+supportedRouteIds
+validFrom
+validUntilExclusive
+status
+sourceIds
+notes
+```
+
+modeType：
+
+```text
+credit
+debit
+pointPayment
+addedCard
+prepaidBalance
+```
+
+## 14.3 PaymentRoute
+
+```text
+id
+name
+routeType
+brandIds
+deviceRequirement
+supportedInstrumentIds
+validFrom
+validUntilExclusive
+status
+sourceIds
+notes
+```
+
+routeType例：
+
+```text
+physicalCard
+mobileContactless
+onlineCard
+qrCode
+electronicMoney
+mobileOrder
+```
+
+カード現物のタッチ決済とスマホのタッチ決済は区別する。
+
+## 14.4 FundingRelation
+
+```text
+id
+sourceInstrumentId
+destinationInstrumentId
+relationType
+validFrom
+validUntilExclusive
+status
+sourceIds
+notes
+```
+
+## 14.5 PointProgram
+
+```text
+id
+name
+issuerName
+unitName
+valueDefinition
+expiration
+status
+sourceIds
+lastVerifiedAt
+notes
+```
+
+PointAmountとPointValueを分離する。
+
+## 14.6 ConditionDefinition
+
+```text
+id
+name
+description
+valueType
+defaultState
+verificationMethod
+scope
+sensitivity
+validFrom
+validUntilExclusive
+status
+sourceIds
+notes
+```
+
+verificationMethod：
+
+```text
+userInput
+systemCalculated
+transactionDerived
+periodStateDerived
+officialAccountDerived
+manualDocumentCheck
+```
+
+---
+
+# 15. RewardRule
+
+必須フィールド：
+
+```text
+id
+name
+description
+ruleKind
+selectors
+exclusions
+conditionExpression
+calculation
+outputPointProgramId
+aggregation
+stacking
+cap
+validFrom
+validUntilExclusive
+dateBasis
+timezone
+displayClaim
+sourceIds
+lastVerifiedAt
+status
+priority
+tags
+notes
+```
+
+ruleKind：
+
+```text
+baseReward
+merchantBonus
+categoryBonus
+routeBonus
+fundingBonus
+loyaltyReward
+thresholdBonus
+campaignBonus
+mirrorReward
+suppression
+replacement
+```
+
+## 15.1 selectorsとexclusions
+
+両方に全フィールドを持たせる。
+
+```json
+{
+  "instrumentIds": [],
+  "modeIds": [],
+  "routeIds": [],
+  "fundingRelationIds": [],
+  "merchantIds": [],
+  "merchantGroupIds": [],
+  "categoryIds": [],
+  "brandIds": [],
+  "locationIds": [],
+  "transactionTags": []
+}
+```
+
+規則：
+
+- exclusionsをselectorsより優先
+- 空配列はその軸に制限なし
+- transactionTagsをアプリが推測しない
+- activeルールの全selectorが空の場合は、明示的な全体ルールでなければerror
+
+## 15.2 calculation
+
+```text
+unitPoints
+rateFraction
+fixedPoints
+mirror
+thresholdBonus
+tiered
+none
+```
+
+### unitPoints
+
+```text
+amountUnitYen
+pointsPerUnit
+rounding
+```
+
+### rateFraction
+
+```text
+numerator
+denominator
+rounding
+```
+
+### fixedPoints
+
+```text
+points
+```
+
+### mirror
+
+```text
+sourceRuleId
+multiplierNumerator
+multiplierDenominator
+inheritEligibility
+inheritExclusions
+useFinalSourceAmount
+```
+
+### thresholdBonus
+
+```text
+thresholdAmountYen
+bonusPoints
+maxAwardsPerPeriod
+```
+
+## 15.3 aggregation
+
+```text
+scope
+aggregationKey
+periodMinimumEligibleSpendYen
+conditionEvaluationTiming
+incrementalAward
+```
+
+scope：
+
+```text
+transaction
+billingMonth
+calendarMonth
+membershipYear
+programYear
+userSpecificPeriod
+```
+
+月間合算型の増分：
+
+```text
+pointsBefore = calculate(periodSpendBefore)
+pointsAfter  = calculate(periodSpendBefore + currentEligibleAmount)
+currentIncrement = pointsAfter - pointsBefore
+```
+
+## 15.4 stacking
+
+```text
+policy
+exclusiveGroupId
+replacesRuleIds
+suppressesRuleIds
+suppressesTags
+dependsOnRuleIds
+applicationOrder
+```
+
+処理順：
+
+1. 明示的除外
+2. replacement
+3. suppression
+4. exclusiveGroup
+5. 通常計算
+6. cap
+7. mirror
+8. 期間ボーナス影響
+9. PointValue換算
+
+## 15.5 cap
+
+```text
+capType
+limit
+periodType
+scopeKey
+appliesTo
+overflowPolicy
+```
+
+---
+
+# 16. 条件式
+
+許可ノード：
+
+```text
+all
+any
+not
+condition
+comparison
+```
+
+最大深度：
+
+```text
+10
+```
+
+最大ノード数：
+
+```text
+100
+```
+
+比較演算：
+
+```text
+equals
+notEquals
+greaterThan
+greaterThanOrEqual
+lessThan
+lessThanOrEqual
+in
+notIn
+```
+
+禁止：
+
+- JavaScript
+- Dart式
+- 任意コード
+- 動的コード評価
+- 任意正規表現
+- 外部URLからの式ロード
+- 実行時型生成
+
+---
+
+# 17. UsagePeriodState
+
+```text
+id
+instrumentId
+aggregationKey
+periodType
+periodStart
+periodEndExclusive
+eligibleSpendYen
+ineligibleSpendYen
+awardedPointsByProgram
+consumedCaps
+bonusStates
+dataConfidence
+updatedAt
+updateMethod
+```
+
+dataConfidence：
+
+```text
+exact
+userEntered
+estimated
+unknown
+```
+
+aggregationKey例：
+
+```text
+olive_gold_annual_spend
+mufg_target_store_monthly_spend
+vneobank_monthly_debit_spend
+jcb_w_monthly_jpoint_spend
+mufg_global_point_monthly_spend
+```
+
+---
+
+# 18. TransactionRecord
+
+```text
+id
+merchantId
+manualMerchantName
+categoryId
+amountYen
+transactionAt
+postingAt
+settlementDataReceivedAt
+billingAt
+instrumentId
+modeId
+routeId
+fundingRelationIds
+appliedRuleIds
+earnedPoints
+eligibility
+createdAt
+notes
+```
+
+保存禁止：
+
+- カード番号
+- セキュリティコード
+- 暗証番号
+- ログインID
+- パスワード
+- 口座番号
+- APIトークン
+- Cookie
+- セッション情報
+
+取引履歴保存は任意機能とする。
+
+---
+
+# 19. 商品ルール
+
+## 19.1 みずほ楽天カード
+
+通常楽天ポイント：
+
+```text
+100円につき1楽天ポイント
+```
+
+Wポイント：
+
+- 2025-06-30以降の新規申込・契約完了
+- 申込日の翌々月末までに口座振替設定完了
+- 両条件を満たした月の月初から開始
+- 最長1年間
+- 楽天通常ポイントと同数のみずほポイント
+- みずほポイント上限10,000
+- 通常ポイント対象外ならmirrorも対象外
+- SPU、キャンペーン、期間限定上乗せをmirrorしない
+
+旧4条件をWポイントの必須条件にしない。
+
+## 19.2 Oliveフレキシブルペイ ゴールド
+
+通常ポイント：
+
+```text
+credit mode       0.5%
+debit mode        0.5%
+pointPayment mode 0.5%
+```
+
+追加カード：
+
+```text
+追加されたカード側の制度を適用
+Olive本体の通常還元や年間特典を適用しない
+```
+
+年間100万円特典：
+
+- credit対象
+- debit対象
+- pointPayment対象外
+- addedCard対象外
+- 10,000 Vポイント
+- 最大1回
+- 通常ポイントと別ルール
+- 今回獲得ポイントへ無条件加算しない
+- 年会費無料判定とポイント付与を別ルールにする
+
+## 19.3 V NEOBANK
+
+旧制度：
+
+```text
+validUntilExclusive = 2026-11-01
+rate = 1.5%
+minimumMonthlySpend = 1000円
+dateBasis = settlementDataReceivedDate
+```
+
+新制度：
+
+```text
+validFrom = 2026-11-01
+rate = 1.25%
+minimumMonthlySpend = 1000円
+dateBasis = settlementDataReceivedDate
+```
+
+新制度の除外：
+
+- 他社決済サービスへのチャージ
+- 鉄道
+- 公共料金
+- NTT東日本・西日本サービス料金
+- 税金
+- 国民年金
+- 国民健康保険料
+- 政府・自治体サービス
+- 国家資格検定料
+- 宝くじ
+- 病院・診療所
+- 非営利団体への会費・寄付
+
+## 19.4 JCBカードW／J-POINT
+
+J-POINT基本：
+
+```text
+月間合計200円につき1ポイント
+```
+
+JCBカードW特典：
+
+```text
+月間合計200円につき追加1ポイント
+```
+
+単一の2ポイントルールに統合しない。
+
+JCBカードWはJ-POINTボーナス対象外。
+
+## 19.5 三菱UFJカード
+
+基本ポイント：
+
+```text
+月間ショッピング利用合計1,000円につき
+1グローバルポイント
+```
+
+1ポイント5円相当は固定価値ではない。
+
+```text
+PointAmount = ポイント数
+PointValue  = 交換方法による価値
+displayClaim = 広告上の表示
+```
+
+最大20%相当ルールは、対象店舗、条件、上限、期間が完全に定義されるまでdraftとする。
+
+---
+
+# 20. Source
+
+必須フィールド：
+
+```text
+id
+title
+url
+publisher
+sourceType
+publishedAt
+lastVerifiedAt
+accessStatus
+reliability
+relevantSections
+summary
+contentHash
+notes
+```
+
+sourceType：
+
+```text
+officialTerms
+officialFaq
+officialProductPage
+officialCampaignPage
+officialNewsRelease
+officialAppNotice
+secondaryArticle
+userReport
+```
+
+activeなRewardRuleは、原則1件以上のprimary情報源を持つ。
+
+secondaryArticleまたはuserReportだけの制度は、draftまたはunverifiedとする。
+
+公式本文が変更された場合：
+
+- 既存Sourceを削除しない
+- accessStatusをchangedにする
+- 新contentHashまたは新Sourceを登録する
+- 変更前の根拠を履歴として保持する
+
+---
+
+# 21. 公式参照URL
+
+統合仕様：
+
+```text
+https://docs.google.com/document/d/1Ix_-J4W0LFDqBlVsCdXyI3BZAUw7UAJFfXlRQ21d_oU/export?format=txt
+https://docs.google.com/document/d/19sVV_sDK0INWkwTUsuyoEXrQDVn7ZUM4kpxbZKtM-10/export?format=txt
+https://docs.google.com/document/d/1Vy6bEv4nr0uutu-z3yCGKgF-GJIEzgk7MWQ4z2gJ8qo/export?format=txt
+```
+
+商品一次情報：
+
+```text
+https://www.mizuhobank.co.jp/rakutencard/index.html
+https://www.smbc.co.jp/kojin/olive-account/gold/
+https://qa.smbc-card.com/mem/nyukai/detail?site=4H4A00IO&id=2439
+https://www.netbk.co.jp/contents/company/info/2026/0731_006043.html
+https://www.jcb.co.jp/promotion/j-point/
+https://www.jcb.co.jp/ordercard/special/jpoint.html
+https://www.cr.mufg.jp/mufgcard/point/global/index.html
+```
+
+---
+
+# 22. 競合解決台帳
+
+| ID | 対象 | 採用仕様 |
+|---|---|---|
+| CR-001 | 製品名 | BESTpay／BESTpay v2 |
+| CR-002 | StableId | 3～80文字 |
+| CR-003 | CatalogVersion | YYYY.MM.DD.REVISION |
+| CR-004 | 条件状態 | notApplicableを含む4状態 |
+| CR-005 | 金額・率計算 | doubleを使わず整数・有理数 |
+| CR-006 | 有効期間 | 半開区間 |
+| CR-007 | タイムゾーン | Asia/Tokyoを明示 |
+| CR-008 | 未入力条件 | unknown |
+| CR-009 | ランキング初期値 | confirmedValue |
+| CR-010 | 条件付き結果 | 初期状態では除外 |
+| CR-011 | 未保有カード | 明示比較時のみ参考候補 |
+| CR-012 | 年間ボーナス | 期間集計の別RewardRule |
+| CR-013 | 最大還元率 | displayClaimへ分離 |
+| CR-014 | 制度改定 | 旧ルールを上書きせず新ルール追加 |
+| CR-015 | 情報源 | activeルールは一次情報必須 |
+| CR-016 | V NEOBANK日付基準 | settlementDataReceivedDate |
+| CR-017 | J-POINT基本 | 月間200円につき1ポイント |
+| CR-018 | Olive年間特典 | 独立thresholdBonus |
+| CR-019 | Wポイント期間 | 利用者固有の最長1年間 |
+| CR-020 | enum保存 | indexではなく文字列 |
+| CR-021 | Wポイント旧4条件 | Wポイント必須条件から除外 |
+| CR-022 | Wポイント開始日 | 条件達成月の月初 |
+| CR-023 | Wポイント終了日 | 開始から最長1年間 |
+| CR-024 | Wポイント上限 | みずほポイント10,000 |
+| CR-025 | Wポイントmirror元 | 楽天通常ポイントのみ |
+| CR-026 | V NEOBANK postingDate | settlementDataReceivedDateへ修正 |
+| CR-027 | JCBカードW | 基本1＋W特典1へ分離 |
+| CR-028 | J-POINT計算単位 | 月間合計 |
+| CR-029 | JCBカードWのJ-POINTボーナス | 対象外 |
+| CR-030 | MUFG基本ポイント | 月間合計 |
+| CR-031 | グローバルポイント価値 | 交換方法による可変値 |
+| CR-032 | Oliveポイント払い | 年間100万円特典対象外 |
+| CR-033 | Olive追加カード | 追加カード側制度を適用 |
+| CR-034 | カテゴリ推測 | 原則estimated |
+| CR-035 | Favorite | searchPresetを含む4種類 |
+| CR-036 | 汎用空期間 | 値オブジェクトでは許可 |
+| CR-037 | active項目の空期間 | error |
+| CR-038 | nullable bool | unknownとnotApplicableを永続化に使用しない |
+| CR-039 | JSON Schema | Draft 2020-12 |
+| CR-040 | Schema未知フィールド | additionalProperties=false |
+| CR-041 | Schemaの率表現 | numerator／denominator |
+| CR-042 | Schemaの日付時刻 | date／date-timeの役割を分離 |
+| CR-043 | PR-04範囲 | 文書正本化と値オブジェクト補正のみ |
+| CR-044 | カタログSchema実装 | PR-05で追加 |
+| CR-045 | 商品カタログ実データ | Schema完成後に追加 |
+
+---
+
+# 23. JSON Schema契約
+
+JSON Schemaは次を使用する。
+
+```text
+JSON Schema Draft 2020-12
+```
+
+各Schemaの`$schema`：
+
+```json
+"$schema": "https://json-schema.org/draft/2020-12/schema"
+```
+
+`$id`は所有未確認のWebドメインを使わず、URNを使用する。
+
+例：
+
+```json
+"$id": "urn:bestpay:schema:catalog-root:1.0.0"
+```
+
+共通方針：
+
+```text
+additionalProperties = false
+requiredを明示
+StableIdはpatternとminLength/maxLengthを併用
+CatalogVersionはpatternに加えてアプリ側で実在日を検証
+金額はinteger
+ポイントはinteger
+率はnumerator/denominator
+日時はdate-time
+制度日付はdate
+null許可は型配列で明示
+enum index禁止
+```
+
+## 23.1 Schemaファイル構成
+
+PR-05で以下を追加する。
+
+```text
+schemas/
+  common/
+    stable_id.schema.json
+    catalog_version.schema.json
+    date.schema.json
+    timestamp.schema.json
+    validity_period.schema.json
+    rational.schema.json
+    selector_set.schema.json
+    condition_expression.schema.json
+    source_reference.schema.json
+  catalog/
+    catalog_root.schema.json
+    catalog_manifest.schema.json
+    payment_instrument.schema.json
+    payment_mode.schema.json
+    payment_route.schema.json
+    funding_relation.schema.json
+    merchant_group.schema.json
+    merchant.schema.json
+    merchant_category.schema.json
+    point_program.schema.json
+    condition_definition.schema.json
+    reward_rule.schema.json
+    source.schema.json
+    id_migration.schema.json
+  user/
+    owned_instrument.schema.json
+    condition_state.schema.json
+    point_value.schema.json
+    usage_period_state.schema.json
+    favorite.schema.json
+    transaction_record.schema.json
+    backup.schema.json
+```
+
+## 23.2 StableId Schema
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:bestpay:schema:stable-id:1.0.0",
+  "title": "StableId",
+  "type": "string",
+  "minLength": 3,
+  "maxLength": 80,
+  "pattern": "^[a-z][a-z0-9_]{2,79}$"
+}
+```
+
+## 23.3 CatalogVersion Schema
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:bestpay:schema:catalog-version:1.0.0",
+  "title": "CatalogVersion",
+  "type": "string",
+  "pattern": "^[0-9]{4}\\.(0[1-9]|1[0-2])\\.(0[1-9]|[12][0-9]|3[01])\\.[1-9][0-9]*$"
+}
+```
+
+Schema通過後に、アプリ側で年月日の実在性を検証する。
+
+## 23.4 Rational Schema
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:bestpay:schema:rational:1.0.0",
+  "title": "Rational",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "numerator",
+    "denominator"
+  ],
+  "properties": {
+    "numerator": {
+      "type": "integer"
+    },
+    "denominator": {
+      "type": "integer",
+      "minimum": 1
+    }
+  }
+}
+```
+
+## 23.5 Catalog Root Schema
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:bestpay:schema:catalog-root:1.0.0",
+  "title": "CatalogRoot",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "catalogVersion",
+    "generatedAt",
+    "items"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "catalogVersion": {
+      "$ref": "urn:bestpay:schema:catalog-version:1.0.0"
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "items": {
+      "type": "array"
+    }
+  }
+}
+```
+
+各ファイルのSchemaでは`items.items`を対象エンティティのSchemaへ差し替える。
+
+---
+
+# 24. 検証エラー
+
+## 24.1 fatal
+
+```text
+CAT-F001 unsupportedSchemaVersion
+CAT-F002 manifestParseFailure
+CAT-F003 requiredFileMissing
+CAT-F004 fileHashMismatch
+CAT-F005 duplicateStableId
+CAT-F006 unrecoverableReferenceCycle
+CAT-F007 signatureInvalid
+```
+
+## 24.2 error
+
+```text
+CAT-E001 missingReference
+CAT-E002 invalidValidityPeriod
+CAT-E003 invalidCatalogVersion
+CAT-E004 invalidStableId
+CAT-E005 divisionByZero
+CAT-E006 missingMirrorSource
+CAT-E007 cyclicMirrorReference
+CAT-E008 activeRuleWithoutPrimarySource
+CAT-E009 exactRoundingProducedFraction
+CAT-E010 globalRuleWithoutExplicitScope
+CAT-E011 invalidCap
+CAT-E012 unsupportedDateBasis
+CAT-E013 invalidConditionExpression
+```
+
+## 24.3 warning
+
+```text
+CAT-W001 staleSource
+CAT-W002 sourceChanged
+CAT-W003 categoryOnlyMatch
+CAT-W004 highAdvertisedRate
+CAT-W005 missingOptionalDate
+CAT-W006 unknownPointValue
+CAT-W007 periodStateEstimated
+CAT-W008 routeSupportUnverified
+CAT-W009 overlappingNonExclusiveRules
+CAT-W010 futureEffectiveRule
+```
+
+## 24.4 info
+
+```text
+CAT-I001 deprecatedIdMigrated
+CAT-I002 inactiveRuleSkipped
+CAT-I003 historicalRuleRetained
+CAT-I004 conditionalResultExcludedByDefault
+```
+
+---
+
+# 25. ゴールデンテスト
+
+## 25.1 StableId
+
+- 3文字を受理
+- 80文字を受理
+- 1文字を拒否
+- 2文字を拒否
+- 81文字を拒否
+- 大文字を拒否
+- ハイフンを拒否
+- 日本語を拒否
+- 前後空白を拒否
+- 改行を拒否
+
+## 25.2 CatalogVersion
+
+受理：
+
+```text
+2026.09.17.1
+2026.12.31.9
+2028.02.29.1
+```
+
+拒否：
+
+```text
+1
+v2
+2026.09.17
+2026.9.17.1
+2026.02.30.1
+2026.13.01.1
+2026.00.01.1
+2026.01.00.1
+2026.01.01.0
+V2-beta.1
+```
+
+## 25.3 TriState
+
+4×4のAND表、OR表、4状態のNOTを全件固定する。
+
+## 25.4 みずほ楽天カード
+
+- 2025-06-29申込は対象外
+- 2025-06-30申込は対象候補
+- 口座設定期限内は対象
+- 期限後は対象外
+- 条件達成月の月初から開始
+- 開始から1年後で終了
+- みずほポイント10,000で停止
+- SPUをmirrorしない
+- 楽天通常ポイント対象外ならmirrorも0
+
+## 25.5 V NEOBANK
+
+- 到着日2026-10-31は旧制度
+- 到着日2026-11-01は新制度
+- 取引日が10月でも到着日が11月なら新制度
+- 到着日不明はconfirmedにしない
+- 新制度の公共料金は対象外
+- 新制度の病院は対象外
+- 月額999円は0
+- 月額1,000円は付与
+
+## 25.6 JCBカードW
+
+- 月額199円は0
+- 月額200円は基本1＋W特典1
+- 150円を3回で合計4ポイント
+- J-POINTボーナス対象外
+- W特典を基本ルールへ混入しない
+
+## 25.7 三菱UFJカード
+
+- 月額999円は0
+- 月額1,000円は1ポイント
+- 600円＋600円は1ポイント
+- 1ポイントを無条件で5円としない
+- PointValue不明を0円にしない
+
+## 25.8 Olive
+
+- creditは年間集計対象
+- debitは年間集計対象
+- pointPaymentは対象外
+- addedCardは対象外
+- 年会費は対象外
+- キャッシングは対象外
+- 公共料金をカテゴリ名だけで一律除外しない
+- 閾値到達時に10,000ポイントを今回獲得へ混入しない
+
+---
+
+# 26. PR-04の確定範囲
+
+PR名：
+
+```text
+PR-04 Align integration baseline and common value objects
+```
+
+目的：
+
+- 最上位統合仕様に合わせて文書と共通値オブジェクトを補正する
+- まだ商品カタログ、計算エンジン、DB、UIは変更しない
+
+## 26.1 追加ファイル
+
+```text
+docs/spec/README.md
+docs/spec/BESTpay_v2_integration_checkpoint_2026-09-18.md
+docs/spec/spec_manifest.json
+docs/spec/conflict_resolution.csv
+docs/spec/terminology.md
+```
+
+## 26.2 変更ファイル
+
+```text
+lib/core/value_objects/stable_id.dart
+lib/core/value_objects/catalog_version.dart
+lib/core/value_objects/tri_state.dart
+test/core/value_objects/stable_id_test.dart
+test/core/value_objects/catalog_version_test.dart
+test/core/value_objects/tri_state_test.dart
+docs/architecture/clock_policy.md
+docs/architecture/dependency_rules.md
+docs/architecture/error_policy.md
+docs/architecture/migration_strategy.md
+docs/architecture/overview.md
+docs/architecture/value_object_policy.md
+```
+
+## 26.3 StableId修正
+
+現行：
+
+```dart
+RegExp(r'^[a-z][a-z0-9_]*$')
+```
+
+修正後：
+
+```dart
+RegExp(r'^[a-z][a-z0-9_]{2,79}$')
+```
+
+テスト中の`StableId.create('a')`は削除し、3文字境界、80文字境界、81文字拒否を追加する。
+
+## 26.4 CatalogVersion修正
+
+任意形式を許可する現行方針を廃止する。
+
+検証手順：
+
+1. 厳密な文字列形式を検証
+2. 年、月、日、revisionを抽出
+3. CalculationDateで実在日を検証
+4. revisionが1以上であることを検証
+5. 元文字列を保持
+
+`CatalogVersion`から`CalculationDate`への依存は、同じcore/value_objects内であり許可する。
+
+## 26.5 TriState修正
+
+追加：
+
+```dart
+notApplicable
+```
+
+修正：
+
+- NOT
+- AND
+- OR
+- stable names test
+- nullable bool test
+- 4×4真理値表
+
+既存の`fromNullableBool(null)`は`unknown`を返す。
+
+## 26.6 文書修正
+
+文書先頭のタイトル：
+
+```text
+Maxpay v2
+```
+
+を次へ変更する。
+
+```text
+BESTpay v2
+```
+
+必要な箇所だけ次の注記を残す。
+
+```text
+旧称「Maxpay」
+```
+
+各文書へ統合仕様参照を追加する。
+
+```text
+本書は「BESTpay v2 全115文書 統合調整・整合性修正仕様書
+BP-DOC-INTEGRATION-001」に従う。
+本書と統合修正仕様書が競合する場合、統合修正仕様書を優先する。
+```
+
+## 26.7 PR-04で変更しないもの
+
+```text
+lib/main.dart
+現行Calculator
+DatabaseHelper
+SQLite schema
+seed data
+StoreDetailScreen
+AppState
+既存バックアップ形式
+applicationId
+Android namespace
+Bundle ID
+リリース署名
+pubspec version
+現行画面
+現行商品計算結果
+runtime dependencies
+```
+
+## 26.8 PR-04完了条件
+
+```text
+flutter analyze
+flutter test
+Architecture Check
+```
+
+すべて成功すること。
+
+追加条件：
+
+- StableIdの3～80文字がテストで固定されている
+- CatalogVersion形式と実在日がテストされている
+- TriStateの4状態真理値表が固定されている
+- enum indexを保存していない
+- 既存DBに変更がない
+- 既存画面に変更がない
+- runtime dependency追加がない
+- docs/specの正本参照が存在する
+- 旧称が説明目的以外で残っていない
+
+---
+
+# 27. 後続PR
+
+## PR-05
+
+```text
+JSON Schema
+カタログファイル構造
+Schema conformance tests
+```
+
+## PR-06
+
+```text
+Catalog Loader
+参照整合性検証
+fatal/error/warning/info
+contentHash検証
+```
+
+## PR-07
+
+```text
+4状態条件評価
+ConditionExpression
+confidence
+reasonCode
+calculation trace
+```
+
+## PR-08
+
+```text
+RewardRule計算エンジン
+stacking
+replacement
+suppression
+cap
+mirror
+rounding
+```
+
+## PR-09
+
+```text
+UsagePeriodState
+月間・年間・利用者固有期間集計
+```
+
+## PR-10
+
+```text
+ユーザーデータ
+バックアップ
+v1→v2移行
+復元検証
+atomic restore
+rollback
+```
+
+## PR-11以降
+
+```text
+Application UseCase
+Provider/ViewModel
+UI接続
+画面遷移
+```
+
+UIから生JSONを直接参照しない。
+
+---
+
+# 28. 変更禁止事項
+
+外部照合完了まで変更禁止：
+
+```text
+applicationId
+Android namespace
+Bundle ID
+リリース署名
+配布識別子
+本番DBの破壊的変更
+既存バックアップの破壊的変更
+```
+
+仕様確定前に禁止：
+
+```text
+旧StableIdの無条件置換
+id_migrationsなしのID変更
+一次情報なしでactive RewardRuleを追加
+広告上の最大還元率を固定計算値にする
+旧ルールの上書き削除
+unknownをfalseへ変換
+```
+
+---
+
+# 29. 現在の完了状態
+
+完了：
+
+```text
+正本優先順位
+正式名称
+基準コミット確認
+初期設定
+StableId仕様
+CatalogVersion仕様
+4状態条件評価
+日付・期間仕様
+RewardRule正規形
+期間集計モデル
+主要5商品の一次情報照合
+競合解決45件
+JSON Schema基本契約
+PR-04変更範囲
+主要ゴールデンテスト
+```
+
+未完了：
+
+```text
+118文書の全メタデータ入力
+全contentHashのmanifest反映
+全JSON Schemaファイル本文
+初期カタログJSON実データ
+全Sourceレコード
+全RewardRuleレコード
+Schema validator実装
+Catalog Loader実装
+計算エンジン実装
+GitHubへのPR-04反映
+```
+
+---
+
+# 30. 次の再開位置
+
+次回は以下から再開する。
+
+1. PR-04の実ファイル内容を確定
+2. `spec_manifest.json`の先頭3文書を作成
+3. `conflict_resolution.csv`を実CSV化
+4. `terminology.md`を作成
+5. StableId、CatalogVersion、TriStateのDart変更案を作成
+6. 対応するテスト変更案を作成
+7. PR-04一式をユーザーが保存可能な形で出力
+8. ユーザーによるGitHub反映手順へ進む
+
+ユーザー確認が必要になる予定地点：
+
+```text
+PR-04一式を実際にローカルリポジトリへ配置し、
+ブランチ作成・テスト・commit・pushを実行する地点
+```
+
+それまでは仕様判断とファイル作成を継続できる。
+
+---
+
+# 31. チェックポイント完全性
+
+この文書を保存した後、次を確認する。
+
+```text
+ファイル名:
+BESTpay_v2_integration_checkpoint_2026-09-18.md
+
+文字コード:
+UTF-8
+
+改行:
+CRLFまたはLF
+
+推奨保存場所:
+BESTpay/docs/spec/BESTpay_v2_integration_checkpoint_2026-09-18.md
+```
+
+この文書は認証情報、カード番号、口座番号、パスワード、APIトークン、Cookie、セッション情報を含まない。
+
+以上。

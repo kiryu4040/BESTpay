@@ -1,0 +1,155 @@
+{
+  "schemaVersion": "1.0.0",
+  "manifestVersion": "2026.09.18.1",
+  "generatedAt": "2026-09-18T00:00:00+09:00",
+  "timezone": "Asia/Tokyo",
+  "locale": "ja-JP",
+  "product": {
+    "name": "BESTpay",
+    "version": "BESTpay v2"
+  },
+  "repository": {
+    "url": "https://github.com/kiryu4040/BESTpay",
+    "reviewedCommit": "4a19b992a9be6668349137dc26c7ab6177d31f1b",
+    "reviewedCommitDate": "2026-09-14T17:49:49Z"
+  },
+  "completeness": {
+    "status": "partial",
+    "expectedGovernanceDocumentCount": 3,
+    "registeredGovernanceDocumentCount": 3,
+    "expectedSourceDocumentCount": 115,
+    "registeredSourceDocumentCount": 0,
+    "notes": [
+      "最上位統合仕様の3分冊を登録済み。",
+      "原文115文書は、files.csvおよびsha256.txtとの照合後に登録する。",
+      "statusをcompleteへ変更するまでは正式な完成マニフェストとして使用しない。"
+    ]
+  },
+  "precedence": [
+    "integrationSpecification",
+    "activeNormativeDocument",
+    "officialPrimarySource",
+    "activeSupportingDocument",
+    "implementationCode",
+    "automatedTest",
+    "draftDocument",
+    "historicalDocument"
+  ],
+  "governanceDocuments": [
+    {
+      "documentId": "1Ix_-J4W0LFDqBlVsCdXyI3BZAUw7UAJFfXlRQ21d_oU",
+      "logicalDocumentId": "BP-DOC-INTEGRATION-001",
+      "part": 1,
+      "partCount": 3,
+      "sourceFile": "000_integration_01.txt",
+      "title": "BESTpay v2 全115文書 統合調整・整合性修正仕様書 第1部",
+      "documentVersion": "1.0.0",
+      "status": "active",
+      "effectiveFrom": "2026-09-17",
+      "effectiveUntilExclusive": null,
+      "authorityLevel": "normative",
+      "scope": [
+        "documentGovernance",
+        "terminology",
+        "manifest",
+        "identifiers",
+        "numericTypes",
+        "rounding",
+        "dates",
+        "conditionLogic"
+      ],
+      "sourceUrl": "https://docs.google.com/document/d/1Ix_-J4W0LFDqBlVsCdXyI3BZAUw7UAJFfXlRQ21d_oU/export?format=txt",
+      "contentHash": null,
+      "lastReviewedAt": "2026-09-18",
+      "supersedes": [],
+      "supersededBy": null,
+      "notes": [
+        "論理文書BP-DOC-INTEGRATION-001の第1分冊。",
+        "第0章から第8章を収録。",
+        "本仕様と他文書が競合する場合、本仕様を優先する。",
+        "contentHashは提供済みsha256.txtとの照合後に設定する。"
+      ]
+    },
+    {
+      "documentId": "19sVV_sDK0INWkwTUsuyoEXrQDVn7ZUM4kpxbZKtM-10",
+      "logicalDocumentId": "BP-DOC-INTEGRATION-001",
+      "part": 2,
+      "partCount": 3,
+      "sourceFile": "000_integration_02.txt",
+      "title": "BESTpay v2 全115文書 統合調整・整合性修正仕様書 第2部",
+      "documentVersion": "1.0.0",
+      "status": "active",
+      "effectiveFrom": "2026-09-17",
+      "effectiveUntilExclusive": null,
+      "authorityLevel": "normative",
+      "scope": [
+        "initialSettings",
+        "paymentInstrumentScope",
+        "favorites",
+        "navigation",
+        "input",
+        "ranking",
+        "rewardRules",
+        "officialProductCorrections"
+      ],
+      "sourceUrl": "https://docs.google.com/document/d/19sVV_sDK0INWkwTUsuyoEXrQDVn7ZUM4kpxbZKtM-10/export?format=txt",
+      "contentHash": null,
+      "lastReviewedAt": "2026-09-18",
+      "supersedes": [],
+      "supersededBy": null,
+      "notes": [
+        "論理文書BP-DOC-INTEGRATION-001の第2分冊。",
+        "第9章から第16章を収録。",
+        "独立した別仕様ではなく、第1分冊から継続する同一論理文書。",
+        "contentHashは提供済みsha256.txtとの照合後に設定する。"
+      ]
+    },
+    {
+      "documentId": "1Vy6bEv4nr0uutu-z3yCGKgF-GJIEzgk7MWQ4z2gJ8qo",
+      "logicalDocumentId": "BP-DOC-INTEGRATION-001",
+      "part": 3,
+      "partCount": 3,
+      "sourceFile": "000_integration_03.txt",
+      "title": "BESTpay v2 全115文書 統合調整・整合性修正仕様書 第3部",
+      "documentVersion": "1.0.0",
+      "status": "active",
+      "effectiveFrom": "2026-09-17",
+      "effectiveUntilExclusive": null,
+      "authorityLevel": "normative",
+      "scope": [
+        "sources",
+        "catalog",
+        "backup",
+        "implementationAlignment",
+        "architecture",
+        "errors",
+        "tests",
+        "documentApplicationRules",
+        "implementationGate",
+        "finalDecisions"
+      ],
+      "sourceUrl": "https://docs.google.com/document/d/1Vy6bEv4nr0uutu-z3yCGKgF-GJIEzgk7MWQ4z2gJ8qo/export?format=txt",
+      "contentHash": null,
+      "lastReviewedAt": "2026-09-18",
+      "supersedes": [],
+      "supersededBy": null,
+      "notes": [
+        "論理文書BP-DOC-INTEGRATION-001の第3分冊。",
+        "第17章以降を収録。",
+        "独立した別仕様ではなく、第1・第2分冊から継続する同一論理文書。",
+        "contentHashは提供済みsha256.txtとの照合後に設定する。"
+      ]
+    }
+  ],
+  "documents": [],
+  "disabledRuleIds": [],
+  "notes": [
+    "原文115文書のsequenceは1から115までの連番とする。",
+    "GoogleドキュメントIDはURLの/d/と/exportの間の値をそのまま使用する。",
+    "URLやdocumentIdを手入力で再構築しない。",
+    "同一論理文書の分冊はlogicalDocumentIdで関連付ける。",
+    "文書のcontentHashは取得済みテキストファイルのSHA-256を使用する。",
+    "正式名称はBESTpayおよびBESTpay v2とする。",
+    "旧称Maxpayは履歴説明が必要な場合に限り使用する。"
+  ]
+}
