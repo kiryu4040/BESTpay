@@ -1,0 +1,566 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:bestpay:schema:reward-rule:1.0.0",
+  "title": "RewardRuleCatalog",
+  "description": "Complete catalog file envelope with typed items.",
+  "allOf": [
+    {
+      "$ref": "urn:bestpay:schema:catalog-root:1.0.0"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/catalogItem"
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "calculation": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/unitPointsCalculation"
+        },
+        {
+          "$ref": "#/$defs/rateFractionCalculation"
+        },
+        {
+          "$ref": "#/$defs/fixedPointsCalculation"
+        },
+        {
+          "$ref": "#/$defs/mirrorCalculation"
+        },
+        {
+          "$ref": "#/$defs/thresholdBonusCalculation"
+        },
+        {
+          "$ref": "#/$defs/tieredCalculation"
+        },
+        {
+          "$ref": "#/$defs/noCalculation"
+        }
+      ]
+    },
+    "unitPointsCalculation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "calculationType",
+        "amountUnitYen",
+        "pointsPerUnit",
+        "rounding"
+      ],
+      "properties": {
+        "calculationType": {
+          "const": "unitPoints"
+        },
+        "amountUnitYen": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "pointsPerUnit": {
+          "type": "integer"
+        },
+        "rounding": {
+          "$ref": "#/$defs/roundingMode"
+        }
+      }
+    },
+    "rateFractionCalculation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "calculationType",
+        "numerator",
+        "denominator",
+        "rounding"
+      ],
+      "properties": {
+        "calculationType": {
+          "const": "rateFraction"
+        },
+        "numerator": {
+          "type": "integer"
+        },
+        "denominator": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "rounding": {
+          "$ref": "#/$defs/roundingMode"
+        }
+      }
+    },
+    "fixedPointsCalculation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "calculationType",
+        "points"
+      ],
+      "properties": {
+        "calculationType": {
+          "const": "fixedPoints"
+        },
+        "points": {
+          "type": "integer"
+        }
+      }
+    },
+    "mirrorCalculation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "calculationType",
+        "sourceRuleId",
+        "multiplierNumerator",
+        "multiplierDenominator",
+        "inheritEligibility",
+        "inheritExclusions",
+        "useFinalSourceAmount"
+      ],
+      "properties": {
+        "calculationType": {
+          "const": "mirror"
+        },
+        "sourceRuleId": {
+          "$ref": "urn:bestpay:schema:stable-id:1.0.0"
+        },
+        "multiplierNumerator": {
+          "type": "integer"
+        },
+        "multiplierDenominator": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "inheritEligibility": {
+          "type": "boolean"
+        },
+        "inheritExclusions": {
+          "type": "boolean"
+        },
+        "useFinalSourceAmount": {
+          "type": "boolean"
+        }
+      }
+    },
+    "thresholdBonusCalculation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "calculationType",
+        "thresholdAmountYen",
+        "bonusPoints",
+        "maxAwardsPerPeriod"
+      ],
+      "properties": {
+        "calculationType": {
+          "const": "thresholdBonus"
+        },
+        "thresholdAmountYen": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "bonusPoints": {
+          "type": "integer"
+        },
+        "maxAwardsPerPeriod": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "tieredCalculation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "calculationType",
+        "tiers"
+      ],
+      "properties": {
+        "calculationType": {
+          "const": "tiered"
+        },
+        "tiers": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/tier"
+          }
+        }
+      }
+    },
+    "noCalculation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "calculationType"
+      ],
+      "properties": {
+        "calculationType": {
+          "const": "none"
+        }
+      }
+    },
+    "tier": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "minimumAmountYen",
+        "maximumAmountYenExclusive",
+        "calculation"
+      ],
+      "properties": {
+        "minimumAmountYen": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "maximumAmountYenExclusive": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "calculation": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/unitPointsCalculation"
+            },
+            {
+              "$ref": "#/$defs/rateFractionCalculation"
+            },
+            {
+              "$ref": "#/$defs/fixedPointsCalculation"
+            }
+          ]
+        }
+      }
+    },
+    "aggregation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "scope",
+        "aggregationKey",
+        "periodMinimumEligibleSpendYen",
+        "conditionEvaluationTiming",
+        "incrementalAward"
+      ],
+      "properties": {
+        "scope": {
+          "type": "string",
+          "enum": [
+            "transaction",
+            "billingMonth",
+            "calendarMonth",
+            "membershipYear",
+            "programYear",
+            "userSpecificPeriod"
+          ]
+        },
+        "aggregationKey": {
+          "$ref": "#/$defs/nullableStableId"
+        },
+        "periodMinimumEligibleSpendYen": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "conditionEvaluationTiming": {
+          "type": "string",
+          "minLength": 1
+        },
+        "incrementalAward": {
+          "type": "boolean"
+        }
+      }
+    },
+    "stacking": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "policy",
+        "exclusiveGroupId",
+        "replacesRuleIds",
+        "suppressesRuleIds",
+        "suppressesTags",
+        "dependsOnRuleIds",
+        "applicationOrder"
+      ],
+      "properties": {
+        "policy": {
+          "type": "string",
+          "minLength": 1
+        },
+        "exclusiveGroupId": {
+          "$ref": "#/$defs/nullableStableId"
+        },
+        "replacesRuleIds": {
+          "$ref": "#/$defs/stableIdSet"
+        },
+        "suppressesRuleIds": {
+          "$ref": "#/$defs/stableIdSet"
+        },
+        "suppressesTags": {
+          "$ref": "#/$defs/stableIdSet"
+        },
+        "dependsOnRuleIds": {
+          "$ref": "#/$defs/stableIdSet"
+        },
+        "applicationOrder": {
+          "type": "integer"
+        }
+      }
+    },
+    "cap": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "capType",
+        "limit",
+        "periodType",
+        "scopeKey",
+        "appliesTo",
+        "overflowPolicy"
+      ],
+      "properties": {
+        "capType": {
+          "type": "string",
+          "minLength": 1
+        },
+        "limit": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "periodType": {
+          "type": "string",
+          "minLength": 1
+        },
+        "scopeKey": {
+          "$ref": "#/$defs/nullableStableId"
+        },
+        "appliesTo": {
+          "type": "string",
+          "minLength": 1
+        },
+        "overflowPolicy": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "roundingMode": {
+      "type": "string",
+      "enum": [
+        "towardZero",
+        "floor",
+        "ceiling",
+        "halfAwayFromZero",
+        "halfToEven",
+        "exact"
+      ]
+    },
+    "nullableStableId": {
+      "anyOf": [
+        {
+          "$ref": "urn:bestpay:schema:stable-id:1.0.0"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "nullableDate": {
+      "anyOf": [
+        {
+          "$ref": "urn:bestpay:schema:date:1.0.0"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "stableIdSet": {
+      "type": "array",
+      "items": {
+        "$ref": "urn:bestpay:schema:stable-id:1.0.0"
+      },
+      "uniqueItems": true
+    },
+    "sourceReferenceSet": {
+      "type": "array",
+      "items": {
+        "$ref": "urn:bestpay:schema:source-reference:1.0.0"
+      },
+      "uniqueItems": true
+    },
+    "textSet": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "catalogItem": {
+      "title": "RewardRule",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "name",
+        "description",
+        "ruleKind",
+        "selectors",
+        "exclusions",
+        "conditionExpression",
+        "calculation",
+        "outputPointProgramId",
+        "aggregation",
+        "stacking",
+        "cap",
+        "validFrom",
+        "validUntilExclusive",
+        "dateBasis",
+        "timezone",
+        "displayClaim",
+        "sourceIds",
+        "lastVerifiedAt",
+        "status",
+        "priority",
+        "tags",
+        "notes"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "urn:bestpay:schema:stable-id:1.0.0"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string"
+        },
+        "ruleKind": {
+          "type": "string",
+          "enum": [
+            "baseReward",
+            "merchantBonus",
+            "categoryBonus",
+            "routeBonus",
+            "fundingBonus",
+            "loyaltyReward",
+            "thresholdBonus",
+            "campaignBonus",
+            "mirrorReward",
+            "suppression",
+            "replacement"
+          ]
+        },
+        "selectors": {
+          "$ref": "urn:bestpay:schema:selector-set:1.0.0"
+        },
+        "exclusions": {
+          "$ref": "urn:bestpay:schema:selector-set:1.0.0"
+        },
+        "conditionExpression": {
+          "anyOf": [
+            {
+              "$ref": "urn:bestpay:schema:condition-expression:1.0.0"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "calculation": {
+          "$ref": "#/$defs/calculation"
+        },
+        "outputPointProgramId": {
+          "$ref": "#/$defs/nullableStableId"
+        },
+        "aggregation": {
+          "$ref": "#/$defs/aggregation"
+        },
+        "stacking": {
+          "$ref": "#/$defs/stacking"
+        },
+        "cap": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/cap"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "validFrom": {
+          "$ref": "urn:bestpay:schema:date:1.0.0"
+        },
+        "validUntilExclusive": {
+          "$ref": "#/$defs/nullableDate"
+        },
+        "dateBasis": {
+          "type": "string",
+          "enum": [
+            "transactionDate",
+            "postingDate",
+            "settlementDataReceivedDate",
+            "billingDate",
+            "entryDate",
+            "campaignRegistrationDate",
+            "periodEndDate"
+          ]
+        },
+        "timezone": {
+          "const": "Asia/Tokyo"
+        },
+        "displayClaim": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "sourceIds": {
+          "$ref": "#/$defs/sourceReferenceSet"
+        },
+        "lastVerifiedAt": {
+          "$ref": "urn:bestpay:schema:date:1.0.0"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "draft",
+            "unverified",
+            "active",
+            "inactive",
+            "deprecated",
+            "superseded",
+            "historical",
+            "archived"
+          ]
+        },
+        "priority": {
+          "type": "integer"
+        },
+        "tags": {
+          "$ref": "#/$defs/stableIdSet"
+        },
+        "notes": {
+          "$ref": "#/$defs/textSet"
+        }
+      }
+    }
+  }
+}

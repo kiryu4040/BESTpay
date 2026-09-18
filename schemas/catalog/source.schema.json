@@ -1,0 +1,135 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:bestpay:schema:source:1.0.0",
+  "title": "SourceCatalog",
+  "description": "Complete catalog file envelope with typed items.",
+  "allOf": [
+    {
+      "$ref": "urn:bestpay:schema:catalog-root:1.0.0"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/catalogItem"
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "catalogItem": {
+      "title": "Source",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "url",
+        "publisher",
+        "sourceType",
+        "publishedAt",
+        "lastVerifiedAt",
+        "accessStatus",
+        "reliability",
+        "relevantSections",
+        "summary",
+        "contentHash",
+        "notes"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "urn:bestpay:schema:stable-id:1.0.0"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "publisher": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sourceType": {
+          "type": "string",
+          "enum": [
+            "officialTerms",
+            "officialFaq",
+            "officialProductPage",
+            "officialCampaignPage",
+            "officialNewsRelease",
+            "officialAppNotice",
+            "secondaryArticle",
+            "userReport"
+          ]
+        },
+        "publishedAt": {
+          "anyOf": [
+            {
+              "$ref": "urn:bestpay:schema:date:1.0.0"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "lastVerifiedAt": {
+          "$ref": "urn:bestpay:schema:date:1.0.0"
+        },
+        "accessStatus": {
+          "type": "string",
+          "enum": [
+            "accessible",
+            "changed",
+            "unavailable",
+            "archived"
+          ]
+        },
+        "reliability": {
+          "type": "string",
+          "enum": [
+            "primary",
+            "secondary",
+            "userReported",
+            "unverified"
+          ]
+        },
+        "relevantSections": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "summary": {
+          "type": "string"
+        },
+        "contentHash": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      }
+    }
+  }
+}

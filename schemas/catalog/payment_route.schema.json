@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:bestpay:schema:payment-route:1.0.0",
+  "title": "PaymentRouteCatalog",
+  "description": "Complete catalog file envelope with typed items.",
+  "allOf": [
+    {
+      "$ref": "urn:bestpay:schema:catalog-root:1.0.0"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/catalogItem"
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "stableIdSet": {
+      "type": "array",
+      "items": {
+        "$ref": "urn:bestpay:schema:stable-id:1.0.0"
+      },
+      "uniqueItems": true
+    },
+    "sourceReferenceSet": {
+      "type": "array",
+      "items": {
+        "$ref": "urn:bestpay:schema:source-reference:1.0.0"
+      },
+      "uniqueItems": true
+    },
+    "nullableDate": {
+      "anyOf": [
+        {
+          "$ref": "urn:bestpay:schema:date:1.0.0"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "textSet": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "catalogItem": {
+      "title": "PaymentRoute",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "name",
+        "routeType",
+        "brandIds",
+        "deviceRequirement",
+        "supportedInstrumentIds",
+        "validFrom",
+        "validUntilExclusive",
+        "status",
+        "sourceIds",
+        "notes"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "urn:bestpay:schema:stable-id:1.0.0"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "routeType": {
+          "type": "string",
+          "minLength": 1
+        },
+        "brandIds": {
+          "$ref": "#/$defs/stableIdSet"
+        },
+        "deviceRequirement": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "supportedInstrumentIds": {
+          "$ref": "#/$defs/stableIdSet"
+        },
+        "validFrom": {
+          "$ref": "urn:bestpay:schema:date:1.0.0"
+        },
+        "validUntilExclusive": {
+          "$ref": "#/$defs/nullableDate"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "draft",
+            "unverified",
+            "active",
+            "inactive",
+            "deprecated",
+            "superseded",
+            "historical",
+            "archived"
+          ]
+        },
+        "sourceIds": {
+          "$ref": "#/$defs/sourceReferenceSet"
+        },
+        "notes": {
+          "$ref": "#/$defs/textSet"
+        }
+      }
+    }
+  }
+}

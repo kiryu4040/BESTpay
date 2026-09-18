@@ -1,0 +1,139 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:bestpay:schema:transaction-record:1.0.0",
+  "title": "TransactionRecord",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "merchantId",
+    "manualMerchantName",
+    "categoryId",
+    "amountYen",
+    "transactionAt",
+    "postingAt",
+    "settlementDataReceivedAt",
+    "billingAt",
+    "instrumentId",
+    "modeId",
+    "routeId",
+    "fundingRelationIds",
+    "appliedRuleIds",
+    "earnedPoints",
+    "eligibility",
+    "createdAt",
+    "notes"
+  ],
+  "properties": {
+    "id": {
+      "$ref": "urn:bestpay:schema:stable-id:1.0.0"
+    },
+    "merchantId": {
+      "$ref": "#/$defs/nullableStableId"
+    },
+    "manualMerchantName": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "categoryId": {
+      "$ref": "#/$defs/nullableStableId"
+    },
+    "amountYen": {
+      "type": "integer"
+    },
+    "transactionAt": {
+      "$ref": "urn:bestpay:schema:timestamp:1.0.0"
+    },
+    "postingAt": {
+      "$ref": "#/$defs/nullableTimestamp"
+    },
+    "settlementDataReceivedAt": {
+      "$ref": "#/$defs/nullableTimestamp"
+    },
+    "billingAt": {
+      "$ref": "#/$defs/nullableTimestamp"
+    },
+    "instrumentId": {
+      "$ref": "urn:bestpay:schema:stable-id:1.0.0"
+    },
+    "modeId": {
+      "$ref": "urn:bestpay:schema:stable-id:1.0.0"
+    },
+    "routeId": {
+      "$ref": "urn:bestpay:schema:stable-id:1.0.0"
+    },
+    "fundingRelationIds": {
+      "$ref": "#/$defs/stableIdSet"
+    },
+    "appliedRuleIds": {
+      "$ref": "#/$defs/stableIdSet"
+    },
+    "earnedPoints": {
+      "$ref": "#/$defs/integerByStableId"
+    },
+    "eligibility": {
+      "type": "string",
+      "enum": [
+        "satisfied",
+        "notSatisfied",
+        "unknown",
+        "notApplicable"
+      ]
+    },
+    "createdAt": {
+      "$ref": "urn:bestpay:schema:timestamp:1.0.0"
+    },
+    "notes": {
+      "$ref": "#/$defs/textSet"
+    }
+  },
+  "$defs": {
+    "nullableStableId": {
+      "anyOf": [
+        {
+          "$ref": "urn:bestpay:schema:stable-id:1.0.0"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "nullableTimestamp": {
+      "anyOf": [
+        {
+          "$ref": "urn:bestpay:schema:timestamp:1.0.0"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "stableIdSet": {
+      "type": "array",
+      "items": {
+        "$ref": "urn:bestpay:schema:stable-id:1.0.0"
+      },
+      "uniqueItems": true
+    },
+    "integerByStableId": {
+      "type": "object",
+      "propertyNames": {
+        "$ref": "urn:bestpay:schema:stable-id:1.0.0"
+      },
+      "additionalProperties": {
+        "type": "integer"
+      }
+    },
+    "textSet": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    }
+  }
+}

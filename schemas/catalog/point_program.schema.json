@@ -1,0 +1,206 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:bestpay:schema:point-program:1.0.0",
+  "title": "PointProgramCatalog",
+  "description": "Complete catalog file envelope with typed items.",
+  "allOf": [
+    {
+      "$ref": "urn:bestpay:schema:catalog-root:1.0.0"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/catalogItem"
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "valueDefinition": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "valueType",
+            "yenPerPoint"
+          ],
+          "properties": {
+            "valueType": {
+              "const": "fixed"
+            },
+            "yenPerPoint": {
+              "$ref": "urn:bestpay:schema:rational:1.0.0"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "valueType"
+          ],
+          "properties": {
+            "valueType": {
+              "const": "variable"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "valueType"
+          ],
+          "properties": {
+            "valueType": {
+              "const": "unset"
+            }
+          }
+        }
+      ]
+    },
+    "expiration": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "expirationType"
+          ],
+          "properties": {
+            "expirationType": {
+              "const": "none"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "expirationType",
+            "expiresOn"
+          ],
+          "properties": {
+            "expirationType": {
+              "const": "fixedDate"
+            },
+            "expiresOn": {
+              "$ref": "urn:bestpay:schema:date:1.0.0"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "expirationType",
+            "months"
+          ],
+          "properties": {
+            "expirationType": {
+              "const": "durationMonths"
+            },
+            "months": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "expirationType"
+          ],
+          "properties": {
+            "expirationType": {
+              "const": "unknown"
+            }
+          }
+        }
+      ]
+    },
+    "sourceReferenceSet": {
+      "type": "array",
+      "items": {
+        "$ref": "urn:bestpay:schema:source-reference:1.0.0"
+      },
+      "uniqueItems": true
+    },
+    "textSet": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "catalogItem": {
+      "title": "PointProgram",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "name",
+        "issuerName",
+        "unitName",
+        "valueDefinition",
+        "expiration",
+        "status",
+        "sourceIds",
+        "lastVerifiedAt",
+        "notes"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "urn:bestpay:schema:stable-id:1.0.0"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "issuerName": {
+          "type": "string",
+          "minLength": 1
+        },
+        "unitName": {
+          "type": "string",
+          "minLength": 1
+        },
+        "valueDefinition": {
+          "$ref": "#/$defs/valueDefinition"
+        },
+        "expiration": {
+          "$ref": "#/$defs/expiration"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "draft",
+            "unverified",
+            "active",
+            "inactive",
+            "deprecated",
+            "superseded",
+            "historical",
+            "archived"
+          ]
+        },
+        "sourceIds": {
+          "$ref": "#/$defs/sourceReferenceSet"
+        },
+        "lastVerifiedAt": {
+          "$ref": "urn:bestpay:schema:date:1.0.0"
+        },
+        "notes": {
+          "$ref": "#/$defs/textSet"
+        }
+      }
+    }
+  }
+}

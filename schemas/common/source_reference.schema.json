@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:bestpay:schema:source-reference:1.0.0",
+  "title": "SourceReference",
+  "description": "StableId of a Source record.",
+  "allOf": [
+    {
+      "$ref": "urn:bestpay:schema:stable-id:1.0.0"
+    }
+  ]
+}

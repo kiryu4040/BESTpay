@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:bestpay:schema:condition-state:1.0.0",
+  "title": "ConditionState",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "conditionId",
+    "state",
+    "updatedAt"
+  ],
+  "properties": {
+    "conditionId": {
+      "$ref": "urn:bestpay:schema:stable-id:1.0.0"
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "satisfied",
+        "notSatisfied",
+        "unknown",
+        "notApplicable"
+      ]
+    },
+    "updatedAt": {
+      "$ref": "urn:bestpay:schema:timestamp:1.0.0"
+    }
+  }
+}

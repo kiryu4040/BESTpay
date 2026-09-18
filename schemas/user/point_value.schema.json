@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:bestpay:schema:point-value:1.0.0",
+  "title": "PointValue",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "pointProgramId",
+    "yenPerPoint",
+    "updatedAt"
+  ],
+  "properties": {
+    "pointProgramId": {
+      "$ref": "urn:bestpay:schema:stable-id:1.0.0"
+    },
+    "yenPerPoint": {
+      "anyOf": [
+        {
+          "$ref": "urn:bestpay:schema:rational:1.0.0"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "updatedAt": {
+      "anyOf": [
+        {
+          "$ref": "urn:bestpay:schema:timestamp:1.0.0"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  }
+}

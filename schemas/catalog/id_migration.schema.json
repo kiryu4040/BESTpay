@@ -1,0 +1,199 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:bestpay:schema:id-migration:1.0.0",
+  "title": "IdMigrationCatalog",
+  "description": "Complete catalog file envelope with typed items.",
+  "allOf": [
+    {
+      "$ref": "urn:bestpay:schema:catalog-root:1.0.0"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/catalogItem"
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "stableIdSet": {
+      "type": "array",
+      "items": {
+        "$ref": "urn:bestpay:schema:stable-id:1.0.0"
+      },
+      "uniqueItems": true
+    },
+    "sourceReferenceSet": {
+      "type": "array",
+      "items": {
+        "$ref": "urn:bestpay:schema:source-reference:1.0.0"
+      },
+      "uniqueItems": true
+    },
+    "textSet": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "catalogItem": {
+      "title": "IdMigration",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "entityType",
+        "migrationType",
+        "fromIds",
+        "toIds",
+        "evidenceSourceIds",
+        "needsReview",
+        "effectiveFrom",
+        "notes"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "urn:bestpay:schema:stable-id:1.0.0"
+        },
+        "entityType": {
+          "type": "string",
+          "minLength": 1
+        },
+        "migrationType": {
+          "type": "string",
+          "enum": [
+            "rename",
+            "merge",
+            "split",
+            "remove"
+          ]
+        },
+        "fromIds": {
+          "$ref": "#/$defs/stableIdSet"
+        },
+        "toIds": {
+          "$ref": "#/$defs/stableIdSet"
+        },
+        "evidenceSourceIds": {
+          "$ref": "#/$defs/sourceReferenceSet"
+        },
+        "needsReview": {
+          "type": "boolean"
+        },
+        "effectiveFrom": {
+          "$ref": "urn:bestpay:schema:date:1.0.0"
+        },
+        "notes": {
+          "$ref": "#/$defs/textSet"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "migrationType": {
+                "const": "rename"
+              }
+            },
+            "required": [
+              "migrationType"
+            ]
+          },
+          "then": {
+            "properties": {
+              "fromIds": {
+                "minItems": 1,
+                "maxItems": 1
+              },
+              "toIds": {
+                "minItems": 1,
+                "maxItems": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "migrationType": {
+                "const": "merge"
+              }
+            },
+            "required": [
+              "migrationType"
+            ]
+          },
+          "then": {
+            "properties": {
+              "fromIds": {
+                "minItems": 2
+              },
+              "toIds": {
+                "minItems": 1,
+                "maxItems": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "migrationType": {
+                "const": "split"
+              }
+            },
+            "required": [
+              "migrationType"
+            ]
+          },
+          "then": {
+            "properties": {
+              "fromIds": {
+                "minItems": 1,
+                "maxItems": 1
+              },
+              "toIds": {
+                "minItems": 2
+              },
+              "needsReview": {
+                "const": true
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "migrationType": {
+                "const": "remove"
+              }
+            },
+            "required": [
+              "migrationType"
+            ]
+          },
+          "then": {
+            "properties": {
+              "fromIds": {
+                "minItems": 1,
+                "maxItems": 1
+              },
+              "toIds": {
+                "maxItems": 0
+              },
+              "needsReview": {
+                "const": true
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

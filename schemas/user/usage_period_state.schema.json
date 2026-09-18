@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:bestpay:schema:usage-period-state:1.0.0",
+  "title": "UsagePeriodState",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "instrumentId",
+    "aggregationKey",
+    "periodType",
+    "periodStart",
+    "periodEndExclusive",
+    "eligibleSpendYen",
+    "ineligibleSpendYen",
+    "awardedPointsByProgram",
+    "consumedCaps",
+    "bonusStates",
+    "dataConfidence",
+    "updatedAt",
+    "updateMethod"
+  ],
+  "properties": {
+    "id": {
+      "$ref": "urn:bestpay:schema:stable-id:1.0.0"
+    },
+    "instrumentId": {
+      "$ref": "urn:bestpay:schema:stable-id:1.0.0"
+    },
+    "aggregationKey": {
+      "$ref": "urn:bestpay:schema:stable-id:1.0.0"
+    },
+    "periodType": {
+      "type": "string",
+      "minLength": 1
+    },
+    "periodStart": {
+      "$ref": "urn:bestpay:schema:date:1.0.0"
+    },
+    "periodEndExclusive": {
+      "$ref": "urn:bestpay:schema:date:1.0.0"
+    },
+    "eligibleSpendYen": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "ineligibleSpendYen": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "awardedPointsByProgram": {
+      "$ref": "#/$defs/integerByStableId"
+    },
+    "consumedCaps": {
+      "$ref": "#/$defs/nonNegativeIntegerByStableId"
+    },
+    "bonusStates": {
+      "$ref": "#/$defs/triStateByStableId"
+    },
+    "dataConfidence": {
+      "type": "string",
+      "enum": [
+        "exact",
+        "userEntered",
+        "estimated",
+        "unknown"
+      ]
+    },
+    "updatedAt": {
+      "$ref": "urn:bestpay:schema:timestamp:1.0.0"
+    },
+    "updateMethod": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "$defs": {
+    "integerByStableId": {
+      "type": "object",
+      "propertyNames": {
+        "$ref": "urn:bestpay:schema:stable-id:1.0.0"
+      },
+      "additionalProperties": {
+        "type": "integer"
+      }
+    },
+    "nonNegativeIntegerByStableId": {
+      "type": "object",
+      "propertyNames": {
+        "$ref": "urn:bestpay:schema:stable-id:1.0.0"
+      },
+      "additionalProperties": {
+        "type": "integer",
+        "minimum": 0
+      }
+    },
+    "triStateByStableId": {
+      "type": "object",
+      "propertyNames": {
+        "$ref": "urn:bestpay:schema:stable-id:1.0.0"
+      },
+      "additionalProperties": {
+        "type": "string",
+        "enum": [
+          "satisfied",
+          "notSatisfied",
+          "unknown",
+          "notApplicable"
+        ]
+      }
+    }
+  }
+}

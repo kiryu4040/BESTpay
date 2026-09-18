@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:bestpay:schema:merchant-category:1.0.0",
+  "title": "MerchantCategoryCatalog",
+  "description": "Complete catalog file envelope with typed items.",
+  "allOf": [
+    {
+      "$ref": "urn:bestpay:schema:catalog-root:1.0.0"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/catalogItem"
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "sourceReferenceSet": {
+      "type": "array",
+      "items": {
+        "$ref": "urn:bestpay:schema:source-reference:1.0.0"
+      },
+      "uniqueItems": true
+    },
+    "textSet": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "catalogItem": {
+      "title": "MerchantCategory",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "name",
+        "parentCategoryId",
+        "status",
+        "sourceIds",
+        "notes"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "urn:bestpay:schema:stable-id:1.0.0"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "parentCategoryId": {
+          "anyOf": [
+            {
+              "$ref": "urn:bestpay:schema:stable-id:1.0.0"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "draft",
+            "unverified",
+            "active",
+            "inactive",
+            "deprecated",
+            "superseded",
+            "historical",
+            "archived"
+          ]
+        },
+        "sourceIds": {
+          "$ref": "#/$defs/sourceReferenceSet"
+        },
+        "notes": {
+          "$ref": "#/$defs/textSet"
+        }
+      }
+    }
+  }
+}

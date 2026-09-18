@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:bestpay:schema:date:1.0.0",
+  "title": "CalendarDate",
+  "type": "string",
+  "format": "date"
+}

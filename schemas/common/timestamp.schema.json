@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:bestpay:schema:timestamp:1.0.0",
+  "title": "Timestamp",
+  "type": "string",
+  "format": "date-time"
+}

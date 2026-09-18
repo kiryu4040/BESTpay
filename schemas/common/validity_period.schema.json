@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:bestpay:schema:validity-period:1.0.0",
+  "title": "ValidityPeriod",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "validFrom",
+    "validUntilExclusive"
+  ],
+  "properties": {
+    "validFrom": {
+      "$ref": "urn:bestpay:schema:date:1.0.0"
+    },
+    "validUntilExclusive": {
+      "anyOf": [
+        {
+          "$ref": "urn:bestpay:schema:date:1.0.0"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  }
+}
