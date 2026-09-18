@@ -29,12 +29,15 @@ enum TriState {
 
   /// Four-valued logical AND.
   ///
-  /// Precedence:
+  /// [notApplicable] is ignored when combined with an applicable state.
+  /// The result is [notApplicable] only when both operands are
+  /// [notApplicable].
+  ///
+  /// Precedence among applicable states:
   ///
   /// 1. [notSatisfied]
   /// 2. [unknown]
-  /// 3. [notApplicable]
-  /// 4. [satisfied]
+  /// 3. [satisfied]
   TriState and(TriState other) {
     if (this == TriState.notSatisfied || other == TriState.notSatisfied) {
       return TriState.notSatisfied;
@@ -44,7 +47,7 @@ enum TriState {
       return TriState.unknown;
     }
 
-    if (this == TriState.notApplicable || other == TriState.notApplicable) {
+    if (this == TriState.notApplicable && other == TriState.notApplicable) {
       return TriState.notApplicable;
     }
 
@@ -53,12 +56,15 @@ enum TriState {
 
   /// Four-valued logical OR.
   ///
-  /// Precedence:
+  /// [notApplicable] is ignored when combined with an applicable state.
+  /// The result is [notApplicable] only when both operands are
+  /// [notApplicable].
+  ///
+  /// Precedence among applicable states:
   ///
   /// 1. [satisfied]
   /// 2. [unknown]
-  /// 3. [notApplicable]
-  /// 4. [notSatisfied]
+  /// 3. [notSatisfied]
   TriState or(TriState other) {
     if (this == TriState.satisfied || other == TriState.satisfied) {
       return TriState.satisfied;
@@ -68,7 +74,7 @@ enum TriState {
       return TriState.unknown;
     }
 
-    if (this == TriState.notApplicable || other == TriState.notApplicable) {
+    if (this == TriState.notApplicable && other == TriState.notApplicable) {
       return TriState.notApplicable;
     }
 

@@ -4,7 +4,9 @@
 文書バージョン：1.0.0
 作成日：2026-09-18
 タイムゾーン：Asia/Tokyo
-ステータス：active
+ステータス：superseded
+後継版：BESTpay_v2_integration_checkpoint_2026-09-18_v1.1.0.txt
+注意：本ファイルは履歴保存用であり、現在の正本ではない。
 対象リポジトリ：https://github.com/kiryu4040/BESTpay
 レビュー基準コミット：4a19b992a9be6668349137dc26c7ab6177d31f1b
 
