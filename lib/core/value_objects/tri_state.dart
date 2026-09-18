@@ -1,23 +1,43 @@
-/// A three-valued condition result.
+/// A four-valued condition result.
 ///
-/// [unknown] must never be silently treated as [notSatisfied].
+/// [unknown] means that the condition cannot currently be determined.
+///
+/// [notApplicable] means that the condition does not apply to the current
+/// instrument, route, merchant, transaction, or rule.
+///
+/// Neither [unknown] nor [notApplicable] may be silently treated as
+/// [notSatisfied].
+///
+/// Persist this value by its stable enum name. Do not persist the enum index.
 enum TriState {
   satisfied,
   notSatisfied,
-  unknown;
+  unknown,
+  notApplicable;
 
-  /// Logical negation that preserves an unknown state.
+  /// Logical negation.
+  ///
+  /// Negation preserves [unknown] and [notApplicable].
   TriState get not {
     return switch (this) {
       TriState.satisfied => TriState.notSatisfied,
       TriState.notSatisfied => TriState.satisfied,
       TriState.unknown => TriState.unknown,
+      TriState.notApplicable => TriState.notApplicable,
     };
   }
 
-  /// Three-valued logical AND.
+  /// Four-valued logical AND.
   ///
-  /// A known false result takes priority, followed by unknown.
+  /// [notApplicable] is ignored when combined with an applicable state.
+  /// The result is [notApplicable] only when both operands are
+  /// [notApplicable].
+  ///
+  /// Precedence among applicable states:
+  ///
+  /// 1. [notSatisfied]
+  /// 2. [unknown]
+  /// 3. [satisfied]
   TriState and(TriState other) {
     if (this == TriState.notSatisfied || other == TriState.notSatisfied) {
       return TriState.notSatisfied;
@@ -27,12 +47,24 @@ enum TriState {
       return TriState.unknown;
     }
 
+    if (this == TriState.notApplicable && other == TriState.notApplicable) {
+      return TriState.notApplicable;
+    }
+
     return TriState.satisfied;
   }
 
-  /// Three-valued logical OR.
+  /// Four-valued logical OR.
   ///
-  /// A known true result takes priority, followed by unknown.
+  /// [notApplicable] is ignored when combined with an applicable state.
+  /// The result is [notApplicable] only when both operands are
+  /// [notApplicable].
+  ///
+  /// Precedence among applicable states:
+  ///
+  /// 1. [satisfied]
+  /// 2. [unknown]
+  /// 3. [notSatisfied]
   TriState or(TriState other) {
     if (this == TriState.satisfied || other == TriState.satisfied) {
       return TriState.satisfied;
@@ -42,19 +74,32 @@ enum TriState {
       return TriState.unknown;
     }
 
+    if (this == TriState.notApplicable && other == TriState.notApplicable) {
+      return TriState.notApplicable;
+    }
+
     return TriState.notSatisfied;
   }
 
-  /// Converts to a nullable boolean without losing the unknown state.
+  /// Converts this value to a nullable boolean.
+  ///
+  /// Both [unknown] and [notApplicable] become null because a nullable
+  /// boolean cannot preserve the distinction between those two states.
+  ///
+  /// Use the enum name for lossless serialization.
   bool? toNullableBool() {
     return switch (this) {
       TriState.satisfied => true,
       TriState.notSatisfied => false,
       TriState.unknown => null,
+      TriState.notApplicable => null,
     };
   }
 
-  /// Converts a nullable boolean while preserving null as unknown.
+  /// Converts a nullable boolean to a [TriState].
+  ///
+  /// A null value becomes [unknown]. A nullable boolean cannot produce
+  /// [notApplicable]; callers must select [notApplicable] explicitly.
   static TriState fromNullableBool(bool? value) {
     return switch (value) {
       true => TriState.satisfied,

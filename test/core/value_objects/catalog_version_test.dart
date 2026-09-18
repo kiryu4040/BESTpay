@@ -6,23 +6,37 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('CatalogVersion', () {
-    test('accepts supported opaque version formats', () {
-      final validValues = <String>[
+    test('accepts the YYYY.MM.DD.REVISION format', () {
+      final first = _success(CatalogVersion.create('2026.09.17.1'));
+      final second = _success(CatalogVersion.create('2026.12.31.9'));
+      final leapDay = _success(CatalogVersion.create('2028.02.29.12'));
+
+      expect(first.value, '2026.09.17.1');
+      expect(first.year, 2026);
+      expect(first.month, 9);
+      expect(first.day, 17);
+      expect(first.revision, 1);
+
+      expect(second.value, '2026.12.31.9');
+      expect(second.revision, 9);
+
+      expect(leapDay.value, '2028.02.29.12');
+      expect(leapDay.year, 2028);
+      expect(leapDay.month, 2);
+      expect(leapDay.day, 29);
+      expect(leapDay.revision, 12);
+    });
+
+    test('rejects old opaque version formats', () {
+      final invalidValues = <String>[
         '1',
         'v2',
-        '2026.09.14',
+        '2026.09.17',
         'catalog-v2_1',
         'V2-beta.1',
       ];
 
-      for (final value in validValues) {
-        final version = _success(CatalogVersion.create(value));
-        expect(version.value, value);
-      }
-    });
-
-    test('rejects empty and whitespace-only values', () {
-      for (final value in <String>['', ' ', '   ']) {
+      for (final value in invalidValues) {
         final error = _failure(CatalogVersion.create(value));
 
         expect(error.code, AppErrorCode.invalidArgument);
@@ -31,22 +45,30 @@ void main() {
       }
     });
 
-    test('rejects punctuation as the first character', () {
-      for (final value in <String>['.v2', '-v2', '_v2']) {
-        final error = _failure(CatalogVersion.create(value));
+    test('rejects incorrectly padded date components', () {
+      final invalidValues = <String>[
+        '2026.9.17.1',
+        '2026.09.7.1',
+        '026.09.17.1',
+        '02026.09.17.1',
+      ];
 
-        expect(error.code, AppErrorCode.invalidArgument);
-        expect(error.operation, 'catalogVersion.create');
+      for (final value in invalidValues) {
+        expect(CatalogVersion.create(value), isA<AppFailure<CatalogVersion>>());
       }
     });
 
-    test('rejects unsupported characters', () {
+    test('rejects invalid calendar dates', () {
       final invalidValues = <String>[
-        'version 2',
-        'version/2',
-        'version+2',
-        'v2\n',
-        'バージョン2',
+        '0000.01.01.1',
+        '2026.00.01.1',
+        '2026.13.01.1',
+        '2026.01.00.1',
+        '2026.01.32.1',
+        '2026.02.29.1',
+        '2026.02.30.1',
+        '2026.04.31.1',
+        '2100.02.29.1',
       ];
 
       for (final value in invalidValues) {
@@ -57,40 +79,71 @@ void main() {
       }
     });
 
-    test('does not trim or normalize input automatically', () {
-      expect(
-        CatalogVersion.create(' v2'),
-        isA<AppFailure<CatalogVersion>>(),
-      );
-      expect(
-        CatalogVersion.create('v2 '),
-        isA<AppFailure<CatalogVersion>>(),
-      );
+    test('accepts Gregorian leap years', () {
+      final validValues = <String>[
+        '2000.02.29.1',
+        '2024.02.29.1',
+        '2028.02.29.1',
+      ];
 
-      final uppercase = _success(CatalogVersion.create('V2'));
-      expect(uppercase.value, 'V2');
+      for (final value in validValues) {
+        expect(CatalogVersion.create(value), isA<AppSuccess<CatalogVersion>>());
+      }
     });
 
-    test('uses exact case-sensitive equality', () {
-      final first = _success(CatalogVersion.create('v2'));
-      final second = _success(CatalogVersion.create('v2'));
-      final uppercase = _success(CatalogVersion.create('V2'));
+    test('rejects zero or zero-padded revisions', () {
+      final invalidValues = <String>[
+        '2026.09.17.0',
+        '2026.09.17.00',
+        '2026.09.17.01',
+      ];
+
+      for (final value in invalidValues) {
+        expect(CatalogVersion.create(value), isA<AppFailure<CatalogVersion>>());
+      }
+    });
+
+    test('rejects unsupported characters and extra whitespace', () {
+      final invalidValues = <String>[
+        '2026-09-17-1',
+        '2026/09/17/1',
+        '2026.09.17.a',
+        ' 2026.09.17.1',
+        '2026.09.17.1 ',
+        '2026.09.17.1\n',
+        '２０２６.０９.１７.１',
+      ];
+
+      for (final value in invalidValues) {
+        final error = _failure(CatalogVersion.create(value));
+
+        expect(error.code, AppErrorCode.invalidArgument);
+        expect(error.operation, 'catalogVersion.create');
+      }
+    });
+
+    test('rejects a revision that cannot be represented as an int', () {
+      final hugeRevision = List<String>.filled(1000, '9').join();
+      final value = '2026.09.17.$hugeRevision';
+
+      expect(CatalogVersion.create(value), isA<AppFailure<CatalogVersion>>());
+    });
+
+    test('uses exact string equality', () {
+      final first = _success(CatalogVersion.create('2026.09.17.1'));
+      final second = _success(CatalogVersion.create('2026.09.17.1'));
+      final differentRevision = _success(CatalogVersion.create('2026.09.17.2'));
 
       expect(first, second);
       expect(first.hashCode, second.hashCode);
-      expect(first, isNot(uppercase));
+      expect(first, isNot(differentRevision));
     });
 
     test('provides a debug representation without changing the value', () {
-      final version = _success(
-        CatalogVersion.create('2026.09.14'),
-      );
+      final version = _success(CatalogVersion.create('2026.09.17.1'));
 
-      expect(
-        version.toString(),
-        'CatalogVersion(2026.09.14)',
-      );
-      expect(version.value, '2026.09.14');
+      expect(version.toString(), 'CatalogVersion(2026.09.17.1)');
+      expect(version.value, '2026.09.17.1');
     });
   });
 }

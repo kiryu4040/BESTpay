@@ -28,7 +28,7 @@ class BestPayApp extends StatelessWidget {
                 brightness: Brightness.light,
               ),
               useMaterial3: true,
-              cardTheme: const CardTheme(elevation: 1.5),
+              cardTheme: const CardThemeData(elevation: 1.5),
             ),
             darkTheme: ThemeData(
               colorScheme: ColorScheme.fromSeed(
@@ -36,7 +36,7 @@ class BestPayApp extends StatelessWidget {
                 brightness: Brightness.dark,
               ),
               useMaterial3: true,
-              cardTheme: const CardTheme(elevation: 1.5),
+              cardTheme: const CardThemeData(elevation: 1.5),
             ),
             home: state.ready
                 ? const HomeScreen()

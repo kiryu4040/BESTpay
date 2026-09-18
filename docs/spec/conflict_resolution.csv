@@ -1,0 +1,49 @@
+conflictId,priority,domain,legacyDefinition,decision,status,authority,notes
+CR-001,P0,naming,MaxpayまたはMaxpay v2,BESTpayまたはBESTpay v2,resolved,BP-DOC-INTEGRATION-001,旧称の履歴説明が必要な場合のみMaxpayを使用
+CR-002,P0,identifier,StableIdの長さ制限なし,StableIdは3文字以上80文字以下,resolved,BP-DOC-INTEGRATION-001,小文字英字で開始し小文字英数字とアンダースコアのみ
+CR-003,P0,version,CatalogVersionが任意文字列に近い,CatalogVersionはYYYY.MM.DD.REVISION,resolved,BP-DOC-INTEGRATION-001,実在日と1以上のrevisionを検証
+CR-004,P0,condition,条件評価が3状態,notApplicableを含む4状態,resolved,BP-DOC-INTEGRATION-001,型名TriStateは当面維持
+CR-005,P0,numeric,金額や率の計算にdoubleを使用,整数とRationalで正確に計算,resolved,BP-DOC-INTEGRATION-001,doubleを計算の正本にしない
+CR-006,P0,date,有効期間の終了日を含む場合がある,開始日を含み終了日を含まない半開区間,resolved,BP-DOC-INTEGRATION-001,validFrom以上validUntilExclusive未満
+CR-007,P0,timezone,端末タイムゾーンへ暗黙依存,Asia/Tokyoを明示,resolved,BP-DOC-INTEGRATION-001,内部UTCと業務日付を暗黙に混同しない
+CR-008,P0,condition,未入力条件をfalseまたは達成済みとして扱う,未入力条件はunknown,resolved,BP-DOC-INTEGRATION-001,unknownを暗黙変換しない
+CR-009,P0,ranking,既定ランキングが文書ごとに異なる,既定はconfirmedValue,resolved,BP-DOC-INTEGRATION-001,確定価値を優先
+CR-010,P0,ranking,条件付き結果を既定結果へ混在,条件付き結果は既定で除外,resolved,BP-DOC-INTEGRATION-001,includeConditionalResultsの初期値はfalse
+CR-011,P0,ranking,未保有カードを通常候補へ混在,明示比較時だけ参考候補として表示,resolved,BP-DOC-INTEGRATION-001,confirmedとして表示しない
+CR-012,P0,reward,年間ボーナスを今回獲得ポイントへ直接加算,期間集計を持つ別RewardRule,resolved,BP-DOC-INTEGRATION-001,currentTransactionRewardと分離
+CR-013,P0,display,広告上の最大還元率を固定計算値として保存,displayClaimとして分離,resolved,BP-DOC-INTEGRATION-001,ランキング既定値へ使用しない
+CR-014,P0,history,制度改定時に旧ルールを上書き,新ルールを追加し旧ルールを履歴保持,resolved,BP-DOC-INTEGRATION-001,半開区間で新旧境界を管理
+CR-015,P0,source,二次情報だけでもactiveルールにする,activeルールは原則primary情報源必須,resolved,BP-DOC-INTEGRATION-001,二次情報のみならdraftまたはunverified
+CR-016,P0,vneobank,V NEOBANK新制度をtransactionDateまたはpostingDateで判定,settlementDataReceivedDateで判定,resolved,officialNewsRelease,2026年11月1日以降到着の売上確定データ
+CR-017,P0,jcb,J-POINTを取引単位で計算,月間合計200円につき1ポイント,resolved,JCB公式情報,少額利用も月間合算
+CR-018,P0,olive,Olive年間100万円特典を通常還元へ合算,独立したthresholdBonus,resolved,SMBC公式情報,通常0.5パーセントと分離
+CR-019,P0,mizuho,Wポイント期間を全利用者共通期間として固定,利用者固有の開始月から最長1年間,resolved,みずほ銀行公式情報,対象条件達成月の月初から開始
+CR-020,P0,persistence,enum indexを永続化,安定した文字列名を永続化,resolved,BP-DOC-INTEGRATION-001,toStringも永続化形式にしない
+CR-021,P0,mizuho,Wポイントへ旧4条件を必須化,公式の申込日と口座振替設定期限を対象者条件とする,resolved,みずほ銀行公式情報,旧4条件は別サービス条件へ分離
+CR-022,P0,mizuho,Wポイント開始日を固定日とする,対象条件を満たした月の月初,resolved,みずほ銀行公式情報,ユーザー固有期間
+CR-023,P0,mizuho,Wポイントを無期限とする,開始日から最長1年間,resolved,みずほ銀行公式情報,終了日はユーザーごとに算出
+CR-024,P0,mizuho,Wポイントに上限を設定しない,みずほポイント10000ポイント上限,resolved,みずほ銀行公式情報,mirror側capとして管理
+CR-025,P0,mizuho,SPUやキャンペーンをmirror元へ含める,楽天通常ポイントだけをmirror,resolved,みずほ銀行公式情報,期間限定ポイント等を含めない
+CR-026,P0,vneobank,新制度の日付基準をpostingDateとする,settlementDataReceivedDateへ修正,resolved,BP-DOC-INTEGRATION-001,postingAtと到着日時を区別
+CR-027,P0,jcb,JCBカードWを200円につき2ポイントの単一ルールにする,基本1ポイントとW特典1ポイントへ分離,resolved,JCB公式情報,内訳と将来変更を追跡可能にする
+CR-028,P0,jcb,J-POINTを決済ごとに端数処理,月間利用合計へ端数処理,resolved,JCB公式情報,期間増分として今回ポイントを計算
+CR-029,P0,jcb,JCBカードWへJ-POINTボーナスを適用,JCBカードWはJ-POINTボーナス対象外,resolved,JCB公式情報,Wの商品特典は維持
+CR-030,P0,mufg,グローバルポイントを取引単位で計算,月間合計1000円につき1ポイント,resolved,MUFG公式情報,カード単位の月間集計
+CR-031,P0,mufg,グローバルポイント1ポイントを常に5円とする,交換方法によりPointValueが変化,resolved,MUFG公式情報,5円相当は特定交換条件の表示
+CR-032,P0,olive,ポイント払いモードを年間100万円特典対象にする,ポイント払いモードは対象外,resolved,SMBC公式情報,creditとdebitが対象
+CR-033,P0,olive,Oliveへ追加したカードにOlive本体の特典を適用,追加したカード側の制度を適用,resolved,SMBC公式情報,addedCardはOlive通常還元を継承しない
+CR-034,P0,merchant,カテゴリ名だけで加盟店固有条件をconfirmedにする,カテゴリ一致だけなら原則estimated,resolved,BP-DOC-INTEGRATION-001,公式加盟店登録でconfirmedへ昇格
+CR-035,P0,favorite,Favoriteをmerchant instrument paymentPlanの3種類に限定,searchPresetを含む4種類,resolved,BP-DOC-INTEGRATION-001,一意キーはentityTypeとentityId
+CR-036,P1,date,すべての空期間を禁止,汎用ValidityPeriodでは空期間を許可,resolved,統合判断,汎用値オブジェクトは表現能力を維持
+CR-037,P0,catalog,activeカタログ項目でも空期間を許可,active項目の空期間はerror,resolved,統合判断,validFromはvalidUntilExclusiveより前
+CR-038,P0,condition,nullable boolを条件状態の保存形式にする,条件状態は安定文字列で保存,resolved,統合判断,nullable boolはunknownとnotApplicableを区別できない
+CR-039,P0,schema,JSON Schemaの版が未確定,JSON Schema Draft 2020-12,resolved,統合判断,全Schemaで同じ版を使用
+CR-040,P0,schema,未知フィールドを暗黙許可,additionalPropertiesをfalseにする,resolved,統合判断,Schema移行なしの未知項目を拒否
+CR-041,P0,schema,率を小数値で保存,numeratorとdenominatorで保存,resolved,統合判断,doubleを使用しない
+CR-042,P0,schema,制度日付と日時を同じ文字列として扱う,dateとdate-timeを役割別に使用,resolved,統合判断,制度境界日と実時刻を区別
+CR-043,P0,implementation,PR-04で商品機能まで変更,PR-04は正本文書化と共通値オブジェクト補正のみ,resolved,統合判断,DBとUIと現行計算を変更しない
+CR-044,P1,implementation,PR-04へ全カタログSchemaを含める,JSON Schema実装はPR-05,resolved,統合判断,PRを小さく分離
+CR-045,P1,catalog,Schema前に商品実データをactive登録,Schemaと検証器の完成後に実データ化,resolved,統合判断,不正データの固定化を防止
+CR-046,P0,paymentMode,modeTypeにpointPaymentを使用,最上位仕様に従いpointPayを使用,resolved,BP-DOC-INTEGRATION-001,保存済みチェックポイントのpointPayment表記は後で修正
+CR-047,P0,rounding,丸め方式からhalfToEvenが欠落,towardZero floor ceiling halfAwayFromZero halfToEven exactを採用,resolved,BP-DOC-INTEGRATION-001,保存済みチェックポイントへhalfToEvenを追加
+CR-048,P0,status,文書statusと商品ルールstatusを同一列挙値で扱う,DocumentStatusとCatalogItemStatusを分離,resolved,統合判断,用途別の機械判定を可能にする
