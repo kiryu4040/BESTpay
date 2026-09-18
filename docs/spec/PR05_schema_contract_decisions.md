@@ -137,7 +137,7 @@ ID移行は次の種別を使用する。
 情報源IDと移行対象IDに同じフィールド名を使用しない。
 
 - renameはfromIds 1件、toIds 1件とする。
-- mergeはfromIds 1件以上、toIds 1件とする。
+- mergeはfromIds 2件以上、toIds 1件とする。
 - splitはfromIds 1件、toIds 2件以上とする。
 - removeはfromIds 1件、toIds 0件とする。
 - splitとremoveはneedsReviewをtrueとする。
@@ -268,7 +268,7 @@ PR-05はv2バックアップのJSON契約のみを定義する。
 - UI変更
 - 現行計算経路の変更
 
-## 11. Catalog file root contracts
+## 12. Catalog file root contracts
 
 The twelve catalog data schemas validate complete catalog files rather than
 standalone item objects. Each catalog file requires `schemaVersion`,
