@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:bestpay:schema:stable-id:1.0.0",
+  "title": "StableId",
+  "type": "string",
+  "minLength": 3,
+  "maxLength": 80,
+  "pattern": "^[a-z][a-z0-9_]{2,79}$"
+}

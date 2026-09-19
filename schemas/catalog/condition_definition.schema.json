@@ -1,0 +1,138 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:bestpay:schema:condition-definition:1.0.0",
+  "title": "ConditionDefinitionCatalog",
+  "description": "Complete catalog file envelope with typed items.",
+  "allOf": [
+    {
+      "$ref": "urn:bestpay:schema:catalog-root:1.0.0"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/catalogItem"
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "sourceReferenceSet": {
+      "type": "array",
+      "items": {
+        "$ref": "urn:bestpay:schema:source-reference:1.0.0"
+      },
+      "uniqueItems": true
+    },
+    "nullableDate": {
+      "anyOf": [
+        {
+          "$ref": "urn:bestpay:schema:date:1.0.0"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "textSet": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "catalogItem": {
+      "title": "ConditionDefinition",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "name",
+        "description",
+        "valueType",
+        "defaultState",
+        "verificationMethod",
+        "scope",
+        "sensitivity",
+        "validFrom",
+        "validUntilExclusive",
+        "status",
+        "sourceIds",
+        "notes"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "urn:bestpay:schema:stable-id:1.0.0"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string"
+        },
+        "valueType": {
+          "type": "string",
+          "minLength": 1
+        },
+        "defaultState": {
+          "type": "string",
+          "enum": [
+            "satisfied",
+            "notSatisfied",
+            "unknown",
+            "notApplicable"
+          ]
+        },
+        "verificationMethod": {
+          "type": "string",
+          "enum": [
+            "userInput",
+            "systemCalculated",
+            "transactionDerived",
+            "periodStateDerived",
+            "officialAccountDerived",
+            "manualDocumentCheck"
+          ]
+        },
+        "scope": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sensitivity": {
+          "type": "string",
+          "minLength": 1
+        },
+        "validFrom": {
+          "$ref": "urn:bestpay:schema:date:1.0.0"
+        },
+        "validUntilExclusive": {
+          "$ref": "#/$defs/nullableDate"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "draft",
+            "unverified",
+            "active",
+            "inactive",
+            "deprecated",
+            "superseded",
+            "historical",
+            "archived"
+          ]
+        },
+        "sourceIds": {
+          "$ref": "#/$defs/sourceReferenceSet"
+        },
+        "notes": {
+          "$ref": "#/$defs/textSet"
+        }
+      }
+    }
+  }
+}

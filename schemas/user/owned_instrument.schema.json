@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:bestpay:schema:owned-instrument:1.0.0",
+  "title": "OwnedInstrument",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "instrumentId",
+    "enabled",
+    "selectedModeIds",
+    "selectedRouteIds",
+    "acquiredOn",
+    "nickname",
+    "createdAt",
+    "updatedAt",
+    "notes"
+  ],
+  "properties": {
+    "instrumentId": {
+      "$ref": "urn:bestpay:schema:stable-id:1.0.0"
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "selectedModeIds": {
+      "$ref": "#/$defs/stableIdSet"
+    },
+    "selectedRouteIds": {
+      "$ref": "#/$defs/stableIdSet"
+    },
+    "acquiredOn": {
+      "$ref": "#/$defs/nullableDate"
+    },
+    "nickname": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "createdAt": {
+      "$ref": "urn:bestpay:schema:timestamp:1.0.0"
+    },
+    "updatedAt": {
+      "$ref": "urn:bestpay:schema:timestamp:1.0.0"
+    },
+    "notes": {
+      "$ref": "#/$defs/textSet"
+    }
+  },
+  "$defs": {
+    "stableIdSet": {
+      "type": "array",
+      "items": {
+        "$ref": "urn:bestpay:schema:stable-id:1.0.0"
+      },
+      "uniqueItems": true
+    },
+    "nullableDate": {
+      "anyOf": [
+        {
+          "$ref": "urn:bestpay:schema:date:1.0.0"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "textSet": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    }
+  }
+}

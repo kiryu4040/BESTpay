@@ -1,0 +1,11 @@
+
+
+# Python schema validation
+__pycache__/
+*.py[cod]
+# Flutter and Dart generated files
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+build/
+android/local.properties

@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:bestpay:schema:selector-set:1.0.0",
+  "title": "SelectorSet",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "instrumentIds",
+    "modeIds",
+    "routeIds",
+    "fundingRelationIds",
+    "merchantIds",
+    "merchantGroupIds",
+    "categoryIds",
+    "brandIds",
+    "locationIds",
+    "transactionTags"
+  ],
+  "properties": {
+    "instrumentIds": {
+      "$ref": "#/$defs/stableIdSet"
+    },
+    "modeIds": {
+      "$ref": "#/$defs/stableIdSet"
+    },
+    "routeIds": {
+      "$ref": "#/$defs/stableIdSet"
+    },
+    "fundingRelationIds": {
+      "$ref": "#/$defs/stableIdSet"
+    },
+    "merchantIds": {
+      "$ref": "#/$defs/stableIdSet"
+    },
+    "merchantGroupIds": {
+      "$ref": "#/$defs/stableIdSet"
+    },
+    "categoryIds": {
+      "$ref": "#/$defs/stableIdSet"
+    },
+    "brandIds": {
+      "$ref": "#/$defs/stableIdSet"
+    },
+    "locationIds": {
+      "$ref": "#/$defs/stableIdSet"
+    },
+    "transactionTags": {
+      "$ref": "#/$defs/stableIdSet"
+    }
+  },
+  "$defs": {
+    "stableIdSet": {
+      "type": "array",
+      "items": {
+        "$ref": "urn:bestpay:schema:stable-id:1.0.0"
+      },
+      "uniqueItems": true
+    }
+  }
+}

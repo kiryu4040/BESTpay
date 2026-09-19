@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:bestpay:schema:backup:1.0.0",
+  "title": "BestpayV2Backup",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "formatId",
+    "schemaVersion",
+    "appVersion",
+    "catalogVersion",
+    "exportedAt",
+    "ownedInstruments",
+    "conditionStates",
+    "pointValues",
+    "usagePeriodStates",
+    "favorites",
+    "transactionRecords"
+  ],
+  "properties": {
+    "formatId": {
+      "const": "bestpay-v2-backup"
+    },
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "appVersion": {
+      "type": "string",
+      "minLength": 1
+    },
+    "catalogVersion": {
+      "$ref": "urn:bestpay:schema:catalog-version:1.0.0"
+    },
+    "exportedAt": {
+      "$ref": "urn:bestpay:schema:timestamp:1.0.0"
+    },
+    "ownedInstruments": {
+      "type": "array",
+      "items": {
+        "$ref": "urn:bestpay:schema:owned-instrument:1.0.0"
+      }
+    },
+    "conditionStates": {
+      "type": "array",
+      "items": {
+        "$ref": "urn:bestpay:schema:condition-state:1.0.0"
+      }
+    },
+    "pointValues": {
+      "type": "array",
+      "items": {
+        "$ref": "urn:bestpay:schema:point-value:1.0.0"
+      }
+    },
+    "usagePeriodStates": {
+      "type": "array",
+      "items": {
+        "$ref": "urn:bestpay:schema:usage-period-state:1.0.0"
+      }
+    },
+    "favorites": {
+      "type": "array",
+      "items": {
+        "$ref": "urn:bestpay:schema:favorite:1.0.0"
+      }
+    },
+    "transactionRecords": {
+      "type": "array",
+      "items": {
+        "$ref": "urn:bestpay:schema:transaction-record:1.0.0"
+      }
+    }
+  }
+}

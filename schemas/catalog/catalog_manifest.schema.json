@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:bestpay:schema:catalog-manifest:1.0.0",
+  "title": "CatalogManifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "catalogVersion",
+    "generatedAt",
+    "items"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "catalogVersion": {
+      "$ref": "urn:bestpay:schema:catalog-version:1.0.0"
+    },
+    "generatedAt": {
+      "$ref": "urn:bestpay:schema:timestamp:1.0.0"
+    },
+    "items": {
+      "type": "array",
+      "minItems": 12,
+      "maxItems": 12,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/catalogFile"
+      }
+    }
+  },
+  "$defs": {
+    "catalogFile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fileName",
+        "schemaId",
+        "contentHash",
+        "required"
+      ],
+      "properties": {
+        "fileName": {
+          "type": "string",
+          "enum": [
+            "payment_instruments.json",
+            "payment_routes.json",
+            "payment_modes.json",
+            "funding_relations.json",
+            "merchant_groups.json",
+            "merchants.json",
+            "merchant_categories.json",
+            "point_programs.json",
+            "condition_definitions.json",
+            "reward_rules.json",
+            "sources.json",
+            "id_migrations.json"
+          ]
+        },
+        "schemaId": {
+          "type": "string",
+          "pattern": "^urn:bestpay:schema:[a-z0-9-]+:1\\.0\\.0$"
+        },
+        "contentHash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "required": {
+          "const": true
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:bestpay:schema:favorite:1.0.0",
+  "title": "Favorite",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "entityType",
+    "entityId",
+    "paymentPlan",
+    "createdAt",
+    "sortOrder",
+    "needsReview"
+  ],
+  "properties": {
+    "entityType": {
+      "type": "string",
+      "enum": [
+        "merchant",
+        "instrument",
+        "paymentPlan",
+        "searchPreset"
+      ]
+    },
+    "entityId": {
+      "$ref": "urn:bestpay:schema:stable-id:1.0.0"
+    },
+    "paymentPlan": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/paymentPlanComponents"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "createdAt": {
+      "$ref": "urn:bestpay:schema:timestamp:1.0.0"
+    },
+    "sortOrder": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "needsReview": {
+      "type": "boolean"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "entityType": {
+            "const": "paymentPlan"
+          }
+        },
+        "required": [
+          "entityType"
+        ]
+      },
+      "then": {
+        "properties": {
+          "paymentPlan": {
+            "$ref": "#/$defs/paymentPlanComponents"
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "paymentPlan": {
+            "type": "null"
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "paymentPlanComponents": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "instrumentId",
+        "routeId",
+        "fundingRelationIds",
+        "loyaltyProgramIds",
+        "fixedConditionStates"
+      ],
+      "properties": {
+        "instrumentId": {
+          "$ref": "urn:bestpay:schema:stable-id:1.0.0"
+        },
+        "routeId": {
+          "$ref": "urn:bestpay:schema:stable-id:1.0.0"
+        },
+        "fundingRelationIds": {
+          "$ref": "#/$defs/stableIdSet"
+        },
+        "loyaltyProgramIds": {
+          "$ref": "#/$defs/stableIdSet"
+        },
+        "fixedConditionStates": {
+          "type": "object",
+          "propertyNames": {
+            "$ref": "urn:bestpay:schema:stable-id:1.0.0"
+          },
+          "additionalProperties": {
+            "type": "string",
+            "enum": [
+              "satisfied",
+              "notSatisfied",
+              "unknown",
+              "notApplicable"
+            ]
+          }
+        }
+      }
+    },
+    "stableIdSet": {
+      "type": "array",
+      "items": {
+        "$ref": "urn:bestpay:schema:stable-id:1.0.0"
+      },
+      "uniqueItems": true
+    }
+  }
+}
