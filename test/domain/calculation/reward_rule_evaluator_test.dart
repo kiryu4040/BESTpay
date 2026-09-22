@@ -8,6 +8,7 @@ import 'package:bestpay/core/value_objects/stable_id.dart';
 import 'package:bestpay/core/value_objects/tri_state.dart';
 import 'package:bestpay/core/value_objects/validity_period.dart';
 import 'package:bestpay/domain/calculation/condition_evaluation_context.dart';
+import 'package:bestpay/domain/calculation/period_aggregation_snapshot.dart';
 import 'package:bestpay/domain/calculation/reward_confidence.dart';
 import 'package:bestpay/domain/calculation/reward_evaluation_input.dart';
 import 'package:bestpay/domain/calculation/reward_rule_eligibility_result.dart';
@@ -357,6 +358,141 @@ void main() {
       );
     });
   });
+  group('RewardRuleEvaluator period aggregation integration', () {
+    // PR09_SLICE3A_TEST
+    test('keeps transaction-scoped calculation behavior unchanged', () {
+      final result = _success(
+        evaluator.evaluate(
+          rule: _rule(
+            calculation: const FixedPointsRewardCalculation(PointAmount(25)),
+            aggregation: _aggregation(
+              scope: RewardAggregationScope.transaction,
+              aggregationKey: null,
+              incrementalAward: false,
+            ),
+          ),
+          input: _input(
+            transactionDate: _date('2026-06-01'),
+          ),
+        ),
+      );
+
+      expect(result.points, const PointAmount(25));
+      expect(result.confidence, RewardConfidence.confirmed);
+      expect(
+        result.reasonCodes,
+        const <RewardReasonCode>[RewardReasonCode.applied],
+      );
+    });
+
+    // PR09_SLICE3A_TEST
+    test('routes non-transaction scope to period aggregation', () {
+      final key = _id('aggregation_one');
+
+      final result = _success(
+        evaluator.evaluate(
+          rule: _rule(
+            aggregation: _aggregation(
+              scope: RewardAggregationScope.calendarMonth,
+              aggregationKey: key,
+            ),
+          ),
+          input: _input(
+            transactionDate: _date('2026-06-01'),
+            periodAggregationSnapshots: <StableId, PeriodAggregationSnapshot>{
+              key: _periodSnapshot(),
+            },
+          ),
+        ),
+      );
+
+      expect(result.points, const PointAmount(5));
+      expect(result.confidence, RewardConfidence.confirmed);
+      expect(
+        result.reasonCodes,
+        const <RewardReasonCode>[RewardReasonCode.applied],
+      );
+    });
+
+    // PR09_SLICE3A_TEST
+    test('preserves missing period state as unavailable', () {
+      final result = _success(
+        evaluator.evaluate(
+          rule: _rule(
+            aggregation: _aggregation(
+              scope: RewardAggregationScope.calendarMonth,
+              aggregationKey: _id('aggregation_one'),
+            ),
+          ),
+          input: _input(
+            transactionDate: _date('2026-06-01'),
+          ),
+        ),
+      );
+
+      expect(result.points, isNull);
+      expect(result.eligibility, TriState.unknown);
+      expect(result.confidence, RewardConfidence.unknown);
+      expect(
+        result.reasonCodes,
+        const <RewardReasonCode>[
+          RewardReasonCode.periodStateMissing,
+        ],
+      );
+    });
+
+    // PR09_SLICE3A_TEST
+    test('propagates structured period configuration failures', () {
+      final result = evaluator.evaluate(
+        rule: _rule(
+          aggregation: _aggregation(
+            scope: RewardAggregationScope.calendarMonth,
+            aggregationKey: _id('aggregation_one'),
+            incrementalAward: false,
+          ),
+        ),
+        input: _input(
+          transactionDate: _date('2026-06-01'),
+        ),
+      );
+
+      final error = _failure(result);
+
+      expect(error.code, AppErrorCode.calculationRuleInvalid);
+      expect(error.operation, 'periodAggregation.evaluate');
+      expect(error.context['field'], 'aggregation.incrementalAward');
+      expect(error.context['reason'], 'periodEndAwardNotImplemented');
+    });
+
+    // PR09_SLICE3A_TEST
+    test('finishes eligibility checks before period evaluation', () {
+      final result = _success(
+        evaluator.evaluate(
+          rule: _rule(
+            selectors: _selectors(
+              instrumentIds: <StableId>[_id('required_instrument')],
+            ),
+            aggregation: _aggregation(
+              scope: RewardAggregationScope.calendarMonth,
+              aggregationKey: null,
+            ),
+          ),
+          input: _input(
+            transactionDate: _date('2026-06-01'),
+          ),
+        ),
+      );
+
+      expect(result.eligibility, TriState.notSatisfied);
+      expect(result.points, PointAmount.zero);
+      expect(
+        result.reasonCodes,
+        const <RewardReasonCode>[
+          RewardReasonCode.selectorMismatch,
+        ],
+      );
+    });
+  });
   group('RewardRuleEvaluator calculation integration', () {
     test('passes the threshold snapshot to calculation evaluation', () {
       final calculation = ThresholdBonusRewardCalculation(
@@ -430,6 +566,7 @@ RewardRule _rule({
   ConditionExpression? conditionExpression,
   RewardCalculation calculation =
       const FixedPointsRewardCalculation(PointAmount(25)),
+  RewardAggregation? aggregation,
   ValidityPeriod validityPeriod = ValidityPeriod.unbounded,
   RewardDateBasis dateBasis = RewardDateBasis.transactionDate,
 }) {
@@ -443,13 +580,14 @@ RewardRule _rule({
     conditionExpression: conditionExpression,
     calculation: calculation,
     outputPointProgramId: null,
-    aggregation: RewardAggregation(
-      scope: RewardAggregationScope.transaction,
-      aggregationKey: null,
-      periodMinimumEligibleSpend: MoneyYen.zero,
-      conditionEvaluationTiming: 'transaction',
-      incrementalAward: false,
-    ),
+    aggregation: aggregation ??
+        RewardAggregation(
+          scope: RewardAggregationScope.transaction,
+          aggregationKey: null,
+          periodMinimumEligibleSpend: MoneyYen.zero,
+          conditionEvaluationTiming: 'transaction',
+          incrementalAward: false,
+        ),
     stacking: RewardStacking(
       policy: 'stack',
       exclusiveGroupId: null,
@@ -499,6 +637,33 @@ SelectorSet _selectors({
   );
 }
 
+RewardAggregation _aggregation({
+  required RewardAggregationScope scope,
+  required StableId? aggregationKey,
+  bool incrementalAward = true,
+}) {
+  return RewardAggregation(
+    scope: scope,
+    aggregationKey: aggregationKey,
+    periodMinimumEligibleSpend: MoneyYen.zero,
+    conditionEvaluationTiming: 'transaction',
+    incrementalAward: incrementalAward,
+  );
+}
+
+PeriodAggregationSnapshot _periodSnapshot() {
+  return PeriodAggregationSnapshot.validated(
+    periodStart: _date('2026-06-01'),
+    periodEndExclusive: _date('2026-07-01'),
+    periodSpendBefore: const MoneyYen(1000),
+    periodSpendAfter: const MoneyYen(1500),
+    pointsBefore: const PointAmount(10),
+    pointsAfter: const PointAmount(15),
+    currentIncrement: const PointAmount(5),
+    confidence: PeriodDataConfidence.exact,
+  );
+}
+
 RewardEvaluationInput _populatedInput({
   CalculationDate? allDates,
 }) {
@@ -532,6 +697,8 @@ RewardEvaluationInput _input({
   CalculationDate? transactionDate,
   ConditionEvaluationContext? conditionContext,
   ThresholdPeriodSnapshot? thresholdPeriodSnapshot,
+  Map<StableId, PeriodAggregationSnapshot> periodAggregationSnapshots =
+      const <StableId, PeriodAggregationSnapshot>{},
 }) {
   return RewardEvaluationInput(
     amount: amount,
@@ -542,6 +709,7 @@ RewardEvaluationInput _input({
     transactionDate: transactionDate,
     conditionContext: conditionContext ?? ConditionEvaluationContext(),
     thresholdPeriodSnapshot: thresholdPeriodSnapshot,
+    periodAggregationSnapshots: periodAggregationSnapshots,
   );
 }
 

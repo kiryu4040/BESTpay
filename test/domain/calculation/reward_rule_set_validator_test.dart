@@ -354,29 +354,27 @@ void main() {
       expect(mirrorError.context['reason'], 'mirrorCycle');
     });
 
-    test('rejects non-transaction aggregation scope', () {
+    test('accepts a supported period aggregation configuration', () {
       const validator = RewardRuleSetValidator();
 
-      final error = _failure(
+      final result = _success(
         validator.validateAndOrder(
           <RewardRule>[
             _rule(
               id: 'period_rule',
               aggregation: RewardAggregation(
                 scope: RewardAggregationScope.calendarMonth,
-                aggregationKey: null,
-                periodMinimumEligibleSpend: MoneyYen.zero,
+                aggregationKey: _id('aggregation_one'),
+                periodMinimumEligibleSpend: const MoneyYen(1000),
                 conditionEvaluationTiming: 'transaction',
-                incrementalAward: false,
+                incrementalAward: true,
               ),
             ),
           ],
         ),
       );
 
-      expect(error.code, AppErrorCode.calculationRuleInvalid);
-      expect(error.context['field'], 'aggregation.scope');
-      expect(error.context['reason'], 'unsupportedAggregationScope');
+      expect(result.single.id, _id('period_rule'));
     });
 
     test('rejects incremental awards until period evaluation is implemented',

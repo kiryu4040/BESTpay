@@ -15,6 +15,8 @@ enum RewardReasonCode {
   exclusiveGroupLost('exclusiveGroupLost'),
   dependencyNotSatisfied('dependencyNotSatisfied'),
   periodStateMissing('periodStateMissing'),
+  periodStateUnknown('periodStateUnknown'),
+  periodMinimumSpendNotMet('periodMinimumSpendNotMet'),
   capApplied('capApplied'),
   mirrorSourceMissing('mirrorSourceMissing'),
   invalidRule('invalidRule'),

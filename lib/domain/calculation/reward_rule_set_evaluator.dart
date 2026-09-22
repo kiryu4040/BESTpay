@@ -5,6 +5,7 @@ import 'package:bestpay/core/value_objects/money_yen.dart';
 import 'package:bestpay/core/value_objects/point_amount.dart';
 import 'package:bestpay/core/value_objects/stable_id.dart';
 import 'package:bestpay/core/value_objects/tri_state.dart';
+import 'package:bestpay/domain/calculation/period_aggregation_evaluator.dart';
 import 'package:bestpay/domain/calculation/reward_calculation_evaluator.dart';
 import 'package:bestpay/domain/calculation/reward_calculation_result.dart';
 import 'package:bestpay/domain/calculation/reward_evaluation_input.dart';
@@ -14,6 +15,7 @@ import 'package:bestpay/domain/calculation/reward_rule_evaluation_result.dart';
 import 'package:bestpay/domain/calculation/reward_rule_evaluator.dart';
 import 'package:bestpay/domain/calculation/reward_rule_set_evaluation_result.dart';
 import 'package:bestpay/domain/calculation/reward_rule_set_validator.dart';
+import 'package:bestpay/domain/catalog/models/catalog_types.dart';
 import 'package:bestpay/domain/catalog/models/reward_rule_models.dart';
 
 /// Evaluates a validated reward-rule set without side effects.
@@ -26,16 +28,20 @@ final class RewardRuleSetEvaluator {
   const RewardRuleSetEvaluator({
     RewardRuleSetValidator validator = const RewardRuleSetValidator(),
     RewardRuleEvaluator ruleEvaluator = const RewardRuleEvaluator(),
+    PeriodAggregationEvaluator periodAggregationEvaluator =
+        const PeriodAggregationEvaluator(),
     RewardCalculationEvaluator calculationEvaluator =
         const RewardCalculationEvaluator(),
     this.maximumTraceCount = 100000,
   })  : assert(maximumTraceCount > 0),
         _validator = validator,
         _ruleEvaluator = ruleEvaluator,
+        _periodAggregationEvaluator = periodAggregationEvaluator,
         _calculationEvaluator = calculationEvaluator;
 
   final RewardRuleSetValidator _validator;
   final RewardRuleEvaluator _ruleEvaluator;
+  final PeriodAggregationEvaluator _periodAggregationEvaluator;
   final RewardCalculationEvaluator _calculationEvaluator;
   final int maximumTraceCount;
 
@@ -101,6 +107,21 @@ final class RewardRuleSetEvaluator {
       final sourceRuleId = calculation is MirrorRewardCalculation
           ? calculation.sourceRuleId
           : null;
+      final aggregation = rule.aggregation;
+      final aggregationKey = aggregation.aggregationKey;
+      final periodSnapshot =
+          aggregation.scope == RewardAggregationScope.transaction ||
+                  aggregationKey == null
+              ? null
+              : input.periodAggregationSnapshotFor(aggregationKey);
+      final amountBefore =
+          aggregation.scope == RewardAggregationScope.transaction
+              ? MoneyYen.zero
+              : periodSnapshot?.periodSpendBefore ?? MoneyYen.zero;
+      final amountAfter =
+          aggregation.scope == RewardAggregationScope.transaction
+              ? input.amount
+              : periodSnapshot?.periodSpendAfter ?? MoneyYen.zero;
 
       trace.add(
         RewardCalculationTraceEntry(
@@ -109,14 +130,20 @@ final class RewardRuleSetEvaluator {
           eligibility: ruleResult.eligibility,
           confidence: ruleResult.confidence,
           reasonCodes: ruleResult.reasonCodes,
-          amountBefore: MoneyYen.zero,
-          amountAfter: input.amount,
+          amountBefore: amountBefore,
+          amountAfter: amountAfter,
           pointsBeforeCap: ruleResult.points,
           pointsAfterCap: ruleResult.points,
           sourceRuleId: sourceRuleId,
           details: <String, Object?>{
-            'aggregationScope': rule.aggregation.scope.value,
-            'incrementalAward': rule.aggregation.incrementalAward,
+            'aggregationScope': aggregation.scope.value,
+            'incrementalAward': aggregation.incrementalAward,
+            if (aggregationKey != null) 'aggregationKey': aggregationKey.value,
+            if (periodSnapshot != null)
+              'periodStart': periodSnapshot.periodStart.toString(),
+            if (periodSnapshot != null)
+              'periodEndExclusive':
+                  periodSnapshot.periodEndExclusive.toString(),
           },
         ),
       );
@@ -188,6 +215,7 @@ final class RewardRuleSetEvaluator {
       input: input,
       eligibilityByRuleId: eligibilityByRuleId,
       overriddenReasons: overriddenReasons,
+      periodAggregationEvaluator: _periodAggregationEvaluator,
       calculationEvaluator: _calculationEvaluator,
     );
 
@@ -478,6 +506,7 @@ final class _RuleResolutionContext {
     required this.input,
     required this.eligibilityByRuleId,
     required this.overriddenReasons,
+    required this.periodAggregationEvaluator,
     required this.calculationEvaluator,
   });
 
@@ -485,6 +514,7 @@ final class _RuleResolutionContext {
   final RewardEvaluationInput input;
   final Map<StableId, RewardRuleEligibilityResult> eligibilityByRuleId;
   final Map<StableId, RewardReasonCode> overriddenReasons;
+  final PeriodAggregationEvaluator periodAggregationEvaluator;
   final RewardCalculationEvaluator calculationEvaluator;
 
   final Map<StableId, RewardRuleEvaluationResult> _rawResults =
@@ -698,11 +728,17 @@ final class _RuleResolutionContext {
     required RewardRule rule,
     required Map<StableId, RewardRuleEvaluationResult> cache,
   }) {
-    final calculationResult = calculationEvaluator.evaluateResult(
-      calculation: rule.calculation,
-      amount: input.amount,
-      periodSnapshot: input.thresholdPeriodSnapshot,
-    );
+    final calculationResult =
+        rule.aggregation.scope == RewardAggregationScope.transaction
+            ? calculationEvaluator.evaluateResult(
+                calculation: rule.calculation,
+                amount: input.amount,
+                periodSnapshot: input.thresholdPeriodSnapshot,
+              )
+            : periodAggregationEvaluator.evaluate(
+                aggregation: rule.aggregation,
+                input: input,
+              );
 
     return switch (calculationResult) {
       AppSuccess(value: final calculationValue) => _cacheSuccessfulCalculation(

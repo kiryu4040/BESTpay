@@ -4,12 +4,14 @@ import 'package:bestpay/core/result/app_result.dart';
 import 'package:bestpay/core/value_objects/stable_id.dart';
 import 'package:bestpay/core/value_objects/tri_state.dart';
 import 'package:bestpay/domain/calculation/condition_evaluator.dart';
+import 'package:bestpay/domain/calculation/period_aggregation_evaluator.dart';
 import 'package:bestpay/domain/calculation/reward_calculation_evaluator.dart';
 import 'package:bestpay/domain/calculation/reward_evaluation_input.dart';
 import 'package:bestpay/domain/calculation/reward_rule_eligibility_result.dart';
 import 'package:bestpay/domain/calculation/reward_rule_evaluation_result.dart';
 import 'package:bestpay/domain/calculation/reward_confidence.dart';
 import 'package:bestpay/domain/calculation/reward_reason_code.dart';
+import 'package:bestpay/domain/catalog/models/catalog_types.dart';
 import 'package:bestpay/domain/catalog/models/reward_rule_models.dart';
 
 /// Evaluates the eligibility and calculation of one reward rule.
@@ -20,14 +22,18 @@ import 'package:bestpay/domain/catalog/models/reward_rule_models.dart';
 final class RewardRuleEvaluator {
   const RewardRuleEvaluator({
     ConditionEvaluator conditionEvaluator = const ConditionEvaluator(),
+    PeriodAggregationEvaluator periodAggregationEvaluator =
+        const PeriodAggregationEvaluator(),
     RewardCalculationEvaluator calculationEvaluator =
         const RewardCalculationEvaluator(),
   })  : _conditionEvaluator = conditionEvaluator,
+        _periodAggregationEvaluator = periodAggregationEvaluator,
         _calculationEvaluator = calculationEvaluator;
 
   static const String _operation = 'rewardRule.evaluate';
 
   final ConditionEvaluator _conditionEvaluator;
+  final PeriodAggregationEvaluator _periodAggregationEvaluator;
   final RewardCalculationEvaluator _calculationEvaluator;
 
   /// Evaluates selectors, exclusions, dates, and conditions without running
@@ -241,11 +247,17 @@ final class RewardRuleEvaluator {
       }
     }
 
-    final calculationResult = _calculationEvaluator.evaluateResult(
-      calculation: rule.calculation,
-      amount: input.amount,
-      periodSnapshot: input.thresholdPeriodSnapshot,
-    );
+    final calculationResult =
+        rule.aggregation.scope == RewardAggregationScope.transaction
+            ? _calculationEvaluator.evaluateResult(
+                calculation: rule.calculation,
+                amount: input.amount,
+                periodSnapshot: input.thresholdPeriodSnapshot,
+              )
+            : _periodAggregationEvaluator.evaluate(
+                aggregation: rule.aggregation,
+                input: input,
+              );
 
     return switch (calculationResult) {
       AppSuccess(value: final calculation) =>

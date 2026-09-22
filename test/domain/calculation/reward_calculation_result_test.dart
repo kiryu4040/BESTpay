@@ -39,6 +39,8 @@ void main() {
           'exclusiveGroupLost',
           'dependencyNotSatisfied',
           'periodStateMissing',
+          'periodStateUnknown',
+          'periodMinimumSpendNotMet',
           'capApplied',
           'mirrorSourceMissing',
           'invalidRule',

@@ -2,6 +2,7 @@ import 'package:bestpay/core/errors/app_error.dart';
 import 'package:bestpay/core/errors/app_error_code.dart';
 import 'package:bestpay/core/result/app_result.dart';
 import 'package:bestpay/core/value_objects/stable_id.dart';
+import 'package:bestpay/domain/catalog/models/catalog_types.dart';
 import 'package:bestpay/domain/catalog/models/reward_rule_models.dart';
 
 /// Validates a complete reward-rule set before multi-rule evaluation.
@@ -138,6 +139,22 @@ final class RewardRuleSetValidator {
             ),
           );
         }
+
+        final sourceRule = rulesById[sourceRuleId]!;
+
+        if (rule.aggregation.scope != RewardAggregationScope.transaction ||
+            sourceRule.aggregation.scope !=
+                RewardAggregationScope.transaction) {
+          return AppFailure<List<RewardRule>>(
+            _error(
+              code: AppErrorCode.calculationRuleInvalid,
+              field: 'calculation',
+              reason: 'unsupportedPeriodMirror',
+              ruleId: rule.id,
+              referenceRuleId: sourceRuleId,
+            ),
+          );
+        }
       }
     }
 
@@ -222,33 +239,8 @@ final class RewardRuleSetValidator {
 
   AppError? _validateAggregation(RewardRule rule) {
     final aggregation = rule.aggregation;
-
-    if (aggregation.scope.value != 'transaction') {
-      return _error(
-        code: AppErrorCode.calculationRuleInvalid,
-        field: 'aggregation.scope',
-        reason: 'unsupportedAggregationScope',
-        ruleId: rule.id,
-      );
-    }
-
-    if (aggregation.aggregationKey != null) {
-      return _error(
-        code: AppErrorCode.calculationRuleInvalid,
-        field: 'aggregation.aggregationKey',
-        reason: 'unsupportedAggregationKey',
-        ruleId: rule.id,
-      );
-    }
-
-    if (aggregation.periodMinimumEligibleSpend.yen != 0) {
-      return _error(
-        code: AppErrorCode.calculationRuleInvalid,
-        field: 'aggregation.periodMinimumEligibleSpend',
-        reason: 'unsupportedPeriodMinimumEligibleSpend',
-        ruleId: rule.id,
-      );
-    }
+    final isTransaction =
+        aggregation.scope == RewardAggregationScope.transaction;
 
     if (aggregation.conditionEvaluationTiming != 'transaction') {
       return _error(
@@ -259,11 +251,51 @@ final class RewardRuleSetValidator {
       );
     }
 
-    if (aggregation.incrementalAward) {
+    if (isTransaction) {
+      if (aggregation.aggregationKey != null) {
+        return _error(
+          code: AppErrorCode.calculationRuleInvalid,
+          field: 'aggregation.aggregationKey',
+          reason: 'unsupportedAggregationKey',
+          ruleId: rule.id,
+        );
+      }
+
+      if (aggregation.periodMinimumEligibleSpend.yen != 0) {
+        return _error(
+          code: AppErrorCode.calculationRuleInvalid,
+          field: 'aggregation.periodMinimumEligibleSpend',
+          reason: 'unsupportedPeriodMinimumEligibleSpend',
+          ruleId: rule.id,
+        );
+      }
+
+      if (aggregation.incrementalAward) {
+        return _error(
+          code: AppErrorCode.calculationRuleInvalid,
+          field: 'aggregation.incrementalAward',
+          reason: 'unsupportedIncrementalAward',
+          ruleId: rule.id,
+        );
+      }
+
+      return null;
+    }
+
+    if (aggregation.aggregationKey == null) {
+      return _error(
+        code: AppErrorCode.calculationRuleInvalid,
+        field: 'aggregation.aggregationKey',
+        reason: 'aggregationKeyRequired',
+        ruleId: rule.id,
+      );
+    }
+
+    if (!aggregation.incrementalAward) {
       return _error(
         code: AppErrorCode.calculationRuleInvalid,
         field: 'aggregation.incrementalAward',
-        reason: 'unsupportedIncrementalAward',
+        reason: 'periodEndAwardNotImplemented',
         ruleId: rule.id,
       );
     }
