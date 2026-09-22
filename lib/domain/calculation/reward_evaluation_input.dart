@@ -2,6 +2,7 @@ import 'package:bestpay/core/value_objects/calculation_date.dart';
 import 'package:bestpay/core/value_objects/money_yen.dart';
 import 'package:bestpay/core/value_objects/stable_id.dart';
 import 'package:bestpay/domain/calculation/condition_evaluation_context.dart';
+import 'package:bestpay/domain/calculation/period_aggregation_snapshot.dart';
 import 'package:bestpay/domain/calculation/threshold_period_snapshot.dart';
 import 'package:bestpay/domain/catalog/models/catalog_types.dart';
 
@@ -28,12 +29,16 @@ final class RewardEvaluationInput {
     this.periodEndDate,
     required this.conditionContext,
     this.thresholdPeriodSnapshot,
+    Map<StableId, PeriodAggregationSnapshot> periodAggregationSnapshots =
+        const <StableId, PeriodAggregationSnapshot>{},
   })  : fundingRelationIds = List<StableId>.unmodifiable(fundingRelationIds),
         merchantGroupIds = List<StableId>.unmodifiable(merchantGroupIds),
         categoryIds = List<StableId>.unmodifiable(categoryIds),
         brandIds = List<StableId>.unmodifiable(brandIds),
         locationIds = List<StableId>.unmodifiable(locationIds),
-        transactionTags = List<StableId>.unmodifiable(transactionTags);
+        transactionTags = List<StableId>.unmodifiable(transactionTags),
+        periodAggregationSnapshots =
+            _freezePeriodAggregationSnapshots(periodAggregationSnapshots);
 
   final MoneyYen amount;
   final StableId? instrumentId;
@@ -57,6 +62,7 @@ final class RewardEvaluationInput {
 
   final ConditionEvaluationContext conditionContext;
   final ThresholdPeriodSnapshot? thresholdPeriodSnapshot;
+  final Map<StableId, PeriodAggregationSnapshot> periodAggregationSnapshots;
 
   CalculationDate? dateFor(RewardDateBasis basis) {
     return switch (basis) {
@@ -69,4 +75,18 @@ final class RewardEvaluationInput {
       RewardDateBasis.periodEndDate => periodEndDate,
     };
   }
+
+  PeriodAggregationSnapshot? periodAggregationSnapshotFor(
+    StableId aggregationKey,
+  ) {
+    return periodAggregationSnapshots[aggregationKey];
+  }
+}
+
+Map<StableId, PeriodAggregationSnapshot> _freezePeriodAggregationSnapshots(
+  Map<StableId, PeriodAggregationSnapshot> values,
+) {
+  return Map<StableId, PeriodAggregationSnapshot>.unmodifiable(
+    Map<StableId, PeriodAggregationSnapshot>.of(values),
+  );
 }
