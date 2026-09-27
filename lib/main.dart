@@ -1,14 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'application/catalog/catalog_repository.dart';
 import 'domain/catalog/card_catalog.dart';
 import 'infrastructure/catalog/asset_card_catalog_loader.dart';
+import 'infrastructure/catalog/asset_catalog_repository.dart';
 import 'ui/app_shell.dart';
+import 'ui/ranking_controller.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider<AppState>(
-      create: (_) => AppState()..loadCatalog(),
+    MultiProvider(
+      providers: [
+        Provider<CatalogRepository>(
+          create: (_) => const AssetCatalogRepository(),
+        ),
+        ChangeNotifierProvider<AppState>(
+          create: (_) => AppState()..loadCatalog(),
+        ),
+        ChangeNotifierProvider<RankingController>(
+          create: (context) => RankingController(
+            repository: context.read<CatalogRepository>(),
+          )..loadCatalog(),
+        ),
+      ],
       child: const BestPayApp(),
     ),
   );
