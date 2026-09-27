@@ -1,0 +1,7 @@
+conflictId,priority,domain,legacyDefinition,decision,status,authority,notes
+CR-058,P0,calculation,みずほ楽天カードのポイントを月間合算で計算する,取引ごと（transaction）に100円1pt・100円未満切捨て,resolved,楽天カード公式ページ,CR-016類似の日付基準と同様の誤り。公式に「1回のカードショッピング（お買い物ごと）」と明記
+CR-059,P0,calculation,楽天カードの還元を単一の100円1ptで扱う,公共料金・税金は500円1pt、保険料・携帯は200円1ptの区分をdraftで保持,resolved,楽天カード公式ページ,D-083。第1期は通常100円1ptをactive
+CR-060,P1,olive,Oliveポイント払いモードを0.25%とする,公式は0.5%。二次情報の0.25%は採用しない,resolved,三井住友銀行公式ページ,D-080の関連。公式2ページで0.5%を確認
+CR-061,P0,scope,対象店舗の高還元比較を第2期に回す,第1期のコア機能として実装する,resolved,user decision 2026-09-27,D-079。店舗ごとに全カードの支払い方法を比較
+CR-062,P1,ui,月間利用額の入力を常設画面として義務化する,文脈型で必要時にのみ案内する,resolved,user decision 2026-09-27,D-081。入力の負担を感じさせない
+CR-063,P1,ui,保有カードをすべてランキングに出す,利用予定のないカードは非表示にできる,resolved,user decision 2026-09-27,D-082

@@ -1,0 +1,79 @@
+{
+  "schemaVersion": "1.0.0",
+  "catalogVersion": "2026.09.27.4",
+  "generatedAt": "2026-09-27T00:00:00+09:00",
+  "items": [
+    {
+      "fileName": "payment_instruments.json",
+      "schemaId": "urn:bestpay:schema:payment-instrument:1.0.0",
+      "contentHash": "6d99ade15a51f2977d067c87ee5baaf6b06af3c8cd7650906b48d90ba13e942b",
+      "required": true
+    },
+    {
+      "fileName": "payment_routes.json",
+      "schemaId": "urn:bestpay:schema:payment-route:1.0.0",
+      "contentHash": "6502b1b4e75bceb1cd861946275b23d950d55687c7e2e112d282a0ead70018a2",
+      "required": true
+    },
+    {
+      "fileName": "payment_modes.json",
+      "schemaId": "urn:bestpay:schema:payment-mode:1.0.0",
+      "contentHash": "81f674ac8942c06289297150d8f8680efcfe6b1dceaad1fcc767f7d4fcf76123",
+      "required": true
+    },
+    {
+      "fileName": "funding_relations.json",
+      "schemaId": "urn:bestpay:schema:funding-relation:1.0.0",
+      "contentHash": "81f674ac8942c06289297150d8f8680efcfe6b1dceaad1fcc767f7d4fcf76123",
+      "required": true
+    },
+    {
+      "fileName": "merchant_groups.json",
+      "schemaId": "urn:bestpay:schema:merchant-group:1.0.0",
+      "contentHash": "136b3a0cf1f4c4e6972165e7273a9242ded33413c506f7680d4ee760a3d2193f",
+      "required": true
+    },
+    {
+      "fileName": "merchants.json",
+      "schemaId": "urn:bestpay:schema:merchant:1.0.0",
+      "contentHash": "65c161e0dc7e0a6bf0a1dfa587eff5fafc3bfee8508ac573aa6aa3b7e5fb756b",
+      "required": true
+    },
+    {
+      "fileName": "merchant_categories.json",
+      "schemaId": "urn:bestpay:schema:merchant-category:1.0.0",
+      "contentHash": "0c664de0c48bdf575ec0934a3efcb6f34ee406a2aff86e98a3e5b94be478e2fc",
+      "required": true
+    },
+    {
+      "fileName": "point_programs.json",
+      "schemaId": "urn:bestpay:schema:point-program:1.0.0",
+      "contentHash": "6b6c4de7a50a2bae070756a59ce6df45bede72089c16bd06d2ece6cd9d2c2f37",
+      "required": true
+    },
+    {
+      "fileName": "condition_definitions.json",
+      "schemaId": "urn:bestpay:schema:condition-definition:1.0.0",
+      "contentHash": "4f4c0403350d7db70dc445c43322b18371b61c34f5dd33184ffb7bfb120b016b",
+      "required": true
+    },
+    {
+      "fileName": "reward_rules.json",
+      "schemaId": "urn:bestpay:schema:reward-rule:1.0.0",
+      "contentHash": "21c6988c5f966cd164c659635f2ff5898bfa679faadf69393f8ce7be6a0931ca",
+      "required": true
+    },
+    {
+      "fileName": "sources.json",
+      "schemaId": "urn:bestpay:schema:source:1.0.0",
+      "contentHash": "8411ead6a85a8486c99140d0b9fea16f305e7dd52ee69bbd094e390ac224cfee",
+      "required": true
+    },
+    {
+      "fileName": "id_migrations.json",
+      "schemaId": "urn:bestpay:schema:id-migration:1.0.0",
+      "contentHash": "81f674ac8942c06289297150d8f8680efcfe6b1dceaad1fcc767f7d4fcf76123",
+      "required": true
+    }
+  ]
+}

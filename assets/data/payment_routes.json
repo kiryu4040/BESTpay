@@ -1,0 +1,102 @@
+{
+  "schemaVersion": "1.0.0",
+  "catalogVersion": "2026.09.27.4",
+  "generatedAt": "2026-09-27T00:00:00+09:00",
+  "items": [
+    {
+      "id": "touch_smartphone",
+      "name": "スマホのタッチ決済",
+      "status": "active",
+      "paymentModeIds": [],
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_olive_point_rate",
+        "src_olive_gold_attention",
+        "src_smbc_vpoint_up_program",
+        "src_mufg_global_point",
+        "src_mufg_global_plus",
+        "src_mufg_annual_bonus",
+        "src_mufg_store_bonus"
+      ],
+      "notes": [
+        "上乗せ特典の対象となる支払い方法を区別するために登録する。"
+      ]
+    },
+    {
+      "id": "mobile_order",
+      "name": "モバイルオーダー",
+      "status": "active",
+      "paymentModeIds": [],
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_olive_point_rate",
+        "src_olive_gold_attention",
+        "src_smbc_vpoint_up_program",
+        "src_mufg_global_point",
+        "src_mufg_global_plus",
+        "src_mufg_annual_bonus",
+        "src_mufg_store_bonus"
+      ],
+      "notes": [
+        "上乗せ特典の対象となる支払い方法を区別するために登録する。"
+      ]
+    },
+    {
+      "id": "card_touch",
+      "name": "カード本体のタッチ決済",
+      "status": "active",
+      "paymentModeIds": [],
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_olive_point_rate",
+        "src_olive_gold_attention",
+        "src_smbc_vpoint_up_program",
+        "src_mufg_global_point",
+        "src_mufg_global_plus",
+        "src_mufg_annual_bonus",
+        "src_mufg_store_bonus"
+      ],
+      "notes": [
+        "上乗せ特典の対象となる支払い方法を区別するために登録する。"
+      ]
+    },
+    {
+      "id": "card_insert",
+      "name": "カード差し込み",
+      "status": "active",
+      "paymentModeIds": [],
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_olive_point_rate",
+        "src_olive_gold_attention",
+        "src_smbc_vpoint_up_program",
+        "src_mufg_global_point",
+        "src_mufg_global_plus",
+        "src_mufg_annual_bonus",
+        "src_mufg_store_bonus"
+      ],
+      "notes": [
+        "上乗せ特典の対象となる支払い方法を区別するために登録する。"
+      ]
+    },
+    {
+      "id": "online_payment",
+      "name": "ネット決済",
+      "status": "active",
+      "paymentModeIds": [],
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_olive_point_rate",
+        "src_olive_gold_attention",
+        "src_smbc_vpoint_up_program",
+        "src_mufg_global_point",
+        "src_mufg_global_plus",
+        "src_mufg_annual_bonus",
+        "src_mufg_store_bonus"
+      ],
+      "notes": [
+        "上乗せ特典の対象となる支払い方法を区別するために登録する。"
+      ]
+    }
+  ]
+}

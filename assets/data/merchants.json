@@ -1,0 +1,464 @@
+{
+  "schemaVersion": "1.0.0",
+  "catalogVersion": "2026.09.27.4",
+  "generatedAt": "2026-09-27T00:00:00+09:00",
+  "items": [
+    {
+      "id": "seven_eleven",
+      "name": "セブン-イレブン",
+      "merchantGroupIds": [
+        "convenience_chain"
+      ],
+      "categoryIds": [
+        "convenience_store"
+      ],
+      "locationIds": [],
+      "status": "active",
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_olive_point_rate",
+        "src_olive_gold_attention",
+        "src_smbc_vpoint_up_program",
+        "src_mufg_global_point",
+        "src_mufg_global_plus",
+        "src_mufg_annual_bonus",
+        "src_mufg_store_bonus"
+      ],
+      "notes": [
+        "三井住友カード ゴールド（NL）は対象コンビニ・飲食店でスマホのタッチ決済／モバイルオーダーなら200円につき7%（カード本体のタッチ決済は対象外）。",
+        "Oliveフレキシブルペイ ゴールドは同条件で通常0.5%＋7.5%＝最大8%。",
+        "三菱UFJカードは対象店舗で7%相当（ポイントアッププログラム達成で最大20%相当、対象店舗利用額の月5万円が上限）。"
+      ]
+    },
+    {
+      "id": "lawson",
+      "name": "ローソン",
+      "merchantGroupIds": [
+        "convenience_chain"
+      ],
+      "categoryIds": [
+        "convenience_store"
+      ],
+      "locationIds": [],
+      "status": "active",
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_olive_point_rate",
+        "src_olive_gold_attention",
+        "src_smbc_vpoint_up_program",
+        "src_mufg_global_point",
+        "src_mufg_global_plus",
+        "src_mufg_annual_bonus",
+        "src_mufg_store_bonus"
+      ],
+      "notes": [
+        "三井住友カード ゴールド（NL）は対象コンビニ・飲食店でスマホのタッチ決済／モバイルオーダーなら200円につき7%（カード本体のタッチ決済は対象外）。",
+        "Oliveフレキシブルペイ ゴールドは同条件で通常0.5%＋7.5%＝最大8%。",
+        "三菱UFJカードは対象店舗で7%相当（ポイントアッププログラム達成で最大20%相当、対象店舗利用額の月5万円が上限）。"
+      ]
+    },
+    {
+      "id": "family_mart",
+      "name": "ファミリーマート",
+      "merchantGroupIds": [
+        "convenience_chain"
+      ],
+      "categoryIds": [
+        "convenience_store"
+      ],
+      "locationIds": [],
+      "status": "active",
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_olive_point_rate",
+        "src_olive_gold_attention",
+        "src_smbc_vpoint_up_program",
+        "src_mufg_global_point",
+        "src_mufg_global_plus",
+        "src_mufg_annual_bonus",
+        "src_mufg_store_bonus"
+      ],
+      "notes": [
+        "三井住友カード ゴールド（NL）は対象コンビニ・飲食店でスマホのタッチ決済／モバイルオーダーなら200円につき7%（カード本体のタッチ決済は対象外）。",
+        "Oliveフレキシブルペイ ゴールドは同条件で通常0.5%＋7.5%＝最大8%。",
+        "三菱UFJカードは対象店舗で7%相当（ポイントアッププログラム達成で最大20%相当、対象店舗利用額の月5万円が上限）。"
+      ]
+    },
+    {
+      "id": "ministop",
+      "name": "ミニストップ",
+      "merchantGroupIds": [
+        "convenience_chain"
+      ],
+      "categoryIds": [
+        "convenience_store"
+      ],
+      "locationIds": [],
+      "status": "active",
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_olive_point_rate",
+        "src_olive_gold_attention",
+        "src_smbc_vpoint_up_program",
+        "src_mufg_global_point",
+        "src_mufg_global_plus",
+        "src_mufg_annual_bonus",
+        "src_mufg_store_bonus"
+      ],
+      "notes": [
+        "三井住友カード ゴールド（NL）は対象コンビニ・飲食店でスマホのタッチ決済／モバイルオーダーなら200円につき7%（カード本体のタッチ決済は対象外）。",
+        "Oliveフレキシブルペイ ゴールドは同条件で通常0.5%＋7.5%＝最大8%。",
+        "三菱UFJカードは対象店舗で7%相当（ポイントアッププログラム達成で最大20%相当、対象店舗利用額の月5万円が上限）。"
+      ]
+    },
+    {
+      "id": "poplar",
+      "name": "ポプラ",
+      "merchantGroupIds": [
+        "convenience_chain"
+      ],
+      "categoryIds": [
+        "convenience_store"
+      ],
+      "locationIds": [],
+      "status": "active",
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_olive_point_rate",
+        "src_olive_gold_attention",
+        "src_smbc_vpoint_up_program",
+        "src_mufg_global_point",
+        "src_mufg_global_plus",
+        "src_mufg_annual_bonus",
+        "src_mufg_store_bonus"
+      ],
+      "notes": [
+        "三井住友カード ゴールド（NL）は対象コンビニ・飲食店でスマホのタッチ決済／モバイルオーダーなら200円につき7%（カード本体のタッチ決済は対象外）。",
+        "Oliveフレキシブルペイ ゴールドは同条件で通常0.5%＋7.5%＝最大8%。",
+        "三菱UFJカードは対象店舗で7%相当（ポイントアッププログラム達成で最大20%相当、対象店舗利用額の月5万円が上限）。"
+      ]
+    },
+    {
+      "id": "seicomart",
+      "name": "セイコーマート",
+      "merchantGroupIds": [
+        "convenience_chain"
+      ],
+      "categoryIds": [
+        "convenience_store"
+      ],
+      "locationIds": [],
+      "status": "active",
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_olive_point_rate",
+        "src_olive_gold_attention",
+        "src_smbc_vpoint_up_program",
+        "src_mufg_global_point",
+        "src_mufg_global_plus",
+        "src_mufg_annual_bonus",
+        "src_mufg_store_bonus"
+      ],
+      "notes": [
+        "三井住友カード ゴールド（NL）は対象コンビニ・飲食店でスマホのタッチ決済／モバイルオーダーなら200円につき7%（カード本体のタッチ決済は対象外）。",
+        "Oliveフレキシブルペイ ゴールドは同条件で通常0.5%＋7.5%＝最大8%。",
+        "三菱UFJカードは対象店舗で7%相当（ポイントアッププログラム達成で最大20%相当、対象店舗利用額の月5万円が上限）。"
+      ]
+    },
+    {
+      "id": "mcdonalds",
+      "name": "マクドナルド",
+      "merchantGroupIds": [
+        "fast_food_chain"
+      ],
+      "categoryIds": [
+        "fast_food"
+      ],
+      "locationIds": [],
+      "status": "active",
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_olive_point_rate",
+        "src_olive_gold_attention",
+        "src_smbc_vpoint_up_program",
+        "src_mufg_global_point",
+        "src_mufg_global_plus",
+        "src_mufg_annual_bonus",
+        "src_mufg_store_bonus"
+      ],
+      "notes": [
+        "三井住友カード ゴールド（NL）は対象コンビニ・飲食店でスマホのタッチ決済／モバイルオーダーなら200円につき7%（カード本体のタッチ決済は対象外）。",
+        "Oliveフレキシブルペイ ゴールドは同条件で通常0.5%＋7.5%＝最大8%。",
+        "三菱UFJカードは対象店舗で7%相当（ポイントアッププログラム達成で最大20%相当、対象店舗利用額の月5万円が上限）。"
+      ]
+    },
+    {
+      "id": "matsuya",
+      "name": "松屋",
+      "merchantGroupIds": [
+        "fast_food_chain"
+      ],
+      "categoryIds": [
+        "fast_food"
+      ],
+      "locationIds": [],
+      "status": "active",
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_olive_point_rate",
+        "src_olive_gold_attention",
+        "src_smbc_vpoint_up_program",
+        "src_mufg_global_point",
+        "src_mufg_global_plus",
+        "src_mufg_annual_bonus",
+        "src_mufg_store_bonus"
+      ],
+      "notes": [
+        "三井住友カード ゴールド（NL）は対象コンビニ・飲食店でスマホのタッチ決済／モバイルオーダーなら200円につき7%（カード本体のタッチ決済は対象外）。",
+        "Oliveフレキシブルペイ ゴールドは同条件で通常0.5%＋7.5%＝最大8%。",
+        "三菱UFJカードは対象店舗で7%相当（ポイントアッププログラム達成で最大20%相当、対象店舗利用額の月5万円が上限）。"
+      ]
+    },
+    {
+      "id": "starbucks",
+      "name": "スターバックス",
+      "merchantGroupIds": [
+        "cafe_chain"
+      ],
+      "categoryIds": [
+        "cafe"
+      ],
+      "locationIds": [],
+      "status": "active",
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_olive_point_rate",
+        "src_olive_gold_attention",
+        "src_smbc_vpoint_up_program",
+        "src_mufg_global_point",
+        "src_mufg_global_plus",
+        "src_mufg_annual_bonus",
+        "src_mufg_store_bonus"
+      ],
+      "notes": [
+        "三井住友カード ゴールド（NL）は対象コンビニ・飲食店でスマホのタッチ決済／モバイルオーダーなら200円につき7%（カード本体のタッチ決済は対象外）。",
+        "Oliveフレキシブルペイ ゴールドは同条件で通常0.5%＋7.5%＝最大8%。",
+        "三菱UFJカードは対象店舗で7%相当（ポイントアッププログラム達成で最大20%相当、対象店舗利用額の月5万円が上限）。"
+      ]
+    },
+    {
+      "id": "kura_sushi",
+      "name": "くら寿司",
+      "merchantGroupIds": [
+        "kaiten_sushi_chain"
+      ],
+      "categoryIds": [
+        "kaiten_sushi"
+      ],
+      "locationIds": [],
+      "status": "active",
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_olive_point_rate",
+        "src_olive_gold_attention",
+        "src_smbc_vpoint_up_program",
+        "src_mufg_global_point",
+        "src_mufg_global_plus",
+        "src_mufg_annual_bonus",
+        "src_mufg_store_bonus"
+      ],
+      "notes": [
+        "三井住友カード ゴールド（NL）は対象コンビニ・飲食店でスマホのタッチ決済／モバイルオーダーなら200円につき7%（カード本体のタッチ決済は対象外）。",
+        "Oliveフレキシブルペイ ゴールドは同条件で通常0.5%＋7.5%＝最大8%。",
+        "三菱UFJカードは対象店舗で7%相当（ポイントアッププログラム達成で最大20%相当、対象店舗利用額の月5万円が上限）。"
+      ]
+    },
+    {
+      "id": "sushiro",
+      "name": "スシロー",
+      "merchantGroupIds": [
+        "kaiten_sushi_chain"
+      ],
+      "categoryIds": [
+        "kaiten_sushi"
+      ],
+      "locationIds": [],
+      "status": "active",
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_olive_point_rate",
+        "src_olive_gold_attention",
+        "src_smbc_vpoint_up_program",
+        "src_mufg_global_point",
+        "src_mufg_global_plus",
+        "src_mufg_annual_bonus",
+        "src_mufg_store_bonus"
+      ],
+      "notes": [
+        "三井住友カード ゴールド（NL）は対象コンビニ・飲食店でスマホのタッチ決済／モバイルオーダーなら200円につき7%（カード本体のタッチ決済は対象外）。",
+        "Oliveフレキシブルペイ ゴールドは同条件で通常0.5%＋7.5%＝最大8%。",
+        "三菱UFJカードは対象店舗で7%相当（ポイントアッププログラム達成で最大20%相当、対象店舗利用額の月5万円が上限）。"
+      ]
+    },
+    {
+      "id": "pizza_hut",
+      "name": "ピザハット",
+      "merchantGroupIds": [
+        "pizza_chain"
+      ],
+      "categoryIds": [
+        "pizza"
+      ],
+      "locationIds": [],
+      "status": "active",
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_olive_point_rate",
+        "src_olive_gold_attention",
+        "src_smbc_vpoint_up_program",
+        "src_mufg_global_point",
+        "src_mufg_global_plus",
+        "src_mufg_annual_bonus",
+        "src_mufg_store_bonus"
+      ],
+      "notes": [
+        "三井住友カード ゴールド（NL）は対象コンビニ・飲食店でスマホのタッチ決済／モバイルオーダーなら200円につき7%（カード本体のタッチ決済は対象外）。",
+        "Oliveフレキシブルペイ ゴールドは同条件で通常0.5%＋7.5%＝最大8%。",
+        "三菱UFJカードは対象店舗で7%相当（ポイントアッププログラム達成で最大20%相当、対象店舗利用額の月5万円が上限）。"
+      ]
+    },
+    {
+      "id": "ok_store",
+      "name": "オーケー",
+      "merchantGroupIds": [
+        "supermarket_chain"
+      ],
+      "categoryIds": [
+        "supermarket"
+      ],
+      "locationIds": [],
+      "status": "active",
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_olive_point_rate",
+        "src_olive_gold_attention",
+        "src_smbc_vpoint_up_program",
+        "src_mufg_global_point",
+        "src_mufg_global_plus",
+        "src_mufg_annual_bonus",
+        "src_mufg_store_bonus"
+      ],
+      "notes": [
+        "三井住友カード ゴールド（NL）は対象コンビニ・飲食店でスマホのタッチ決済／モバイルオーダーなら200円につき7%（カード本体のタッチ決済は対象外）。",
+        "Oliveフレキシブルペイ ゴールドは同条件で通常0.5%＋7.5%＝最大8%。",
+        "三菱UFJカードは対象店舗で7%相当（ポイントアッププログラム達成で最大20%相当、対象店舗利用額の月5万円が上限）。"
+      ]
+    },
+    {
+      "id": "ozeqi",
+      "name": "オオゼキ",
+      "merchantGroupIds": [
+        "supermarket_chain"
+      ],
+      "categoryIds": [
+        "supermarket"
+      ],
+      "locationIds": [],
+      "status": "active",
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_olive_point_rate",
+        "src_olive_gold_attention",
+        "src_smbc_vpoint_up_program",
+        "src_mufg_global_point",
+        "src_mufg_global_plus",
+        "src_mufg_annual_bonus",
+        "src_mufg_store_bonus"
+      ],
+      "notes": [
+        "三井住友カード ゴールド（NL）は対象コンビニ・飲食店でスマホのタッチ決済／モバイルオーダーなら200円につき7%（カード本体のタッチ決済は対象外）。",
+        "Oliveフレキシブルペイ ゴールドは同条件で通常0.5%＋7.5%＝最大8%。",
+        "三菱UFJカードは対象店舗で7%相当（ポイントアッププログラム達成で最大20%相当、対象店舗利用額の月5万円が上限）。"
+      ]
+    },
+    {
+      "id": "hanamasa",
+      "name": "肉のハナマサ",
+      "merchantGroupIds": [
+        "supermarket_chain"
+      ],
+      "categoryIds": [
+        "supermarket"
+      ],
+      "locationIds": [],
+      "status": "active",
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_olive_point_rate",
+        "src_olive_gold_attention",
+        "src_smbc_vpoint_up_program",
+        "src_mufg_global_point",
+        "src_mufg_global_plus",
+        "src_mufg_annual_bonus",
+        "src_mufg_store_bonus"
+      ],
+      "notes": [
+        "三井住友カード ゴールド（NL）は対象コンビニ・飲食店でスマホのタッチ決済／モバイルオーダーなら200円につき7%（カード本体のタッチ決済は対象外）。",
+        "Oliveフレキシブルペイ ゴールドは同条件で通常0.5%＋7.5%＝最大8%。",
+        "三菱UFJカードは対象店舗で7%相当（ポイントアッププログラム達成で最大20%相当、対象店舗利用額の月5万円が上限）。"
+      ]
+    },
+    {
+      "id": "amazon_jp",
+      "name": "Amazon.co.jp",
+      "merchantGroupIds": [
+        "online_chain"
+      ],
+      "categoryIds": [
+        "online_shop"
+      ],
+      "locationIds": [],
+      "status": "active",
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_olive_point_rate",
+        "src_olive_gold_attention",
+        "src_smbc_vpoint_up_program",
+        "src_mufg_global_point",
+        "src_mufg_global_plus",
+        "src_mufg_annual_bonus",
+        "src_mufg_store_bonus"
+      ],
+      "notes": [
+        "三井住友カード ゴールド（NL）は対象コンビニ・飲食店でスマホのタッチ決済／モバイルオーダーなら200円につき7%（カード本体のタッチ決済は対象外）。",
+        "Oliveフレキシブルペイ ゴールドは同条件で通常0.5%＋7.5%＝最大8%。",
+        "三菱UFJカードは対象店舗で7%相当（ポイントアッププログラム達成で最大20%相当、対象店舗利用額の月5万円が上限）。"
+      ]
+    },
+    {
+      "id": "other_merchant",
+      "name": "その他の店舗",
+      "merchantGroupIds": [
+        "online_chain"
+      ],
+      "categoryIds": [
+        "other_store"
+      ],
+      "locationIds": [],
+      "status": "active",
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_olive_point_rate",
+        "src_olive_gold_attention",
+        "src_smbc_vpoint_up_program",
+        "src_mufg_global_point",
+        "src_mufg_global_plus",
+        "src_mufg_annual_bonus",
+        "src_mufg_store_bonus"
+      ],
+      "notes": [
+        "どのカードにも得意店舗の上乗せがない店舗。基本還元だけで比較する。"
+      ]
+    }
+  ]
+}

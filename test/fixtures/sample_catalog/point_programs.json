@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "1.0.0",
+  "catalogVersion": "2026.09.27.1",
+  "generatedAt": "2026-09-27T00:00:00+09:00",
+  "items": [
+    {
+      "id": "sample_point",
+      "name": "サンプルポイント",
+      "issuerName": "サンプル発行会社A",
+      "unitName": "pt",
+      "valueDefinition": {
+        "valueType": "fixed",
+        "yenPerPoint": { "numerator": 1, "denominator": 1 }
+      },
+      "expiration": { "expirationType": "none" },
+      "status": "active",
+      "sourceIds": ["sample_source_official"],
+      "lastVerifiedAt": "2026-09-01",
+      "notes": []
+    },
+    {
+      "id": "sample_point_variable",
+      "name": "サンプル可変ポイント",
+      "issuerName": "サンプル発行会社B",
+      "unitName": "pt",
+      "valueDefinition": { "valueType": "variable" },
+      "expiration": { "expirationType": "unknown" },
+      "status": "active",
+      "sourceIds": [],
+      "lastVerifiedAt": "2026-09-01",
+      "notes": []
+    }
+  ]
+}

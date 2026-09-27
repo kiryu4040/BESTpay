@@ -1,0 +1,143 @@
+{
+  "schemaVersion": "1.0.0",
+  "catalogVersion": "2026.09.27.3",
+  "generatedAt": "2026-09-27T00:00:00+09:00",
+  "items": [
+    {
+      "id": "rakuten_point",
+      "name": "楽天ポイント",
+      "issuerName": "楽天カード株式会社",
+      "unitName": "pt",
+      "valueDefinition": {
+        "valueType": "fixed",
+        "yenPerPoint": {
+          "numerator": 1,
+          "denominator": 1
+        }
+      },
+      "expiration": {
+        "expirationType": "unknown"
+      },
+      "status": "active",
+      "sourceIds": [
+        "src_rakuten_point_rate",
+        "src_mizuho_rakuten_official"
+      ],
+      "lastVerifiedAt": "2026-09-27",
+      "notes": [
+        "1P = 1円相当（楽天市場等で利用可）。",
+        "有効期限の公式明記は確認できず未確認。",
+        "1Pの円換算価値の最小値は未確認。"
+      ]
+    },
+    {
+      "id": "mizuho_point",
+      "name": "みずほポイント",
+      "issuerName": "株式会社みずほ銀行",
+      "unitName": "pt",
+      "valueDefinition": {
+        "valueType": "fixed",
+        "yenPerPoint": {
+          "numerator": 1,
+          "denominator": 1
+        }
+      },
+      "expiration": {
+        "expirationType": "unknown"
+      },
+      "status": "active",
+      "sourceIds": [
+        "src_mizuho_rakuten_official"
+      ],
+      "lastVerifiedAt": "2026-09-27",
+      "notes": [
+        "みずほポイント1Pは楽天ポイント1Pに等価交換でき、1P = 1円相当（Amazonギフト・PayPayポイント等）。",
+        "交換先により価値が変わる可能性があり、最小値は未確認。",
+        "Wポイントプランで付与される（条件は reward_rules の該当ルールと condition_definitions を参照）。"
+      ]
+    },
+    {
+      "id": "v_point",
+      "name": "Vポイント",
+      "issuerName": "三井住友カード株式会社",
+      "unitName": "pt",
+      "valueDefinition": {
+        "valueType": "fixed",
+        "yenPerPoint": {
+          "numerator": 1,
+          "denominator": 1
+        }
+      },
+      "expiration": {
+        "expirationType": "unknown"
+      },
+      "status": "active",
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_olive_point_rate",
+        "src_smbc_gold_nl_official",
+        "src_netbk_vneobank"
+      ],
+      "lastVerifiedAt": "2026-09-27",
+      "notes": [
+        "1P = 1円相当（標準。ドコモSMTBネット銀行 V NEOBANKページの記載）。",
+        "運営会社の正確な名称および最小交換価値は未確認。",
+        "Oliveゴールド・三井住友カード ゴールド（NL）・V NEOBANKデビットで共通のポイント。"
+      ]
+    },
+    {
+      "id": "global_point",
+      "name": "グローバルポイント",
+      "issuerName": "三菱UFJニコス株式会社",
+      "unitName": "pt",
+      "valueDefinition": {
+        "valueType": "fixed",
+        "yenPerPoint": {
+          "numerator": 5,
+          "denominator": 1
+        }
+      },
+      "expiration": {
+        "expirationType": "unknown"
+      },
+      "status": "active",
+      "sourceIds": [
+        "src_mufg_global_point",
+        "src_mufg_bank_card"
+      ],
+      "lastVerifiedAt": "2026-09-27",
+      "notes": [
+        "1P = 5円相当（商品交換の場合）。キャッシュバック交換は1P = 4円。",
+        "最大交換価値は未確認。有効期限も未確認。"
+      ]
+    },
+    {
+      "id": "j_point",
+      "name": "J-POINT",
+      "issuerName": "株式会社ジェーシービー",
+      "unitName": "pt",
+      "valueDefinition": {
+        "valueType": "fixed",
+        "yenPerPoint": {
+          "numerator": 1,
+          "denominator": 1
+        }
+      },
+      "expiration": {
+        "expirationType": "durationMonths",
+        "months": 24
+      },
+      "status": "active",
+      "sourceIds": [
+        "src_jcb_card_w_official",
+        "src_jcb_point_about"
+      ],
+      "lastVerifiedAt": "2026-09-27",
+      "notes": [
+        "1P = 最大1円分相当として利用可。",
+        "有効期限: 一般カードは獲得月より2年間（24ヵ月）。",
+        "2026年1月にOki Dokiポイントから改称・リニューアル。最小交換価値は未確認。"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,133 @@
+{
+  "schemaVersion": "1.0.0",
+  "catalogVersion": "2026.09.27.4",
+  "generatedAt": "2026-09-27T00:00:00+09:00",
+  "items": [
+    {
+      "id": "convenience_chain",
+      "name": "コンビニチェーン",
+      "status": "active",
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_olive_point_rate",
+        "src_olive_gold_attention",
+        "src_smbc_vpoint_up_program",
+        "src_mufg_global_point",
+        "src_mufg_global_plus",
+        "src_mufg_annual_bonus",
+        "src_mufg_store_bonus"
+      ],
+      "notes": [
+        "第1期の店舗グループ。"
+      ]
+    },
+    {
+      "id": "fast_food_chain",
+      "name": "ファストフードチェーン",
+      "status": "active",
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_olive_point_rate",
+        "src_olive_gold_attention",
+        "src_smbc_vpoint_up_program",
+        "src_mufg_global_point",
+        "src_mufg_global_plus",
+        "src_mufg_annual_bonus",
+        "src_mufg_store_bonus"
+      ],
+      "notes": [
+        "第1期の店舗グループ。"
+      ]
+    },
+    {
+      "id": "cafe_chain",
+      "name": "カフェチェーン",
+      "status": "active",
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_olive_point_rate",
+        "src_olive_gold_attention",
+        "src_smbc_vpoint_up_program",
+        "src_mufg_global_point",
+        "src_mufg_global_plus",
+        "src_mufg_annual_bonus",
+        "src_mufg_store_bonus"
+      ],
+      "notes": [
+        "第1期の店舗グループ。"
+      ]
+    },
+    {
+      "id": "kaiten_sushi_chain",
+      "name": "回転寿司チェーン",
+      "status": "active",
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_olive_point_rate",
+        "src_olive_gold_attention",
+        "src_smbc_vpoint_up_program",
+        "src_mufg_global_point",
+        "src_mufg_global_plus",
+        "src_mufg_annual_bonus",
+        "src_mufg_store_bonus"
+      ],
+      "notes": [
+        "第1期の店舗グループ。"
+      ]
+    },
+    {
+      "id": "pizza_chain",
+      "name": "ピザチェーン",
+      "status": "active",
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_olive_point_rate",
+        "src_olive_gold_attention",
+        "src_smbc_vpoint_up_program",
+        "src_mufg_global_point",
+        "src_mufg_global_plus",
+        "src_mufg_annual_bonus",
+        "src_mufg_store_bonus"
+      ],
+      "notes": [
+        "第1期の店舗グループ。"
+      ]
+    },
+    {
+      "id": "supermarket_chain",
+      "name": "スーパーチェーン",
+      "status": "active",
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_olive_point_rate",
+        "src_olive_gold_attention",
+        "src_smbc_vpoint_up_program",
+        "src_mufg_global_point",
+        "src_mufg_global_plus",
+        "src_mufg_annual_bonus",
+        "src_mufg_store_bonus"
+      ],
+      "notes": [
+        "第1期の店舗グループ。"
+      ]
+    },
+    {
+      "id": "online_chain",
+      "name": "ネット通販チェーン",
+      "status": "active",
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_olive_point_rate",
+        "src_olive_gold_attention",
+        "src_smbc_vpoint_up_program",
+        "src_mufg_global_point",
+        "src_mufg_global_plus",
+        "src_mufg_annual_bonus",
+        "src_mufg_store_bonus"
+      ],
+      "notes": [
+        "第1期の店舗グループ。"
+      ]
+    }
+  ]
+}

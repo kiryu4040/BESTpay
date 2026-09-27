@@ -1,0 +1,232 @@
+{
+  "schemaVersion": "1.0.0",
+  "catalogVersion": "2026.09.27.3",
+  "generatedAt": "2026-09-27T00:00:00+09:00",
+  "items": [
+    {
+      "id": "mizuho_rakuten_card",
+      "name": "みずほ楽天カード",
+      "shortName": "みずほ楽天",
+      "instrumentType": "creditCard",
+      "issuerName": "株式会社みずほ銀行",
+      "partnerInstitutionName": "楽天カード株式会社",
+      "availableBrandIds": [],
+      "annualFee": 0,
+      "supportedModeIds": [],
+      "supportedRouteIds": [],
+      "validFrom": "2026-09-27",
+      "validUntilExclusive": null,
+      "status": "active",
+      "sourceIds": [
+        "src_mizuho_rakuten_official",
+        "src_rakuten_point_rate"
+      ],
+      "lastVerifiedAt": "2026-09-27",
+      "displayClaims": [
+        "最大合計2%（みずほポイント1%＋楽天ポイント1%／Wポイントプランの条件達成時のみ）",
+        "楽天市場では最大合計4%（楽天市場利用分・楽天カード特典分のSPU特典を含む）"
+      ],
+      "tags": [
+        "credit_card",
+        "no_annual_fee",
+        "w_point_plan"
+      ],
+      "notes": [
+        "楽天ポイント100円1P（1%）＋条件を満たす場合のみ同数のみずほポイント（Wポイントプラン）。",
+        "楽天ポイント基本還元は1回のお買い物ごと（取引単位）の計算で、100円未満は切り捨て（楽天カード公式ページの注記）。",
+        "Wポイントは2025-06-30以降の新規契約＋口座振替設定が条件で、最長1年・上限10,000ポイント。全利用者共通の恒常2%ではない。",
+        "広告の「最大2%」は displayClaims に分離し、計算値としては登録していない（裁定 CR-013）。",
+        "公共料金・税金、保険料、携帯電話ご利用料金にはカテゴリ別の計算単位（500円1P／200円1P）があり、第1期は draft ルールとして保留している。",
+        "国際ブランド、スマホタッチ決済／iD／差し込み等の決済経路による還元差は未確認。",
+        "みずほポイントの最小交換価値は未確認。",
+        "2026-09-07付の報道（二次情報）に「2%へ引き上げ」があるが、公式の2%はWポイントプランであり確定情報として扱わない。",
+        "validFrom は制度の効力発生日が未確認のため、調査レポートの確認日（2026-09-27）をカタログ収載上の暫定開始日として登録している。"
+      ]
+    },
+    {
+      "id": "olive_flexible_pay_gold",
+      "name": "Oliveフレキシブルペイ ゴールド",
+      "shortName": "Oliveゴールド",
+      "instrumentType": "creditCard",
+      "issuerName": "株式会社三井住友銀行",
+      "partnerInstitutionName": "三井住友カード株式会社",
+      "availableBrandIds": [],
+      "annualFee": 5500,
+      "supportedModeIds": [],
+      "supportedRouteIds": [],
+      "validFrom": "2026-09-27",
+      "validUntilExclusive": null,
+      "status": "active",
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_olive_point_rate"
+      ],
+      "lastVerifiedAt": "2026-09-27",
+      "displayClaims": [
+        "対象店舗のスマホタッチ決済・モバイルオーダーで最大8%（通常0.5%＋7.5%）"
+      ],
+      "tags": [
+        "credit_card",
+        "annual_fee_conditional_free",
+        "multi_mode"
+      ],
+      "notes": [
+        "クレジットモード・デビットモード・ポイント払いモードとも基本0.5%（三井住友銀行公式のお支払いモード表およびVポイント還元率ページで確認）。",
+        "二次情報にポイント払いモード0.25%の記載があったが、公式は0.5%のため採用しない。",
+        "「追加した支払いモード」は追加先カードのサービスが適用され、Oliveの0.5%とは異なる。",
+        "端数処理・月次の集計期間・「200円につき1ポイント」に相当する計算単位は公式に明記がなく未確認。端数は切り捨てを仮定して登録。",
+        "第1期は payment_modes.json を登録しないため、支払いモードごとのルール分岐はできず、モードを限定しない単一の基本ルールとして登録している。",
+        "年100万円利用で毎年10,000ポイント＋年会費永年無料（デビット・クレジットモード合算）は別ルールとして登録し、基本0.5%には合算しない（裁定 CR-018）。",
+        "対象コンビニ・飲食店の7.5%上乗せ分の月上限は未確認。",
+        "validFrom は制度の効力発生日が未確認のため、調査レポートの確認日（2026-09-27）をカタログ収載上の暫定開始日として登録している。"
+      ]
+    },
+    {
+      "id": "smbc_gold_nl_card",
+      "name": "三井住友カード ゴールド（NL）",
+      "shortName": "三井住友ゴールドNL",
+      "instrumentType": "creditCard",
+      "issuerName": "三井住友カード株式会社",
+      "partnerInstitutionName": null,
+      "availableBrandIds": [],
+      "annualFee": 5500,
+      "supportedModeIds": [],
+      "supportedRouteIds": [],
+      "validFrom": "2026-09-27",
+      "validUntilExclusive": null,
+      "status": "active",
+      "sourceIds": [
+        "src_smbc_gold_nl_official",
+        "src_smbc_gold_nl_attention"
+      ],
+      "lastVerifiedAt": "2026-09-27",
+      "displayClaims": [
+        "対象コンビニ・飲食店のスマホタッチ決済・モバイルオーダーで200円につき7%"
+      ],
+      "tags": [
+        "credit_card",
+        "annual_fee_conditional_free"
+      ],
+      "notes": [
+        "Vポイントは通常200円（税込）につき1ポイント（0.5%）。",
+        "月次のVポイント集計期間・端数処理は公式に明記がなく未確認。端数は切り捨てを仮定して登録。",
+        "対象コンビニ・飲食店の7%はスマホのVisa/Mastercardタッチ決済・モバイルオーダー限定で、カード原板のタッチ決済やiDは対象外。",
+        "対象店舗の上乗せは店舗個別データが必要なため今回は登録しない（第2期）。",
+        "年100万円利用で毎年10,000ポイント＋翌年以降年会費永年無料（初年度は付与なし）は別ルールとして登録。",
+        "ポイント付与自体の対象外リストは公式ページに明示がなく未確認。",
+        "validFrom は制度の効力発生日が未確認のため、調査レポートの確認日（2026-09-27）をカタログ収載上の暫定開始日として登録している。"
+      ]
+    },
+    {
+      "id": "mufg_card",
+      "name": "三菱UFJカード",
+      "shortName": "MUFGカード",
+      "instrumentType": "creditCard",
+      "issuerName": "三菱UFJニコス株式会社",
+      "partnerInstitutionName": "株式会社三菱UFJ銀行",
+      "availableBrandIds": [],
+      "annualFee": 0,
+      "supportedModeIds": [],
+      "supportedRouteIds": [],
+      "validFrom": "2026-09-27",
+      "validUntilExclusive": null,
+      "status": "active",
+      "sourceIds": [
+        "src_mufg_global_point",
+        "src_mufg_bank_card"
+      ],
+      "lastVerifiedAt": "2026-09-27",
+      "displayClaims": [
+        "対象店舗で最大20%ポイント還元（各種条件達成時）"
+      ],
+      "tags": [
+        "credit_card",
+        "no_annual_fee",
+        "gold_only_annual_bonus"
+      ],
+      "notes": [
+        "グローバルポイントは1ヵ月の合計1,000円ごとに1ポイント、1P = 5円相当（商品交換）で実質0.5%。",
+        "集計は原則毎月16日〜翌月15日、1,000円未満は切り捨て。",
+        "登録カードは一般カードのため、年間利用ボーナス（ゴールド限定・2,200ポイント）は登録しない。",
+        "公共料金・税金・保険料・通信費は2027-01-12請求分より5,000円ごとに1ポイントへ変更予定（改定分は第2期）。",
+        "ポイントアッププログラム・グローバルPLUS等の上乗せは第2期。",
+        "キャッシュバック交換は1P = 4円。最大交換価値・一般カード年会費の詳細は未確認。",
+        "validFrom は制度の効力発生日が未確認のため、調査レポートの確認日（2026-09-27）をカタログ収載上の暫定開始日として登録している。"
+      ]
+    },
+    {
+      "id": "jcb_card_w",
+      "name": "JCBカードW",
+      "shortName": "JCB W",
+      "instrumentType": "creditCard",
+      "issuerName": "株式会社ジェーシービー",
+      "partnerInstitutionName": null,
+      "availableBrandIds": [],
+      "annualFee": 0,
+      "supportedModeIds": [],
+      "supportedRouteIds": [],
+      "validFrom": "2026-09-27",
+      "validUntilExclusive": null,
+      "status": "active",
+      "sourceIds": [
+        "src_jcb_card_w_official",
+        "src_jcb_point_about"
+      ],
+      "lastVerifiedAt": "2026-09-27",
+      "displayClaims": [
+        "J-POINTパートナー（要登録）・J-POINTモール経由で最大20倍"
+      ],
+      "tags": [
+        "credit_card",
+        "no_annual_fee"
+      ],
+      "notes": [
+        "J-POINTは200円（税込）につき2ポイント（実質1.0%）。",
+        "集計は毎月16日〜翌月15日で、月合計額をポイント換算後に小数点以下を切り捨て（1回200円未満でも月合計に付与）。",
+        "39歳までに入会すればその後も年会費永年無料。18歳〜39歳で入会、申込時にWEBで支払口座の設定が必要。",
+        "J-POINTボーナス（年間50万円ごと、12/16〜翌年12/15集計、段階的な付与数）はエンジンの thresholdBonus では1閾値しか表現できないため今回は登録しない（第2期）。",
+        "JCBカードWのJ-POINTボーナス区分（一般会員／プレミアム会員）は公式に明記がなく未確認。",
+        "国際ブランド（JCBのみか）、基本ポイントの上限、iD等の決済経路差は未確認。",
+        "validFrom は制度の効力発生日が未確認のため、調査レポートの確認日（2026-09-27）をカタログ収載上の暫定開始日として登録している。"
+      ]
+    },
+    {
+      "id": "v_neobank_debit",
+      "name": "V NEOBANKデビット",
+      "shortName": "V NEOBANKデビット",
+      "instrumentType": "debitCard",
+      "issuerName": "株式会社ドコモSMTBネット銀行",
+      "partnerInstitutionName": null,
+      "availableBrandIds": [],
+      "annualFee": 0,
+      "supportedModeIds": [],
+      "supportedRouteIds": [],
+      "validFrom": "2026-09-27",
+      "validUntilExclusive": null,
+      "status": "active",
+      "sourceIds": [
+        "src_netbk_vneobank",
+        "src_netbk_revision_20260731",
+        "src_vneobank_debit_lp"
+      ],
+      "lastVerifiedAt": "2026-09-27",
+      "displayClaims": [
+        "ご利用金額の1.5%分のVポイント（2026-11-01以降到着の売上確定データ分より1.25%へ引き下げ）"
+      ],
+      "tags": [
+        "debit_card",
+        "no_annual_fee"
+      ],
+      "notes": [
+        "銀行名: 「住信SBIネット銀行株式会社」は2026-08-03付で「株式会社ドコモSMTBネット銀行」に商号変更（旧名: 住信SBIネット銀行）。",
+        "還元率は月間合計1,000円以上の利用が条件。1ポイント未満の端数は切り捨て。",
+        "改定の日付基準は「売上確定データの到着日」（購入日ではない）。",
+        "対象金額は加盟店から後日送られる売上確定データの金額（最終確定金額）で、利用月と付与対象月が異なる場合がある。",
+        "現行（〜2026-10-31到着分）の明示的な対象外リストは公式に確認できず未確認。",
+        "2026-11-01以降到着分より対象外取引を大幅追加（他社決済サービスへのチャージ、鉄道、公共料金、税金、病院、非営利団体への寄付等）。",
+        "デビットカード利用分の月間付与上限は未確認。旧デザインのV NEOBANKデビットはポイントが貯まらない点に注意。",
+        "validFrom は制度の効力発生日が未確認のため、調査レポートの確認日（2026-09-27）をカタログ収載上の暫定開始日として登録している。"
+      ]
+    }
+  ]
+}

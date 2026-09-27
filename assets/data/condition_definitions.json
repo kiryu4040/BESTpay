@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.0.0",
+  "catalogVersion": "2026.09.27.3",
+  "generatedAt": "2026-09-27T00:00:00+09:00",
+  "items": [
+    {
+      "id": "mizuho_w_point_plan_eligible",
+      "name": "みずほ楽天カード Wポイントプラン対象者",
+      "description": "2025-06-30以降に新規申込・契約完了し、カード申込日の翌々月末日までに口座振替設定を完了した利用者であること。",
+      "valueType": "boolean",
+      "defaultState": "satisfied",
+      "verificationMethod": "userInput",
+      "scope": "user",
+      "sensitivity": "normal",
+      "validFrom": "2026-09-27",
+      "validUntilExclusive": null,
+      "status": "active",
+      "sourceIds": [
+        "src_mizuho_rakuten_official"
+      ],
+      "notes": [
+        "カタログには条件の定義のみを置き、個々の利用者における達成状態は保持しない（アプリの条件設定画面で入力する）。",
+        "利用者本人が対象者であることを確認済みのため既定を satisfied とする（決定台帳 D-084）。条件設定画面から変更できるようにするのは第2期。未入力・不充足にすると基準は1%になる。",
+        "対象期間は条件を満たした月の月初より最長1年間、進呈上限はみずほポイント10,000ポイント（ルール側の notes を参照）。"
+      ]
+    }
+  ]
+}

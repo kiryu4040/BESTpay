@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "1.0.0",
+  "catalogVersion": "2026.09.27.1",
+  "generatedAt": "2026-09-27T00:00:00+09:00",
+  "items": [
+    {
+      "id": "sample_source_official",
+      "title": "サンプルカードA 公式商品ページ（ダミー）",
+      "url": "https://example.com/sample-card-a",
+      "publisher": "サンプル発行会社A",
+      "sourceType": "officialProductPage",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-09-01",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [],
+      "summary": "",
+      "contentHash": null,
+      "notes": []
+    }
+  ]
+}
