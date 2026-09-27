@@ -1,5 +1,6 @@
 import 'package:bestpay/core/value_objects/micros_yen.dart';
 import 'package:bestpay/core/value_objects/rational.dart';
+import 'package:bestpay/core/value_objects/tri_state.dart';
 import 'package:bestpay/domain/catalog/models/catalog_types.dart';
 import 'package:bestpay/domain/catalog/models/payment_instrument_models.dart';
 import 'package:bestpay/domain/catalog/models/reward_rule_models.dart';
@@ -7,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../ranking_controller.dart';
+import 'card_management_screen.dart';
+import 'condition_settings_screen.dart';
 import '../widgets/logo_tile.dart';
 
 /// カードの詳細画面（D-096）。
@@ -64,6 +67,44 @@ final class CardDetailScreen extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           _buildBasicInfo(theme, instrument),
+          const SizedBox(height: 12),
+          Row(
+            children: <Widget>[
+              Expanded(
+                child: FilledButton.tonalIcon(
+                  onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute<void>(
+                      builder: (_) => const CardManagementScreen(),
+                    ),
+                  ),
+                  icon: const Icon(Icons.credit_card),
+                  label: const Text('カード管理で設定'),
+                ),
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: FilledButton.tonalIcon(
+                  onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute<void>(
+                      builder: (_) => const ConditionSettingsScreen(),
+                    ),
+                  ),
+                  icon: const Icon(Icons.tune),
+                  label: const Text('還元率の基準'),
+                ),
+              ),
+            ],
+          ),
+          if (controller.conditionOptions.isNotEmpty) ...<Widget>[
+            const SizedBox(height: 12),
+            Text('還元率の基準（いまの設定）', style: theme.textTheme.titleMedium),
+            const SizedBox(height: 4),
+            for (final option in controller.conditionOptions)
+              Text(
+                '・${option.name}: ${_stateLabel(controller.conditionStateOf(option.id))}',
+                style: theme.textTheme.bodySmall,
+              ),
+          ],
           const SizedBox(height: 16),
           Text('還元のしくみ', style: theme.textTheme.titleMedium),
           const SizedBox(height: 4),
@@ -215,6 +256,15 @@ final class CardDetailScreen extends StatelessWidget {
       RewardAggregationScope.billingMonth => '請求期間（16日〜翌月15日）',
       RewardAggregationScope.membershipYear => '入会からの1年ごと',
       _ => scope.value,
+    };
+  }
+
+  static String _stateLabel(TriState state) {
+    return switch (state) {
+      TriState.satisfied => '満たす',
+      TriState.notSatisfied => '満たさない',
+      TriState.unknown => '不明（確定値に含めない）',
+      TriState.notApplicable => '対象外',
     };
   }
 

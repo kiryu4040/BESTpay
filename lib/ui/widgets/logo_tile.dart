@@ -31,6 +31,10 @@ final class LogoTile extends StatefulWidget {
   static final Map<String, Future<Uint8List?>> _cache =
       <String, Future<Uint8List?>>{};
 
+  static Future<Uint8List?> _bytesFor(String path) {
+    return _cache.putIfAbsent(path, () => _loadBytes(path));
+  }
+
   static Future<Uint8List?> _loadBytes(String path) async {
     try {
       final data = await rootBundle.load(path);
@@ -51,10 +55,17 @@ final class _LogoTileState extends State<LogoTile> {
   @override
   void initState() {
     super.initState();
-    _bytes = LogoTile._cache.putIfAbsent(
-      widget.assetPath,
-      () => LogoTile._loadBytes(widget.assetPath),
-    );
+    _bytes = LogoTile._bytesFor(widget.assetPath);
+  }
+
+  @override
+  void didUpdateWidget(LogoTile oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // 並べ替えで別の店舗・カードがこの位置に来たときに取り違えないよう、
+    // パスが変わったら読み込み直す（D-098）。
+    if (oldWidget.assetPath != widget.assetPath) {
+      _bytes = LogoTile._bytesFor(widget.assetPath);
+    }
   }
 
   @override

@@ -9,10 +9,9 @@ import '../ranking_controller.dart';
 import '../widgets/logo_tile.dart';
 import 'card_detail_screen.dart';
 
-/// 選んだ店舗で「いちばん得なカード」を出す画面（D-088〜D-090）。
+/// 選んだ店舗で「いちばん得なカード」を出す画面（D-088, D-103）。
 ///
-/// 金額は入力させない。還元率で比べ、基準（みずほ楽天カード）を上回る
-/// カードがあるときだけ上位を示す。
+/// 金額は入力させない。カードは左に券面、右に名称と還元率だけを示す。
 final class MerchantCompareScreen extends StatelessWidget {
   const MerchantCompareScreen({super.key, required this.merchant});
 
@@ -73,11 +72,11 @@ final class MerchantCompareScreen extends StatelessWidget {
     );
   }
 
+  /// 結論。左に大きく券面、右に名称と還元率だけを出す（D-103）。
   Widget _buildConclusion(BuildContext context, RewardRanking ranking) {
     final theme = Theme.of(context);
     final baseline = ranking.baselineEntry;
     final better = ranking.betterThanBaseline;
-    final colorScheme = theme.colorScheme;
 
     if (baseline == null) {
       return const Card(
@@ -90,65 +89,55 @@ final class MerchantCompareScreen extends StatelessWidget {
 
     final isBaselineBest = better.isEmpty;
     final winner = isBaselineBest ? baseline : better.first;
-    final headline = isBaselineBest
-        ? '${baseline.instrumentName}で支払う'
-        : '${winner.instrumentName}で支払う';
-    final reason = isBaselineBest
-        ? 'この店でこれを上回るカードはありません。'
-        : '基準（${baseline.instrumentName}）より '
-            '+${_formatRateDelta(winner, baseline)} 得です。';
+    final colorScheme = theme.colorScheme;
 
     return Card(
       color: isBaselineBest
           ? colorScheme.surfaceContainerHighest
           : colorScheme.primaryContainer,
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                LogoTile(
-                  assetPath: cardLogoPath(winner.instrumentId.value),
-                  label: winner.instrumentName,
-                  size: 56,
-                  padding: 3,
-                ),
-                const SizedBox(width: 10),
-                Icon(
-                  isBaselineBest ? Icons.check_circle : Icons.star,
-                  color: isBaselineBest
-                      ? colorScheme.primary
-                      : colorScheme.onPrimaryContainer,
-                ),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: Text(headline, style: theme.textTheme.titleLarge),
-                ),
-              ],
+      child: InkWell(
+        onTap: () => Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (_) => CardDetailScreen(
+              instrumentId: winner.instrumentId.value,
             ),
-            const SizedBox(height: 8),
-            Text(
-              '還元率 ${_formatRate(winner.effectiveRate)}',
-              style: theme.textTheme.headlineSmall,
-            ),
-            const SizedBox(height: 4),
-            Text(reason),
-            if (better.length > 1) ...<Widget>[
-              const SizedBox(height: 4),
-              Text(
-                'ほかにも上回るカードが${better.length - 1}枚あります。',
-                style: theme.textTheme.bodySmall,
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Row(
+            children: <Widget>[
+              LogoTile(
+                assetPath: cardLogoPath(winner.instrumentId.value),
+                label: winner.instrumentName,
+                size: 96,
+                padding: 6,
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      winner.instrumentName,
+                      style: theme.textTheme.titleLarge,
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      '還元率 ${_formatRate(winner.effectiveRate)}',
+                      style: theme.textTheme.headlineSmall,
+                    ),
+                  ],
+                ),
               ),
             ],
-          ],
+          ),
         ),
       ),
     );
   }
 
+  /// 一覧の1枚。左に券面、右に名称と還元率（D-103）。
   Widget _buildEntry(BuildContext context, RewardRankingEntry entry) {
     final theme = Theme.of(context);
 
@@ -170,61 +159,52 @@ final class MerchantCompareScreen extends StatelessWidget {
         ),
         child: Padding(
           padding: const EdgeInsets.all(12),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  LogoTile(
-                    assetPath: cardLogoPath(entry.instrumentId.value),
-                    label: entry.instrumentName,
-                    size: 52,
-                    padding: 3,
-                  ),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: Text(
+              LogoTile(
+                assetPath: cardLogoPath(entry.instrumentId.value),
+                label: entry.instrumentName,
+                size: 72,
+                padding: 4,
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
                       entry.instrumentName,
                       style: theme.textTheme.titleMedium,
                     ),
-                  ),
-                  if (entry.isBaseline) const Chip(label: Text('基準')),
-                  if (entry.beatsBaseline) const Chip(label: Text('基準超え')),
-                ],
-              ),
-              const SizedBox(height: 4),
-              Text(
-                '還元率 ${_formatRate(entry.effectiveRate)}'
-                '（1万円で +${_formatMicrosYen(entry.confirmedValue)}円相当）',
-              ),
-              if (!entry.isBaseline)
-                Text(
-                  '基準との差 ${_formatDelta(MicrosYen(entry.baselineDeltaMicros))}',
-                  style: theme.textTheme.bodySmall,
+                    const SizedBox(height: 2),
+                    Text(
+                      '還元率 ${_formatRate(entry.effectiveRate)}',
+                      style: theme.textTheme.titleMedium,
+                    ),
+                    if (!entry.isBaseline)
+                      Text(
+                        '基準との差 ${_formatDelta(MicrosYen(entry.baselineDeltaMicros))}',
+                        style: theme.textTheme.bodySmall,
+                      ),
+                    if (entry.programAwards.isNotEmpty)
+                      Text(
+                        entry.programAwards
+                            .map((award) =>
+                                '${award.programName} ${award.points.points}${award.unitName}')
+                            .join('／'),
+                        style: theme.textTheme.bodySmall,
+                      ),
+                    Text('タップして詳細', style: theme.textTheme.labelSmall),
+                  ],
                 ),
-              if (entry.programAwards.isNotEmpty)
-                Text(
-                  entry.programAwards
-                      .map((award) =>
-                          '${award.programName} ${award.points.points}${award.unitName}')
-                      .join('／'),
-                  style: theme.textTheme.bodySmall,
-                ),
-              const SizedBox(height: 4),
-              Text('タップして詳細を見る', style: theme.textTheme.labelSmall),
+              ),
             ],
           ),
         ),
       ),
     );
   }
-}
-
-String _formatRateDelta(RewardRankingEntry winner, RewardRankingEntry baseline) {
-  return _formatMicrosYen(
-    MicrosYen(winner.baselineDeltaMicros < 0 ? 0 : winner.baselineDeltaMicros),
-  );
 }
 
 String _formatDelta(MicrosYen value) {

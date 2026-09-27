@@ -125,7 +125,8 @@ final class _MerchantListScreenState extends State<MerchantListScreen> {
     MerchantCategory category,
   ) {
     final theme = Theme.of(context);
-    final all = directory.merchantsInCategory(category.id);
+    // 保存された店舗の並び順を反映する（D-099）。
+    final all = controller.merchantsInCategoryOrdered(category.id);
     if (all.isEmpty) {
       return const SizedBox.shrink();
     }

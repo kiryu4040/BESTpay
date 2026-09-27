@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import '../ranking_controller.dart';
 import '../widgets/logo_tile.dart';
 import 'merchant_compare_screen.dart';
+import 'merchant_order_screen.dart';
 
 /// カテゴリ内の店舗一覧。並べ替えができる（D-093）。
 final class MerchantCategoryScreen extends StatefulWidget {
@@ -36,7 +37,20 @@ final class _MerchantCategoryScreenState extends State<MerchantCategoryScreen> {
     final merchants = _sortedMerchants(controller);
 
     return Scaffold(
-      appBar: AppBar(title: Text(widget.category.name)),
+      appBar: AppBar(
+        title: Text(widget.category.name),
+        actions: <Widget>[
+          IconButton(
+            tooltip: '店舗の並べ替え',
+            icon: const Icon(Icons.reorder),
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute<void>(
+                builder: (_) => MerchantOrderScreen(category: widget.category),
+              ),
+            ),
+          ),
+        ],
+      ),
       body: Column(
         children: <Widget>[
           SingleChildScrollView(
@@ -83,9 +97,8 @@ final class _MerchantCategoryScreenState extends State<MerchantCategoryScreen> {
   }
 
   List<MerchantEntry> _sortedMerchants(RankingController controller) {
-    final merchants = controller.directory
-        .merchantsInCategory(widget.category.id)
-        .toList();
+    final merchants =
+        controller.merchantsInCategoryOrdered(widget.category.id).toList();
 
     switch (_order) {
       case MerchantSortOrder.catalog:
@@ -140,7 +153,9 @@ final class MerchantLogoGrid extends StatelessWidget {
       itemBuilder: (context, index) {
         final merchant = merchants[index];
 
+        // 並べ替えで位置が変わっても中身が取り違わらないようにキーを付ける。
         return InkWell(
+          key: ValueKey<String>('merchant_tile_${merchant.id.value}'),
           onTap: () => onTap(merchant),
           borderRadius: BorderRadius.circular(12),
           child: Column(

@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../main.dart';
+import '../ranking_controller.dart';
 import '../widgets/empty_catalog_notice.dart';
 
-/// ホームタブ。アプリの入口と現在の状態を表示する。
+/// ホームタブ。アプリの状態と使い方を示す。
 final class HomeTab extends StatelessWidget {
   const HomeTab({super.key});
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final controller = context.watch<RankingController>();
+
     return Scaffold(
       appBar: AppBar(title: const Text('BESTpay')),
       body: ListView(
@@ -19,25 +21,47 @@ final class HomeTab extends StatelessWidget {
           Text('ようこそ BESTpay へ', style: theme.textTheme.headlineSmall),
           const SizedBox(height: 8),
           const Text(
-            '店舗と金額を入れると、保有カードの還元額ランキングを表示します。\n'
-            'まずは「店舗」タブから試してください。',
+            'レジ前で店舗を選ぶだけで、いちばん得なカードが分かります。\n'
+            '金額の入力は不要です（年間の集計は「年間」タブで行います）。',
           ),
           const SizedBox(height: 16),
-          Consumer<AppState>(
-            builder: (context, appState, _) {
-              final catalog = appState.catalog;
-              if (catalog.isEmpty) {
-                return const EmptyCatalogNotice();
-              }
-              return Card(
-                child: ListTile(
-                  leading: const Icon(Icons.credit_card),
-                  title: Text('登録カード: ${catalog.cards.length} 枚'),
-                  subtitle: const Text('カタログ読み込み済み'),
+          if (controller.isCatalogEmpty)
+            EmptyCatalogNotice(missingFiles: controller.missingCatalogFiles)
+          else ...<Widget>[
+            Card(
+              child: ListTile(
+                leading: const Icon(Icons.credit_card),
+                title: Text(
+                  '登録カード: '
+                  '${controller.catalog.paymentInstrumentsById.length} 枚',
                 ),
-              );
-            },
-          ),
+                subtitle: Text(
+                  'ランキング対象: '
+                  '${controller.catalog.paymentInstrumentsById.values.where((card) => controller.isCardVisible(card.id.value)).length} 枚',
+                ),
+              ),
+            ),
+            const SizedBox(height: 8),
+            Card(
+              child: ListTile(
+                leading: const Icon(Icons.storefront),
+                title: Text('登録店舗: ${controller.directory.merchants.length} 店'),
+                subtitle: const Text('「店舗」タブから選んでください'),
+              ),
+            ),
+            const SizedBox(height: 8),
+            Card(
+              child: ListTile(
+                leading: const Icon(Icons.tune),
+                title: const Text('還元率の基準（条件）'),
+                subtitle: Text(
+                  controller.conditionOptions.isEmpty
+                      ? '設定できる条件はまだありません'
+                      : '「設定」タブから変更できます',
+                ),
+              ),
+            ),
+          ],
         ],
       ),
     );

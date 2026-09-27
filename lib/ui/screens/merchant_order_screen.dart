@@ -3,25 +3,30 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../ranking_controller.dart';
+import '../widgets/logo_tile.dart';
 
-/// カテゴリそのものの並び順を入れ替える画面（D-095）。
+/// カテゴリ内の店舗の並び順を入れ替える画面（D-099）。
 ///
-/// 指でつまんで上下に動かすだけで並べ替えられる。並び順は端末に保存され、
-/// 次にアプリを開いたときも同じ順で表示される。
-final class CategoryOrderScreen extends StatefulWidget {
-  const CategoryOrderScreen({super.key});
+/// 操作はカテゴリの並べ替えと同じ。つまみを触った瞬間から動かせる。
+final class MerchantOrderScreen extends StatefulWidget {
+  const MerchantOrderScreen({super.key, required this.category});
+
+  final MerchantCategory category;
 
   @override
-  State<CategoryOrderScreen> createState() => _CategoryOrderScreenState();
+  State<MerchantOrderScreen> createState() => _MerchantOrderScreenState();
 }
 
-final class _CategoryOrderScreenState extends State<CategoryOrderScreen> {
-  late List<MerchantCategory> _categories;
+final class _MerchantOrderScreenState extends State<MerchantOrderScreen> {
+  late List<MerchantEntry> _merchants;
 
   @override
   void initState() {
     super.initState();
-    _categories = context.read<RankingController>().orderedCategories.toList();
+    _merchants = context
+        .read<RankingController>()
+        .merchantsInCategoryOrdered(widget.category.id)
+        .toList();
   }
 
   @override
@@ -30,7 +35,7 @@ final class _CategoryOrderScreenState extends State<CategoryOrderScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('カテゴリの並べ替え'),
+        title: Text('${widget.category.name}の並べ替え'),
         actions: <Widget>[
           TextButton(
             onPressed: () => _save(context),
@@ -49,29 +54,29 @@ final class _CategoryOrderScreenState extends State<CategoryOrderScreen> {
             ),
           ),
           Expanded(
-            child: _categories.isEmpty
+            child: _merchants.isEmpty
                 ? const Padding(
                     padding: EdgeInsets.all(24),
-                    child: Text('カテゴリがまだありません。'),
+                    child: Text('このカテゴリの店舗はまだありません。'),
                   )
                 : ReorderableListView.builder(
                     padding: const EdgeInsets.fromLTRB(8, 4, 8, 24),
                     buildDefaultDragHandles: false,
-                    itemCount: _categories.length,
+                    itemCount: _merchants.length,
                     onReorder: (oldIndex, newIndex) {
                       setState(() {
                         if (newIndex > oldIndex) {
                           newIndex -= 1;
                         }
-                        final moved = _categories.removeAt(oldIndex);
-                        _categories.insert(newIndex, moved);
+                        final moved = _merchants.removeAt(oldIndex);
+                        _merchants.insert(newIndex, moved);
                       });
                     },
                     itemBuilder: (context, index) {
-                      final category = _categories[index];
+                      final merchant = _merchants[index];
 
                       return Card(
-                        key: ValueKey<String>(category.id.value),
+                        key: ValueKey<String>(merchant.id.value),
                         child: ListTile(
                           leading: ReorderableDragStartListener(
                             index: index,
@@ -81,8 +86,14 @@ final class _CategoryOrderScreenState extends State<CategoryOrderScreen> {
                               child: Icon(Icons.drag_handle, size: 30),
                             ),
                           ),
-                          title: Text(category.name),
+                          title: Text(merchant.name),
                           subtitle: Text('${index + 1}番目'),
+                          trailing: LogoTile(
+                            assetPath: merchantLogoPath(merchant.id.value),
+                            label: merchant.name,
+                            size: 40,
+                            padding: 3,
+                          ),
                         ),
                       );
                     },
@@ -97,9 +108,9 @@ final class _CategoryOrderScreenState extends State<CategoryOrderScreen> {
     final controller = context.read<RankingController>();
     final messenger = ScaffoldMessenger.of(context);
 
-    await controller.saveCategoryOrder(_categories);
+    await controller.saveMerchantOrder(widget.category.id, _merchants);
     messenger.showSnackBar(
-      const SnackBar(content: Text('カテゴリの並び順を保存しました。')),
+      const SnackBar(content: Text('店舗の並び順を保存しました。')),
     );
 
     if (context.mounted) {
