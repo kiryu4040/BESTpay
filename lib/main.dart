@@ -13,7 +13,7 @@ void main() {
     MultiProvider(
       providers: [
         Provider<CatalogRepository>(
-          create: (_) => const AssetCatalogRepository(),
+          create: (_) => AssetCatalogRepository(),
         ),
         ChangeNotifierProvider<AppState>(
           create: (_) => AppState()..loadCatalog(),

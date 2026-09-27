@@ -12,7 +12,8 @@ import 'package:flutter/services.dart' show AssetBundle, rootBundle;
 /// instead of an exception, so startup can never be blocked by catalog data.
 final class AssetCatalogRepository
     implements CatalogRepository, CatalogDiagnosticsSource {
-  const AssetCatalogRepository({
+  /// 診断用の可変状態を持つため const にはしない。
+  AssetCatalogRepository({
     AssetBundle? bundle,
     this.dataDirectory = 'assets/data',
   }) : _bundle = bundle;
