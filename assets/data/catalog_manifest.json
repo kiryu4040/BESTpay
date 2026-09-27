@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "catalogVersion": "2026.09.27.4",
+  "catalogVersion": "2026.09.27.6",
   "generatedAt": "2026-09-27T00:00:00+09:00",
   "items": [
     {
@@ -36,13 +36,13 @@
     {
       "fileName": "merchants.json",
       "schemaId": "urn:bestpay:schema:merchant:1.0.0",
-      "contentHash": "65c161e0dc7e0a6bf0a1dfa587eff5fafc3bfee8508ac573aa6aa3b7e5fb756b",
+      "contentHash": "eddd27bf0bb92ca529e0faf7eadbc9a0ca53fd620dc2962c3bbd186303cdbadc",
       "required": true
     },
     {
       "fileName": "merchant_categories.json",
       "schemaId": "urn:bestpay:schema:merchant-category:1.0.0",
-      "contentHash": "0c664de0c48bdf575ec0934a3efcb6f34ee406a2aff86e98a3e5b94be478e2fc",
+      "contentHash": "7c9b87651885568eb6a6c3e27f4b81405a5f5e8fc051891b915fec04cc09139f",
       "required": true
     },
     {

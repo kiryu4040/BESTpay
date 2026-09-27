@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "catalogVersion": "2026.09.27.4",
+  "catalogVersion": "2026.09.27.6",
   "generatedAt": "2026-09-27T00:00:00+09:00",
   "items": [
     {
@@ -120,25 +120,6 @@
     {
       "id": "online_shop",
       "name": "ネット通販",
-      "parentCategoryId": null,
-      "status": "active",
-      "sourceIds": [
-        "src_olive_gold_official",
-        "src_olive_point_rate",
-        "src_olive_gold_attention",
-        "src_smbc_vpoint_up_program",
-        "src_mufg_global_point",
-        "src_mufg_global_plus",
-        "src_mufg_annual_bonus",
-        "src_mufg_store_bonus"
-      ],
-      "notes": [
-        "第1期の店舗カテゴリ。制度改定時はこのカテゴリ単位でルールの有効区間を更新する。"
-      ]
-    },
-    {
-      "id": "other_store",
-      "name": "その他（得意店舗なし）",
       "parentCategoryId": null,
       "status": "active",
       "sourceIds": [

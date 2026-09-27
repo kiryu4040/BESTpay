@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "catalogVersion": "2026.09.27.4",
+  "catalogVersion": "2026.09.27.6",
   "generatedAt": "2026-09-27T00:00:00+09:00",
   "items": [
     {
@@ -433,31 +433,6 @@
         "三井住友カード ゴールド（NL）は対象コンビニ・飲食店でスマホのタッチ決済／モバイルオーダーなら200円につき7%（カード本体のタッチ決済は対象外）。",
         "Oliveフレキシブルペイ ゴールドは同条件で通常0.5%＋7.5%＝最大8%。",
         "三菱UFJカードは対象店舗で7%相当（ポイントアッププログラム達成で最大20%相当、対象店舗利用額の月5万円が上限）。"
-      ]
-    },
-    {
-      "id": "other_merchant",
-      "name": "その他の店舗",
-      "merchantGroupIds": [
-        "online_chain"
-      ],
-      "categoryIds": [
-        "other_store"
-      ],
-      "locationIds": [],
-      "status": "active",
-      "sourceIds": [
-        "src_olive_gold_official",
-        "src_olive_point_rate",
-        "src_olive_gold_attention",
-        "src_smbc_vpoint_up_program",
-        "src_mufg_global_point",
-        "src_mufg_global_plus",
-        "src_mufg_annual_bonus",
-        "src_mufg_store_bonus"
-      ],
-      "notes": [
-        "どのカードにも得意店舗の上乗せがない店舗。基本還元だけで比較する。"
       ]
     }
   ]

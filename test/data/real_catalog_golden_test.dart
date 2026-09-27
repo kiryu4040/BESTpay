@@ -143,7 +143,7 @@ void main() {
   group('カタログのデコード', () {
     test('実カード6枚がデコードでき、Catalogが構築できる', () {
       expect(catalog.isNotEmpty, isTrue);
-      expect(catalog.catalogVersion, '2026.09.27.4');
+      expect(catalog.catalogVersion, '2026.09.27.6');
       expect(catalog.generatedAt, '2026-09-27T00:00:00+09:00');
 
       expect(
@@ -680,6 +680,15 @@ void main() {
       );
     }
 
+    /// 上乗せ特典のないカテゴリ（ネット通販）の店舗。基本還元だけの比較に使う。
+    MerchantEntry noBonusMerchant() {
+      return directory.merchants.firstWhere(
+        (item) => item.categoryIds.any(
+          (category) => category.value == 'online_shop',
+        ),
+      );
+    }
+
     RewardRanking compareAt(String merchantId, {bool satisfied = true}) {
       final target = merchant(merchantId);
 
@@ -694,10 +703,14 @@ void main() {
       );
     }
 
-    test('店舗一覧が17件読み込め、得意店舗なしの受け皿が最後に来る', () {
-      expect(directory.merchants.length, 17);
-      expect(directory.merchants.last.id.value, 'other_merchant');
-      expect(directory.categoriesById.length, 8);
+    test('店舗一覧が16件読み込め、得意店舗なしの受け皿は登録しない', () {
+      expect(directory.merchants.length, 16);
+      expect(
+        directory.merchants.any((m) => m.id.value == 'other_merchant'),
+        isFalse,
+      );
+      expect(directory.categoriesById.containsKey(id('other_store')), isFalse);
+      expect(directory.categoriesById.length, 7);
       expect(directory.search('セブン').single.name, 'セブン-イレブン');
     });
 
@@ -737,8 +750,8 @@ void main() {
       );
     });
 
-    test('得意店舗のない店では基本還元だけで比較し、基準のままになる', () {
-      final ranking = compareAt('other_merchant');
+    test('上乗せのない店（Amazon.co.jp）では基本還元だけで比較し、基準のままになる', () {
+      final ranking = compareAt(noBonusMerchant().id.value);
 
       expect(entryFor(ranking, 'olive_flexible_pay_gold').totalPoints.points, 50);
       expect(entryFor(ranking, 'smbc_gold_nl_card').totalPoints.points, 50);
@@ -748,7 +761,7 @@ void main() {
     });
 
     test('Wポイント未入力なら基準が1%になり、上乗せのない店でも基準超えが出る', () {
-      final ranking = compareAt('other_merchant', satisfied: false);
+      final ranking = compareAt(noBonusMerchant().id.value, satisfied: false);
 
       expect(
         entryFor(ranking, 'mizuho_rakuten_card').totalPoints.points,

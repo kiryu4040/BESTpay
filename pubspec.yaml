@@ -10,6 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   provider: ^6.1.2
+  shared_preferences: ^2.2.3
 
 dev_dependencies:
   flutter_test:
@@ -22,3 +23,9 @@ flutter:
   # 実データは docs/decisions/card_addition_runbook.md の手順で追記する。
   assets:
     - assets/data/
+    - assets/images/merchants/
+    - assets/images/cards/
+    # カード・店舗のロゴ画像。ファイルを追加するだけで反映される
+    # （pubspec の変更は不要）。詳細は docs/decisions/image_assets.md
+    - assets/images/cards/
+    - assets/images/merchants/

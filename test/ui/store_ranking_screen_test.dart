@@ -4,6 +4,7 @@ import 'package:bestpay/domain/catalog/catalog.dart';
 import 'package:bestpay/domain/merchant/merchant_directory.dart';
 import 'package:bestpay/infrastructure/merchant/merchant_directory_decoder.dart';
 import 'package:bestpay/ui/ranking_controller.dart';
+import 'package:bestpay/ui/screens/merchant_category_screen.dart';
 import 'package:bestpay/ui/screens/merchant_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -20,7 +21,6 @@ final class _StubCatalogRepository implements CatalogRepository {
   Future<Catalog> load() async => _catalog;
 }
 
-/// 実ファイルと同じ形式の店舗データを最小限だけ用意する。
 final class _StubDirectoryRepository implements MerchantDirectoryRepository {
   _StubDirectoryRepository(this._directory);
 
@@ -30,30 +30,29 @@ final class _StubDirectoryRepository implements MerchantDirectoryRepository {
   Future<MerchantDirectory> load() async => _directory;
 }
 
+Map<String, Object?> _merchantDoc(String id, String name, String category) {
+  return <String, Object?>{
+    'id': id,
+    'name': name,
+    'merchantGroupIds': <Object?>['convenience_chain'],
+    'categoryIds': <Object?>[category],
+    'locationIds': <Object?>[],
+    'status': 'active',
+    'sourceIds': <Object?>['src_a'],
+    'notes': <Object?>['テスト用'],
+  };
+}
+
 MerchantDirectory _directory() {
   return const MerchantDirectoryDecoder().decode(
     merchants: <String, Object?>{
       'items': <Object?>[
-        <String, Object?>{
-          'id': 'seven_eleven',
-          'name': 'セブン-イレブン',
-          'merchantGroupIds': <Object?>['convenience_chain'],
-          'categoryIds': <Object?>['convenience_store'],
-          'locationIds': <Object?>[],
-          'status': 'active',
-          'sourceIds': <Object?>['src_a'],
-          'notes': <Object?>['テスト用'],
-        },
-        <String, Object?>{
-          'id': 'other_merchant',
-          'name': 'その他の店舗',
-          'merchantGroupIds': <Object?>['online_chain'],
-          'categoryIds': <Object?>['other_store'],
-          'locationIds': <Object?>[],
-          'status': 'active',
-          'sourceIds': <Object?>['src_a'],
-          'notes': <Object?>[],
-        },
+        _merchantDoc('seven_eleven', 'セブン-イレブン', 'convenience_store'),
+        _merchantDoc('lawson', 'ローソン', 'convenience_store'),
+        _merchantDoc('family_mart', 'ファミリーマート', 'convenience_store'),
+        _merchantDoc('ministop', 'ミニストップ', 'convenience_store'),
+        _merchantDoc('poplar', 'ポプラ', 'convenience_store'),
+        _merchantDoc('mcdonalds', 'マクドナルド', 'fast_food'),
       ],
     },
     merchantCategories: <String, Object?>{
@@ -67,8 +66,8 @@ MerchantDirectory _directory() {
           'notes': <Object?>[],
         },
         <String, Object?>{
-          'id': 'other_store',
-          'name': 'その他（得意店舗なし）',
+          'id': 'fast_food',
+          'name': 'ファストフード',
           'parentCategoryId': null,
           'status': 'active',
           'sourceIds': <Object?>['src_a'],
@@ -90,6 +89,11 @@ void main() {
       directoryRepository: _StubDirectoryRepository(directory ?? _directory()),
     );
 
+    // 縦に長い画面なので、テストでも全体が描画される大きさにする。
+    tester.view.physicalSize = const Size(1200, 2400);
+    tester.view.devicePixelRatio = 1.0;
+    addTearDown(tester.view.reset);
+
     await tester.pumpWidget(
       ChangeNotifierProvider<RankingController>.value(
         value: controller,
@@ -103,14 +107,38 @@ void main() {
     return controller;
   }
 
-  testWidgets('店舗が一覧表示され、金額の入力欄は無い (D-088)', (tester) async {
+  testWidgets('タブでは1カテゴリ4店舗までしか出さず、金額の入力欄は無い (D-088, D-093)', (tester) async {
     await pumpScreen(tester);
 
-    expect(find.text('セブン-イレブン'), findsOneWidget);
     expect(find.text('コンビニ'), findsOneWidget);
-    expect(find.byType(TextField), findsOneWidget);
-    expect(find.text('店舗を検索'), findsOneWidget);
+    expect(find.text('セブン-イレブン'), findsOneWidget);
+    expect(find.text('ポプラ'), findsOneWidget);
+    expect(find.text('ミニストップ'), findsOneWidget);
+    expect(find.text('ファストフード'), findsOneWidget);
+
+    // 5店舗目はタブに出さず「すべて見る」でカテゴリ一覧に送る。
+    expect(find.textContaining('すべて見る'), findsOneWidget);
     expect(find.textContaining('今回の支払い金額'), findsNothing);
+  });
+
+  testWidgets('カテゴリをタップするとカテゴリだけの一覧に移動し、並べ替えができる', (tester) async {
+    await pumpScreen(tester);
+
+    await tester.tap(find.text('コンビニ'));
+    await tester.pumpAndSettle();
+
+    expect(find.byType(MerchantCategoryScreen), findsOneWidget);
+    expect(find.text('名前順'), findsOneWidget);
+    expect(find.text('還元率が高い順'), findsOneWidget);
+    expect(find.text('ポプラ'), findsOneWidget);
+    expect(find.text('マクドナルド'), findsNothing);
+
+    await tester.tap(find.text('名前順'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('ポプラ'), findsOneWidget);
+    expect(find.text('ローソン'), findsOneWidget);
+    expect(find.text('セブン-イレブン'), findsOneWidget);
   });
 
   testWidgets('検索で絞り込める', (tester) async {
@@ -120,7 +148,7 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('セブン-イレブン'), findsOneWidget);
-    expect(find.text('その他の店舗'), findsNothing);
+    expect(find.text('マクドナルド'), findsNothing);
   });
 
   testWidgets('店舗をタップすると比較が実行される', (tester) async {
