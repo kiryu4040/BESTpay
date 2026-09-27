@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 
 import '../ranking_controller.dart';
 import '../widgets/logo_tile.dart';
+import 'card_detail_screen.dart';
 
 /// 選んだ店舗で「いちばん得なカード」を出す画面（D-088〜D-090）。
 ///
@@ -152,56 +153,68 @@ final class MerchantCompareScreen extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Card(
+      clipBehavior: Clip.antiAlias,
       shape: entry.isBaseline
           ? RoundedRectangleBorder(
               side: BorderSide(color: theme.colorScheme.primary),
               borderRadius: BorderRadius.circular(12),
             )
           : null,
-      child: Padding(
-        padding: const EdgeInsets.all(12),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                LogoTile(
-                  assetPath: cardLogoPath(entry.instrumentId.value),
-                  label: entry.instrumentName,
-                  size: 52,
-                  padding: 3,
-                ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: Text(
-                    entry.instrumentName,
-                    style: theme.textTheme.titleMedium,
+      child: InkWell(
+        onTap: () => Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (_) => CardDetailScreen(
+              instrumentId: entry.instrumentId.value,
+            ),
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(12),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  LogoTile(
+                    assetPath: cardLogoPath(entry.instrumentId.value),
+                    label: entry.instrumentName,
+                    size: 52,
+                    padding: 3,
                   ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Text(
+                      entry.instrumentName,
+                      style: theme.textTheme.titleMedium,
+                    ),
+                  ),
+                  if (entry.isBaseline) const Chip(label: Text('基準')),
+                  if (entry.beatsBaseline) const Chip(label: Text('基準超え')),
+                ],
+              ),
+              const SizedBox(height: 4),
+              Text(
+                '還元率 ${_formatRate(entry.effectiveRate)}'
+                '（1万円で +${_formatMicrosYen(entry.confirmedValue)}円相当）',
+              ),
+              if (!entry.isBaseline)
+                Text(
+                  '基準との差 ${_formatDelta(MicrosYen(entry.baselineDeltaMicros))}',
+                  style: theme.textTheme.bodySmall,
                 ),
-                if (entry.isBaseline) const Chip(label: Text('基準')),
-                if (entry.beatsBaseline) const Chip(label: Text('基準超え')),
-              ],
-            ),
-            const SizedBox(height: 4),
-            Text(
-              '還元率 ${_formatRate(entry.effectiveRate)}'
-              '（1万円で +${_formatMicrosYen(entry.confirmedValue)}円相当）',
-            ),
-            if (!entry.isBaseline)
-              Text(
-                '基準との差 ${_formatDelta(MicrosYen(entry.baselineDeltaMicros))}',
-                style: theme.textTheme.bodySmall,
-              ),
-            if (entry.programAwards.isNotEmpty)
-              Text(
-                entry.programAwards
-                    .map((award) =>
-                        '${award.programName} ${award.points.points}${award.unitName}')
-                    .join('／'),
-                style: theme.textTheme.bodySmall,
-              ),
-          ],
+              if (entry.programAwards.isNotEmpty)
+                Text(
+                  entry.programAwards
+                      .map((award) =>
+                          '${award.programName} ${award.points.points}${award.unitName}')
+                      .join('／'),
+                  style: theme.textTheme.bodySmall,
+                ),
+              const SizedBox(height: 4),
+              Text('タップして詳細を見る', style: theme.textTheme.labelSmall),
+            ],
+          ),
         ),
       ),
     );

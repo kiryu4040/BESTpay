@@ -1,10 +1,15 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' show rootBundle;
 
 /// 正方形のロゴタイル。店舗・カードの見た目を1か所にまとめる（D-092）。
 ///
-/// 画像が用意されていない場合は、名前の先頭2文字をブランド色の正方形に
-/// 描いて代用する。画像の有無で画面の形が崩れないことを優先する。
-final class LogoTile extends StatelessWidget {
+/// 画像は `rootBundle` から自分で読み、読み込めない場合は名前の先頭2文字を
+/// ブランド色の正方形に描いて代用する。`Image.asset` を使わないのは、
+/// 画像が無いときに例外が記録されて画面が赤いエラー表示になり得るため。
+/// 画像を後から差し替えても、そのまま反映される。
+final class LogoTile extends StatefulWidget {
   const LogoTile({
     super.key,
     required this.assetPath,
@@ -22,14 +27,44 @@ final class LogoTile extends StatelessWidget {
   final double size;
   final double padding;
 
+  /// 同じ画像を何度も読み直さないようにする。
+  static final Map<String, Future<Uint8List?>> _cache =
+      <String, Future<Uint8List?>>{};
+
+  static Future<Uint8List?> _loadBytes(String path) async {
+    try {
+      final data = await rootBundle.load(path);
+
+      return data.buffer.asUint8List();
+    } on Object {
+      return null;
+    }
+  }
+
+  @override
+  State<LogoTile> createState() => _LogoTileState();
+}
+
+final class _LogoTileState extends State<LogoTile> {
+  late Future<Uint8List?> _bytes;
+
+  @override
+  void initState() {
+    super.initState();
+    _bytes = LogoTile._cache.putIfAbsent(
+      widget.assetPath,
+      () => LogoTile._loadBytes(widget.assetPath),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final radius = BorderRadius.circular(size * 0.22);
+    final radius = BorderRadius.circular(widget.size * 0.22);
 
     return Container(
-      width: size,
-      height: size,
+      width: widget.size,
+      height: widget.size,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: radius,
@@ -37,12 +72,25 @@ final class LogoTile extends StatelessWidget {
       ),
       clipBehavior: Clip.antiAlias,
       child: Padding(
-        padding: EdgeInsets.all(padding),
-        child: Image.asset(
-          assetPath,
-          fit: BoxFit.contain,
-          filterQuality: FilterQuality.medium,
-          errorBuilder: (context, error, stackTrace) => _buildFallback(theme),
+        padding: EdgeInsets.all(widget.padding),
+        child: FutureBuilder<Uint8List?>(
+          future: _bytes,
+          builder: (context, snapshot) {
+            final data = snapshot.data;
+            if (data != null && data.isNotEmpty) {
+              return Image.memory(
+                data,
+                fit: BoxFit.contain,
+                filterQuality: FilterQuality.medium,
+              );
+            }
+
+            if (snapshot.connectionState != ConnectionState.done) {
+              return const SizedBox.shrink();
+            }
+
+            return _buildFallback(theme);
+          },
         ),
       ),
     );
@@ -57,23 +105,23 @@ final class LogoTile extends StatelessWidget {
       const Color(0xFF4A2C82),
       const Color(0xFF00566B),
     ];
-    final color = palette[label.hashCode.abs() % palette.length];
+    final color = palette[widget.label.hashCode.abs() % palette.length];
 
     return DecoratedBox(
       decoration: BoxDecoration(
         color: color,
-        borderRadius: BorderRadius.circular(size * 0.18),
+        borderRadius: BorderRadius.circular(widget.size * 0.18),
       ),
       child: Center(
         child: FittedBox(
           child: Padding(
             padding: const EdgeInsets.all(2),
             child: Text(
-              LogoTile.initialsOf(label),
+              _initialsOf(widget.label),
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w700,
-                fontSize: size * 0.3,
+                fontSize: widget.size * 0.3,
               ),
             ),
           ),
@@ -81,16 +129,16 @@ final class LogoTile extends StatelessWidget {
       ),
     );
   }
+}
 
-  /// 名前の先頭2文字（サロゲートを壊さない）。
-  static String initialsOf(String label) {
-    final trimmed = label.trim();
-    if (trimmed.isEmpty) {
-      return '?';
-    }
-
-    return String.fromCharCodes(trimmed.runes.take(2));
+/// 名前の先頭2文字（サロゲートを壊さない）。
+String _initialsOf(String label) {
+  final trimmed = label.trim();
+  if (trimmed.isEmpty) {
+    return '?';
   }
+
+  return String.fromCharCodes(trimmed.runes.take(2));
 }
 
 /// 店舗ロゴのアセットパス（命名規則は D-092）。

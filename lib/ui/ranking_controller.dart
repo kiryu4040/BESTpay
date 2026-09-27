@@ -1,5 +1,6 @@
 import 'package:bestpay/application/catalog/catalog_repository.dart';
 import 'package:bestpay/application/merchant/merchant_directory_repository.dart';
+import 'package:bestpay/application/settings/category_order_store.dart';
 import 'package:bestpay/application/ranking/reward_ranking_usecase.dart';
 import 'package:bestpay/core/time/clock.dart';
 import 'package:bestpay/core/time/system_clock.dart';
@@ -11,6 +12,7 @@ import 'package:bestpay/domain/calculation/condition_evaluation_context.dart';
 import 'package:bestpay/domain/catalog/catalog.dart';
 import 'package:bestpay/domain/merchant/merchant_directory.dart';
 import 'package:bestpay/infrastructure/merchant/asset_merchant_directory_repository.dart';
+import 'package:bestpay/infrastructure/settings/shared_preferences_category_order_store.dart';
 import 'package:bestpay/domain/ranking/reward_ranking.dart';
 import 'package:flutter/foundation.dart';
 
@@ -24,15 +26,19 @@ final class RankingController extends ChangeNotifier {
     required CatalogRepository repository,
     MerchantDirectoryRepository directoryRepository =
         const AssetMerchantDirectoryRepository(),
+    CategoryOrderStore categoryOrderStore =
+        const SharedPreferencesCategoryOrderStore(),
     RewardRankingUseCase useCase = const RewardRankingUseCase(),
     Clock clock = const SystemClock(),
   })  : _repository = repository,
         _directoryRepository = directoryRepository,
+        _categoryOrderStore = categoryOrderStore,
         _useCase = useCase,
         _clock = clock;
 
   final CatalogRepository _repository;
   final MerchantDirectoryRepository _directoryRepository;
+  final CategoryOrderStore _categoryOrderStore;
   final RewardRankingUseCase _useCase;
   final Clock _clock;
 
@@ -53,6 +59,7 @@ final class RankingController extends ChangeNotifier {
 
   Catalog _catalog = Catalog.empty();
   final Map<String, int> _bestRateCache = <String, int>{};
+  List<String> _categoryOrder = const <String>[];
   MerchantDirectory _directory = MerchantDirectory.empty();
   MerchantEntry? _selectedMerchant;
   RewardRanking? _ranking;
@@ -84,6 +91,45 @@ final class RankingController extends ChangeNotifier {
   /// いま比較している店舗。
   MerchantEntry? get selectedMerchant => _selectedMerchant;
 
+  /// 保存された並び順を反映したカテゴリ一覧（D-095）。
+  ///
+  /// 保存順に無いカテゴリは元の順のまま後ろに並ぶ。新しいカテゴリが
+  /// 増えても消えずに表示される。
+  List<MerchantCategory> get orderedCategories {
+    final base = _directory.orderedCategories;
+    if (_categoryOrder.isEmpty) {
+      return base;
+    }
+
+    final rank = <String, int>{
+      for (var index = 0; index < _categoryOrder.length; index++)
+        _categoryOrder[index]: index,
+    };
+
+    final ordered = base.toList()
+      ..sort((left, right) {
+        final leftRank = rank[left.id.value] ?? _categoryOrder.length;
+        final rightRank = rank[right.id.value] ?? _categoryOrder.length;
+        if (leftRank != rightRank) {
+          return leftRank - rightRank;
+        }
+
+        return base.indexOf(left) - base.indexOf(right);
+      });
+
+    return List<MerchantCategory>.unmodifiable(ordered);
+  }
+
+  /// カテゴリの並び順を保存して画面に反映する。
+  Future<void> saveCategoryOrder(List<MerchantCategory> categories) async {
+    _categoryOrder = <String>[
+      for (final category in categories) category.id.value,
+    ];
+    notifyListeners();
+
+    await _categoryOrderStore.save(_categoryOrder);
+  }
+
   /// Loads (or reloads) the catalog. Never throws.
   Future<void> loadCatalog() async {
     _isLoading = true;
@@ -91,6 +137,7 @@ final class RankingController extends ChangeNotifier {
 
     _catalog = await _repository.load();
     _directory = await _directoryRepository.load();
+    _categoryOrder = await _categoryOrderStore.load();
 
     _isLoading = false;
     notifyListeners();

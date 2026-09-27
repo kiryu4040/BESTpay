@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import '../ranking_controller.dart';
 import '../widgets/empty_catalog_notice.dart';
 import '../widgets/logo_tile.dart';
+import 'category_order_screen.dart';
 import 'merchant_category_screen.dart';
 import 'merchant_compare_screen.dart';
 
@@ -15,8 +16,8 @@ import 'merchant_compare_screen.dart';
 final class MerchantListScreen extends StatefulWidget {
   const MerchantListScreen({super.key});
 
-  /// タブ内で見せる1カテゴリあたりの店舗数。
-  static const int previewLimit = 4;
+  /// タブ内で見せる1カテゴリあたりの店舗数（D-093）。
+  static const int previewLimit = 3;
 
   @override
   State<MerchantListScreen> createState() => _MerchantListScreenState();
@@ -37,7 +38,20 @@ final class _MerchantListScreenState extends State<MerchantListScreen> {
     final controller = context.watch<RankingController>();
 
     return Scaffold(
-      appBar: AppBar(title: const Text('店舗を選ぶ')),
+      appBar: AppBar(
+        title: const Text('店舗を選ぶ'),
+        actions: <Widget>[
+          IconButton(
+            tooltip: 'カテゴリの並べ替え',
+            icon: const Icon(Icons.reorder),
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute<void>(
+                builder: (_) => const CategoryOrderScreen(),
+              ),
+            ),
+          ),
+        ],
+      ),
       body: controller.isCatalogEmpty
           ? EmptyCatalogNotice(missingFiles: controller.missingCatalogFiles)
           : _buildBody(context, controller),
@@ -76,7 +90,7 @@ final class _MerchantListScreenState extends State<MerchantListScreen> {
         if (searching)
           _buildSearchResults(context, directory, matches)
         else
-          for (final category in directory.orderedCategories)
+          for (final category in controller.orderedCategories)
             _buildCategorySection(context, controller, directory, category),
       ],
     );
