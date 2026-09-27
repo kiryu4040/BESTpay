@@ -1,0 +1,105 @@
+name: Build Android APK
+
+# Triggers: push to any branch, or manual run from the Actions tab.
+on:
+  push:
+    branches: ['**']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build APK
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.24.5'
+          channel: 'stable'
+          cache: true
+
+      - name: Show versions
+        run: |
+          flutter --version
+          java -version
+          echo "Branch: ${{ github.ref }}"
+
+      - name: Regenerate Android scaffold if missing
+        run: |
+          if [ ! -f android/gradlew ] || [ ! -f android/app/src/main/AndroidManifest.xml ]; then
+            echo "Regenerating Android project structure..."
+            flutter create --org com.bestpay --project-name bestpay --platforms=android .
+          else
+            echo "Android scaffold already present."
+          fi
+
+      - name: Make gradlew executable
+        run: chmod +x android/gradlew
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Build release APK
+        run: flutter build apk --release
+
+      # This step signs the APK with a FIXED keystore so that future builds
+      # can be installed as an update over the previous version.
+      - name: Sign APK with the fixed keystore
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        run: |
+          set -e
+          APK=build/app/outputs/flutter-apk/app-release.apk
+          OUT=build/app/outputs/flutter-apk/BestPay.apk
+
+          if [ -z "$KEYSTORE_BASE64" ]; then
+            echo "::warning::KEYSTORE_BASE64 is not set. Copying the APK without signing. See docs/decisions/signing_setup.md"
+            cp "$APK" "$OUT"
+            exit 0
+          fi
+
+          SDK="${ANDROID_SDK_ROOT:-${ANDROID_HOME:-/usr/local/lib/android/sdk}}"
+          BUILD_TOOLS="$(ls -d "$SDK"/build-tools/*/ | sort -V | tail -n 1)"
+          echo "Build tools: $BUILD_TOOLS"
+
+          echo "$KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/bestpay-release.jks"
+
+          "${BUILD_TOOLS}zipalign" -f -p 4 "$APK" "$RUNNER_TEMP/aligned.apk"
+
+          "${BUILD_TOOLS}apksigner" sign \
+            --ks "$RUNNER_TEMP/bestpay-release.jks" \
+            --ks-key-alias "$KEY_ALIAS" \
+            --ks-pass "pass:$KEYSTORE_PASSWORD" \
+            --key-pass "pass:$KEY_PASSWORD" \
+            --out "$OUT" \
+            "$RUNNER_TEMP/aligned.apk"
+
+          "${BUILD_TOOLS}apksigner" verify --print-certs "$OUT"
+          echo "Signing complete. Future builds can be installed as an update."
+
+      - name: Show APK
+        run: ls -lh build/app/outputs/flutter-apk/
+
+      - name: Upload APK as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: BestPay-APK
+          path: build/app/outputs/flutter-apk/BestPay.apk
+          retention-days: 90
