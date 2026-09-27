@@ -1,39 +1,39 @@
 import 'package:flutter/material.dart';
 
-/// カタログが空のときに表示する共通の案内カード。
+/// カタログが空のときに出す案内。
 ///
-/// v2 フェーズ1ではカード実データを同梱していないため、
-/// この案内が各画面に表示されるのが正常な状態。
+/// 空の理由（読み込めなかったファイル名）が分かる場合は併記する。
+/// 「なぜか空」で止まると原因を追えないため。
 final class EmptyCatalogNotice extends StatelessWidget {
-  const EmptyCatalogNotice({super.key});
+  const EmptyCatalogNotice({super.key, this.missingFiles = const <String>[]});
+
+  /// 読み込めなかったカタログファイル名。
+  final List<String> missingFiles;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return Card(
-      color: theme.colorScheme.surfaceContainerHighest,
+
+    return Center(
       child: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(24),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Row(
-              children: <Widget>[
-                Icon(Icons.inbox_outlined, color: theme.colorScheme.primary),
-                const SizedBox(width: 8),
-                Text(
-                  'カタログはまだ空です',
-                  style: theme.textTheme.titleMedium,
-                ),
-              ],
-            ),
-            const SizedBox(height: 8),
-            const Text(
-              '保有カードのデータがまだ登録されていません。\n'
-              'カードの追加手順はリポジトリ内の\n'
-              'docs/decisions/card_addition_runbook.md を参照してください。',
-            ),
+            const Text('カタログはまだ空です'),
+            if (missingFiles.isNotEmpty) ...<Widget>[
+              const SizedBox(height: 12),
+              Text('読み込めなかったファイル:', style: theme.textTheme.titleSmall),
+              for (final fileName in missingFiles)
+                Text('・$fileName', style: theme.textTheme.bodySmall),
+              const SizedBox(height: 8),
+              Text(
+                'アプリに入っているカタログのファイルが見つからないか、'
+                '内容を読み取れませんでした。',
+                style: theme.textTheme.bodySmall,
+              ),
+            ],
           ],
         ),
       ),

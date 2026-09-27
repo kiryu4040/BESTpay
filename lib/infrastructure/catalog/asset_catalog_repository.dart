@@ -10,7 +10,8 @@ import 'package:flutter/services.dart' show AssetBundle, rootBundle;
 /// Every failure mode — a missing asset, unreadable JSON, an unexpected
 /// document shape, or an empty `items` array — resolves to an empty catalog
 /// instead of an exception, so startup can never be blocked by catalog data.
-final class AssetCatalogRepository implements CatalogRepository {
+final class AssetCatalogRepository
+    implements CatalogRepository, CatalogDiagnosticsSource {
   const AssetCatalogRepository({
     AssetBundle? bundle,
     this.dataDirectory = 'assets/data',
@@ -20,6 +21,12 @@ final class AssetCatalogRepository implements CatalogRepository {
 
   /// Directory, relative to the asset root, that holds the catalog files.
   final String dataDirectory;
+
+  /// 直近の [load] で読み込めなかったファイル名（画面に出す診断用）。
+  List<String> _missingFileNames = const <String>[];
+
+  @override
+  List<String> get missingFileNames => _missingFileNames;
 
   static const String manifestFileName = 'catalog_manifest.json';
 
@@ -36,10 +43,17 @@ final class AssetCatalogRepository implements CatalogRepository {
   Future<Catalog> load() async {
     try {
       final documents = <String, Map<String, Object?>?>{};
+      final missing = <String>[];
 
       for (final fileName in <String>[manifestFileName, ...itemFileNames]) {
-        documents[fileName] = await _loadDocument(fileName);
+        final document = await _loadDocument(fileName);
+        documents[fileName] = document;
+        if (document == null || document['items'] is! List) {
+          missing.add(fileName);
+        }
       }
+
+      _missingFileNames = List<String>.unmodifiable(missing);
 
       return const JsonCatalogDecoder().decode(
         manifest: documents[manifestFileName],
@@ -49,6 +63,7 @@ final class AssetCatalogRepository implements CatalogRepository {
         sources: documents['sources.json'],
       );
     } catch (_) {
+      _missingFileNames = const <String>['（読み込み中に不明なエラー）'];
       return Catalog.empty();
     }
   }

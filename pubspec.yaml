@@ -18,6 +18,7 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-  # 注意: assets の宣言はまだ書かないこと。
-  # カタログ実データ（assets/data/）は次フェーズで用意する。
-  # 存在しないディレクトリを宣言すると flutter build が失敗する。
+  # カタログJSON（第1期）。空カタログでも正常に起動する。
+  # 実データは docs/decisions/card_addition_runbook.md の手順で追記する。
+  assets:
+    - assets/data/

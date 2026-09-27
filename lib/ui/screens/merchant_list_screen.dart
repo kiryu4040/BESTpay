@@ -35,7 +35,9 @@ final class _MerchantListScreenState extends State<MerchantListScreen> {
     return Scaffold(
       appBar: AppBar(title: const Text('店舗を選ぶ')),
       body: controller.isCatalogEmpty
-          ? const EmptyCatalogNotice()
+          ? EmptyCatalogNotice(
+              missingFiles: controller.missingCatalogFiles,
+            )
           : _buildBody(context, controller, theme),
     );
   }

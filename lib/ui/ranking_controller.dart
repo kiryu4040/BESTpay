@@ -70,6 +70,16 @@ final class RankingController extends ChangeNotifier {
 
   bool get isDirectoryEmpty => _directory.isEmpty;
 
+  /// カタログが空のときに、読み込めなかったファイル名を返す（原因究明用）。
+  List<String> get missingCatalogFiles {
+    final repository = _repository;
+    if (repository is CatalogDiagnosticsSource) {
+      return (repository as CatalogDiagnosticsSource).missingFileNames;
+    }
+
+    return const <String>[];
+  }
+
   /// いま比較している店舗。
   MerchantEntry? get selectedMerchant => _selectedMerchant;
 
