@@ -1,0 +1,10 @@
+conflictId,priority,domain,legacyDefinition,decision,status,authority,notes
+CR-049,P0,favorite,お気に入りを対象3〜4種で実装,Favorite機能を実装しない,resolved,user decision 2026-09-27,D-71。favorites画面・テーブル・バックアップ項目を作らない
+CR-050,P1,home,ホームにお気に入り店舗と最近利用した店舗を表示,ホームに履歴系の枠を設けない,resolved,user decision 2026-09-27,D-08/D-78。店舗検索と電卓への入口・条件未設定警告・制度変更警告・データ鮮度・月間年間進捗のみ
+CR-051,P0,history,最近利用した店舗を保持する,利用履歴を永続保存しない,resolved,user decision 2026-09-27,saveTransactionHistory=falseおよび手動入力方式(D-49)と整合
+CR-052,P0,merchant,店舗カタログは初期はカテゴリ中心で開始,主要チェーンを初期から登録する,resolved,user decision 2026-09-27,D-72。カードの公式特典が言及するチェーンから逆算して登録順を決める
+CR-053,P0,funding,資金経路は後期対応,主要QRのチャージ関係を初期から登録する,resolved,user decision 2026-09-27,D-74。relationTypeとrewardEligibilityを分離しチャージ可否と付与可否を別管理
+CR-054,P0,point,提示ポイントは後期対応,Ponta・dポイント・楽天ポイント・Vポイントを初期から登録する,resolved,user decision 2026-09-27,D-75。カード還元とは別の加算要素として扱う
+CR-055,P1,annual,年間タブは達成状況と残額まで,手動配分と段階特典・回数型特典まで実装する,resolved,user decision 2026-09-27,D-24/D-76/D-77。自動最適配分は資料どおり実装しない
+CR-056,P1,process,変更は会話の中で決定する,決定台帳をリポジトリ内で管理する,resolved,user decision 2026-09-27,D-36。docs/decisions/decision_ledger.jsonを実装時の拘束条件とする
+CR-057,P0,process,上位互換のない変更を後から加える,期の移動として記録してから実装する,resolved,user decision 2026-09-27,docs/decisions/README.mdの変更プロトコル。矛盾は先に裁定する
