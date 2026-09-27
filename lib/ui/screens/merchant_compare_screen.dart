@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../ranking_controller.dart';
+import '../widgets/logo_tile.dart';
 
 /// 選んだ店舗で「いちばん得なカード」を出す画面（D-088〜D-090）。
 ///
@@ -106,7 +107,15 @@ final class MerchantCompareScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
+                LogoTile(
+                  assetPath: cardLogoPath(winner.instrumentId.value),
+                  label: winner.instrumentName,
+                  size: 56,
+                  padding: 3,
+                ),
+                const SizedBox(width: 10),
                 Icon(
                   isBaselineBest ? Icons.check_circle : Icons.star,
                   color: isBaselineBest
@@ -155,7 +164,15 @@ final class MerchantCompareScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
+                LogoTile(
+                  assetPath: cardLogoPath(entry.instrumentId.value),
+                  label: entry.instrumentName,
+                  size: 52,
+                  padding: 3,
+                ),
+                const SizedBox(width: 10),
                 Expanded(
                   child: Text(
                     entry.instrumentName,

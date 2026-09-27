@@ -52,6 +52,7 @@ final class RankingController extends ChangeNotifier {
       );
 
   Catalog _catalog = Catalog.empty();
+  final Map<String, int> _bestRateCache = <String, int>{};
   MerchantDirectory _directory = MerchantDirectory.empty();
   MerchantEntry? _selectedMerchant;
   RewardRanking? _ranking;
@@ -101,6 +102,47 @@ final class RankingController extends ChangeNotifier {
     _ranking = null;
     _selectedMerchant = null;
     notifyListeners();
+  }
+
+  /// その店舗で最も高い還元率（100分の1%単位。8.00%なら800）。
+  ///
+  /// 並べ替えに使う。同じ店舗を何度も評価しないよう結果を覚えておく。
+  int bestRateHundredthsPercentAt(MerchantEntry merchant) {
+    final key = merchant.id.value;
+    final cached = _bestRateCache[key];
+    if (cached != null) {
+      return cached;
+    }
+
+    final ranking = _useCase.execute(
+      catalog: _catalog,
+      amount: RewardRankingUseCase.comparisonAmount,
+      transactionDate: currentJstDate(),
+      conditionContext: _defaultConditionContext,
+      merchantId: merchant.id,
+      merchantGroupIds: merchant.groupIds,
+      categoryIds: merchant.categoryIds,
+    );
+
+    final best = ranking.bestEntry;
+    final value = best == null
+        ? BigInt.zero
+        : (BigInt.from(best.effectiveRate.numerator) * BigInt.from(10000)) ~/
+            BigInt.from(best.effectiveRate.denominator);
+
+    final result = value.toInt();
+    _bestRateCache[key] = result;
+
+    return result;
+  }
+
+  /// 並べ替え表示用のラベル（例: `8.00%`）。
+  String bestRateLabelAt(MerchantEntry merchant) {
+    final hundredths = bestRateHundredthsPercentAt(merchant);
+    final whole = hundredths ~/ 100;
+    final fraction = (hundredths % 100).toString().padLeft(2, '0');
+
+    return '$whole.$fraction%';
   }
 
   /// 店舗を選んだだけで比較する（D-088）。
