@@ -11,7 +11,8 @@ final class SharedPreferencesUserPreferencesStore
   const SharedPreferencesUserPreferencesStore();
 
   static const String _hiddenCardsKey = 'hidden_card_ids_v1';
-  static const String _conditionPrefix = 'condition_state_v1_';
+  static const String _conditionPrefix = 'condition_state_v2_';
+  static const String _conditionCountPrefix = 'condition_count_v1_';
   static const String _categoryOrderKey = 'merchant_category_order_v2';
   static const String _merchantOrderPrefix = 'merchant_order_v2_';
 
@@ -20,15 +21,19 @@ final class SharedPreferencesUserPreferencesStore
     try {
       final preferences = await SharedPreferences.getInstance();
       final conditionStates = <String, TriState>{};
+      final conditionCounts = <String, int>{};
 
       for (final key in preferences.getKeys()) {
-        if (!key.startsWith(_conditionPrefix)) {
-          continue;
-        }
-
-        final state = _stateOf(preferences.getString(key));
-        if (state != null) {
-          conditionStates[key.substring(_conditionPrefix.length)] = state;
+        if (key.startsWith(_conditionPrefix)) {
+          final state = _stateOf(preferences.getString(key));
+          if (state != null) {
+            conditionStates[key.substring(_conditionPrefix.length)] = state;
+          }
+        } else if (key.startsWith(_conditionCountPrefix)) {
+          final value = preferences.getInt(key);
+          if (value != null) {
+            conditionCounts[key.substring(_conditionCountPrefix.length)] = value;
+          }
         }
       }
 
@@ -49,6 +54,7 @@ final class SharedPreferencesUserPreferencesStore
             (preferences.getStringList(_hiddenCardsKey) ?? const <String>[])
                 .toSet(),
         conditionStates: conditionStates,
+        conditionCounts: conditionCounts,
         categoryOrder:
             preferences.getStringList(_categoryOrderKey) ?? const <String>[],
         merchantOrder: merchantOrder,
@@ -74,6 +80,10 @@ final class SharedPreferencesUserPreferencesStore
           '$_conditionPrefix${entry.key}',
           entry.value.name,
         );
+      }
+
+      for (final entry in preferences.conditionCounts.entries) {
+        await store.setInt('$_conditionCountPrefix${entry.key}', entry.value);
       }
 
       for (final entry in preferences.merchantOrder.entries) {

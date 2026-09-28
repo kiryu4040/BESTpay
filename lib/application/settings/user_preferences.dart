@@ -7,6 +7,7 @@ final class UserPreferences {
   const UserPreferences({
     this.hiddenCardIds = const <String>{},
     this.conditionStates = const <String, TriState>{},
+    this.conditionCounts = const <String, int>{},
     this.categoryOrder = const <String>[],
     this.merchantOrder = const <String, List<String>>{},
   });
@@ -14,8 +15,11 @@ final class UserPreferences {
   /// ランキングに出さないカード（保有はしたまま）。
   final Set<String> hiddenCardIds;
 
-  /// 条件の達成状態（未設定ならカタログの既定を使う）。
+  /// 条件の達成状態（入切）。未設定ならカタログの既定を使う。
   final Map<String, TriState> conditionStates;
+
+  /// 個数で選ぶ条件の数（例: 特定サービスのカード払いの契約数）。
+  final Map<String, int> conditionCounts;
 
   /// 店舗カテゴリの並び順。
   final List<String> categoryOrder;
@@ -26,12 +30,14 @@ final class UserPreferences {
   UserPreferences copyWith({
     Set<String>? hiddenCardIds,
     Map<String, TriState>? conditionStates,
+    Map<String, int>? conditionCounts,
     List<String>? categoryOrder,
     Map<String, List<String>>? merchantOrder,
   }) {
     return UserPreferences(
       hiddenCardIds: hiddenCardIds ?? this.hiddenCardIds,
       conditionStates: conditionStates ?? this.conditionStates,
+      conditionCounts: conditionCounts ?? this.conditionCounts,
       categoryOrder: categoryOrder ?? this.categoryOrder,
       merchantOrder: merchantOrder ?? this.merchantOrder,
     );

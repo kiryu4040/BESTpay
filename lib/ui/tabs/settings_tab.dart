@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../ranking_controller.dart';
-import '../screens/card_management_screen.dart';
 import '../screens/category_order_screen.dart';
 import '../screens/condition_settings_screen.dart';
 import '../screens/merchant_order_screen.dart';
+import '../screens/card_management_screen.dart';
 
 /// 設定タブ。カード管理・条件設定・並べ替えへの入口をまとめる（D-104）。
 final class SettingsTab extends StatelessWidget {
@@ -19,6 +19,7 @@ final class SettingsTab extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('設定')),
       body: ListView(
+        padding: const EdgeInsets.symmetric(vertical: 8),
         children: <Widget>[
           ListTile(
             leading: const Icon(Icons.credit_card),
@@ -33,11 +34,11 @@ final class SettingsTab extends StatelessWidget {
           ),
           ListTile(
             leading: const Icon(Icons.tune),
-            title: const Text('還元率の基準（条件）'),
+            title: const Text('カードごとの条件'),
             subtitle: Text(
               controller.conditionOptions.isEmpty
                   ? '設定できる条件はまだありません'
-                  : 'いまの設定: ${controller.conditionOptions.length}件',
+                  : 'カード別に、当てはまる条件をオンにします',
             ),
             trailing: const Icon(Icons.chevron_right),
             onTap: () => Navigator.of(context).push(
@@ -78,7 +79,7 @@ final class SettingsTab extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     '店舗を選ぶだけで、いちばん得なカードを示す個人利用アプリ。'
-                    '基準は${controller.catalog.paymentInstrumentsById.isEmpty ? 'みずほ楽天カード' : 'みずほ楽天カード'}です。',
+                    '基準はみずほ楽天カードです。',
                     style: theme.textTheme.bodyMedium,
                   ),
                 ],

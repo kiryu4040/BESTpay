@@ -46,9 +46,24 @@ final class AssetConditionOptionsRepository
                 : '',
             defaultState: _stateOf(map['defaultState']),
             notes: <String>[
-              for (final note in (map['notes'] is List ? map['notes']! as List : const <Object?>[]))
+              for (final note in (map['notes'] is List
+                  ? map['notes']! as List
+                  : const <Object?>[]))
                 if (note is String) note,
             ],
+            ownerInstrumentIds: <String>[
+              for (final owner in (map['ownerInstrumentIds'] is List
+                  ? map['ownerInstrumentIds']! as List
+                  : const <Object?>[]))
+                if (owner is String) owner,
+            ],
+            valueType: map['valueType'] == 'integer' ? 'integer' : 'boolean',
+            minimumCount: _intOf(map['minimumCount']),
+            maximumCount: _intOf(map['maximumCount']),
+            countGroupId: map['countGroupId'] is String
+                ? map['countGroupId']! as String
+                : null,
+            countGroupMax: _intOf(map['countGroupMax']),
           ),
         );
       }
@@ -57,6 +72,14 @@ final class AssetConditionOptionsRepository
     } on Object {
       return const <ConditionOption>[];
     }
+  }
+
+  static int _intOf(Object? raw) {
+    if (raw is int) {
+      return raw;
+    }
+
+    return 0;
   }
 
   static TriState _stateOf(Object? raw) {

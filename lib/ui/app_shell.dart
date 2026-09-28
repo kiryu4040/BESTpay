@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
+import 'theme/bestpay_theme.dart';
 import 'tabs/calculator_tab.dart';
 import 'tabs/settings_tab.dart';
 import 'tabs/stores_tab.dart';
@@ -13,10 +15,16 @@ final class BestPayApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'BESTpay',
-      theme: ThemeData(
-        colorSchemeSeed: Colors.teal,
-        useMaterial3: true,
-      ),
+      theme: BestPayTheme.light(),
+      // 日本語の標準字体を使うため、ロケールを明示する（D-120）。
+      locale: const Locale('ja', 'JP'),
+      supportedLocales: const <Locale>[Locale('ja', 'JP')],
+      localizationsDelegates: const <LocalizationsDelegate<Object>>[
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      debugShowCheckedModeBanner: false,
       home: const AppShell(),
     );
   }
@@ -67,8 +75,8 @@ final class _AppShellState extends State<AppShell> {
             label: '計算',
           ),
           NavigationDestination(
-            icon: Icon(Icons.calendar_today_outlined),
-            selectedIcon: Icon(Icons.calendar_today),
+            icon: Icon(Icons.insights_outlined),
+            selectedIcon: Icon(Icons.insights),
             label: '年間',
           ),
           NavigationDestination(
