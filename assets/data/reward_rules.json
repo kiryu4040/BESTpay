@@ -1,1339 +1,3151 @@
 {
-  "schemaVersion": "1.0.0",
-  "catalogVersion": "2026.09.27.3",
-  "generatedAt": "2026-09-27T00:00:00+09:00",
-  "items": [
-    {
-      "id": "jcb_card_w_base",
-      "name": "JCBカードW 基本還元（200円につき2ポイント）",
-      "description": "毎月16日〜翌月15日の利用金額を合計してからポイント換算し、小数点以下を切り捨てる。",
-      "ruleKind": "baseReward",
-      "selectors": {
-        "instrumentIds": [
-          "jcb_card_w"
-        ],
-        "modeIds": [],
-        "routeIds": [],
-        "fundingRelationIds": [],
-        "merchantIds": [],
-        "merchantGroupIds": [],
-        "categoryIds": [],
-        "brandIds": [],
-        "locationIds": [],
-        "transactionTags": []
-      },
-      "exclusions": {
-        "instrumentIds": [],
-        "modeIds": [],
-        "routeIds": [],
-        "fundingRelationIds": [],
-        "merchantIds": [],
-        "merchantGroupIds": [],
-        "categoryIds": [],
-        "brandIds": [],
-        "locationIds": [],
-        "transactionTags": []
-      },
-      "conditionExpression": null,
-      "calculation": {
-        "calculationType": "unitPoints",
-        "amountUnitYen": 200,
-        "pointsPerUnit": 2,
-        "rounding": "floor"
-      },
-      "outputPointProgramId": "j_point",
-      "aggregation": {
-        "scope": "billingMonth",
-        "aggregationKey": "jcb_billing_cycle_16",
-        "periodMinimumEligibleSpendYen": 0,
-        "conditionEvaluationTiming": "transaction",
-        "incrementalAward": true
-      },
-      "stacking": {
-        "policy": "stackable",
-        "exclusiveGroupId": null,
-        "replacesRuleIds": [],
-        "suppressesRuleIds": [],
-        "suppressesTags": [],
-        "dependsOnRuleIds": [],
-        "applicationOrder": 10
-      },
-      "cap": null,
-      "validFrom": "2026-09-27",
-      "validUntilExclusive": null,
-      "dateBasis": "transactionDate",
-      "timezone": "Asia/Tokyo",
-      "displayClaim": null,
-      "sourceIds": [
-        "src_jcb_card_w_official",
-        "src_jcb_card_w_order",
-        "src_jcb_point_about",
-        "src_jcb_point_news"
-      ],
-      "lastVerifiedAt": "2026-09-27",
-      "status": "active",
-      "priority": 100,
-      "tags": [
-        "base_reward",
-        "monthly_aggregation"
-      ],
-      "notes": [
-        "J-POINTは200円（税込）につき2ポイント（通常カードの2倍、実質1.0%）。",
-        "ご利用金額の集計期間は毎月16日〜翌月15日。",
-        "毎月のご利用額を合計してからポイント換算し、小数点以下は切り捨て。1回の利用が200円未満でも月合計に付与される。",
-        "ポイント2倍は国内・海外共通で、決済経路による基本還元の差は公式に記載なし。",
-        "J-POINTボーナス（年間50万円ごと、集計期間は毎年12月16日〜翌年12月15日、段階的な付与数、上限なし）は thresholdBonus では表現できないため今回は登録しない（第2期）。",
-        "JCBカードWのJ-POINTボーナス区分（一般会員／プレミアム会員）は公式に明記がなく未確認。",
-        "基本ポイントの上限の記載はなし（未確認）。国際ブランド（JCBのみか）、iD等の決済経路差も未確認。"
-      ]
-    },
-    {
-      "id": "mizuho_rakuten_base_rakuten_point",
-      "name": "みずほ楽天カード 楽天ポイント基本還元（100円につき1ポイント）",
-      "description": "楽天カード通常分。1回のお買い物ごと（取引単位）に100円につき1ポイント、100円未満は切り捨て。",
-      "ruleKind": "baseReward",
-      "selectors": {
-        "instrumentIds": [
-          "mizuho_rakuten_card"
-        ],
-        "modeIds": [],
-        "routeIds": [],
-        "fundingRelationIds": [],
-        "merchantIds": [],
-        "merchantGroupIds": [],
-        "categoryIds": [],
-        "brandIds": [],
-        "locationIds": [],
-        "transactionTags": []
-      },
-      "exclusions": {
-        "instrumentIds": [],
-        "modeIds": [],
-        "routeIds": [],
-        "fundingRelationIds": [],
-        "merchantIds": [],
-        "merchantGroupIds": [],
-        "categoryIds": [],
-        "brandIds": [],
-        "locationIds": [],
-        "transactionTags": []
-      },
-      "conditionExpression": null,
-      "calculation": {
-        "calculationType": "unitPoints",
-        "amountUnitYen": 100,
-        "pointsPerUnit": 1,
-        "rounding": "floor"
-      },
-      "outputPointProgramId": "rakuten_point",
-      "aggregation": {
-        "scope": "transaction",
-        "aggregationKey": null,
-        "periodMinimumEligibleSpendYen": 0,
-        "conditionEvaluationTiming": "transaction",
-        "incrementalAward": false
-      },
-      "stacking": {
-        "policy": "stackable",
-        "exclusiveGroupId": null,
-        "replacesRuleIds": [],
-        "suppressesRuleIds": [],
-        "suppressesTags": [],
-        "dependsOnRuleIds": [],
-        "applicationOrder": 10
-      },
-      "cap": null,
-      "validFrom": "2026-09-27",
-      "validUntilExclusive": null,
-      "dateBasis": "transactionDate",
-      "timezone": "Asia/Tokyo",
-      "displayClaim": null,
-      "sourceIds": [
-        "src_mizuho_rakuten_official",
-        "src_rakuten_point_rate",
-        "src_rakuten_news_20230801",
-        "src_rakuten_faq_calc",
-        "src_rakuten_faq_award_date"
-      ],
-      "lastVerifiedAt": "2026-09-27",
-      "status": "active",
-      "priority": 100,
-      "tags": [
-        "base_reward",
-        "per_transaction"
-      ],
-      "notes": [
-        "楽天ポイントは、1回のカードショッピング（お買い物ごと）のご利用金額に対して100円につき1ポイント（1%）。楽天カード公式ページに「※1回のカードショッピング（お買い物ごと）のご利用金額に対して100円につき1ポイントを進呈いたします」と明記。",
-        "取引ごとの計算のため、集計範囲は transaction（月間合算ではない）。月の合計額から還元率を求めるとポイントにズレが生じる。そのため aggregationKey は null、incrementalAward は false としている。",
-        "1回の決済ごとに100円未満を切り捨て。",
-        "カテゴリ別の計算単位（公共料金・税金500円1pt、保険料200円1pt、携帯電話料金200円1pt）は draft ルールとして別建てで保留している。",
-        "ポイント進呈の対象外には年会費・各種手数料、キャッシング、他社決済サービスへのチャージ等がある。対象外リストはエンジン未実装のため計算に反映しない（第2期）。",
-        "国際ブランド・決済経路による還元差は未確認。"
-      ]
-    },
-    {
-      "id": "mizuho_rakuten_insurance_draft",
-      "name": "みずほ楽天カード 保険料のカテゴリ別還元（200円につき1ポイント）※draft",
-      "description": "保険料は200円につき1ポイントが適用される。第1期は保留。",
-      "ruleKind": "categoryBonus",
-      "selectors": {
-        "instrumentIds": [
-          "mizuho_rakuten_card"
-        ],
-        "modeIds": [],
-        "routeIds": [],
-        "fundingRelationIds": [],
-        "merchantIds": [],
-        "merchantGroupIds": [],
-        "categoryIds": [
-          "rakuten_insurance_category"
-        ],
-        "brandIds": [],
-        "locationIds": [],
-        "transactionTags": []
-      },
-      "exclusions": {
-        "instrumentIds": [],
-        "modeIds": [],
-        "routeIds": [],
-        "fundingRelationIds": [],
-        "merchantIds": [],
-        "merchantGroupIds": [],
-        "categoryIds": [],
-        "brandIds": [],
-        "locationIds": [],
-        "transactionTags": []
-      },
-      "conditionExpression": null,
-      "calculation": {
-        "calculationType": "unitPoints",
-        "amountUnitYen": 200,
-        "pointsPerUnit": 1,
-        "rounding": "floor"
-      },
-      "outputPointProgramId": "rakuten_point",
-      "aggregation": {
-        "scope": "transaction",
-        "aggregationKey": null,
-        "periodMinimumEligibleSpendYen": 0,
-        "conditionEvaluationTiming": "transaction",
-        "incrementalAward": false
-      },
-      "stacking": {
-        "policy": "stackable",
-        "exclusiveGroupId": null,
-        "replacesRuleIds": [],
-        "suppressesRuleIds": [],
-        "suppressesTags": [],
-        "dependsOnRuleIds": [],
-        "applicationOrder": 30
-      },
-      "cap": null,
-      "validFrom": "2026-09-27",
-      "validUntilExclusive": null,
-      "dateBasis": "transactionDate",
-      "timezone": "Asia/Tokyo",
-      "displayClaim": null,
-      "sourceIds": [
-        "src_rakuten_point_rate"
-      ],
-      "lastVerifiedAt": "2026-09-27",
-      "status": "draft",
-      "priority": 10,
-      "tags": [
-        "category_bonus",
-        "draft"
-      ],
-      "notes": [
-        "対象事業者リストを持つカテゴリ別ルール（楽天カード公式「ポイント還元率について」に明記）。第1期は対象事業者リストを登録しないため、selectors.categoryIds に暫定のカテゴリIDを置き、現在はどの取引にも一致しない状態で status=draft として保留している。店舗・カテゴリデータを整備したうえで有効化する（第2期）。",
-        "対象例: 生命保険・損害保険・傷害保険・医療保険等の第三分野の保険（対象事業者リストあり。2024-08-01利用分より適用）。",
-        "楽天グループサービスは通常ルールのまま。端数は切り捨て。"
-      ]
-    },
-    {
-      "id": "mizuho_rakuten_mobile_draft",
-      "name": "みずほ楽天カード 携帯電話ご利用料金のカテゴリ別還元（200円につき1ポイント）※draft",
-      "description": "携帯電話ご利用料金は200円につき1ポイントが適用される。第1期は保留。",
-      "ruleKind": "categoryBonus",
-      "selectors": {
-        "instrumentIds": [
-          "mizuho_rakuten_card"
-        ],
-        "modeIds": [],
-        "routeIds": [],
-        "fundingRelationIds": [],
-        "merchantIds": [],
-        "merchantGroupIds": [],
-        "categoryIds": [
-          "rakuten_mobile_carrier_category"
-        ],
-        "brandIds": [],
-        "locationIds": [],
-        "transactionTags": []
-      },
-      "exclusions": {
-        "instrumentIds": [],
-        "modeIds": [],
-        "routeIds": [],
-        "fundingRelationIds": [],
-        "merchantIds": [],
-        "merchantGroupIds": [],
-        "categoryIds": [],
-        "brandIds": [],
-        "locationIds": [],
-        "transactionTags": []
-      },
-      "conditionExpression": null,
-      "calculation": {
-        "calculationType": "unitPoints",
-        "amountUnitYen": 200,
-        "pointsPerUnit": 1,
-        "rounding": "floor"
-      },
-      "outputPointProgramId": "rakuten_point",
-      "aggregation": {
-        "scope": "transaction",
-        "aggregationKey": null,
-        "periodMinimumEligibleSpendYen": 0,
-        "conditionEvaluationTiming": "transaction",
-        "incrementalAward": false
-      },
-      "stacking": {
-        "policy": "stackable",
-        "exclusiveGroupId": null,
-        "replacesRuleIds": [],
-        "suppressesRuleIds": [],
-        "suppressesTags": [],
-        "dependsOnRuleIds": [],
-        "applicationOrder": 30
-      },
-      "cap": null,
-      "validFrom": "2026-09-27",
-      "validUntilExclusive": null,
-      "dateBasis": "transactionDate",
-      "timezone": "Asia/Tokyo",
-      "displayClaim": null,
-      "sourceIds": [
-        "src_rakuten_point_rate"
-      ],
-      "lastVerifiedAt": "2026-09-27",
-      "status": "draft",
-      "priority": 10,
-      "tags": [
-        "category_bonus",
-        "draft"
-      ],
-      "notes": [
-        "対象事業者リストを持つカテゴリ別ルール（楽天カード公式「ポイント還元率について」に明記）。第1期は対象事業者リストを登録しないため、selectors.categoryIds に暫定のカテゴリIDを置き、現在はどの取引にも一致しない状態で status=draft として保留している。店舗・カテゴリデータを整備したうえで有効化する（第2期）。",
-        "対象例: NTTドコモ・au・SoftBank・UQ mobile・Y!mobile 等（対象事業者リストあり。2024-08-01利用分より適用。電話料金合算払いを含む）。",
-        "楽天グループサービスは通常ルールのまま。端数は切り捨て。"
-      ]
-    },
-    {
-      "id": "mizuho_rakuten_utility_draft",
-      "name": "みずほ楽天カード 公共料金・税金のカテゴリ別還元（500円につき1ポイント）※draft",
-      "description": "公共料金・税金は通常より低い計算単位（500円につき1ポイント）が適用される。第1期は保留。",
-      "ruleKind": "categoryBonus",
-      "selectors": {
-        "instrumentIds": [
-          "mizuho_rakuten_card"
-        ],
-        "modeIds": [],
-        "routeIds": [],
-        "fundingRelationIds": [],
-        "merchantIds": [],
-        "merchantGroupIds": [],
-        "categoryIds": [
-          "rakuten_utility_and_tax_category"
-        ],
-        "brandIds": [],
-        "locationIds": [],
-        "transactionTags": []
-      },
-      "exclusions": {
-        "instrumentIds": [],
-        "modeIds": [],
-        "routeIds": [],
-        "fundingRelationIds": [],
-        "merchantIds": [],
-        "merchantGroupIds": [],
-        "categoryIds": [],
-        "brandIds": [],
-        "locationIds": [],
-        "transactionTags": []
-      },
-      "conditionExpression": null,
-      "calculation": {
-        "calculationType": "unitPoints",
-        "amountUnitYen": 500,
-        "pointsPerUnit": 1,
-        "rounding": "floor"
-      },
-      "outputPointProgramId": "rakuten_point",
-      "aggregation": {
-        "scope": "transaction",
-        "aggregationKey": null,
-        "periodMinimumEligibleSpendYen": 0,
-        "conditionEvaluationTiming": "transaction",
-        "incrementalAward": false
-      },
-      "stacking": {
-        "policy": "stackable",
-        "exclusiveGroupId": null,
-        "replacesRuleIds": [],
-        "suppressesRuleIds": [],
-        "suppressesTags": [],
-        "dependsOnRuleIds": [],
-        "applicationOrder": 30
-      },
-      "cap": null,
-      "validFrom": "2026-09-27",
-      "validUntilExclusive": null,
-      "dateBasis": "transactionDate",
-      "timezone": "Asia/Tokyo",
-      "displayClaim": null,
-      "sourceIds": [
-        "src_rakuten_point_rate"
-      ],
-      "lastVerifiedAt": "2026-09-27",
-      "status": "draft",
-      "priority": 10,
-      "tags": [
-        "category_bonus",
-        "draft"
-      ],
-      "notes": [
-        "対象事業者リストを持つカテゴリ別ルール（楽天カード公式「ポイント還元率について」に明記）。第1期は対象事業者リストを登録しないため、selectors.categoryIds に暫定のカテゴリIDを置き、現在はどの取引にも一致しない状態で status=draft として保留している。店舗・カテゴリデータを整備したうえで有効化する（第2期）。",
-        "対象例: 電気・ガス・水道、自動車税・固定資産税・都市計画税・住民税・法人税等、国民年金保険料、NHK放送受信料（2024-08-01利用分より）等。",
-        "上記記載のない事業者でのご利用分は100円につき1ポイントのため、通常ルール（mizuho_rakuten_base_rakuten_point）が適用される。",
-        "端数は切り捨て。"
-      ]
-    },
-    {
-      "id": "mizuho_rakuten_w_point_mizuho_point",
-      "name": "みずほ楽天カード Wポイントプラン（みずほポイント）",
-      "description": "条件を満たした場合にのみ、楽天ポイント（通常ポイント）と同数のみずほポイントを付与する条件付きルール。",
-      "ruleKind": "mirrorReward",
-      "selectors": {
-        "instrumentIds": [
-          "mizuho_rakuten_card"
-        ],
-        "modeIds": [],
-        "routeIds": [],
-        "fundingRelationIds": [],
-        "merchantIds": [],
-        "merchantGroupIds": [],
-        "categoryIds": [],
-        "brandIds": [],
-        "locationIds": [],
-        "transactionTags": []
-      },
-      "exclusions": {
-        "instrumentIds": [],
-        "modeIds": [],
-        "routeIds": [],
-        "fundingRelationIds": [],
-        "merchantIds": [],
-        "merchantGroupIds": [],
-        "categoryIds": [],
-        "brandIds": [],
-        "locationIds": [],
-        "transactionTags": []
-      },
-      "conditionExpression": {
-        "nodeType": "condition",
-        "conditionId": "mizuho_w_point_plan_eligible"
-      },
-      "calculation": {
-        "calculationType": "mirror",
-        "sourceRuleId": "mizuho_rakuten_base_rakuten_point",
-        "multiplierNumerator": 1,
-        "multiplierDenominator": 1,
-        "inheritEligibility": true,
-        "inheritExclusions": true,
-        "useFinalSourceAmount": true
-      },
-      "outputPointProgramId": "mizuho_point",
-      "aggregation": {
-        "scope": "transaction",
-        "aggregationKey": null,
-        "periodMinimumEligibleSpendYen": 0,
-        "conditionEvaluationTiming": "transaction",
-        "incrementalAward": false
-      },
-      "stacking": {
-        "policy": "stackable",
-        "exclusiveGroupId": null,
-        "replacesRuleIds": [],
-        "suppressesRuleIds": [],
-        "suppressesTags": [],
-        "dependsOnRuleIds": [],
-        "applicationOrder": 20
-      },
-      "cap": null,
-      "validFrom": "2026-09-27",
-      "validUntilExclusive": null,
-      "dateBasis": "transactionDate",
-      "timezone": "Asia/Tokyo",
-      "displayClaim": null,
-      "sourceIds": [
-        "src_mizuho_rakuten_official"
-      ],
-      "lastVerifiedAt": "2026-09-27",
-      "status": "active",
-      "priority": 50,
-      "tags": [
-        "w_point_plan",
-        "conditional"
-      ],
-      "notes": [
-        "Wポイントプランは ①2025-06-30以降に新規申込・契約完了、②カード申込日の翌々月末日までに口座振替設定を完了、の両方で対象。",
-        "付与内容は楽天ポイント（通常ポイント）と同数のみずほポイント。基本還元ルールの結果を複製する mirror 計算で表現している。",
-        "対象期間は条件を満たした月の月初より最長1年間（全利用者共通の固定期間ではない）。",
-        "上限はみずほポイント10,000ポイント。エンジンは cap に未対応のため cap は null とし、上限はここに文章で残す（第2期で実装）。",
-        "条件は conditionId=mizuho_w_point_plan_eligible として参照する。既定状態は unknown のため、条件未入力時は確定値に加算されない（決定台帳 D-50）。",
-        "みずほマイレージクラブ入会・みずほダイレクト契約および初回登録を各利用月の末日までに満たす必要がある。進呈はカード利用の翌々月の月初。",
-        "前提条件未達・進呈時の退会・対象外時の家族カード利用分は対象外。"
-      ]
-    },
-    {
-      "id": "mufg_card_base_global_point",
-      "name": "三菱UFJカード 基本還元（1,000円につき1ポイント）",
-      "description": "毎月16日〜翌月15日の利用金額合計1,000円ごとに1ポイント。1,000円未満は切り捨て。",
-      "ruleKind": "baseReward",
-      "selectors": {
-        "instrumentIds": [
-          "mufg_card"
-        ],
-        "modeIds": [],
-        "routeIds": [],
-        "fundingRelationIds": [],
-        "merchantIds": [],
-        "merchantGroupIds": [],
-        "categoryIds": [],
-        "brandIds": [],
-        "locationIds": [],
-        "transactionTags": []
-      },
-      "exclusions": {
-        "instrumentIds": [],
-        "modeIds": [],
-        "routeIds": [],
-        "fundingRelationIds": [],
-        "merchantIds": [],
-        "merchantGroupIds": [],
-        "categoryIds": [],
-        "brandIds": [],
-        "locationIds": [],
-        "transactionTags": []
-      },
-      "conditionExpression": null,
-      "calculation": {
-        "calculationType": "unitPoints",
-        "amountUnitYen": 1000,
-        "pointsPerUnit": 1,
-        "rounding": "floor"
-      },
-      "outputPointProgramId": "global_point",
-      "aggregation": {
-        "scope": "billingMonth",
-        "aggregationKey": "mufg_billing_cycle_16",
-        "periodMinimumEligibleSpendYen": 0,
-        "conditionEvaluationTiming": "transaction",
-        "incrementalAward": true
-      },
-      "stacking": {
-        "policy": "stackable",
-        "exclusiveGroupId": null,
-        "replacesRuleIds": [],
-        "suppressesRuleIds": [],
-        "suppressesTags": [],
-        "dependsOnRuleIds": [],
-        "applicationOrder": 10
-      },
-      "cap": null,
-      "validFrom": "2026-09-27",
-      "validUntilExclusive": null,
-      "dateBasis": "transactionDate",
-      "timezone": "Asia/Tokyo",
-      "displayClaim": null,
-      "sourceIds": [
-        "src_mufg_global_point",
-        "src_mufg_global_plus",
-        "src_mufg_bank_card"
-      ],
-      "lastVerifiedAt": "2026-09-27",
-      "status": "active",
-      "priority": 100,
-      "tags": [
-        "base_reward",
-        "monthly_aggregation"
-      ],
-      "notes": [
-        "1ヵ月のショッピングご利用金額合計1,000円ごとに基本ポイント1ポイント。1P = 5円相当（商品交換）で実質0.5%。",
-        "集計は原則毎月16日〜翌月15日で、翌々月ご請求分にポイント付与。",
-        "1ヵ月のご利用金額合計1,000円未満は切り捨て。グローバルPLUS付与分は小数点以下切り捨て。",
-        "登録カードは一般カードのため、年間利用ボーナス（ゴールド限定・2,200ポイント）は登録しない。",
-        "公共料金・税金・保険料・通信費の5,000円1Pへの変更は2027-01-12請求分より（改定は第2期）。",
-        "ポイントアッププログラム（エントリー必要）・グローバルPLUSの上乗せは第2期。",
-        "キャッシュバック交換は1P = 4円。最大交換価値は未確認。"
-      ]
-    },
-    {
-      "id": "mufg_card_target_store_bonus",
-      "name": "三菱UFJカード対象店舗の上乗せ（合計7%相当）",
-      "description": "対象店舗での上乗せ分。1ポイント5円相当で換算し、基本0.5%に加算して合計7%相当になる。",
-      "ruleKind": "campaignBonus",
-      "selectors": {
-        "instrumentIds": [
-          "mufg_card"
-        ],
-        "modeIds": [],
-        "routeIds": [],
-        "fundingRelationIds": [],
-        "merchantIds": [],
-        "merchantGroupIds": [],
-        "categoryIds": [
-          "convenience_store",
-          "fast_food",
-          "cafe",
-          "kaiten_sushi",
-          "pizza",
-          "supermarket"
-        ],
-        "brandIds": [],
-        "locationIds": [],
-        "transactionTags": []
-      },
-      "exclusions": {
-        "instrumentIds": [],
-        "modeIds": [],
-        "routeIds": [],
-        "fundingRelationIds": [],
-        "merchantIds": [],
-        "merchantGroupIds": [],
-        "categoryIds": [],
-        "brandIds": [],
-        "locationIds": [],
-        "transactionTags": []
-      },
-      "conditionExpression": null,
-      "calculation": {
-        "calculationType": "unitPoints",
-        "amountUnitYen": 1000,
-        "pointsPerUnit": 13,
-        "rounding": "floor"
-      },
-      "outputPointProgramId": "global_point",
-      "aggregation": {
-        "scope": "transaction",
-        "aggregationKey": null,
-        "periodMinimumEligibleSpendYen": 0,
-        "conditionEvaluationTiming": "transaction",
-        "incrementalAward": false
-      },
-      "stacking": {
-        "policy": "stackable",
-        "exclusiveGroupId": null,
-        "replacesRuleIds": [],
-        "suppressesRuleIds": [],
-        "suppressesTags": [],
-        "dependsOnRuleIds": [],
-        "applicationOrder": 100
-      },
-      "cap": null,
-      "validFrom": "2026-09-27",
-      "validUntilExclusive": null,
-      "dateBasis": "transactionDate",
-      "timezone": "Asia/Tokyo",
-      "displayClaim": null,
-      "sourceIds": [
-        "src_olive_gold_official",
-        "src_olive_point_rate",
-        "src_olive_gold_attention",
-        "src_smbc_vpoint_up_program",
-        "src_mufg_global_point",
-        "src_mufg_global_plus",
-        "src_mufg_annual_bonus",
-        "src_mufg_store_bonus"
-      ],
-      "lastVerifiedAt": "2026-09-27",
-      "status": "active",
-      "priority": 100,
-      "tags": [
-        "base_reward"
-      ],
-      "notes": [
-        "ポイントアッププログラム条件達成で最大20%相当になるが、条件の詳細が未確認のため第2期で扱う。",
-        "対象店舗利用額の月50,000円が上限（超過分は基本還元のみ）。上限は計算に反映されていない。",
-        "グローバルポイントWalletでのスマホ決済は対象外（公式に明記）。",
-        "上乗せ分は1ポイント5円相当のグローバルポイントで付与される。基本0.5%に加算して合計7%相当になるよう13pt/1,000円で登録している。"
-      ]
-    },
-    {
-      "id": "olive_flexible_pay_gold_annual_bonus_1m",
-      "name": "Oliveフレキシブルペイ ゴールド 年間100万円利用特典（10,000ポイント）",
-      "description": "デビットモード・クレジットモードの年間100万円利用で毎年10,000ポイント。基本還元には合算しない。",
-      "ruleKind": "campaignBonus",
-      "selectors": {
-        "instrumentIds": [
-          "olive_flexible_pay_gold"
-        ],
-        "modeIds": [],
-        "routeIds": [],
-        "fundingRelationIds": [],
-        "merchantIds": [],
-        "merchantGroupIds": [],
-        "categoryIds": [],
-        "brandIds": [],
-        "locationIds": [],
-        "transactionTags": []
-      },
-      "exclusions": {
-        "instrumentIds": [],
-        "modeIds": [],
-        "routeIds": [],
-        "fundingRelationIds": [],
-        "merchantIds": [],
-        "merchantGroupIds": [],
-        "categoryIds": [],
-        "brandIds": [],
-        "locationIds": [],
-        "transactionTags": []
-      },
-      "conditionExpression": null,
-      "calculation": {
-        "calculationType": "thresholdBonus",
-        "thresholdAmountYen": 1000000,
-        "bonusPoints": 10000,
-        "maxAwardsPerPeriod": 1
-      },
-      "outputPointProgramId": "v_point",
-      "aggregation": {
-        "scope": "membershipYear",
-        "aggregationKey": "olive_annual_100man",
-        "periodMinimumEligibleSpendYen": 0,
-        "conditionEvaluationTiming": "transaction",
-        "incrementalAward": true
-      },
-      "stacking": {
-        "policy": "stackable",
-        "exclusiveGroupId": null,
-        "replacesRuleIds": [],
-        "suppressesRuleIds": [],
-        "suppressesTags": [],
-        "dependsOnRuleIds": [],
-        "applicationOrder": 90
-      },
-      "cap": null,
-      "validFrom": "2026-09-27",
-      "validUntilExclusive": null,
-      "dateBasis": "transactionDate",
-      "timezone": "Asia/Tokyo",
-      "displayClaim": null,
-      "sourceIds": [
-        "src_olive_gold_official",
-        "src_olive_gold_attention",
-        "src_olive_privilege"
-      ],
-      "lastVerifiedAt": "2026-09-27",
-      "status": "active",
-      "priority": 40,
-      "tags": [
-        "annual_bonus"
-      ],
-      "notes": [
-        "年間100万円以上の利用で毎年10,000ポイント（毎年カード加入月の翌月末日までに付与）。",
-        "対象はデビットモード・クレジットモードの利用分（ETCカード・iD利用分も合算）。ポイント払いモード・追加した支払いモードは対象外。",
-        "年間ボーナスを基本還元（0.5%）に合算してはならない（裁定 CR-018）。本ルールを別建てで登録している。",
-        "初年度は入会日から12ヵ月後の末日まで、翌年度以降は入会月の翌月1日から11ヵ月後の末日まで。",
-        "現エンジンでは thresholdBonus に期間スナップショットが必要で、本フェーズでは確定値に反映されない（第2期）。"
-      ]
-    },
-    {
-      "id": "olive_flexible_pay_gold_base",
-      "name": "Oliveフレキシブルペイ ゴールド 基本還元（0.5%）",
-      "description": "クレジット／デビット／ポイント払いモード共通の基本還元。率のみが公表されているため rateFraction で登録する。",
-      "ruleKind": "baseReward",
-      "selectors": {
-        "instrumentIds": [
-          "olive_flexible_pay_gold"
-        ],
-        "modeIds": [],
-        "routeIds": [],
-        "fundingRelationIds": [],
-        "merchantIds": [],
-        "merchantGroupIds": [],
-        "categoryIds": [],
-        "brandIds": [],
-        "locationIds": [],
-        "transactionTags": []
-      },
-      "exclusions": {
-        "instrumentIds": [],
-        "modeIds": [],
-        "routeIds": [],
-        "fundingRelationIds": [],
-        "merchantIds": [],
-        "merchantGroupIds": [],
-        "categoryIds": [],
-        "brandIds": [],
-        "locationIds": [],
-        "transactionTags": []
-      },
-      "conditionExpression": null,
-      "calculation": {
-        "calculationType": "rateFraction",
-        "numerator": 1,
-        "denominator": 200,
-        "rounding": "floor"
-      },
-      "outputPointProgramId": "v_point",
-      "aggregation": {
-        "scope": "transaction",
-        "aggregationKey": null,
-        "periodMinimumEligibleSpendYen": 0,
-        "conditionEvaluationTiming": "transaction",
-        "incrementalAward": false
-      },
-      "stacking": {
-        "policy": "stackable",
-        "exclusiveGroupId": null,
-        "replacesRuleIds": [],
-        "suppressesRuleIds": [],
-        "suppressesTags": [],
-        "dependsOnRuleIds": [],
-        "applicationOrder": 10
-      },
-      "cap": null,
-      "validFrom": "2026-09-27",
-      "validUntilExclusive": null,
-      "dateBasis": "transactionDate",
-      "timezone": "Asia/Tokyo",
-      "displayClaim": null,
-      "sourceIds": [
-        "src_olive_gold_official",
-        "src_olive_point_rate",
-        "src_olive_gold_attention"
-      ],
-      "lastVerifiedAt": "2026-09-27",
-      "status": "active",
-      "priority": 100,
-      "tags": [
-        "base_reward"
-      ],
-      "notes": [
-        "クレジットモード0.5%、デビットモード0.5%、ポイント払いモード0.5%（三井住友銀行公式のお支払いモード表で確認）。＝1/200。",
-        "二次情報にポイント払いモード0.25%の記載があったが、公式は0.5%のため採用しない。",
-        "第1期は payment_modes.json を登録しないためモードを限定せず、3モードすべてに同じ0.5%を適用する単一ルールとして登録している。",
-        "「追加した支払いモード」は追加先カードのサービスが適用され、Oliveの0.5%とは異なる（年100万円特典の集計対象外）。",
-        "端数処理が公式に明記されていないため、切り捨て（rounding=floor）を仮定して登録した。実利用前に公式で確認すること。",
-        "月次のVポイント集計期間の公式明記は未確認のため、取引単位（transaction）で登録した。",
-        "「200円につき1ポイント」に相当する計算単位の公式明記は未確認。率（0.5%）から登録している。",
-        "対象コンビニ・飲食店のスマホタッチ決済上乗せ（通常0.5%＋7.5%）は店舗個別データが必要なため今回は登録しない（第2期）。"
-      ]
-    },
-    {
-      "id": "olive_flexible_pay_gold_convenience_fastfood_bonus",
-      "name": "Oliveフレキシブルペイ ゴールド対象コンビニ・飲食店の上乗せ（スマホタッチ決済で最大8%）",
-      "description": "対象コンビニ・飲食店でスマホのVisaタッチ決済／Mastercardタッチ決済／モバイルオーダーを使った場合の上乗せ分。通常0.5%に加算して最大8%になる。",
-      "ruleKind": "campaignBonus",
-      "selectors": {
-        "instrumentIds": [
-          "olive_flexible_pay_gold"
-        ],
-        "modeIds": [],
-        "routeIds": [],
-        "fundingRelationIds": [],
-        "merchantIds": [],
-        "merchantGroupIds": [],
-        "categoryIds": [
-          "convenience_store",
-          "fast_food"
-        ],
-        "brandIds": [],
-        "locationIds": [],
-        "transactionTags": []
-      },
-      "exclusions": {
-        "instrumentIds": [],
-        "modeIds": [],
-        "routeIds": [],
-        "fundingRelationIds": [],
-        "merchantIds": [],
-        "merchantGroupIds": [],
-        "categoryIds": [],
-        "brandIds": [],
-        "locationIds": [],
-        "transactionTags": []
-      },
-      "conditionExpression": null,
-      "calculation": {
-        "calculationType": "unitPoints",
-        "amountUnitYen": 200,
-        "pointsPerUnit": 15,
-        "rounding": "floor"
-      },
-      "outputPointProgramId": "v_point",
-      "aggregation": {
-        "scope": "transaction",
-        "aggregationKey": null,
-        "periodMinimumEligibleSpendYen": 0,
-        "conditionEvaluationTiming": "transaction",
-        "incrementalAward": false
-      },
-      "stacking": {
-        "policy": "stackable",
-        "exclusiveGroupId": null,
-        "replacesRuleIds": [],
-        "suppressesRuleIds": [],
-        "suppressesTags": [],
-        "dependsOnRuleIds": [],
-        "applicationOrder": 100
-      },
-      "cap": null,
-      "validFrom": "2026-09-27",
-      "validUntilExclusive": null,
-      "dateBasis": "transactionDate",
-      "timezone": "Asia/Tokyo",
-      "displayClaim": null,
-      "sourceIds": [
-        "src_olive_gold_official",
-        "src_olive_point_rate",
-        "src_olive_gold_attention",
-        "src_smbc_vpoint_up_program",
-        "src_mufg_global_point",
-        "src_mufg_global_plus",
-        "src_mufg_annual_bonus",
-        "src_mufg_store_bonus"
-      ],
-      "lastVerifiedAt": "2026-09-27",
-      "status": "active",
-      "priority": 100,
-      "tags": [
-        "base_reward"
-      ],
-      "notes": [
-        "公式に「通常0.5%＋7.5%＝最大8%」と明記されている。",
-        "対象チェーン例: セイコーマート、セブン-イレブン、ポプラ、ミニストップ、ローソン、マクドナルド等。",
-        "上乗せ分の月上限は未確認。"
-      ]
-    },
-    {
-      "id": "smbc_gold_nl_annual_bonus_1m",
-      "name": "三井住友カード ゴールド（NL） 年間100万円利用特典（10,000ポイント）",
-      "description": "年間100万円の利用で毎年10,000ポイント。初年度は付与されない。基本還元には合算しない。",
-      "ruleKind": "campaignBonus",
-      "selectors": {
-        "instrumentIds": [
-          "smbc_gold_nl_card"
-        ],
-        "modeIds": [],
-        "routeIds": [],
-        "fundingRelationIds": [],
-        "merchantIds": [],
-        "merchantGroupIds": [],
-        "categoryIds": [],
-        "brandIds": [],
-        "locationIds": [],
-        "transactionTags": []
-      },
-      "exclusions": {
-        "instrumentIds": [],
-        "modeIds": [],
-        "routeIds": [],
-        "fundingRelationIds": [],
-        "merchantIds": [],
-        "merchantGroupIds": [],
-        "categoryIds": [],
-        "brandIds": [],
-        "locationIds": [],
-        "transactionTags": []
-      },
-      "conditionExpression": null,
-      "calculation": {
-        "calculationType": "thresholdBonus",
-        "thresholdAmountYen": 1000000,
-        "bonusPoints": 10000,
-        "maxAwardsPerPeriod": 1
-      },
-      "outputPointProgramId": "v_point",
-      "aggregation": {
-        "scope": "membershipYear",
-        "aggregationKey": "smbc_gold_nl_annual_100man",
-        "periodMinimumEligibleSpendYen": 0,
-        "conditionEvaluationTiming": "transaction",
-        "incrementalAward": true
-      },
-      "stacking": {
-        "policy": "stackable",
-        "exclusiveGroupId": null,
-        "replacesRuleIds": [],
-        "suppressesRuleIds": [],
-        "suppressesTags": [],
-        "dependsOnRuleIds": [],
-        "applicationOrder": 90
-      },
-      "cap": null,
-      "validFrom": "2026-09-27",
-      "validUntilExclusive": null,
-      "dateBasis": "transactionDate",
-      "timezone": "Asia/Tokyo",
-      "displayClaim": null,
-      "sourceIds": [
-        "src_smbc_gold_nl_official",
-        "src_smbc_gold_nl_attention",
-        "src_smbc_faq_annual_1m"
-      ],
-      "lastVerifiedAt": "2026-09-27",
-      "status": "active",
-      "priority": 40,
-      "tags": [
-        "annual_bonus"
-      ],
-      "notes": [
-        "毎年、年間100万円の利用で10,000ポイント（初年度は付与されない）。",
-        "集計期間は加入月の11ヵ月後末まで。付与は毎年カード加入月の末日まで。",
-        "家族カード・子カード（ETC、iD専用カード等）の利用分は合算。",
-        "100万円を超えても上限は10,000ポイント。エンジンは cap に未対応のため cap は null とし、上限はここに文章で残す。",
-        "年間ボーナスを基本還元（0.5%）に合算しない（裁定 CR-018）。",
-        "現エンジンでは thresholdBonus に期間スナップショットが必要で、本フェーズでは確定値に反映されない（第2期）。"
-      ]
-    },
-    {
-      "id": "smbc_gold_nl_base",
-      "name": "三井住友カード ゴールド（NL） 基本還元（200円につき1ポイント）",
-      "description": "Vポイント通常還元。月次の集計期間が公式に未確認のため取引単位で集計する。",
-      "ruleKind": "baseReward",
-      "selectors": {
-        "instrumentIds": [
-          "smbc_gold_nl_card"
-        ],
-        "modeIds": [],
-        "routeIds": [],
-        "fundingRelationIds": [],
-        "merchantIds": [],
-        "merchantGroupIds": [],
-        "categoryIds": [],
-        "brandIds": [],
-        "locationIds": [],
-        "transactionTags": []
-      },
-      "exclusions": {
-        "instrumentIds": [],
-        "modeIds": [],
-        "routeIds": [],
-        "fundingRelationIds": [],
-        "merchantIds": [],
-        "merchantGroupIds": [],
-        "categoryIds": [],
-        "brandIds": [],
-        "locationIds": [],
-        "transactionTags": []
-      },
-      "conditionExpression": null,
-      "calculation": {
-        "calculationType": "unitPoints",
-        "amountUnitYen": 200,
-        "pointsPerUnit": 1,
-        "rounding": "floor"
-      },
-      "outputPointProgramId": "v_point",
-      "aggregation": {
-        "scope": "transaction",
-        "aggregationKey": null,
-        "periodMinimumEligibleSpendYen": 0,
-        "conditionEvaluationTiming": "transaction",
-        "incrementalAward": false
-      },
-      "stacking": {
-        "policy": "stackable",
-        "exclusiveGroupId": null,
-        "replacesRuleIds": [],
-        "suppressesRuleIds": [],
-        "suppressesTags": [],
-        "dependsOnRuleIds": [],
-        "applicationOrder": 10
-      },
-      "cap": null,
-      "validFrom": "2026-09-27",
-      "validUntilExclusive": null,
-      "dateBasis": "transactionDate",
-      "timezone": "Asia/Tokyo",
-      "displayClaim": null,
-      "sourceIds": [
-        "src_smbc_gold_nl_official",
-        "src_smbc_gold_nl_attention",
-        "src_smbc_vpoint_up_program"
-      ],
-      "lastVerifiedAt": "2026-09-27",
-      "status": "active",
-      "priority": 100,
-      "tags": [
-        "base_reward"
-      ],
-      "notes": [
-        "Vポイントはご利用金額200円（税込）につき1ポイント（0.5%）。",
-        "月次のVポイント集計期間の公式明記は未確認のため、取引単位（transaction）で登録した。",
-        "端数処理が公式に明記されていないため、切り捨て（rounding=floor）を仮定して登録した。実利用前に公式で確認すること。",
-        "対象コンビニ・飲食店の7%還元は店舗個別データが必要なため今回は登録しない（第2期）。対象店舗上乗せは第2期。",
-        "7%はスマホのVisa/Mastercardタッチ決済・モバイルオーダー限定で、カード原板のタッチ決済・iDは対象外。",
-        "月間7%還元分の上限は未確認（Vポイントアッププログラム全体の月50,000ポイント上限は適用）。",
-        "Vポイントアッププログラムの月間上限50,000ポイントは cap 未対応のため計算に反映しない（第2期）。",
-        "ポイント付与自体の対象外リストは公式ページに明示がなく未確認。"
-      ]
-    },
-    {
-      "id": "smbc_gold_nl_convenience_fastfood_bonus",
-      "name": "三井住友カード ゴールド（NL）対象コンビニ・飲食店の上乗せ（スマホタッチ決済で合計7%）",
-      "description": "対象コンビニ・飲食店でスマホのVisaタッチ決済／Mastercardタッチ決済／モバイルオーダーを使った場合の上乗せ分。基本0.5%に加算して合計7%になる。",
-      "ruleKind": "campaignBonus",
-      "selectors": {
-        "instrumentIds": [
-          "smbc_gold_nl_card"
-        ],
-        "modeIds": [],
-        "routeIds": [],
-        "fundingRelationIds": [],
-        "merchantIds": [],
-        "merchantGroupIds": [],
-        "categoryIds": [
-          "convenience_store",
-          "fast_food"
-        ],
-        "brandIds": [],
-        "locationIds": [],
-        "transactionTags": []
-      },
-      "exclusions": {
-        "instrumentIds": [],
-        "modeIds": [],
-        "routeIds": [],
-        "fundingRelationIds": [],
-        "merchantIds": [],
-        "merchantGroupIds": [],
-        "categoryIds": [],
-        "brandIds": [],
-        "locationIds": [],
-        "transactionTags": []
-      },
-      "conditionExpression": null,
-      "calculation": {
-        "calculationType": "unitPoints",
-        "amountUnitYen": 200,
-        "pointsPerUnit": 13,
-        "rounding": "floor"
-      },
-      "outputPointProgramId": "v_point",
-      "aggregation": {
-        "scope": "transaction",
-        "aggregationKey": null,
-        "periodMinimumEligibleSpendYen": 0,
-        "conditionEvaluationTiming": "transaction",
-        "incrementalAward": false
-      },
-      "stacking": {
-        "policy": "stackable",
-        "exclusiveGroupId": null,
-        "replacesRuleIds": [],
-        "suppressesRuleIds": [],
-        "suppressesTags": [],
-        "dependsOnRuleIds": [],
-        "applicationOrder": 100
-      },
-      "cap": null,
-      "validFrom": "2026-09-27",
-      "validUntilExclusive": null,
-      "dateBasis": "transactionDate",
-      "timezone": "Asia/Tokyo",
-      "displayClaim": null,
-      "sourceIds": [
-        "src_olive_gold_official",
-        "src_olive_point_rate",
-        "src_olive_gold_attention",
-        "src_smbc_vpoint_up_program",
-        "src_mufg_global_point",
-        "src_mufg_global_plus",
-        "src_mufg_annual_bonus",
-        "src_mufg_store_bonus"
-      ],
-      "lastVerifiedAt": "2026-09-27",
-      "status": "active",
-      "priority": 100,
-      "tags": [
-        "base_reward"
-      ],
-      "notes": [
-        "カード本体でのタッチ決済は対象外（公式に明記）。",
-        "月間の上乗せ分の上限は公式に明記がなく未確認（Vポイントアッププログラム全体の月50,000ptは適用される）。",
-        "上乗せ分は合計7%になるよう基本還元との差分13pt/200円で登録している。"
-      ]
-    },
-    {
-      "id": "v_neobank_debit_base_1_25",
-      "name": "V NEOBANKデビット 基本還元 1.25%（2026-11-01以降到着分）",
-      "description": "2026-11-01以降に売上確定データが到着した分の還元率1.25%。改定は上書きせず別ルールとして登録する（決定台帳 D-40）。",
-      "ruleKind": "baseReward",
-      "selectors": {
-        "instrumentIds": [
-          "v_neobank_debit"
-        ],
-        "modeIds": [],
-        "routeIds": [],
-        "fundingRelationIds": [],
-        "merchantIds": [],
-        "merchantGroupIds": [],
-        "categoryIds": [],
-        "brandIds": [],
-        "locationIds": [],
-        "transactionTags": []
-      },
-      "exclusions": {
-        "instrumentIds": [],
-        "modeIds": [],
-        "routeIds": [],
-        "fundingRelationIds": [],
-        "merchantIds": [],
-        "merchantGroupIds": [],
-        "categoryIds": [],
-        "brandIds": [],
-        "locationIds": [],
-        "transactionTags": []
-      },
-      "conditionExpression": null,
-      "calculation": {
-        "calculationType": "rateFraction",
-        "numerator": 1,
-        "denominator": 80,
-        "rounding": "floor"
-      },
-      "outputPointProgramId": "v_point",
-      "aggregation": {
-        "scope": "transaction",
-        "aggregationKey": null,
-        "periodMinimumEligibleSpendYen": 0,
-        "conditionEvaluationTiming": "transaction",
-        "incrementalAward": false
-      },
-      "stacking": {
-        "policy": "stackable",
-        "exclusiveGroupId": null,
-        "replacesRuleIds": [],
-        "suppressesRuleIds": [],
-        "suppressesTags": [],
-        "dependsOnRuleIds": [],
-        "applicationOrder": 20
-      },
-      "cap": null,
-      "validFrom": "2026-11-01",
-      "validUntilExclusive": null,
-      "dateBasis": "settlementDataReceivedDate",
-      "timezone": "Asia/Tokyo",
-      "displayClaim": null,
-      "sourceIds": [
-        "src_netbk_revision_20260731",
-        "src_itmedia_vneobank_revision"
-      ],
-      "lastVerifiedAt": "2026-09-27",
-      "status": "active",
-      "priority": 100,
-      "tags": [
-        "base_reward",
-        "revision_2026_11"
-      ],
-      "notes": [
-        "2026-11-01以降到着の売上確定データ分から還元率は1.25%（＝1/80）。",
-        "日付基準は売上確定データの到着日（settlementDataReceivedDate）。",
-        "有効区間は半開区間 [2026-11-01, ∞) として登録する。10月中の利用でも到着が11-01以降なら新率が適用される。",
-        "同日到着分より対象外取引を大幅追加（他社決済サービスへのチャージ、鉄道、公共料金、税金、病院、非営利団体への会費・寄付等）。対象外リストはエンジン未実装のため notes のみに残す（第2期）。",
-        "月間合計1,000円以上の利用が条件。現エンジンでは月間最低利用額を条件として表現できないため notes のみに残す。",
-        "1ポイント未満の端数は切り捨て。",
-        "改定は上書きせず2本のルールとして登録する（決定台帳 D-40）。"
-      ]
-    },
-    {
-      "id": "v_neobank_debit_base_1_5",
-      "name": "V NEOBANKデビット 基本還元 1.5%（〜2026-10-31到着分）",
-      "description": "2026-10-31までに売上確定データが到着した分の還元率1.5%。率のみが公表されているため rateFraction で登録する。",
-      "ruleKind": "baseReward",
-      "selectors": {
-        "instrumentIds": [
-          "v_neobank_debit"
-        ],
-        "modeIds": [],
-        "routeIds": [],
-        "fundingRelationIds": [],
-        "merchantIds": [],
-        "merchantGroupIds": [],
-        "categoryIds": [],
-        "brandIds": [],
-        "locationIds": [],
-        "transactionTags": []
-      },
-      "exclusions": {
-        "instrumentIds": [],
-        "modeIds": [],
-        "routeIds": [],
-        "fundingRelationIds": [],
-        "merchantIds": [],
-        "merchantGroupIds": [],
-        "categoryIds": [],
-        "brandIds": [],
-        "locationIds": [],
-        "transactionTags": []
-      },
-      "conditionExpression": null,
-      "calculation": {
-        "calculationType": "rateFraction",
-        "numerator": 3,
-        "denominator": 200,
-        "rounding": "floor"
-      },
-      "outputPointProgramId": "v_point",
-      "aggregation": {
-        "scope": "transaction",
-        "aggregationKey": null,
-        "periodMinimumEligibleSpendYen": 0,
-        "conditionEvaluationTiming": "transaction",
-        "incrementalAward": false
-      },
-      "stacking": {
-        "policy": "stackable",
-        "exclusiveGroupId": null,
-        "replacesRuleIds": [],
-        "suppressesRuleIds": [],
-        "suppressesTags": [],
-        "dependsOnRuleIds": [],
-        "applicationOrder": 10
-      },
-      "cap": null,
-      "validFrom": "2026-09-27",
-      "validUntilExclusive": "2026-11-01",
-      "dateBasis": "settlementDataReceivedDate",
-      "timezone": "Asia/Tokyo",
-      "displayClaim": null,
-      "sourceIds": [
-        "src_netbk_vneobank",
-        "src_vneobank_debit_lp",
-        "src_netbk_revision_20260731"
-      ],
-      "lastVerifiedAt": "2026-09-27",
-      "status": "active",
-      "priority": 100,
-      "tags": [
-        "base_reward",
-        "revision_2026_11"
-      ],
-      "notes": [
-        "ご利用金額の1.5%分のVポイント（＝3/200）。",
-        "日付基準は売上確定データの到着日（settlementDataReceivedDate）。購入日（transactionDate）で代用してはならない（裁定 CR-016）。",
-        "有効区間は半開区間 [2026-09-27, 2026-11-01) として登録する。validFrom は制度の効力発生日が未確認のため調査日を暫定値としている。",
-        "月間合計1,000円以上の利用が条件。現エンジンでは月間最低利用額を条件として表現できないため notes のみに残す（現状は少額でも計算される・第2期）。",
-        "1ポイント未満の端数は切り捨て。",
-        "対象金額は加盟店から後日送られる売上確定データの金額（最終確定金額）。",
-        "現行（〜2026-10-31到着分）の明示的な対象外リストは公式に確認できず未確認。",
-        "デビットカード利用分の月間付与上限は未確認。"
-      ]
-    }
-  ]
+ "schemaVersion": "1.0.0",
+ "catalogVersion": "2026.09.28.2",
+ "generatedAt": "2026-09-27T00:00:00+09:00",
+ "items": [
+  {
+   "id": "jcb_card_w_base",
+   "name": "JCBカードW 基本還元（200円につき2ポイント）",
+   "description": "毎月16日〜翌月15日の利用金額を合計してからポイント換算し、小数点以下を切り捨てる。",
+   "ruleKind": "baseReward",
+   "selectors": {
+    "instrumentIds": [
+     "jcb_card_w"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": null,
+   "calculation": {
+    "calculationType": "unitPoints",
+    "amountUnitYen": 200,
+    "pointsPerUnit": 2,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "j_point",
+   "aggregation": {
+    "scope": "billingMonth",
+    "aggregationKey": "jcb_billing_cycle_16",
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": true
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 10
+   },
+   "cap": null,
+   "validFrom": "2026-09-27",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_jcb_card_w_official",
+    "src_jcb_card_w_order",
+    "src_jcb_point_about",
+    "src_jcb_point_news"
+   ],
+   "lastVerifiedAt": "2026-09-27",
+   "status": "active",
+   "priority": 100,
+   "tags": [
+    "base_reward",
+    "monthly_aggregation"
+   ],
+   "notes": [
+    "J-POINTは200円（税込）につき2ポイント（通常カードの2倍、実質1.0%）。",
+    "ご利用金額の集計期間は毎月16日〜翌月15日。",
+    "毎月のご利用額を合計してからポイント換算し、小数点以下は切り捨て。1回の利用が200円未満でも月合計に付与される。",
+    "ポイント2倍は国内・海外共通で、決済経路による基本還元の差は公式に記載なし。",
+    "J-POINTボーナス（年間50万円ごと、集計期間は毎年12月16日〜翌年12月15日、段階的な付与数、上限なし）は thresholdBonus では表現できないため今回は登録しない（第2期）。",
+    "JCBカードWのJ-POINTボーナス区分（一般会員／プレミアム会員）は公式に明記がなく未確認。",
+    "基本ポイントの上限の記載はなし（未確認）。国際ブランド（JCBのみか）、iD等の決済経路差も未確認。"
+   ]
+  },
+  {
+   "id": "mizuho_rakuten_base_rakuten_point",
+   "name": "みずほ楽天カード 楽天ポイント基本還元（100円につき1ポイント）",
+   "description": "楽天カード通常分。1回のお買い物ごと（取引単位）に100円につき1ポイント、100円未満は切り捨て。",
+   "ruleKind": "baseReward",
+   "selectors": {
+    "instrumentIds": [
+     "mizuho_rakuten_card"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": null,
+   "calculation": {
+    "calculationType": "unitPoints",
+    "amountUnitYen": 100,
+    "pointsPerUnit": 1,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "rakuten_point",
+   "aggregation": {
+    "scope": "transaction",
+    "aggregationKey": null,
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": false
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 10
+   },
+   "cap": null,
+   "validFrom": "2026-09-27",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_mizuho_rakuten_official",
+    "src_rakuten_point_rate",
+    "src_rakuten_news_20230801",
+    "src_rakuten_faq_calc",
+    "src_rakuten_faq_award_date"
+   ],
+   "lastVerifiedAt": "2026-09-27",
+   "status": "active",
+   "priority": 100,
+   "tags": [
+    "base_reward",
+    "per_transaction"
+   ],
+   "notes": [
+    "楽天ポイントは、1回のカードショッピング（お買い物ごと）のご利用金額に対して100円につき1ポイント（1%）。楽天カード公式ページに「※1回のカードショッピング（お買い物ごと）のご利用金額に対して100円につき1ポイントを進呈いたします」と明記。",
+    "取引ごとの計算のため、集計範囲は transaction（月間合算ではない）。月の合計額から還元率を求めるとポイントにズレが生じる。そのため aggregationKey は null、incrementalAward は false としている。",
+    "1回の決済ごとに100円未満を切り捨て。",
+    "カテゴリ別の計算単位（公共料金・税金500円1pt、保険料200円1pt、携帯電話料金200円1pt）は draft ルールとして別建てで保留している。",
+    "ポイント進呈の対象外には年会費・各種手数料、キャッシング、他社決済サービスへのチャージ等がある。対象外リストはエンジン未実装のため計算に反映しない（第2期）。",
+    "国際ブランド・決済経路による還元差は未確認。"
+   ]
+  },
+  {
+   "id": "mizuho_rakuten_insurance_draft",
+   "name": "みずほ楽天カード 保険料のカテゴリ別還元（200円につき1ポイント）※draft",
+   "description": "保険料は200円につき1ポイントが適用される。第1期は保留。",
+   "ruleKind": "categoryBonus",
+   "selectors": {
+    "instrumentIds": [
+     "mizuho_rakuten_card"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [
+     "rakuten_insurance_category"
+    ],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": null,
+   "calculation": {
+    "calculationType": "unitPoints",
+    "amountUnitYen": 200,
+    "pointsPerUnit": 1,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "rakuten_point",
+   "aggregation": {
+    "scope": "transaction",
+    "aggregationKey": null,
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": false
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 30
+   },
+   "cap": null,
+   "validFrom": "2026-09-27",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_rakuten_point_rate"
+   ],
+   "lastVerifiedAt": "2026-09-27",
+   "status": "draft",
+   "priority": 10,
+   "tags": [
+    "category_bonus",
+    "draft"
+   ],
+   "notes": [
+    "対象事業者リストを持つカテゴリ別ルール（楽天カード公式「ポイント還元率について」に明記）。第1期は対象事業者リストを登録しないため、selectors.categoryIds に暫定のカテゴリIDを置き、現在はどの取引にも一致しない状態で status=draft として保留している。店舗・カテゴリデータを整備したうえで有効化する（第2期）。",
+    "対象例: 生命保険・損害保険・傷害保険・医療保険等の第三分野の保険（対象事業者リストあり。2024-08-01利用分より適用）。",
+    "楽天グループサービスは通常ルールのまま。端数は切り捨て。"
+   ]
+  },
+  {
+   "id": "mizuho_rakuten_mobile_draft",
+   "name": "みずほ楽天カード 携帯電話ご利用料金のカテゴリ別還元（200円につき1ポイント）※draft",
+   "description": "携帯電話ご利用料金は200円につき1ポイントが適用される。第1期は保留。",
+   "ruleKind": "categoryBonus",
+   "selectors": {
+    "instrumentIds": [
+     "mizuho_rakuten_card"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [
+     "rakuten_mobile_carrier_category"
+    ],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": null,
+   "calculation": {
+    "calculationType": "unitPoints",
+    "amountUnitYen": 200,
+    "pointsPerUnit": 1,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "rakuten_point",
+   "aggregation": {
+    "scope": "transaction",
+    "aggregationKey": null,
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": false
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 30
+   },
+   "cap": null,
+   "validFrom": "2026-09-27",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_rakuten_point_rate"
+   ],
+   "lastVerifiedAt": "2026-09-27",
+   "status": "draft",
+   "priority": 10,
+   "tags": [
+    "category_bonus",
+    "draft"
+   ],
+   "notes": [
+    "対象事業者リストを持つカテゴリ別ルール（楽天カード公式「ポイント還元率について」に明記）。第1期は対象事業者リストを登録しないため、selectors.categoryIds に暫定のカテゴリIDを置き、現在はどの取引にも一致しない状態で status=draft として保留している。店舗・カテゴリデータを整備したうえで有効化する（第2期）。",
+    "対象例: NTTドコモ・au・SoftBank・UQ mobile・Y!mobile 等（対象事業者リストあり。2024-08-01利用分より適用。電話料金合算払いを含む）。",
+    "楽天グループサービスは通常ルールのまま。端数は切り捨て。"
+   ]
+  },
+  {
+   "id": "mizuho_rakuten_utility_draft",
+   "name": "みずほ楽天カード 公共料金・税金のカテゴリ別還元（500円につき1ポイント）※draft",
+   "description": "公共料金・税金は通常より低い計算単位（500円につき1ポイント）が適用される。第1期は保留。",
+   "ruleKind": "categoryBonus",
+   "selectors": {
+    "instrumentIds": [
+     "mizuho_rakuten_card"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [
+     "rakuten_utility_and_tax_category"
+    ],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": null,
+   "calculation": {
+    "calculationType": "unitPoints",
+    "amountUnitYen": 500,
+    "pointsPerUnit": 1,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "rakuten_point",
+   "aggregation": {
+    "scope": "transaction",
+    "aggregationKey": null,
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": false
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 30
+   },
+   "cap": null,
+   "validFrom": "2026-09-27",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_rakuten_point_rate"
+   ],
+   "lastVerifiedAt": "2026-09-27",
+   "status": "draft",
+   "priority": 10,
+   "tags": [
+    "category_bonus",
+    "draft"
+   ],
+   "notes": [
+    "対象事業者リストを持つカテゴリ別ルール（楽天カード公式「ポイント還元率について」に明記）。第1期は対象事業者リストを登録しないため、selectors.categoryIds に暫定のカテゴリIDを置き、現在はどの取引にも一致しない状態で status=draft として保留している。店舗・カテゴリデータを整備したうえで有効化する（第2期）。",
+    "対象例: 電気・ガス・水道、自動車税・固定資産税・都市計画税・住民税・法人税等、国民年金保険料、NHK放送受信料（2024-08-01利用分より）等。",
+    "上記記載のない事業者でのご利用分は100円につき1ポイントのため、通常ルール（mizuho_rakuten_base_rakuten_point）が適用される。",
+    "端数は切り捨て。"
+   ]
+  },
+  {
+   "id": "mizuho_rakuten_w_point_mizuho_point",
+   "name": "みずほ楽天カード Wポイントプラン（みずほポイント）",
+   "description": "条件を満たした場合にのみ、楽天ポイント（通常ポイント）と同数のみずほポイントを付与する条件付きルール。",
+   "ruleKind": "mirrorReward",
+   "selectors": {
+    "instrumentIds": [
+     "mizuho_rakuten_card"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": {
+    "nodeType": "condition",
+    "conditionId": "mizuho_w_point_plan_eligible"
+   },
+   "calculation": {
+    "calculationType": "mirror",
+    "sourceRuleId": "mizuho_rakuten_base_rakuten_point",
+    "multiplierNumerator": 1,
+    "multiplierDenominator": 1,
+    "inheritEligibility": true,
+    "inheritExclusions": true,
+    "useFinalSourceAmount": true
+   },
+   "outputPointProgramId": "mizuho_point",
+   "aggregation": {
+    "scope": "transaction",
+    "aggregationKey": null,
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": false
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 20
+   },
+   "cap": null,
+   "validFrom": "2026-09-27",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_mizuho_rakuten_official"
+   ],
+   "lastVerifiedAt": "2026-09-27",
+   "status": "active",
+   "priority": 50,
+   "tags": [
+    "w_point_plan",
+    "conditional"
+   ],
+   "notes": [
+    "Wポイントプランは ①2025-06-30以降に新規申込・契約完了、②カード申込日の翌々月末日までに口座振替設定を完了、の両方で対象。",
+    "付与内容は楽天ポイント（通常ポイント）と同数のみずほポイント。基本還元ルールの結果を複製する mirror 計算で表現している。",
+    "対象期間は条件を満たした月の月初より最長1年間（全利用者共通の固定期間ではない）。",
+    "上限はみずほポイント10,000ポイント。エンジンは cap に未対応のため cap は null とし、上限はここに文章で残す（第2期で実装）。",
+    "条件は conditionId=mizuho_w_point_plan_eligible として参照する。既定状態は unknown のため、条件未入力時は確定値に加算されない（決定台帳 D-50）。",
+    "みずほマイレージクラブ入会・みずほダイレクト契約および初回登録を各利用月の末日までに満たす必要がある。進呈はカード利用の翌々月の月初。",
+    "前提条件未達・進呈時の退会・対象外時の家族カード利用分は対象外。"
+   ]
+  },
+  {
+   "id": "mufg_card_base_global_point",
+   "name": "三菱UFJカード 基本還元（1,000円につき1ポイント）",
+   "description": "毎月16日〜翌月15日の利用金額合計1,000円ごとに1ポイント。1,000円未満は切り捨て。",
+   "ruleKind": "baseReward",
+   "selectors": {
+    "instrumentIds": [
+     "mufg_card"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": null,
+   "calculation": {
+    "calculationType": "unitPoints",
+    "amountUnitYen": 1000,
+    "pointsPerUnit": 1,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "global_point",
+   "aggregation": {
+    "scope": "billingMonth",
+    "aggregationKey": "mufg_billing_cycle_16",
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": true
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 10
+   },
+   "cap": null,
+   "validFrom": "2026-09-27",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_mufg_global_point",
+    "src_mufg_global_plus",
+    "src_mufg_bank_card"
+   ],
+   "lastVerifiedAt": "2026-09-27",
+   "status": "active",
+   "priority": 100,
+   "tags": [
+    "base_reward",
+    "monthly_aggregation"
+   ],
+   "notes": [
+    "1ヵ月のショッピングご利用金額合計1,000円ごとに基本ポイント1ポイント。1P = 5円相当（商品交換）で実質0.5%。",
+    "集計は原則毎月16日〜翌月15日で、翌々月ご請求分にポイント付与。",
+    "1ヵ月のご利用金額合計1,000円未満は切り捨て。グローバルPLUS付与分は小数点以下切り捨て。",
+    "登録カードは一般カードのため、年間利用ボーナス（ゴールド限定・2,200ポイント）は登録しない。",
+    "公共料金・税金・保険料・通信費の5,000円1Pへの変更は2027-01-12請求分より（改定は第2期）。",
+    "ポイントアッププログラム（エントリー必要）・グローバルPLUSの上乗せは第2期。",
+    "キャッシュバック交換は1P = 4円。最大交換価値は未確認。"
+   ]
+  },
+  {
+   "id": "mufg_card_target_store_bonus",
+   "name": "三菱UFJカード対象店舗の上乗せ（合計7%相当）",
+   "description": "対象店舗での上乗せ分。1ポイント5円相当で換算し、基本0.5%に加算して合計7%相当になる。",
+   "ruleKind": "campaignBonus",
+   "selectors": {
+    "instrumentIds": [
+     "mufg_card"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [
+     "convenience_store",
+     "fast_food",
+     "cafe",
+     "kaiten_sushi",
+     "pizza",
+     "supermarket"
+    ],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": null,
+   "calculation": {
+    "calculationType": "unitPoints",
+    "amountUnitYen": 1000,
+    "pointsPerUnit": 13,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "global_point",
+   "aggregation": {
+    "scope": "transaction",
+    "aggregationKey": null,
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": false
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 100
+   },
+   "cap": null,
+   "validFrom": "2026-09-27",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_olive_gold_official",
+    "src_olive_point_rate",
+    "src_olive_gold_attention",
+    "src_smbc_vpoint_up_program",
+    "src_mufg_global_point",
+    "src_mufg_global_plus",
+    "src_mufg_annual_bonus",
+    "src_mufg_store_bonus"
+   ],
+   "lastVerifiedAt": "2026-09-27",
+   "status": "active",
+   "priority": 100,
+   "tags": [
+    "base_reward"
+   ],
+   "notes": [
+    "ポイントアッププログラム条件達成で最大20%相当になるが、条件の詳細が未確認のため第2期で扱う。",
+    "対象店舗利用額の月50,000円が上限（超過分は基本還元のみ）。上限は計算に反映されていない。",
+    "グローバルポイントWalletでのスマホ決済は対象外（公式に明記）。",
+    "上乗せ分は1ポイント5円相当のグローバルポイントで付与される。基本0.5%に加算して合計7%相当になるよう13pt/1,000円で登録している。"
+   ]
+  },
+  {
+   "id": "olive_flexible_pay_gold_annual_bonus_1m",
+   "name": "Oliveフレキシブルペイ ゴールド 年間100万円利用特典（10,000ポイント）",
+   "description": "デビットモード・クレジットモードの年間100万円利用で毎年10,000ポイント。基本還元には合算しない。",
+   "ruleKind": "campaignBonus",
+   "selectors": {
+    "instrumentIds": [
+     "olive_flexible_pay_gold"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": null,
+   "calculation": {
+    "calculationType": "thresholdBonus",
+    "thresholdAmountYen": 1000000,
+    "bonusPoints": 10000,
+    "maxAwardsPerPeriod": 1
+   },
+   "outputPointProgramId": "v_point",
+   "aggregation": {
+    "scope": "membershipYear",
+    "aggregationKey": "olive_annual_100man",
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": true
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 90
+   },
+   "cap": null,
+   "validFrom": "2026-09-27",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_olive_gold_official",
+    "src_olive_gold_attention",
+    "src_olive_privilege"
+   ],
+   "lastVerifiedAt": "2026-09-27",
+   "status": "active",
+   "priority": 40,
+   "tags": [
+    "annual_bonus"
+   ],
+   "notes": [
+    "年間100万円以上の利用で毎年10,000ポイント（毎年カード加入月の翌月末日までに付与）。",
+    "対象はデビットモード・クレジットモードの利用分（ETCカード・iD利用分も合算）。ポイント払いモード・追加した支払いモードは対象外。",
+    "年間ボーナスを基本還元（0.5%）に合算してはならない（裁定 CR-018）。本ルールを別建てで登録している。",
+    "初年度は入会日から12ヵ月後の末日まで、翌年度以降は入会月の翌月1日から11ヵ月後の末日まで。",
+    "現エンジンでは thresholdBonus に期間スナップショットが必要で、本フェーズでは確定値に反映されない（第2期）。"
+   ]
+  },
+  {
+   "id": "olive_flexible_pay_gold_base",
+   "name": "Oliveフレキシブルペイ ゴールド 基本還元（0.5%）",
+   "description": "クレジット／デビット／ポイント払いモード共通の基本還元。率のみが公表されているため rateFraction で登録する。",
+   "ruleKind": "baseReward",
+   "selectors": {
+    "instrumentIds": [
+     "olive_flexible_pay_gold"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": null,
+   "calculation": {
+    "calculationType": "rateFraction",
+    "numerator": 1,
+    "denominator": 200,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "v_point",
+   "aggregation": {
+    "scope": "transaction",
+    "aggregationKey": null,
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": false
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 10
+   },
+   "cap": null,
+   "validFrom": "2026-09-27",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_olive_gold_official",
+    "src_olive_point_rate",
+    "src_olive_gold_attention"
+   ],
+   "lastVerifiedAt": "2026-09-27",
+   "status": "active",
+   "priority": 100,
+   "tags": [
+    "base_reward"
+   ],
+   "notes": [
+    "クレジットモード0.5%、デビットモード0.5%、ポイント払いモード0.5%（三井住友銀行公式のお支払いモード表で確認）。＝1/200。",
+    "二次情報にポイント払いモード0.25%の記載があったが、公式は0.5%のため採用しない。",
+    "第1期は payment_modes.json を登録しないためモードを限定せず、3モードすべてに同じ0.5%を適用する単一ルールとして登録している。",
+    "「追加した支払いモード」は追加先カードのサービスが適用され、Oliveの0.5%とは異なる（年100万円特典の集計対象外）。",
+    "端数処理が公式に明記されていないため、切り捨て（rounding=floor）を仮定して登録した。実利用前に公式で確認すること。",
+    "月次のVポイント集計期間の公式明記は未確認のため、取引単位（transaction）で登録した。",
+    "「200円につき1ポイント」に相当する計算単位の公式明記は未確認。率（0.5%）から登録している。",
+    "対象コンビニ・飲食店のスマホタッチ決済上乗せ（通常0.5%＋7.5%）は店舗個別データが必要なため今回は登録しない（第2期）。"
+   ]
+  },
+  {
+   "id": "olive_flexible_pay_gold_convenience_fastfood_bonus",
+   "name": "Oliveフレキシブルペイ ゴールド対象コンビニ・飲食店の上乗せ（スマホタッチ決済で最大8%）",
+   "description": "対象コンビニ・飲食店でスマホのVisaタッチ決済／Mastercardタッチ決済／モバイルオーダーを使った場合の上乗せ分。通常0.5%に加算して最大8%になる。",
+   "ruleKind": "campaignBonus",
+   "selectors": {
+    "instrumentIds": [
+     "olive_flexible_pay_gold"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [
+     "convenience_store",
+     "fast_food"
+    ],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": null,
+   "calculation": {
+    "calculationType": "unitPoints",
+    "amountUnitYen": 200,
+    "pointsPerUnit": 15,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "v_point",
+   "aggregation": {
+    "scope": "transaction",
+    "aggregationKey": null,
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": false
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 100
+   },
+   "cap": null,
+   "validFrom": "2026-09-27",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_olive_gold_official",
+    "src_olive_point_rate",
+    "src_olive_gold_attention",
+    "src_smbc_vpoint_up_program",
+    "src_mufg_global_point",
+    "src_mufg_global_plus",
+    "src_mufg_annual_bonus",
+    "src_mufg_store_bonus"
+   ],
+   "lastVerifiedAt": "2026-09-27",
+   "status": "active",
+   "priority": 100,
+   "tags": [
+    "base_reward"
+   ],
+   "notes": [
+    "公式に「通常0.5%＋7.5%＝最大8%」と明記されている。",
+    "対象チェーン例: セイコーマート、セブン-イレブン、ポプラ、ミニストップ、ローソン、マクドナルド等。",
+    "上乗せ分の月上限は未確認。"
+   ]
+  },
+  {
+   "id": "smbc_gold_nl_annual_bonus_1m",
+   "name": "三井住友カード ゴールド（NL） 年間100万円利用特典（10,000ポイント）",
+   "description": "年間100万円の利用で毎年10,000ポイント。初年度は付与されない。基本還元には合算しない。",
+   "ruleKind": "campaignBonus",
+   "selectors": {
+    "instrumentIds": [
+     "smbc_gold_nl_card"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": null,
+   "calculation": {
+    "calculationType": "thresholdBonus",
+    "thresholdAmountYen": 1000000,
+    "bonusPoints": 10000,
+    "maxAwardsPerPeriod": 1
+   },
+   "outputPointProgramId": "v_point",
+   "aggregation": {
+    "scope": "membershipYear",
+    "aggregationKey": "smbc_gold_nl_annual_100man",
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": true
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 90
+   },
+   "cap": null,
+   "validFrom": "2026-09-27",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_smbc_gold_nl_official",
+    "src_smbc_gold_nl_attention",
+    "src_smbc_faq_annual_1m"
+   ],
+   "lastVerifiedAt": "2026-09-27",
+   "status": "active",
+   "priority": 40,
+   "tags": [
+    "annual_bonus"
+   ],
+   "notes": [
+    "毎年、年間100万円の利用で10,000ポイント（初年度は付与されない）。",
+    "集計期間は加入月の11ヵ月後末まで。付与は毎年カード加入月の末日まで。",
+    "家族カード・子カード（ETC、iD専用カード等）の利用分は合算。",
+    "100万円を超えても上限は10,000ポイント。エンジンは cap に未対応のため cap は null とし、上限はここに文章で残す。",
+    "年間ボーナスを基本還元（0.5%）に合算しない（裁定 CR-018）。",
+    "現エンジンでは thresholdBonus に期間スナップショットが必要で、本フェーズでは確定値に反映されない（第2期）。"
+   ]
+  },
+  {
+   "id": "smbc_gold_nl_base",
+   "name": "三井住友カード ゴールド（NL） 基本還元（200円につき1ポイント）",
+   "description": "Vポイント通常還元。月次の集計期間が公式に未確認のため取引単位で集計する。",
+   "ruleKind": "baseReward",
+   "selectors": {
+    "instrumentIds": [
+     "smbc_gold_nl_card"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": null,
+   "calculation": {
+    "calculationType": "unitPoints",
+    "amountUnitYen": 200,
+    "pointsPerUnit": 1,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "v_point",
+   "aggregation": {
+    "scope": "transaction",
+    "aggregationKey": null,
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": false
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 10
+   },
+   "cap": null,
+   "validFrom": "2026-09-27",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_smbc_gold_nl_official",
+    "src_smbc_gold_nl_attention",
+    "src_smbc_vpoint_up_program"
+   ],
+   "lastVerifiedAt": "2026-09-27",
+   "status": "active",
+   "priority": 100,
+   "tags": [
+    "base_reward"
+   ],
+   "notes": [
+    "Vポイントはご利用金額200円（税込）につき1ポイント（0.5%）。",
+    "月次のVポイント集計期間の公式明記は未確認のため、取引単位（transaction）で登録した。",
+    "端数処理が公式に明記されていないため、切り捨て（rounding=floor）を仮定して登録した。実利用前に公式で確認すること。",
+    "対象コンビニ・飲食店の7%還元は店舗個別データが必要なため今回は登録しない（第2期）。対象店舗上乗せは第2期。",
+    "7%はスマホのVisa/Mastercardタッチ決済・モバイルオーダー限定で、カード原板のタッチ決済・iDは対象外。",
+    "月間7%還元分の上限は未確認（Vポイントアッププログラム全体の月50,000ポイント上限は適用）。",
+    "Vポイントアッププログラムの月間上限50,000ポイントは cap 未対応のため計算に反映しない（第2期）。",
+    "ポイント付与自体の対象外リストは公式ページに明示がなく未確認。"
+   ]
+  },
+  {
+   "id": "smbc_gold_nl_convenience_fastfood_bonus",
+   "name": "三井住友カード ゴールド（NL）対象コンビニ・飲食店の上乗せ（スマホタッチ決済で合計7%）",
+   "description": "対象コンビニ・飲食店でスマホのVisaタッチ決済／Mastercardタッチ決済／モバイルオーダーを使った場合の上乗せ分。基本0.5%に加算して合計7%になる。",
+   "ruleKind": "campaignBonus",
+   "selectors": {
+    "instrumentIds": [
+     "smbc_gold_nl_card"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [
+     "convenience_store",
+     "fast_food"
+    ],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": null,
+   "calculation": {
+    "calculationType": "unitPoints",
+    "amountUnitYen": 200,
+    "pointsPerUnit": 13,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "v_point",
+   "aggregation": {
+    "scope": "transaction",
+    "aggregationKey": null,
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": false
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 100
+   },
+   "cap": null,
+   "validFrom": "2026-09-27",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_olive_gold_official",
+    "src_olive_point_rate",
+    "src_olive_gold_attention",
+    "src_smbc_vpoint_up_program",
+    "src_mufg_global_point",
+    "src_mufg_global_plus",
+    "src_mufg_annual_bonus",
+    "src_mufg_store_bonus"
+   ],
+   "lastVerifiedAt": "2026-09-27",
+   "status": "active",
+   "priority": 100,
+   "tags": [
+    "base_reward"
+   ],
+   "notes": [
+    "カード本体でのタッチ決済は対象外（公式に明記）。",
+    "月間の上乗せ分の上限は公式に明記がなく未確認（Vポイントアッププログラム全体の月50,000ptは適用される）。",
+    "上乗せ分は合計7%になるよう基本還元との差分13pt/200円で登録している。"
+   ]
+  },
+  {
+   "id": "v_neobank_debit_base_1_25",
+   "name": "V NEOBANKデビット 基本還元 1.25%（2026-11-01以降到着分）",
+   "description": "2026-11-01以降に売上確定データが到着した分の還元率1.25%。改定は上書きせず別ルールとして登録する（決定台帳 D-40）。",
+   "ruleKind": "baseReward",
+   "selectors": {
+    "instrumentIds": [
+     "v_neobank_debit"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": null,
+   "calculation": {
+    "calculationType": "rateFraction",
+    "numerator": 1,
+    "denominator": 80,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "v_point",
+   "aggregation": {
+    "scope": "transaction",
+    "aggregationKey": null,
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": false
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 20
+   },
+   "cap": null,
+   "validFrom": "2026-11-01",
+   "validUntilExclusive": null,
+   "dateBasis": "settlementDataReceivedDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_netbk_revision_20260731",
+    "src_itmedia_vneobank_revision"
+   ],
+   "lastVerifiedAt": "2026-09-27",
+   "status": "active",
+   "priority": 100,
+   "tags": [
+    "base_reward",
+    "revision_2026_11"
+   ],
+   "notes": [
+    "2026-11-01以降到着の売上確定データ分から還元率は1.25%（＝1/80）。",
+    "日付基準は売上確定データの到着日（settlementDataReceivedDate）。",
+    "有効区間は半開区間 [2026-11-01, ∞) として登録する。10月中の利用でも到着が11-01以降なら新率が適用される。",
+    "同日到着分より対象外取引を大幅追加（他社決済サービスへのチャージ、鉄道、公共料金、税金、病院、非営利団体への会費・寄付等）。対象外リストはエンジン未実装のため notes のみに残す（第2期）。",
+    "月間合計1,000円以上の利用が条件。現エンジンでは月間最低利用額を条件として表現できないため notes のみに残す。",
+    "1ポイント未満の端数は切り捨て。",
+    "改定は上書きせず2本のルールとして登録する（決定台帳 D-40）。"
+   ]
+  },
+  {
+   "id": "v_neobank_debit_base_1_5",
+   "name": "V NEOBANKデビット 基本還元 1.5%（〜2026-10-31到着分）",
+   "description": "2026-10-31までに売上確定データが到着した分の還元率1.5%。率のみが公表されているため rateFraction で登録する。",
+   "ruleKind": "baseReward",
+   "selectors": {
+    "instrumentIds": [
+     "v_neobank_debit"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": null,
+   "calculation": {
+    "calculationType": "rateFraction",
+    "numerator": 3,
+    "denominator": 200,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "v_point",
+   "aggregation": {
+    "scope": "transaction",
+    "aggregationKey": null,
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": false
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 10
+   },
+   "cap": null,
+   "validFrom": "2026-09-27",
+   "validUntilExclusive": "2026-11-01",
+   "dateBasis": "settlementDataReceivedDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_netbk_vneobank",
+    "src_vneobank_debit_lp",
+    "src_netbk_revision_20260731"
+   ],
+   "lastVerifiedAt": "2026-09-27",
+   "status": "active",
+   "priority": 100,
+   "tags": [
+    "base_reward",
+    "revision_2026_11"
+   ],
+   "notes": [
+    "ご利用金額の1.5%分のVポイント（＝3/200）。",
+    "日付基準は売上確定データの到着日（settlementDataReceivedDate）。購入日（transactionDate）で代用してはならない（裁定 CR-016）。",
+    "有効区間は半開区間 [2026-09-27, 2026-11-01) として登録する。validFrom は制度の効力発生日が未確認のため調査日を暫定値としている。",
+    "月間合計1,000円以上の利用が条件。現エンジンでは月間最低利用額を条件として表現できないため notes のみに残す（現状は少額でも計算される・第2期）。",
+    "1ポイント未満の端数は切り捨て。",
+    "対象金額は加盟店から後日送られる売上確定データの金額（最終確定金額）。",
+    "現行（〜2026-10-31到着分）の明示的な対象外リストは公式に確認できず未確認。",
+    "デビットカード利用分の月間付与上限は未確認。"
+   ]
+  },
+  {
+   "id": "jcb_card_w_point_up_mcdonalds",
+   "name": "JCBカードW ポイントアップ（マクドナルド 20倍）",
+   "description": "対象店舗でJCBカードWを利用したときのポイントアップ（20倍）。差分の18ポイントを上乗せする。",
+   "ruleKind": "campaignBonus",
+   "selectors": {
+    "instrumentIds": [
+     "jcb_card_w"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [
+     "mcdonalds"
+    ],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": {
+    "nodeType": "condition",
+    "conditionId": "jcb_point_up_registered"
+   },
+   "calculation": {
+    "calculationType": "unitPoints",
+    "amountUnitYen": 200,
+    "pointsPerUnit": 18,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "j_point",
+   "aggregation": {
+    "scope": "billingMonth",
+    "aggregationKey": "jcb_billing_cycle_16_jcb_card_w_point_up_mcdonalds",
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": true
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 100
+   },
+   "cap": null,
+   "validFrom": "2026-09-28",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_jcb_point_partner",
+    "src_jcb_point_partner_guide",
+    "src_jcb_card_w_s_compare",
+    "src_jcb_jpoint_special"
+   ],
+   "lastVerifiedAt": "2026-09-28",
+   "status": "active",
+   "priority": 100,
+   "tags": [
+    "campaign_bonus",
+    "point_up_program"
+   ],
+   "notes": [
+    "J-POINTパートナー（優待店）の優待倍率は「20倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が20ポイントになるよう差分の18ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
+    "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
+    "倍率はJCBカードW利用時の値。利用者提示のJ-POINTパートナー掲載店舗一覧（2026年時点）とJCB公式ページで確認。",
+    "対象はモバイルオーダー・マックデリバリーの利用分に限る（店頭カウンター・カード現物提示は対象外）。",
+    "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。"
+   ]
+  },
+  {
+   "id": "jcb_card_w_point_up_sukiya",
+   "name": "JCBカードW ポイントアップ（すき家 20倍）",
+   "description": "対象店舗でJCBカードWを利用したときのポイントアップ（20倍）。差分の18ポイントを上乗せする。",
+   "ruleKind": "campaignBonus",
+   "selectors": {
+    "instrumentIds": [
+     "jcb_card_w"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [
+     "sukiya"
+    ],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": {
+    "nodeType": "condition",
+    "conditionId": "jcb_point_up_registered"
+   },
+   "calculation": {
+    "calculationType": "unitPoints",
+    "amountUnitYen": 200,
+    "pointsPerUnit": 18,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "j_point",
+   "aggregation": {
+    "scope": "billingMonth",
+    "aggregationKey": "jcb_billing_cycle_16_jcb_card_w_point_up_sukiya",
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": true
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 100
+   },
+   "cap": null,
+   "validFrom": "2026-09-28",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_jcb_point_partner",
+    "src_jcb_point_partner_guide",
+    "src_jcb_card_w_s_compare",
+    "src_jcb_jpoint_special"
+   ],
+   "lastVerifiedAt": "2026-09-28",
+   "status": "active",
+   "priority": 100,
+   "tags": [
+    "campaign_bonus",
+    "point_up_program"
+   ],
+   "notes": [
+    "J-POINTパートナー（優待店）の優待倍率は「20倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が20ポイントになるよう差分の18ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
+    "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
+    "倍率はJCBカードW利用時の値。利用者提示のJ-POINTパートナー掲載店舗一覧（2026年時点）とJCB公式ページで確認。",
+    "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。"
+   ]
+  },
+  {
+   "id": "jcb_card_w_point_up_yoshinoya",
+   "name": "JCBカードW ポイントアップ（吉野家 20倍）",
+   "description": "対象店舗でJCBカードWを利用したときのポイントアップ（20倍）。差分の18ポイントを上乗せする。",
+   "ruleKind": "campaignBonus",
+   "selectors": {
+    "instrumentIds": [
+     "jcb_card_w"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [
+     "yoshinoya"
+    ],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": {
+    "nodeType": "condition",
+    "conditionId": "jcb_point_up_registered"
+   },
+   "calculation": {
+    "calculationType": "unitPoints",
+    "amountUnitYen": 200,
+    "pointsPerUnit": 18,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "j_point",
+   "aggregation": {
+    "scope": "billingMonth",
+    "aggregationKey": "jcb_billing_cycle_16_jcb_card_w_point_up_yoshinoya",
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": true
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 100
+   },
+   "cap": null,
+   "validFrom": "2026-09-28",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_jcb_point_partner",
+    "src_jcb_point_partner_guide",
+    "src_jcb_card_w_s_compare",
+    "src_jcb_jpoint_special"
+   ],
+   "lastVerifiedAt": "2026-09-28",
+   "status": "active",
+   "priority": 100,
+   "tags": [
+    "campaign_bonus",
+    "point_up_program"
+   ],
+   "notes": [
+    "J-POINTパートナー（優待店）の優待倍率は「20倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が20ポイントになるよう差分の18ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
+    "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
+    "倍率はJCBカードW利用時の値。利用者提示のJ-POINTパートナー掲載店舗一覧（2026年時点）とJCB公式ページで確認。",
+    "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。"
+   ]
+  },
+  {
+   "id": "jcb_card_w_point_up_sanmark_cafe",
+   "name": "JCBカードW ポイントアップ（サンマルクカフェ 20倍）",
+   "description": "対象店舗でJCBカードWを利用したときのポイントアップ（20倍）。差分の18ポイントを上乗せする。",
+   "ruleKind": "campaignBonus",
+   "selectors": {
+    "instrumentIds": [
+     "jcb_card_w"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [
+     "sanmark_cafe"
+    ],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": {
+    "nodeType": "condition",
+    "conditionId": "jcb_point_up_registered"
+   },
+   "calculation": {
+    "calculationType": "unitPoints",
+    "amountUnitYen": 200,
+    "pointsPerUnit": 18,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "j_point",
+   "aggregation": {
+    "scope": "billingMonth",
+    "aggregationKey": "jcb_billing_cycle_16_jcb_card_w_point_up_sanmark_cafe",
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": true
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 100
+   },
+   "cap": null,
+   "validFrom": "2026-09-28",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_jcb_point_partner",
+    "src_jcb_point_partner_guide",
+    "src_jcb_card_w_s_compare",
+    "src_jcb_jpoint_special"
+   ],
+   "lastVerifiedAt": "2026-09-28",
+   "status": "active",
+   "priority": 100,
+   "tags": [
+    "campaign_bonus",
+    "point_up_program"
+   ],
+   "notes": [
+    "J-POINTパートナー（優待店）の優待倍率は「20倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が20ポイントになるよう差分の18ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
+    "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
+    "倍率はJCBカードW利用時の値。利用者提示のJ-POINTパートナー掲載店舗一覧（2026年時点）とJCB公式ページで確認。",
+    "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。"
+   ]
+  },
+  {
+   "id": "jcb_card_w_point_up_domino_pizza",
+   "name": "JCBカードW ポイントアップ（ドミノ・ピザ 20倍）",
+   "description": "対象店舗でJCBカードWを利用したときのポイントアップ（20倍）。差分の18ポイントを上乗せする。",
+   "ruleKind": "campaignBonus",
+   "selectors": {
+    "instrumentIds": [
+     "jcb_card_w"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [
+     "domino_pizza"
+    ],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": {
+    "nodeType": "condition",
+    "conditionId": "jcb_point_up_registered"
+   },
+   "calculation": {
+    "calculationType": "unitPoints",
+    "amountUnitYen": 200,
+    "pointsPerUnit": 18,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "j_point",
+   "aggregation": {
+    "scope": "billingMonth",
+    "aggregationKey": "jcb_billing_cycle_16_jcb_card_w_point_up_domino_pizza",
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": true
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 100
+   },
+   "cap": null,
+   "validFrom": "2026-09-28",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_jcb_point_partner",
+    "src_jcb_point_partner_guide",
+    "src_jcb_card_w_s_compare",
+    "src_jcb_jpoint_special"
+   ],
+   "lastVerifiedAt": "2026-09-28",
+   "status": "active",
+   "priority": 100,
+   "tags": [
+    "campaign_bonus",
+    "point_up_program"
+   ],
+   "notes": [
+    "J-POINTパートナー（優待店）の優待倍率は「20倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が20ポイントになるよう差分の18ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
+    "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
+    "倍率はJCBカードW利用時の値。利用者提示のJ-POINTパートナー掲載店舗一覧（2026年時点）とJCB公式ページで確認。",
+    "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。"
+   ]
+  },
+  {
+   "id": "jcb_card_w_point_up_gusto",
+   "name": "JCBカードW ポイントアップ（ガスト 20倍）",
+   "description": "対象店舗でJCBカードWを利用したときのポイントアップ（20倍）。差分の18ポイントを上乗せする。",
+   "ruleKind": "campaignBonus",
+   "selectors": {
+    "instrumentIds": [
+     "jcb_card_w"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [
+     "gusto"
+    ],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": {
+    "nodeType": "condition",
+    "conditionId": "jcb_point_up_registered"
+   },
+   "calculation": {
+    "calculationType": "unitPoints",
+    "amountUnitYen": 200,
+    "pointsPerUnit": 18,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "j_point",
+   "aggregation": {
+    "scope": "billingMonth",
+    "aggregationKey": "jcb_billing_cycle_16_jcb_card_w_point_up_gusto",
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": true
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 100
+   },
+   "cap": null,
+   "validFrom": "2026-09-28",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_jcb_point_partner",
+    "src_jcb_point_partner_guide",
+    "src_jcb_card_w_s_compare",
+    "src_jcb_jpoint_special"
+   ],
+   "lastVerifiedAt": "2026-09-28",
+   "status": "active",
+   "priority": 100,
+   "tags": [
+    "campaign_bonus",
+    "point_up_program"
+   ],
+   "notes": [
+    "J-POINTパートナー（優待店）の優待倍率は「20倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が20ポイントになるよう差分の18ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
+    "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
+    "倍率はJCBカードW利用時の値。利用者提示のJ-POINTパートナー掲載店舗一覧（2026年時点）とJCB公式ページで確認。",
+    "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。"
+   ]
+  },
+  {
+   "id": "jcb_card_w_point_up_bamiyan",
+   "name": "JCBカードW ポイントアップ（バーミヤン 20倍）",
+   "description": "対象店舗でJCBカードWを利用したときのポイントアップ（20倍）。差分の18ポイントを上乗せする。",
+   "ruleKind": "campaignBonus",
+   "selectors": {
+    "instrumentIds": [
+     "jcb_card_w"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [
+     "bamiyan"
+    ],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": {
+    "nodeType": "condition",
+    "conditionId": "jcb_point_up_registered"
+   },
+   "calculation": {
+    "calculationType": "unitPoints",
+    "amountUnitYen": 200,
+    "pointsPerUnit": 18,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "j_point",
+   "aggregation": {
+    "scope": "billingMonth",
+    "aggregationKey": "jcb_billing_cycle_16_jcb_card_w_point_up_bamiyan",
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": true
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 100
+   },
+   "cap": null,
+   "validFrom": "2026-09-28",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_jcb_point_partner",
+    "src_jcb_point_partner_guide",
+    "src_jcb_card_w_s_compare",
+    "src_jcb_jpoint_special"
+   ],
+   "lastVerifiedAt": "2026-09-28",
+   "status": "active",
+   "priority": 100,
+   "tags": [
+    "campaign_bonus",
+    "point_up_program"
+   ],
+   "notes": [
+    "J-POINTパートナー（優待店）の優待倍率は「20倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が20ポイントになるよう差分の18ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
+    "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
+    "倍率はJCBカードW利用時の値。利用者提示のJ-POINTパートナー掲載店舗一覧（2026年時点）とJCB公式ページで確認。",
+    "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。"
+   ]
+  },
+  {
+   "id": "jcb_card_w_point_up_jonathan",
+   "name": "JCBカードW ポイントアップ（ジョナサン 20倍）",
+   "description": "対象店舗でJCBカードWを利用したときのポイントアップ（20倍）。差分の18ポイントを上乗せする。",
+   "ruleKind": "campaignBonus",
+   "selectors": {
+    "instrumentIds": [
+     "jcb_card_w"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [
+     "jonathan"
+    ],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": {
+    "nodeType": "condition",
+    "conditionId": "jcb_point_up_registered"
+   },
+   "calculation": {
+    "calculationType": "unitPoints",
+    "amountUnitYen": 200,
+    "pointsPerUnit": 18,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "j_point",
+   "aggregation": {
+    "scope": "billingMonth",
+    "aggregationKey": "jcb_billing_cycle_16_jcb_card_w_point_up_jonathan",
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": true
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 100
+   },
+   "cap": null,
+   "validFrom": "2026-09-28",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_jcb_point_partner",
+    "src_jcb_point_partner_guide",
+    "src_jcb_card_w_s_compare",
+    "src_jcb_jpoint_special"
+   ],
+   "lastVerifiedAt": "2026-09-28",
+   "status": "active",
+   "priority": 100,
+   "tags": [
+    "campaign_bonus",
+    "point_up_program"
+   ],
+   "notes": [
+    "J-POINTパートナー（優待店）の優待倍率は「20倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が20ポイントになるよう差分の18ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
+    "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
+    "倍率はJCBカードW利用時の値。利用者提示のJ-POINTパートナー掲載店舗一覧（2026年時点）とJCB公式ページで確認。",
+    "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。"
+   ]
+  },
+  {
+   "id": "jcb_card_w_point_up_jhanpi",
+   "name": "JCBカードW ポイントアップ（ジハンピ 20倍）",
+   "description": "対象店舗でJCBカードWを利用したときのポイントアップ（20倍）。差分の18ポイントを上乗せする。",
+   "ruleKind": "campaignBonus",
+   "selectors": {
+    "instrumentIds": [
+     "jcb_card_w"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [
+     "jhanpi"
+    ],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": {
+    "nodeType": "condition",
+    "conditionId": "jcb_point_up_registered"
+   },
+   "calculation": {
+    "calculationType": "unitPoints",
+    "amountUnitYen": 200,
+    "pointsPerUnit": 18,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "j_point",
+   "aggregation": {
+    "scope": "billingMonth",
+    "aggregationKey": "jcb_billing_cycle_16_jcb_card_w_point_up_jhanpi",
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": true
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 100
+   },
+   "cap": null,
+   "validFrom": "2026-09-28",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_jcb_point_partner",
+    "src_jcb_point_partner_guide",
+    "src_jcb_card_w_s_compare",
+    "src_jcb_jpoint_special"
+   ],
+   "lastVerifiedAt": "2026-09-28",
+   "status": "active",
+   "priority": 100,
+   "tags": [
+    "campaign_bonus",
+    "point_up_program"
+   ],
+   "notes": [
+    "J-POINTパートナー（優待店）の優待倍率は「20倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が20ポイントになるよう差分の18ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
+    "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
+    "倍率はJCBカードW利用時の値。利用者提示のJ-POINTパートナー掲載店舗一覧（2026年時点）とJCB公式ページで確認。",
+    "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。"
+   ]
+  },
+  {
+   "id": "jcb_card_w_point_up_uber",
+   "name": "JCBカードW ポイントアップ（Uber 10倍）",
+   "description": "対象店舗でJCBカードWを利用したときのポイントアップ（10倍）。差分の8ポイントを上乗せする。",
+   "ruleKind": "campaignBonus",
+   "selectors": {
+    "instrumentIds": [
+     "jcb_card_w"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [
+     "uber"
+    ],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": {
+    "nodeType": "condition",
+    "conditionId": "jcb_point_up_registered"
+   },
+   "calculation": {
+    "calculationType": "unitPoints",
+    "amountUnitYen": 200,
+    "pointsPerUnit": 8,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "j_point",
+   "aggregation": {
+    "scope": "billingMonth",
+    "aggregationKey": "jcb_billing_cycle_16_jcb_card_w_point_up_uber",
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": true
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 100
+   },
+   "cap": null,
+   "validFrom": "2026-09-28",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_jcb_point_partner",
+    "src_jcb_point_partner_guide",
+    "src_jcb_card_w_s_compare",
+    "src_jcb_jpoint_special"
+   ],
+   "lastVerifiedAt": "2026-09-28",
+   "status": "active",
+   "priority": 100,
+   "tags": [
+    "campaign_bonus",
+    "point_up_program"
+   ],
+   "notes": [
+    "J-POINTパートナー（優待店）の優待倍率は「10倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が10ポイントになるよう差分の8ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
+    "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
+    "倍率はJCBカードW利用時の値。利用者提示のJ-POINTパートナー掲載店舗一覧（2026年時点）とJCB公式ページで確認。",
+    "2026年1月のJ-POINTリリース時は7.5%と案内されていたが、利用者提示の最新店舗一覧は10倍。最新一覧の値を採用している。",
+    "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。"
+   ]
+  },
+  {
+   "id": "jcb_card_w_point_up_s_ride",
+   "name": "JCBカードW ポイントアップ（S.RIDE 10倍）",
+   "description": "対象店舗でJCBカードWを利用したときのポイントアップ（10倍）。差分の8ポイントを上乗せする。",
+   "ruleKind": "campaignBonus",
+   "selectors": {
+    "instrumentIds": [
+     "jcb_card_w"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [
+     "s_ride"
+    ],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": {
+    "nodeType": "condition",
+    "conditionId": "jcb_point_up_registered"
+   },
+   "calculation": {
+    "calculationType": "unitPoints",
+    "amountUnitYen": 200,
+    "pointsPerUnit": 8,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "j_point",
+   "aggregation": {
+    "scope": "billingMonth",
+    "aggregationKey": "jcb_billing_cycle_16_jcb_card_w_point_up_s_ride",
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": true
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 100
+   },
+   "cap": null,
+   "validFrom": "2026-09-28",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_jcb_point_partner",
+    "src_jcb_point_partner_guide",
+    "src_jcb_card_w_s_compare",
+    "src_jcb_jpoint_special"
+   ],
+   "lastVerifiedAt": "2026-09-28",
+   "status": "active",
+   "priority": 100,
+   "tags": [
+    "campaign_bonus",
+    "point_up_program"
+   ],
+   "notes": [
+    "J-POINTパートナー（優待店）の優待倍率は「10倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が10ポイントになるよう差分の8ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
+    "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
+    "倍率はJCBカードW利用時の値。利用者提示のJ-POINTパートナー掲載店舗一覧（2026年時点）とJCB公式ページで確認。",
+    "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。"
+   ]
+  },
+  {
+   "id": "jcb_card_w_point_up_go_taxi",
+   "name": "JCBカードW ポイントアップ（タクシーアプリGO 10倍）",
+   "description": "対象店舗でJCBカードWを利用したときのポイントアップ（10倍）。差分の8ポイントを上乗せする。",
+   "ruleKind": "campaignBonus",
+   "selectors": {
+    "instrumentIds": [
+     "jcb_card_w"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [
+     "go_taxi"
+    ],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": {
+    "nodeType": "condition",
+    "conditionId": "jcb_point_up_registered"
+   },
+   "calculation": {
+    "calculationType": "unitPoints",
+    "amountUnitYen": 200,
+    "pointsPerUnit": 8,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "j_point",
+   "aggregation": {
+    "scope": "billingMonth",
+    "aggregationKey": "jcb_billing_cycle_16_jcb_card_w_point_up_go_taxi",
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": true
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 100
+   },
+   "cap": null,
+   "validFrom": "2026-09-28",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_jcb_point_partner",
+    "src_jcb_point_partner_guide",
+    "src_jcb_card_w_s_compare",
+    "src_jcb_jpoint_special"
+   ],
+   "lastVerifiedAt": "2026-09-28",
+   "status": "active",
+   "priority": 100,
+   "tags": [
+    "campaign_bonus",
+    "point_up_program"
+   ],
+   "notes": [
+    "J-POINTパートナー（優待店）の優待倍率は「10倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が10ポイントになるよう差分の8ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
+    "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
+    "倍率はJCBカードW利用時の値。利用者提示のJ-POINTパートナー掲載店舗一覧（2026年時点）とJCB公式ページで確認。",
+    "利用者提示の一覧では「プレミアムでおトク」の区分に掲載されている。",
+    "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。"
+   ]
+  },
+  {
+   "id": "jcb_card_w_point_up_aoyama_tailor",
+   "name": "JCBカードW ポイントアップ（洋服の青山 5倍）",
+   "description": "対象店舗でJCBカードWを利用したときのポイントアップ（5倍）。差分の3ポイントを上乗せする。",
+   "ruleKind": "campaignBonus",
+   "selectors": {
+    "instrumentIds": [
+     "jcb_card_w"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [
+     "aoyama_tailor"
+    ],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": {
+    "nodeType": "condition",
+    "conditionId": "jcb_point_up_registered"
+   },
+   "calculation": {
+    "calculationType": "unitPoints",
+    "amountUnitYen": 200,
+    "pointsPerUnit": 3,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "j_point",
+   "aggregation": {
+    "scope": "billingMonth",
+    "aggregationKey": "jcb_billing_cycle_16_jcb_card_w_point_up_aoyama_tailor",
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": true
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 100
+   },
+   "cap": null,
+   "validFrom": "2026-09-28",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_jcb_point_partner",
+    "src_jcb_point_partner_guide",
+    "src_jcb_card_w_s_compare",
+    "src_jcb_jpoint_special"
+   ],
+   "lastVerifiedAt": "2026-09-28",
+   "status": "active",
+   "priority": 100,
+   "tags": [
+    "campaign_bonus",
+    "point_up_program"
+   ],
+   "notes": [
+    "J-POINTパートナー（優待店）の優待倍率は「5倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が5ポイントになるよう差分の3ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
+    "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
+    "倍率はJCBカードW利用時の値。利用者提示のJ-POINTパートナー掲載店舗一覧（2026年時点）とJCB公式ページで確認。",
+    "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。"
+   ]
+  },
+  {
+   "id": "jcb_card_w_point_up_aoki",
+   "name": "JCBカードW ポイントアップ（AOKI 5倍）",
+   "description": "対象店舗でJCBカードWを利用したときのポイントアップ（5倍）。差分の3ポイントを上乗せする。",
+   "ruleKind": "campaignBonus",
+   "selectors": {
+    "instrumentIds": [
+     "jcb_card_w"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [
+     "aoki"
+    ],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": {
+    "nodeType": "condition",
+    "conditionId": "jcb_point_up_registered"
+   },
+   "calculation": {
+    "calculationType": "unitPoints",
+    "amountUnitYen": 200,
+    "pointsPerUnit": 3,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "j_point",
+   "aggregation": {
+    "scope": "billingMonth",
+    "aggregationKey": "jcb_billing_cycle_16_jcb_card_w_point_up_aoki",
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": true
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 100
+   },
+   "cap": null,
+   "validFrom": "2026-09-28",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_jcb_point_partner",
+    "src_jcb_point_partner_guide",
+    "src_jcb_card_w_s_compare",
+    "src_jcb_jpoint_special"
+   ],
+   "lastVerifiedAt": "2026-09-28",
+   "status": "active",
+   "priority": 100,
+   "tags": [
+    "campaign_bonus",
+    "point_up_program"
+   ],
+   "notes": [
+    "J-POINTパートナー（優待店）の優待倍率は「5倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が5ポイントになるよう差分の3ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
+    "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
+    "倍率はJCBカードW利用時の値。利用者提示のJ-POINTパートナー掲載店舗一覧（2026年時点）とJCB公式ページで確認。",
+    "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。"
+   ]
+  },
+  {
+   "id": "jcb_card_w_point_up_haruyama",
+   "name": "JCBカードW ポイントアップ（はるやまチェーン 5倍）",
+   "description": "対象店舗でJCBカードWを利用したときのポイントアップ（5倍）。差分の3ポイントを上乗せする。",
+   "ruleKind": "campaignBonus",
+   "selectors": {
+    "instrumentIds": [
+     "jcb_card_w"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [
+     "haruyama"
+    ],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": {
+    "nodeType": "condition",
+    "conditionId": "jcb_point_up_registered"
+   },
+   "calculation": {
+    "calculationType": "unitPoints",
+    "amountUnitYen": 200,
+    "pointsPerUnit": 3,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "j_point",
+   "aggregation": {
+    "scope": "billingMonth",
+    "aggregationKey": "jcb_billing_cycle_16_jcb_card_w_point_up_haruyama",
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": true
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 100
+   },
+   "cap": null,
+   "validFrom": "2026-09-28",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_jcb_point_partner",
+    "src_jcb_point_partner_guide",
+    "src_jcb_card_w_s_compare",
+    "src_jcb_jpoint_special"
+   ],
+   "lastVerifiedAt": "2026-09-28",
+   "status": "active",
+   "priority": 100,
+   "tags": [
+    "campaign_bonus",
+    "point_up_program"
+   ],
+   "notes": [
+    "J-POINTパートナー（優待店）の優待倍率は「5倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が5ポイントになるよう差分の3ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
+    "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
+    "倍率はJCBカードW利用時の値。利用者提示のJ-POINTパートナー掲載店舗一覧（2026年時点）とJCB公式ページで確認。",
+    "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。"
+   ]
+  },
+  {
+   "id": "jcb_card_w_point_up_poplar",
+   "name": "JCBカードW ポイントアップ（ポプラグループ 5倍）",
+   "description": "対象店舗でJCBカードWを利用したときのポイントアップ（5倍）。差分の3ポイントを上乗せする。",
+   "ruleKind": "campaignBonus",
+   "selectors": {
+    "instrumentIds": [
+     "jcb_card_w"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [
+     "poplar"
+    ],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": {
+    "nodeType": "condition",
+    "conditionId": "jcb_point_up_registered"
+   },
+   "calculation": {
+    "calculationType": "unitPoints",
+    "amountUnitYen": 200,
+    "pointsPerUnit": 3,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "j_point",
+   "aggregation": {
+    "scope": "billingMonth",
+    "aggregationKey": "jcb_billing_cycle_16_jcb_card_w_point_up_poplar",
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": true
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 100
+   },
+   "cap": null,
+   "validFrom": "2026-09-28",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_jcb_point_partner",
+    "src_jcb_point_partner_guide",
+    "src_jcb_card_w_s_compare",
+    "src_jcb_jpoint_special"
+   ],
+   "lastVerifiedAt": "2026-09-28",
+   "status": "active",
+   "priority": 100,
+   "tags": [
+    "campaign_bonus",
+    "point_up_program"
+   ],
+   "notes": [
+    "J-POINTパートナー（優待店）の優待倍率は「5倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が5ポイントになるよう差分の3ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
+    "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
+    "倍率はJCBカードW利用時の値。利用者提示のJ-POINTパートナー掲載店舗一覧（2026年時点）とJCB公式ページで確認。",
+    "J-POINTパートナーでの表記は「ポプラグループ」。カタログのポプラ店舗に適用する。",
+    "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。"
+   ]
+  },
+  {
+   "id": "jcb_card_w_point_up_seven_eleven",
+   "name": "JCBカードW ポイントアップ（セブン-イレブン 3倍）",
+   "description": "対象店舗でJCBカードWを利用したときのポイントアップ（3倍）。差分の1ポイントを上乗せする。",
+   "ruleKind": "campaignBonus",
+   "selectors": {
+    "instrumentIds": [
+     "jcb_card_w"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [
+     "seven_eleven"
+    ],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": {
+    "nodeType": "condition",
+    "conditionId": "jcb_point_up_registered"
+   },
+   "calculation": {
+    "calculationType": "unitPoints",
+    "amountUnitYen": 200,
+    "pointsPerUnit": 1,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "j_point",
+   "aggregation": {
+    "scope": "billingMonth",
+    "aggregationKey": "jcb_billing_cycle_16_jcb_card_w_point_up_seven_eleven",
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": true
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 100
+   },
+   "cap": null,
+   "validFrom": "2026-09-28",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_jcb_point_partner",
+    "src_jcb_point_partner_guide",
+    "src_jcb_card_w_s_compare",
+    "src_jcb_jpoint_special"
+   ],
+   "lastVerifiedAt": "2026-09-28",
+   "status": "active",
+   "priority": 100,
+   "tags": [
+    "campaign_bonus",
+    "point_up_program"
+   ],
+   "notes": [
+    "J-POINTパートナー（優待店）の優待倍率は「3倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が3ポイントになるよう差分の1ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
+    "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
+    "倍率はJCBカードW利用時の値。利用者提示のJ-POINTパートナー掲載店舗一覧（2026年時点）とJCB公式ページで確認。",
+    "JCB公式カードページは「最大4倍」と記載するが、利用者提示の最新店舗一覧は3倍。最新一覧の値を採用している。一部対象外店舗があり、法人会員は対象外。",
+    "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。"
+   ]
+  },
+  {
+   "id": "jcb_card_w_point_up_amazon_jp",
+   "name": "JCBカードW ポイントアップ（Amazon.co.jp 3倍）",
+   "description": "対象店舗でJCBカードWを利用したときのポイントアップ（3倍）。差分の1ポイントを上乗せする。",
+   "ruleKind": "campaignBonus",
+   "selectors": {
+    "instrumentIds": [
+     "jcb_card_w"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [
+     "amazon_jp"
+    ],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": {
+    "nodeType": "condition",
+    "conditionId": "jcb_point_up_registered"
+   },
+   "calculation": {
+    "calculationType": "unitPoints",
+    "amountUnitYen": 200,
+    "pointsPerUnit": 1,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "j_point",
+   "aggregation": {
+    "scope": "billingMonth",
+    "aggregationKey": "jcb_billing_cycle_16_jcb_card_w_point_up_amazon_jp",
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": true
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 100
+   },
+   "cap": null,
+   "validFrom": "2026-09-28",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_jcb_point_partner",
+    "src_jcb_point_partner_guide",
+    "src_jcb_card_w_s_compare",
+    "src_jcb_jpoint_special"
+   ],
+   "lastVerifiedAt": "2026-09-28",
+   "status": "active",
+   "priority": 100,
+   "tags": [
+    "campaign_bonus",
+    "point_up_program"
+   ],
+   "notes": [
+    "J-POINTパートナー（優待店）の優待倍率は「3倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が3ポイントになるよう差分の1ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
+    "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
+    "倍率はJCBカードW利用時の値。利用者提示のJ-POINTパートナー掲載店舗一覧（2026年時点）とJCB公式ページで確認。",
+    "JCB公式カードページは「最大4倍」と記載するが、利用者提示の最新店舗一覧は3倍。最新一覧の値を採用している。",
+    "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。"
+   ]
+  },
+  {
+   "id": "jcb_card_w_point_up_qoo10",
+   "name": "JCBカードW ポイントアップ（Qoo10 3倍）",
+   "description": "対象店舗でJCBカードWを利用したときのポイントアップ（3倍）。差分の1ポイントを上乗せする。",
+   "ruleKind": "campaignBonus",
+   "selectors": {
+    "instrumentIds": [
+     "jcb_card_w"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [
+     "qoo10"
+    ],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": {
+    "nodeType": "condition",
+    "conditionId": "jcb_point_up_registered"
+   },
+   "calculation": {
+    "calculationType": "unitPoints",
+    "amountUnitYen": 200,
+    "pointsPerUnit": 1,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "j_point",
+   "aggregation": {
+    "scope": "billingMonth",
+    "aggregationKey": "jcb_billing_cycle_16_jcb_card_w_point_up_qoo10",
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": true
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 100
+   },
+   "cap": null,
+   "validFrom": "2026-09-28",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_jcb_point_partner",
+    "src_jcb_point_partner_guide",
+    "src_jcb_card_w_s_compare",
+    "src_jcb_jpoint_special"
+   ],
+   "lastVerifiedAt": "2026-09-28",
+   "status": "active",
+   "priority": 100,
+   "tags": [
+    "campaign_bonus",
+    "point_up_program"
+   ],
+   "notes": [
+    "J-POINTパートナー（優待店）の優待倍率は「3倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が3ポイントになるよう差分の1ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
+    "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
+    "倍率はJCBカードW利用時の値。利用者提示のJ-POINTパートナー掲載店舗一覧（2026年時点）とJCB公式ページで確認。",
+    "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。"
+   ]
+  },
+  {
+   "id": "jcb_card_w_point_up_uber_eats",
+   "name": "JCBカードW ポイントアップ（Uber Eats 3倍）",
+   "description": "対象店舗でJCBカードWを利用したときのポイントアップ（3倍）。差分の1ポイントを上乗せする。",
+   "ruleKind": "campaignBonus",
+   "selectors": {
+    "instrumentIds": [
+     "jcb_card_w"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [
+     "uber_eats"
+    ],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": {
+    "nodeType": "condition",
+    "conditionId": "jcb_point_up_registered"
+   },
+   "calculation": {
+    "calculationType": "unitPoints",
+    "amountUnitYen": 200,
+    "pointsPerUnit": 1,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "j_point",
+   "aggregation": {
+    "scope": "billingMonth",
+    "aggregationKey": "jcb_billing_cycle_16_jcb_card_w_point_up_uber_eats",
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": true
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 100
+   },
+   "cap": null,
+   "validFrom": "2026-09-28",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_jcb_point_partner",
+    "src_jcb_point_partner_guide",
+    "src_jcb_card_w_s_compare",
+    "src_jcb_jpoint_special"
+   ],
+   "lastVerifiedAt": "2026-09-28",
+   "status": "active",
+   "priority": 100,
+   "tags": [
+    "campaign_bonus",
+    "point_up_program"
+   ],
+   "notes": [
+    "J-POINTパートナー（優待店）の優待倍率は「3倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が3ポイントになるよう差分の1ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
+    "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
+    "倍率はJCBカードW利用時の値。利用者提示のJ-POINTパートナー掲載店舗一覧（2026年時点）とJCB公式ページで確認。",
+    "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。"
+   ]
+  },
+  {
+   "id": "jcb_card_w_point_up_card_ride",
+   "name": "JCBカードW ポイントアップ（クレカ乗車 20倍）",
+   "description": "クレカ乗車でJCBカードWを利用したときのポイントアップ（20倍）。差分の18ポイントを上乗せする。",
+   "ruleKind": "campaignBonus",
+   "selectors": {
+    "instrumentIds": [
+     "jcb_card_w"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [
+     "card_ride"
+    ],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": {
+    "nodeType": "condition",
+    "conditionId": "jcb_point_up_registered"
+   },
+   "calculation": {
+    "calculationType": "unitPoints",
+    "amountUnitYen": 200,
+    "pointsPerUnit": 18,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "j_point",
+   "aggregation": {
+    "scope": "billingMonth",
+    "aggregationKey": "jcb_billing_cycle_16_jcb_card_w_point_up_card_ride",
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": true
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 100
+   },
+   "cap": null,
+   "validFrom": "2026-09-28",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_jcb_point_partner",
+    "src_jcb_card_w_s_compare",
+    "src_jcb_jpoint_special"
+   ],
+   "lastVerifiedAt": "2026-09-28",
+   "status": "active",
+   "priority": 100,
+   "tags": [
+    "campaign_bonus",
+    "point_up_program"
+   ],
+   "notes": [
+    "「クレカ乗車」は電車・バスなど全国190以上の対象路線で使えるJCBのタッチ決済乗車サービス。優待倍率は20倍で、JCBカードWの基本還元（200円2ポイント＝2倍）との差分18ポイントを上乗せとして登録している（D-107）。",
+    "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
+    "JCB公式の特典条件: 対象路線でJCB ORIGINALシリーズ対象カードで支払うこと。一部対象外の事業者があり、公共交通機関によっては一部の路線・駅・港でのみタッチ決済が利用可能。JCBデビットでは支払えない場合がある。",
+    "表示倍率のうち1倍分が通常ポイント、残りの倍率分がボーナスポイントとして反映される（JCB公式の特典獲得タイミング）。差分方式と整合する。",
+    "公式画像にポイント付与の上限額の明記は確認できていない（未確認）。"
+   ]
+  }
+ ]
 }

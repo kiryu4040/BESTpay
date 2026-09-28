@@ -1,133 +1,184 @@
 {
-  "schemaVersion": "1.0.0",
-  "catalogVersion": "2026.09.27.4",
-  "generatedAt": "2026-09-27T00:00:00+09:00",
-  "items": [
-    {
-      "id": "convenience_chain",
-      "name": "コンビニチェーン",
-      "status": "active",
-      "sourceIds": [
-        "src_olive_gold_official",
-        "src_olive_point_rate",
-        "src_olive_gold_attention",
-        "src_smbc_vpoint_up_program",
-        "src_mufg_global_point",
-        "src_mufg_global_plus",
-        "src_mufg_annual_bonus",
-        "src_mufg_store_bonus"
-      ],
-      "notes": [
-        "第1期の店舗グループ。"
-      ]
-    },
-    {
-      "id": "fast_food_chain",
-      "name": "ファストフードチェーン",
-      "status": "active",
-      "sourceIds": [
-        "src_olive_gold_official",
-        "src_olive_point_rate",
-        "src_olive_gold_attention",
-        "src_smbc_vpoint_up_program",
-        "src_mufg_global_point",
-        "src_mufg_global_plus",
-        "src_mufg_annual_bonus",
-        "src_mufg_store_bonus"
-      ],
-      "notes": [
-        "第1期の店舗グループ。"
-      ]
-    },
-    {
-      "id": "cafe_chain",
-      "name": "カフェチェーン",
-      "status": "active",
-      "sourceIds": [
-        "src_olive_gold_official",
-        "src_olive_point_rate",
-        "src_olive_gold_attention",
-        "src_smbc_vpoint_up_program",
-        "src_mufg_global_point",
-        "src_mufg_global_plus",
-        "src_mufg_annual_bonus",
-        "src_mufg_store_bonus"
-      ],
-      "notes": [
-        "第1期の店舗グループ。"
-      ]
-    },
-    {
-      "id": "kaiten_sushi_chain",
-      "name": "回転寿司チェーン",
-      "status": "active",
-      "sourceIds": [
-        "src_olive_gold_official",
-        "src_olive_point_rate",
-        "src_olive_gold_attention",
-        "src_smbc_vpoint_up_program",
-        "src_mufg_global_point",
-        "src_mufg_global_plus",
-        "src_mufg_annual_bonus",
-        "src_mufg_store_bonus"
-      ],
-      "notes": [
-        "第1期の店舗グループ。"
-      ]
-    },
-    {
-      "id": "pizza_chain",
-      "name": "ピザチェーン",
-      "status": "active",
-      "sourceIds": [
-        "src_olive_gold_official",
-        "src_olive_point_rate",
-        "src_olive_gold_attention",
-        "src_smbc_vpoint_up_program",
-        "src_mufg_global_point",
-        "src_mufg_global_plus",
-        "src_mufg_annual_bonus",
-        "src_mufg_store_bonus"
-      ],
-      "notes": [
-        "第1期の店舗グループ。"
-      ]
-    },
-    {
-      "id": "supermarket_chain",
-      "name": "スーパーチェーン",
-      "status": "active",
-      "sourceIds": [
-        "src_olive_gold_official",
-        "src_olive_point_rate",
-        "src_olive_gold_attention",
-        "src_smbc_vpoint_up_program",
-        "src_mufg_global_point",
-        "src_mufg_global_plus",
-        "src_mufg_annual_bonus",
-        "src_mufg_store_bonus"
-      ],
-      "notes": [
-        "第1期の店舗グループ。"
-      ]
-    },
-    {
-      "id": "online_chain",
-      "name": "ネット通販チェーン",
-      "status": "active",
-      "sourceIds": [
-        "src_olive_gold_official",
-        "src_olive_point_rate",
-        "src_olive_gold_attention",
-        "src_smbc_vpoint_up_program",
-        "src_mufg_global_point",
-        "src_mufg_global_plus",
-        "src_mufg_annual_bonus",
-        "src_mufg_store_bonus"
-      ],
-      "notes": [
-        "第1期の店舗グループ。"
-      ]
-    }
-  ]
+ "schemaVersion": "1.0.0",
+ "catalogVersion": "2026.09.28.2",
+ "generatedAt": "2026-09-27T00:00:00+09:00",
+ "items": [
+  {
+   "id": "convenience_chain",
+   "name": "コンビニチェーン",
+   "status": "active",
+   "sourceIds": [
+    "src_olive_gold_official",
+    "src_olive_point_rate",
+    "src_olive_gold_attention",
+    "src_smbc_vpoint_up_program",
+    "src_mufg_global_point",
+    "src_mufg_global_plus",
+    "src_mufg_annual_bonus",
+    "src_mufg_store_bonus"
+   ],
+   "notes": [
+    "第1期の店舗グループ。"
+   ]
+  },
+  {
+   "id": "fast_food_chain",
+   "name": "ファストフードチェーン",
+   "status": "active",
+   "sourceIds": [
+    "src_olive_gold_official",
+    "src_olive_point_rate",
+    "src_olive_gold_attention",
+    "src_smbc_vpoint_up_program",
+    "src_mufg_global_point",
+    "src_mufg_global_plus",
+    "src_mufg_annual_bonus",
+    "src_mufg_store_bonus"
+   ],
+   "notes": [
+    "第1期の店舗グループ。"
+   ]
+  },
+  {
+   "id": "cafe_chain",
+   "name": "カフェチェーン",
+   "status": "active",
+   "sourceIds": [
+    "src_olive_gold_official",
+    "src_olive_point_rate",
+    "src_olive_gold_attention",
+    "src_smbc_vpoint_up_program",
+    "src_mufg_global_point",
+    "src_mufg_global_plus",
+    "src_mufg_annual_bonus",
+    "src_mufg_store_bonus"
+   ],
+   "notes": [
+    "第1期の店舗グループ。"
+   ]
+  },
+  {
+   "id": "kaiten_sushi_chain",
+   "name": "回転寿司チェーン",
+   "status": "active",
+   "sourceIds": [
+    "src_olive_gold_official",
+    "src_olive_point_rate",
+    "src_olive_gold_attention",
+    "src_smbc_vpoint_up_program",
+    "src_mufg_global_point",
+    "src_mufg_global_plus",
+    "src_mufg_annual_bonus",
+    "src_mufg_store_bonus"
+   ],
+   "notes": [
+    "第1期の店舗グループ。"
+   ]
+  },
+  {
+   "id": "pizza_chain",
+   "name": "ピザチェーン",
+   "status": "active",
+   "sourceIds": [
+    "src_olive_gold_official",
+    "src_olive_point_rate",
+    "src_olive_gold_attention",
+    "src_smbc_vpoint_up_program",
+    "src_mufg_global_point",
+    "src_mufg_global_plus",
+    "src_mufg_annual_bonus",
+    "src_mufg_store_bonus"
+   ],
+   "notes": [
+    "第1期の店舗グループ。"
+   ]
+  },
+  {
+   "id": "supermarket_chain",
+   "name": "スーパーチェーン",
+   "status": "active",
+   "sourceIds": [
+    "src_olive_gold_official",
+    "src_olive_point_rate",
+    "src_olive_gold_attention",
+    "src_smbc_vpoint_up_program",
+    "src_mufg_global_point",
+    "src_mufg_global_plus",
+    "src_mufg_annual_bonus",
+    "src_mufg_store_bonus"
+   ],
+   "notes": [
+    "第1期の店舗グループ。"
+   ]
+  },
+  {
+   "id": "online_chain",
+   "name": "ネット通販チェーン",
+   "status": "active",
+   "sourceIds": [
+    "src_olive_gold_official",
+    "src_olive_point_rate",
+    "src_olive_gold_attention",
+    "src_smbc_vpoint_up_program",
+    "src_mufg_global_point",
+    "src_mufg_global_plus",
+    "src_mufg_annual_bonus",
+    "src_mufg_store_bonus"
+   ],
+   "notes": [
+    "第1期の店舗グループ。"
+   ]
+  },
+  {
+   "id": "ファミリーレストランチェーン",
+   "name": "ファミリーレストラン",
+   "status": "active",
+   "sourceIds": [
+    "src_jcb_point_partner",
+    "src_jcb_point_partner_guide",
+    "src_jcb_card_w_s_compare"
+   ],
+   "notes": [
+    "JCBカードWのポイントアップ対応で追加した店舗グループ（D-105）。"
+   ]
+  },
+  {
+   "id": "配車・タクシーチェーン",
+   "name": "配車・タクシー",
+   "status": "active",
+   "sourceIds": [
+    "src_jcb_point_partner",
+    "src_jcb_point_partner_guide",
+    "src_jcb_card_w_s_compare"
+   ],
+   "notes": [
+    "JCBカードWのポイントアップ対応で追加した店舗グループ（D-105）。"
+   ]
+  },
+  {
+   "id": "ファッションチェーン",
+   "name": "ファッション",
+   "status": "active",
+   "sourceIds": [
+    "src_jcb_point_partner",
+    "src_jcb_point_partner_guide",
+    "src_jcb_card_w_s_compare"
+   ],
+   "notes": [
+    "JCBカードWのポイントアップ対応で追加した店舗グループ（D-105）。"
+   ]
+  },
+  {
+   "id": "card_ride_chain",
+   "name": "クレカ乗車",
+   "status": "active",
+   "sourceIds": [
+    "src_jcb_point_partner",
+    "src_jcb_card_w_s_compare"
+   ],
+   "notes": [
+    "JCBカードWのポイントアップ対象「クレカ乗車」のグループ（D-110）。"
+   ]
+  }
+ ]
 }

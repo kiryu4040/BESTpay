@@ -143,8 +143,8 @@ void main() {
   group('カタログのデコード', () {
     test('実カード6枚がデコードでき、Catalogが構築できる', () {
       expect(catalog.isNotEmpty, isTrue);
-      expect(catalog.catalogVersion, '2026.09.27.6');
-      expect(catalog.generatedAt, '2026-09-27T00:00:00+09:00');
+      expect(catalog.catalogVersion, '2026.09.28.2');
+      expect(catalog.generatedAt, '2026-09-28T00:00:00+09:00');
 
       expect(
         catalog.paymentInstrumentsById.keys.map((key) => key.value).toList()
@@ -170,8 +170,8 @@ void main() {
         ],
       );
 
-      expect(catalog.rewardRulesById.length, 16);
-      expect(catalog.sourcesById.length, 33);
+      expect(catalog.rewardRulesById.length, 37);
+      expect(catalog.sourcesById.length, 41);
 
       final mizuho = catalog.paymentInstrumentsById[id('mizuho_rakuten_card')]!;
       expect(mizuho.instrumentType, 'creditCard');
@@ -202,7 +202,7 @@ void main() {
           .where((rule) => rule.status.value == 'draft')
           .toList();
 
-      expect(active.length, 13);
+      expect(active.length, 34);
       expect(draft.length, 3);
 
       for (final rule in catalog.rewardRulesById.values) {
@@ -704,13 +704,13 @@ void main() {
     }
 
     test('店舗一覧が16件読み込め、得意店舗なしの受け皿は登録しない', () {
-      expect(directory.merchants.length, 16);
+      expect(directory.merchants.length, 33);
       expect(
         directory.merchants.any((m) => m.id.value == 'other_merchant'),
         isFalse,
       );
       expect(directory.categoriesById.containsKey(id('other_store')), isFalse);
-      expect(directory.categoriesById.length, 7);
+      expect(directory.categoriesById.length, 11);
       expect(directory.search('セブン').single.name, 'セブン-イレブン');
     });
 
@@ -796,6 +796,65 @@ void main() {
           <String>['convenience_store', 'fast_food']);
       expect(rule.name.contains('7%'), isTrue);
       expect(rule.status.value, 'active');
+    });
+
+    test('JCB優待店はポイントアップ登録時に倍率どおりになる（要登録・2026-09-28時点）', () {
+      // JCBのポイントアップルールはカタログ収載日（validFrom=2026-09-28）以降が対象。
+      final jcbDate = date('2026-09-28');
+
+      ConditionEvaluationContext registered() {
+        return ConditionEvaluationContext(
+          states: <StableId, TriState>{
+            id('mizuho_w_point_plan_eligible'): TriState.satisfied,
+            id('jcb_point_up_registered'): TriState.satisfied,
+          },
+        );
+      }
+
+      // 店舗ID -> 200円あたりの期待ポイント（倍率どおり）
+      const expected = <String, int>{
+        'sukiya': 20,        // 20倍
+        'card_ride': 20,     // 20倍（クレカ乗車）
+        'gusto': 20,         // 20倍
+        'seven_eleven': 3,   // 3倍
+        'amazon_jp': 3,      // 3倍
+        'aoyama_tailor': 5,  // 5倍
+        'uber': 10,          // 10倍
+      };
+
+      for (final entry in expected.entries) {
+        final shop = merchant(entry.key);
+        final ranking = evaluator.evaluate(
+          catalog: catalog,
+          amount: yen(200),
+          transactionDate: jcbDate,
+          merchantId: shop.id,
+          merchantGroupIds: shop.groupIds,
+          categoryIds: shop.categoryIds,
+          conditionContext: registered(),
+        );
+
+        expect(
+          entryFor(ranking, 'jcb_card_w').totalPoints.points,
+          entry.value,
+          reason: '${entry.key} は ${entry.value}pt（200円あたり）',
+        );
+      }
+    });
+
+    test('ポイントアップ未登録ならJCBカードWの優待店上乗せは効かない', () {
+      final shop = merchant('sukiya');
+      final ranking = evaluator.evaluate(
+        catalog: catalog,
+        amount: yen(200),
+        transactionDate: date('2026-09-28'),
+        merchantId: shop.id,
+        merchantGroupIds: shop.groupIds,
+        categoryIds: shop.categoryIds,
+        conditionContext: satisfiedContext(),
+      );
+
+      expect(entryFor(ranking, 'jcb_card_w').totalPoints.points, 2);
     });
   });
 }

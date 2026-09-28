@@ -1,28 +1,52 @@
 {
-  "schemaVersion": "1.0.0",
-  "catalogVersion": "2026.09.27.3",
-  "generatedAt": "2026-09-27T00:00:00+09:00",
-  "items": [
-    {
-      "id": "mizuho_w_point_plan_eligible",
-      "name": "みずほ楽天カード Wポイントプラン対象者",
-      "description": "2025-06-30以降に新規申込・契約完了し、カード申込日の翌々月末日までに口座振替設定を完了した利用者であること。",
-      "valueType": "boolean",
-      "defaultState": "satisfied",
-      "verificationMethod": "userInput",
-      "scope": "user",
-      "sensitivity": "normal",
-      "validFrom": "2026-09-27",
-      "validUntilExclusive": null,
-      "status": "active",
-      "sourceIds": [
-        "src_mizuho_rakuten_official"
-      ],
-      "notes": [
-        "カタログには条件の定義のみを置き、個々の利用者における達成状態は保持しない（アプリの条件設定画面で入力する）。",
-        "利用者本人が対象者であることを確認済みのため既定を satisfied とする（決定台帳 D-084）。条件設定画面から変更できるようにするのは第2期。未入力・不充足にすると基準は1%になる。",
-        "対象期間は条件を満たした月の月初より最長1年間、進呈上限はみずほポイント10,000ポイント（ルール側の notes を参照）。"
-      ]
-    }
-  ]
+ "schemaVersion": "1.0.0",
+ "catalogVersion": "2026.09.28.2",
+ "generatedAt": "2026-09-27T00:00:00+09:00",
+ "items": [
+  {
+   "id": "mizuho_w_point_plan_eligible",
+   "name": "みずほ楽天カード Wポイントプラン対象者",
+   "description": "2025-06-30以降に新規申込・契約完了し、カード申込日の翌々月末日までに口座振替設定を完了した利用者であること。",
+   "valueType": "boolean",
+   "defaultState": "satisfied",
+   "verificationMethod": "userInput",
+   "scope": "user",
+   "sensitivity": "normal",
+   "validFrom": "2026-09-27",
+   "validUntilExclusive": null,
+   "status": "active",
+   "sourceIds": [
+    "src_mizuho_rakuten_official"
+   ],
+   "notes": [
+    "カタログには条件の定義のみを置き、個々の利用者における達成状態は保持しない（アプリの条件設定画面で入力する）。",
+    "利用者本人が対象者であることを確認済みのため既定を satisfied とする（決定台帳 D-084）。条件設定画面から変更できるようにするのは第2期。未入力・不充足にすると基準は1%になる。",
+    "対象期間は条件を満たした月の月初より最長1年間、進呈上限はみずほポイント10,000ポイント（ルール側の notes を参照）。"
+   ]
+  },
+  {
+   "id": "jcb_point_up_registered",
+   "name": "JCBカードW ポイントアップ登録",
+   "description": "J-POINTパートナー（優待店）でポイントアップを受けるには、事前に「ポイントアップ登録（無料）」を済ませている必要があります。",
+   "valueType": "boolean",
+   "defaultState": "notSatisfied",
+   "verificationMethod": "userInput",
+   "scope": "user",
+   "sensitivity": "normal",
+   "validFrom": "2026-09-28",
+   "validUntilExclusive": null,
+   "status": "active",
+   "sourceIds": [
+    "src_jcb_point_partner",
+    "src_jcb_point_partner_guide",
+    "src_jcb_card_w_s_compare"
+   ],
+   "notes": [
+    "カタログには条件の定義のみを置き、達成状態はアプリの条件設定画面で入力して端末に保存する（D-101 と同じ扱い）。",
+    "既定は notSatisfied（未登録）。登録していない状態ではJCBカードWは基本還元200円2ポイント（1.0%）のままとなる。設定画面で「満たす」に切り替えると、対象店舗の上乗せがランキングに反映される。",
+    "登録不要の優待店もあるが、本アプリは登録が必要な店舗のみを対象にしており、登録要否は店舗ごとに異なる。",
+    "JCB公式の例（Amazon.co.jp）では、2026-01-13以降は「通常ポイント1倍＋ポイントアップ登録の+2倍」で合計3倍となる。登録の有無が倍率に直結する。"
+   ]
+  }
+ ]
 }
