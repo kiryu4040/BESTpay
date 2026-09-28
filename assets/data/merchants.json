@@ -1,6 +1,6 @@
 {
  "schemaVersion": "1.0.0",
- "catalogVersion": "2026.09.28.7",
+ "catalogVersion": "2026.09.29.2",
  "generatedAt": "2026-09-27T00:00:00+09:00",
  "items": [
   {
@@ -56,33 +56,6 @@
    ],
    "notes": [
     "三井住友カード ゴールド（NL）は対象コンビニ・飲食店でスマホのタッチ決済／モバイルオーダーなら200円につき7%（カード本体のタッチ決済は対象外）。",
-    "Oliveフレキシブルペイ ゴールドは同条件で通常0.5%＋7.5%＝最大8%。",
-    "三菱UFJカードは対象店舗で7%相当（ポイントアッププログラム達成で最大20%相当、対象店舗利用額の月5万円が上限）。"
-   ]
-  },
-  {
-   "id": "family_mart",
-   "name": "ファミリーマート",
-   "merchantGroupIds": [
-    "convenience_chain"
-   ],
-   "categoryIds": [
-    "convenience_store"
-   ],
-   "locationIds": [],
-   "status": "active",
-   "sourceIds": [
-    "src_olive_gold_official",
-    "src_olive_point_rate",
-    "src_olive_gold_attention",
-    "src_smbc_vpoint_up_program",
-    "src_mufg_global_point",
-    "src_mufg_global_plus",
-    "src_mufg_annual_bonus",
-    "src_mufg_store_bonus"
-   ],
-   "notes": [
-    "三井住友カード・Olive・三菱UFJカードのいずれの対象店舗一覧にも含まれないため、上乗せはなく基本還元のみ（この誤りはD-113で修正）。",
     "Oliveフレキシブルペイ ゴールドは同条件で通常0.5%＋7.5%＝最大8%。",
     "三菱UFJカードは対象店舗で7%相当（ポイントアッププログラム達成で最大20%相当、対象店舗利用額の月5万円が上限）。"
    ]
@@ -801,12 +774,16 @@
    "sourceIds": [
     "src_jcb_point_partner",
     "src_jcb_card_w_s_compare",
-    "src_jcb_jpoint_special"
+    "src_jcb_jpoint_special",
+    "src_smbc_transit_point_up",
+    "src_smbc_gold_nl_official",
+    "src_olive_gold_official"
    ],
    "notes": [
-    "JCBカードWのJ-POINTパートナー。電車やバスなど全国190以上の対象路線で、JCB ORIGINALシリーズ対象カードのタッチ決済で乗車すると20倍（JCBカードWで10%相当）。事前のポイントアップ登録が必要。",
-    "一部対象外の事業者があり、公共交通機関によっては一部の路線・駅・港でのみタッチ決済が使える。JCBデビットでは支払えない場合がある。",
-    "JCB公式の特典条件に「ネットショッピングは対象とならない」「スマホレジは対象とならない」の記載がある。"
+    "三井住友カード／Oliveの「スマホのタッチ決済乗車」が対象（2026-07-01以降の利用）。全国の鉄道・バスの対象路線で、200円につき7％、Oliveフレキシブルペイ クレジットモードなら8％のVポイント還元。JCBカードWは20倍（10％相当）。",
+    "三井住友カード／Oliveの対象外: カード現物のタッチ決済、デビットカード・プリペイドカード・コーポレートカード、オンラインショッピング（交通系ICへのチャージを含む）、駅構内・停留所内の売店、定期券の購入。スマホのタッチ決済のみが対象。",
+    "三井住友カード／Oliveの付与上限はカード券種ごとに毎月1,000ポイント（通常ポイントを含む）。",
+    "JCBの「クレカ乗車」とは別のサービス。乗車に使える路線・事業者は各社で異なる。"
    ]
   },
   {
@@ -1317,126 +1294,6 @@
    ]
   },
   {
-   "id": "life",
-   "name": "ライフ",
-   "merchantGroupIds": [
-    "supermarket_chain"
-   ],
-   "categoryIds": [
-    "supermarket"
-   ],
-   "locationIds": [],
-   "status": "active",
-   "sourceIds": [
-    "src_jcb_point_partner",
-    "src_smbc_vpoint_up_stores",
-    "src_mufg_store_bonus"
-   ],
-   "notes": [
-    "上乗せの対象であることを公式で確認できていない。基本還元のみで計算する（未確認の上乗せは確定値に加算しない・D-50）。"
-   ]
-  },
-  {
-   "id": "seijo_ishii",
-   "name": "成城石井",
-   "merchantGroupIds": [
-    "supermarket_chain"
-   ],
-   "categoryIds": [
-    "supermarket"
-   ],
-   "locationIds": [],
-   "status": "active",
-   "sourceIds": [
-    "src_jcb_point_partner",
-    "src_smbc_vpoint_up_stores",
-    "src_mufg_store_bonus"
-   ],
-   "notes": [
-    "上乗せの対象であることを公式で確認できていない。基本還元のみで計算する（未確認の上乗せは確定値に加算しない・D-50）。"
-   ]
-  },
-  {
-   "id": "aeon",
-   "name": "イオン",
-   "merchantGroupIds": [
-    "supermarket_chain"
-   ],
-   "categoryIds": [
-    "supermarket"
-   ],
-   "locationIds": [],
-   "status": "active",
-   "sourceIds": [
-    "src_jcb_point_partner",
-    "src_smbc_vpoint_up_stores",
-    "src_mufg_store_bonus"
-   ],
-   "notes": [
-    "上乗せの対象であることを公式で確認できていない。基本還元のみで計算する（未確認の上乗せは確定値に加算しない・D-50）。"
-   ]
-  },
-  {
-   "id": "pizzeria",
-   "name": "ピザーラ",
-   "merchantGroupIds": [
-    "pizza_chain"
-   ],
-   "categoryIds": [
-    "pizza"
-   ],
-   "locationIds": [],
-   "status": "active",
-   "sourceIds": [
-    "src_jcb_point_partner",
-    "src_smbc_vpoint_up_stores",
-    "src_mufg_store_bonus"
-   ],
-   "notes": [
-    "上乗せの対象であることを公式で確認できていない。基本還元のみで計算する（未確認の上乗せは確定値に加算しない・D-50）。"
-   ]
-  },
-  {
-   "id": "pizza_la",
-   "name": "PIZZA-LA",
-   "merchantGroupIds": [
-    "pizza_chain"
-   ],
-   "categoryIds": [
-    "pizza"
-   ],
-   "locationIds": [],
-   "status": "active",
-   "sourceIds": [
-    "src_jcb_point_partner",
-    "src_smbc_vpoint_up_stores",
-    "src_mufg_store_bonus"
-   ],
-   "notes": [
-    "上乗せの対象であることを公式で確認できていない。基本還元のみで計算する（未確認の上乗せは確定値に加算しない・D-50）。"
-   ]
-  },
-  {
-   "id": "tenkaippin",
-   "name": "天下一品",
-   "merchantGroupIds": [
-    "fast_food_chain"
-   ],
-   "categoryIds": [
-    "fast_food"
-   ],
-   "locationIds": [],
-   "status": "active",
-   "sourceIds": [
-    "src_jcb_point_partner",
-    "src_smbc_vpoint_up_stores",
-    "src_mufg_store_bonus"
-   ],
-   "notes": [
-    "上乗せの対象であることを公式で確認できていない。基本還元のみで計算する（未確認の上乗せは確定値に加算しない・D-50）。"
-   ]
-  },
-  {
    "id": "rakuten_market",
    "name": "楽天市場",
    "merchantGroupIds": [
@@ -1448,92 +1305,50 @@
    "locationIds": [],
    "status": "active",
    "sourceIds": [
-    "src_jcb_point_partner",
-    "src_smbc_vpoint_up_stores",
-    "src_mufg_store_bonus"
+    "src_rakuten_point_rate",
+    "src_mizuho_rakuten_official"
    ],
    "notes": [
-    "上乗せの対象であることを公式で確認できていない。基本還元のみで計算する（未確認の上乗せは確定値に加算しない・D-50）。"
+    "みずほ楽天カードは楽天市場で3%（楽天カード通常分1%＋楽天市場分1%＋楽天カード特典分1%）。楽天ポイント側の加算として登録している。",
+    "みずほポイント（Wポイントプラン）が特約店分も同数進呈されるかは公式に未確認のため、みずほポイント側は加算していない。"
    ]
   },
   {
-   "id": "yahoo_shopping",
-   "name": "Yahoo!ショッピング",
+   "id": "ucc_cafe_plaza",
+   "name": "UCC Cafe Plaza",
    "merchantGroupIds": [
-    "online_chain"
+    "cafe_chain"
    ],
    "categoryIds": [
-    "online_shop"
+    "cafe"
+   ],
+   "locationIds": [],
+   "status": "active",
+   "sourceIds": [
+    "src_mufg_store_bonus",
+    "src_mufg_pup_release"
+   ],
+   "notes": [
+    "三菱UFJカードのポイントアップ対象店舗（公式の対象店舗一覧で確認）。上島珈琲店と同じグループで対象。"
+   ]
+  },
+  {
+   "id": "orix_rentacar",
+   "name": "オリックスレンタカー",
+   "merchantGroupIds": [
+    "car_life_chain"
+   ],
+   "categoryIds": [
+    "car_life"
    ],
    "locationIds": [],
    "status": "active",
    "sourceIds": [
     "src_jcb_point_partner",
-    "src_smbc_vpoint_up_stores",
-    "src_mufg_store_bonus"
+    "src_jcb_card_w_s_compare"
    ],
    "notes": [
-    "上乗せの対象であることを公式で確認できていない。基本還元のみで計算する（未確認の上乗せは確定値に加算しない・D-50）。"
-   ]
-  },
-  {
-   "id": "mercari",
-   "name": "メルカリ",
-   "merchantGroupIds": [
-    "online_chain"
-   ],
-   "categoryIds": [
-    "online_shop"
-   ],
-   "locationIds": [],
-   "status": "active",
-   "sourceIds": [
-    "src_jcb_point_partner",
-    "src_smbc_vpoint_up_stores",
-    "src_mufg_store_bonus"
-   ],
-   "notes": [
-    "上乗せの対象であることを公式で確認できていない。基本還元のみで計算する（未確認の上乗せは確定値に加算しない・D-50）。"
-   ]
-  },
-  {
-   "id": "yodobashi",
-   "name": "ヨドバシカメラ",
-   "merchantGroupIds": [
-    "drugstore_chain"
-   ],
-   "categoryIds": [
-    "drugstore"
-   ],
-   "locationIds": [],
-   "status": "active",
-   "sourceIds": [
-    "src_jcb_point_partner",
-    "src_smbc_vpoint_up_stores",
-    "src_mufg_store_bonus"
-   ],
-   "notes": [
-    "上乗せの対象であることを公式で確認できていない。基本還元のみで計算する（未確認の上乗せは確定値に加算しない・D-50）。"
-   ]
-  },
-  {
-   "id": "biccamera",
-   "name": "ビックカメラ",
-   "merchantGroupIds": [
-    "drugstore_chain"
-   ],
-   "categoryIds": [
-    "drugstore"
-   ],
-   "locationIds": [],
-   "status": "active",
-   "sourceIds": [
-    "src_jcb_point_partner",
-    "src_smbc_vpoint_up_stores",
-    "src_mufg_store_bonus"
-   ],
-   "notes": [
-    "上乗せの対象であることを公式で確認できていない。基本還元のみで計算する（未確認の上乗せは確定値に加算しない・D-50）。"
+    "JCBカードWのJ-POINTパートナー（6倍）。事前のポイントアップ登録が必要。"
    ]
   }
  ]

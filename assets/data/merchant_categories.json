@@ -1,6 +1,6 @@
 {
  "schemaVersion": "1.0.0",
- "catalogVersion": "2026.09.28.7",
+ "catalogVersion": "2026.09.29.2",
  "generatedAt": "2026-09-27T00:00:00+09:00",
  "items": [
   {
@@ -228,6 +228,18 @@
    ],
    "notes": [
     "有名チェーンの追加に伴い新設（D-129）。"
+   ]
+  },
+  {
+   "id": "car_life",
+   "name": "レンタカー・カーライフ",
+   "parentCategoryId": null,
+   "status": "active",
+   "sourceIds": [
+    "src_jcb_point_partner"
+   ],
+   "notes": [
+    "JCBカードWの優待店（オリックスレンタカー）の追加に伴い新設（D-135）。"
    ]
   }
  ]

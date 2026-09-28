@@ -1,6 +1,6 @@
 {
  "schemaVersion": "1.0.0",
- "catalogVersion": "2026.09.28.4",
+ "catalogVersion": "2026.09.29.1",
  "generatedAt": "2026-09-27T00:00:00+09:00",
  "items": [
   {
@@ -721,6 +721,21 @@
    "reliability": "primary",
    "relevantSections": [],
    "summary": "楽天カードのポイントページ。通常100円につき1ポイント、楽天市場3%の内訳、有効期限を記載。",
+   "contentHash": null,
+   "notes": []
+  },
+  {
+   "id": "src_smbc_transit_point_up",
+   "title": "スマホのタッチ決済乗車で最大8％還元！（三井住友カード）",
+   "url": "https://www.smbc-card.com/mem/for_transit/point_up.jsp",
+   "publisher": "三井住友カード株式会社",
+   "sourceType": "officialProductPage",
+   "publishedAt": null,
+   "lastVerifiedAt": "2026-09-29",
+   "accessStatus": "accessible",
+   "reliability": "primary",
+   "relevantSections": [],
+   "summary": "全国の鉄道・バスの対象路線でスマホのタッチ決済乗車をすると200円につき7％、Oliveフレキシブルペイ クレジットモードなら8％のVポイント還元。2026-07-01以降の利用が対象。上限はカード券種ごとに毎月1,000ポイント。",
    "contentHash": null,
    "notes": []
   }

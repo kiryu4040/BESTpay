@@ -1,6 +1,6 @@
 {
  "schemaVersion": "1.0.0",
- "catalogVersion": "2026.09.28.4",
+ "catalogVersion": "2026.09.29.2",
  "generatedAt": "2026-09-27T00:00:00+09:00",
  "items": [
   {
@@ -452,6 +452,357 @@
    "notes": [
     "設定画面では「特定サービスのカード払い（契約数）」として1項目にまとめて出る（D-119）。内部は件数ぶんの条件に分かれている。",
     "オンのあいだだけ確定値に加算する（D-50）。"
+   ]
+  },
+  {
+   "id": "smbc_pup_eraberu_tokuten",
+   "name": "Oliveアカウントの選べる特典で「+1%」を選ぶ",
+   "description": "Vポイントアッププログラムの条件。Oliveアカウントの選べる特典で「Vポイントアッププログラム＋1％」を選択すると対象店舗の還元率に+1%。",
+   "valueType": "boolean",
+   "defaultState": "notSatisfied",
+   "verificationMethod": "userInput",
+   "scope": "user",
+   "sensitivity": "normal",
+   "validFrom": "2026-09-29",
+   "validUntilExclusive": null,
+   "status": "active",
+   "ownerInstrumentIds": [
+    "olive_flexible_pay_gold",
+    "smbc_gold_nl_card"
+   ],
+   "sourceIds": [
+    "src_smbc_vpoint_up_program",
+    "src_olive_gold_official",
+    "src_smbc_gold_nl_official"
+   ],
+   "notes": [
+    "カタログには条件の定義のみを置き、達成状態はアプリの「還元率の条件」で入力して端末に保存する（D-101・D-114）。",
+    "Vポイントアッププログラムの対象店舗（コンビニ・飲食店のタッチ決済）での還元率を上げる条件。",
+    "「不明」のあいだはその分を確定値に加算しない（D-50）。"
+   ]
+  },
+  {
+   "id": "smbc_pup_yen_deposit_250man",
+   "name": "円預金の月末残高250万円以上",
+   "description": "Vポイントアッププログラムの条件。Oliveアカウントご契約口座の円普通預金の月末残高が250万円以上で+0.5%。残高が大きいほど段階的に上がるが、区分の金額は公式に未確認のため達成済みのこの段階のみ登録している。",
+   "valueType": "boolean",
+   "defaultState": "notSatisfied",
+   "verificationMethod": "userInput",
+   "scope": "user",
+   "sensitivity": "normal",
+   "validFrom": "2026-09-29",
+   "validUntilExclusive": null,
+   "status": "active",
+   "ownerInstrumentIds": [
+    "olive_flexible_pay_gold",
+    "smbc_gold_nl_card"
+   ],
+   "sourceIds": [
+    "src_smbc_vpoint_up_program",
+    "src_olive_gold_official",
+    "src_smbc_gold_nl_official"
+   ],
+   "notes": [
+    "カタログには条件の定義のみを置き、達成状態はアプリの「還元率の条件」で入力して端末に保存する（D-101・D-114）。",
+    "Vポイントアッププログラムの対象店舗（コンビニ・飲食店のタッチ決済）での還元率を上げる条件。",
+    "「不明」のあいだはその分を確定値に加算しない（D-50）。"
+   ]
+  },
+  {
+   "id": "smbc_pup_foreign_deposit_accumulate",
+   "name": "外貨積立を1万円以上実行",
+   "description": "Vポイントアッププログラムの条件。当月に1回あたり1万円以上の外貨積立を実行すると+1%。",
+   "valueType": "boolean",
+   "defaultState": "notSatisfied",
+   "verificationMethod": "userInput",
+   "scope": "user",
+   "sensitivity": "normal",
+   "validFrom": "2026-09-29",
+   "validUntilExclusive": null,
+   "status": "active",
+   "ownerInstrumentIds": [
+    "olive_flexible_pay_gold",
+    "smbc_gold_nl_card"
+   ],
+   "sourceIds": [
+    "src_smbc_vpoint_up_program",
+    "src_olive_gold_official",
+    "src_smbc_gold_nl_official"
+   ],
+   "notes": [
+    "カタログには条件の定義のみを置き、達成状態はアプリの「還元率の条件」で入力して端末に保存する（D-101・D-114）。",
+    "Vポイントアッププログラムの対象店舗（コンビニ・飲食店のタッチ決済）での還元率を上げる条件。",
+    "「不明」のあいだはその分を確定値に加算しない（D-50）。"
+   ]
+  },
+  {
+   "id": "smbc_pup_foreign_deposit_balance",
+   "name": "外貨預金の残高1万米ドル相当以上",
+   "description": "Vポイントアッププログラムの条件。外貨預金の毎月最終営業日の残高が1万米ドル相当額以上で+1%。",
+   "valueType": "boolean",
+   "defaultState": "notSatisfied",
+   "verificationMethod": "userInput",
+   "scope": "user",
+   "sensitivity": "normal",
+   "validFrom": "2026-09-29",
+   "validUntilExclusive": null,
+   "status": "active",
+   "ownerInstrumentIds": [
+    "olive_flexible_pay_gold",
+    "smbc_gold_nl_card"
+   ],
+   "sourceIds": [
+    "src_smbc_vpoint_up_program",
+    "src_olive_gold_official",
+    "src_smbc_gold_nl_official"
+   ],
+   "notes": [
+    "カタログには条件の定義のみを置き、達成状態はアプリの「還元率の条件」で入力して端末に保存する（D-101・D-114）。",
+    "Vポイントアッププログラムの対象店舗（コンビニ・飲食店のタッチ決済）での還元率を上げる条件。",
+    "「不明」のあいだはその分を確定値に加算しない（D-50）。"
+   ]
+  },
+  {
+   "id": "smbc_pup_housing_loan",
+   "name": "住宅ローンをOliveアカウントで契約",
+   "description": "Vポイントアッププログラムの条件。Oliveアカウントにご契約のうえ、住宅ローンの契約があると+1%。",
+   "valueType": "boolean",
+   "defaultState": "notSatisfied",
+   "verificationMethod": "userInput",
+   "scope": "user",
+   "sensitivity": "normal",
+   "validFrom": "2026-09-29",
+   "validUntilExclusive": null,
+   "status": "active",
+   "ownerInstrumentIds": [
+    "olive_flexible_pay_gold",
+    "smbc_gold_nl_card"
+   ],
+   "sourceIds": [
+    "src_smbc_vpoint_up_program",
+    "src_olive_gold_official",
+    "src_smbc_gold_nl_official"
+   ],
+   "notes": [
+    "カタログには条件の定義のみを置き、達成状態はアプリの「還元率の条件」で入力して端末に保存する（D-101・D-114）。",
+    "Vポイントアッププログラムの対象店舗（コンビニ・飲食店のタッチ決済）での還元率を上げる条件。",
+    "「不明」のあいだはその分を確定値に加算しない（D-50）。"
+   ]
+  },
+  {
+   "id": "smbc_pup_sbi_v_point_invest",
+   "name": "SBI証券でVポイント投資を1万ポイント以上",
+   "description": "Vポイントアッププログラムの条件。当月のVポイント投資で合計10,000ポイント以上利用すると+1%。",
+   "valueType": "boolean",
+   "defaultState": "notSatisfied",
+   "verificationMethod": "userInput",
+   "scope": "user",
+   "sensitivity": "normal",
+   "validFrom": "2026-09-29",
+   "validUntilExclusive": null,
+   "status": "active",
+   "ownerInstrumentIds": [
+    "olive_flexible_pay_gold",
+    "smbc_gold_nl_card"
+   ],
+   "sourceIds": [
+    "src_smbc_vpoint_up_program",
+    "src_olive_gold_official",
+    "src_smbc_gold_nl_official"
+   ],
+   "notes": [
+    "カタログには条件の定義のみを置き、達成状態はアプリの「還元率の条件」で入力して端末に保存する（D-101・D-114）。",
+    "Vポイントアッププログラムの対象店舗（コンビニ・飲食店のタッチ決済）での還元率を上げる条件。",
+    "「不明」のあいだはその分を確定値に加算しない（D-50）。"
+   ]
+  },
+  {
+   "id": "smbc_pup_sbi_nisa_100man",
+   "name": "NISA口座の投信100万円以上",
+   "description": "Vポイントアッププログラムの条件。NISA口座における投資信託の保有資産評価額が100万円以上で+0.5%。",
+   "valueType": "boolean",
+   "defaultState": "notSatisfied",
+   "verificationMethod": "userInput",
+   "scope": "user",
+   "sensitivity": "normal",
+   "validFrom": "2026-09-29",
+   "validUntilExclusive": null,
+   "status": "active",
+   "ownerInstrumentIds": [
+    "olive_flexible_pay_gold",
+    "smbc_gold_nl_card"
+   ],
+   "sourceIds": [
+    "src_smbc_vpoint_up_program",
+    "src_olive_gold_official",
+    "src_smbc_gold_nl_official"
+   ],
+   "notes": [
+    "カタログには条件の定義のみを置き、達成状態はアプリの「還元率の条件」で入力して端末に保存する（D-101・D-114）。",
+    "Vポイントアッププログラムの対象店舗（コンビニ・飲食店のタッチ決済）での還元率を上げる条件。",
+    "「不明」のあいだはその分を確定値に加算しない（D-50）。"
+   ]
+  },
+  {
+   "id": "smbc_pup_sbi_nisa_200man",
+   "name": "NISA口座の投信200万円以上",
+   "description": "Vポイントアッププログラムの条件。NISA口座における投資信託の保有資産評価額が200万円以上で+0.5%。",
+   "valueType": "boolean",
+   "defaultState": "notSatisfied",
+   "verificationMethod": "userInput",
+   "scope": "user",
+   "sensitivity": "normal",
+   "validFrom": "2026-09-29",
+   "validUntilExclusive": null,
+   "status": "active",
+   "ownerInstrumentIds": [
+    "olive_flexible_pay_gold",
+    "smbc_gold_nl_card"
+   ],
+   "sourceIds": [
+    "src_smbc_vpoint_up_program",
+    "src_olive_gold_official",
+    "src_smbc_gold_nl_official"
+   ],
+   "notes": [
+    "カタログには条件の定義のみを置き、達成状態はアプリの「還元率の条件」で入力して端末に保存する（D-101・D-114）。",
+    "Vポイントアッププログラムの対象店舗（コンビニ・飲食店のタッチ決済）での還元率を上げる条件。",
+    "「不明」のあいだはその分を確定値に加算しない（D-50）。"
+   ]
+  },
+  {
+   "id": "smbc_pup_olive_healthcare",
+   "name": "Oliveヘルスケアに加入",
+   "description": "Vポイントアッププログラムの条件。Oliveヘルスケアに加入し、無料期間終了後に月額利用料を支払うと+1%。",
+   "valueType": "boolean",
+   "defaultState": "notSatisfied",
+   "verificationMethod": "userInput",
+   "scope": "user",
+   "sensitivity": "normal",
+   "validFrom": "2026-09-29",
+   "validUntilExclusive": null,
+   "status": "active",
+   "ownerInstrumentIds": [
+    "olive_flexible_pay_gold",
+    "smbc_gold_nl_card"
+   ],
+   "sourceIds": [
+    "src_smbc_vpoint_up_program",
+    "src_olive_gold_official",
+    "src_smbc_gold_nl_official"
+   ],
+   "notes": [
+    "カタログには条件の定義のみを置き、達成状態はアプリの「還元率の条件」で入力して端末に保存する（D-101・D-114）。",
+    "Vポイントアッププログラムの対象店舗（コンビニ・飲食店のタッチ決済）での還元率を上げる条件。",
+    "「不明」のあいだはその分を確定値に加算しない（D-50）。"
+   ]
+  },
+  {
+   "id": "smbc_pup_sumitomo_life_vitality",
+   "name": "住友生命のVitalityに加入",
+   "description": "Vポイントアッププログラムの条件。住友生命のVitalityに加入し健康プログラムを実施すると最大+2%。公式は「最大」表記のため上限値で登録している。",
+   "valueType": "boolean",
+   "defaultState": "notSatisfied",
+   "verificationMethod": "userInput",
+   "scope": "user",
+   "sensitivity": "normal",
+   "validFrom": "2026-09-29",
+   "validUntilExclusive": null,
+   "status": "active",
+   "ownerInstrumentIds": [
+    "olive_flexible_pay_gold",
+    "smbc_gold_nl_card"
+   ],
+   "sourceIds": [
+    "src_smbc_vpoint_up_program",
+    "src_olive_gold_official",
+    "src_smbc_gold_nl_official"
+   ],
+   "notes": [
+    "カタログには条件の定義のみを置き、達成状態はアプリの「還元率の条件」で入力して端末に保存する（D-101・D-114）。",
+    "Vポイントアッププログラムの対象店舗（コンビニ・飲食店のタッチ決済）での還元率を上げる条件。",
+    "「不明」のあいだはその分を確定値に加算しない（D-50）。"
+   ]
+  },
+  {
+   "id": "smbc_pup_card_loan",
+   "name": "三井住友カードのカードローンを契約",
+   "description": "Vポイントアッププログラムの条件。返済口座をOliveアカウントご契約口座に設定すると最大+3%。公式は「最大」表記のため上限値で登録している。",
+   "valueType": "boolean",
+   "defaultState": "notSatisfied",
+   "verificationMethod": "userInput",
+   "scope": "user",
+   "sensitivity": "normal",
+   "validFrom": "2026-09-29",
+   "validUntilExclusive": null,
+   "status": "active",
+   "ownerInstrumentIds": [
+    "olive_flexible_pay_gold",
+    "smbc_gold_nl_card"
+   ],
+   "sourceIds": [
+    "src_smbc_vpoint_up_program",
+    "src_olive_gold_official",
+    "src_smbc_gold_nl_official"
+   ],
+   "notes": [
+    "カタログには条件の定義のみを置き、達成状態はアプリの「還元率の条件」で入力して端末に保存する（D-101・D-114）。",
+    "Vポイントアッププログラムの対象店舗（コンビニ・飲食店のタッチ決済）での還元率を上げる条件。",
+    "「不明」のあいだはその分を確定値に加算しない（D-50）。"
+   ]
+  },
+  {
+   "id": "smbc_pup_smbc_nikko",
+   "name": "SMBC日興証券で対象取引",
+   "description": "Vポイントアッププログラムの条件。Oliveアカウントをご契約のうえ、SMBC日興証券で対象のお取引を実施すると最大+1%。",
+   "valueType": "boolean",
+   "defaultState": "notSatisfied",
+   "verificationMethod": "userInput",
+   "scope": "user",
+   "sensitivity": "normal",
+   "validFrom": "2026-09-29",
+   "validUntilExclusive": null,
+   "status": "active",
+   "ownerInstrumentIds": [
+    "olive_flexible_pay_gold",
+    "smbc_gold_nl_card"
+   ],
+   "sourceIds": [
+    "src_smbc_vpoint_up_program",
+    "src_olive_gold_official",
+    "src_smbc_gold_nl_official"
+   ],
+   "notes": [
+    "カタログには条件の定義のみを置き、達成状態はアプリの「還元率の条件」で入力して端末に保存する（D-101・D-114）。",
+    "Vポイントアッププログラムの対象店舗（コンビニ・飲食店のタッチ決済）での還元率を上げる条件。",
+    "「不明」のあいだはその分を確定値に加算しない（D-50）。"
+   ]
+  },
+  {
+   "id": "smbc_pup_vtrip",
+   "name": "Vトリップで国内・海外ホテルを予約",
+   "description": "Vポイントアッププログラムの条件。Vトリップで国内または海外のホテルを予約・決済し宿泊すると最大+2%。",
+   "valueType": "boolean",
+   "defaultState": "notSatisfied",
+   "verificationMethod": "userInput",
+   "scope": "user",
+   "sensitivity": "normal",
+   "validFrom": "2026-09-29",
+   "validUntilExclusive": null,
+   "status": "active",
+   "ownerInstrumentIds": [
+    "olive_flexible_pay_gold",
+    "smbc_gold_nl_card"
+   ],
+   "sourceIds": [
+    "src_smbc_vpoint_up_program",
+    "src_olive_gold_official",
+    "src_smbc_gold_nl_official"
+   ],
+   "notes": [
+    "カタログには条件の定義のみを置き、達成状態はアプリの「還元率の条件」で入力して端末に保存する（D-101・D-114）。",
+    "Vポイントアッププログラムの対象店舗（コンビニ・飲食店のタッチ決済）での還元率を上げる条件。",
+    "「不明」のあいだはその分を確定値に加算しない（D-50）。"
    ]
   }
  ]

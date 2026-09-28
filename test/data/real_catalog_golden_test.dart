@@ -143,8 +143,8 @@ void main() {
   group('カタログのデコード', () {
     test('実カード6枚がデコードでき、Catalogが構築できる', () {
       expect(catalog.isNotEmpty, isTrue);
-      expect(catalog.catalogVersion, '2026.09.28.7');
-      expect(catalog.generatedAt, '2026-09-28T00:00:00+09:00');
+      expect(catalog.catalogVersion, '2026.09.29.2');
+      expect(catalog.generatedAt, '2026-09-29T00:00:00+09:00');
 
       expect(
         catalog.paymentInstrumentsById.keys.map((key) => key.value).toList()
@@ -170,8 +170,8 @@ void main() {
         ],
       );
 
-      expect(catalog.rewardRulesById.length, 53);
-      expect(catalog.sourcesById.length, 41);
+      expect(catalog.rewardRulesById.length, 70);
+      expect(catalog.sourcesById.length, 42);
 
       final mizuho = catalog.paymentInstrumentsById[id('mizuho_rakuten_card')]!;
       expect(mizuho.instrumentType, 'creditCard');
@@ -202,7 +202,7 @@ void main() {
           .where((rule) => rule.status.value == 'draft')
           .toList();
 
-      expect(active.length, 50);
+      expect(active.length, 67);
       expect(draft.length, 3);
 
       for (final rule in catalog.rewardRulesById.values) {
@@ -756,13 +756,13 @@ void main() {
     }
 
     test('店舗一覧が16件読み込め、得意店舗なしの受け皿は登録しない', () {
-      expect(directory.merchants.length, 69);
+      expect(directory.merchants.length, 60);
       expect(
         directory.merchants.any((m) => m.id.value == 'other_merchant'),
         isFalse,
       );
       expect(directory.categoriesById.containsKey(id('other_store')), isFalse);
-      expect(directory.categoriesById.length, 14);
+      expect(directory.categoriesById.length, 15);
       expect(directory.search('セブン').single.name, 'セブン-イレブン');
     });
 
@@ -848,6 +848,25 @@ void main() {
       expect(entryFor(ranking, 'mufg_card').totalPoints.points, 10);
     });
 
+    test('楽天市場はみずほ楽天カードで楽天ポイント3%になる（D-134）', () {
+      final shop = merchant('rakuten_market');
+      final ranking = evaluator.evaluate(
+        catalog: catalog,
+        amount: yen(10000),
+        transactionDate: date('2026-09-29'),
+        merchantId: shop.id,
+        merchantGroupIds: shop.groupIds,
+        categoryIds: shop.categoryIds,
+        conditionContext: satisfiedContext(),
+      );
+
+      // 楽天ポイントは基本1%（100pt）＋楽天市場分2%（200pt）＝300pt（3%）。
+      final rakuten = entryFor(ranking, 'mizuho_rakuten_card')
+          .programAwards
+          .firstWhere((award) => award.programId.value == 'rakuten_point');
+      expect(rakuten.points.points, 300);
+    });
+
     test('上乗せはカテゴリではなく店舗単位で判定する（D-113）', () {
       final smbc =
           catalog.rewardRulesById[id('smbc_gold_nl_target_store_bonus')]!;
@@ -866,12 +885,32 @@ void main() {
       expect(mufgStores, isNot(contains('family_mart')));
     });
 
-    test('ファミリーマートはどのカードの上乗せも受けない（基本還元のみ）', () {
-      final ranking = compareAt('family_mart');
+    test('上乗せのない店舗はカタログから削除されている（D-133）', () {
+      // ファミリーマート・ライフ・成城石井・イオン・ピザーラ・PIZZA-LA・
+      // 天下一品・メルカリ・Yahoo!ショッピング・ヨドバシカメラ・ビックカメラは
+      // 高還元の対象がないため削除した。
+      for (final removed in <String>[
+        'family_mart', 'life', 'seijo_ishii', 'aeon', 'pizzeria', 'pizza_la',
+        'tenkaippin', 'mercari', 'yahoo_shopping', 'yodobashi', 'biccamera',
+      ]) {
+        expect(
+          directory.merchants.any((m) => m.id.value == removed),
+          isFalse,
+          reason: '$removed は削除されていること',
+        );
+      }
+    });
 
-      expect(entryFor(ranking, 'smbc_gold_nl_card').totalPoints.points, 50);
-      expect(entryFor(ranking, 'olive_flexible_pay_gold').totalPoints.points, 50);
-      expect(entryFor(ranking, 'mufg_card').totalPoints.points, 10);
+    test('ルールが参照する店舗はすべて存在する', () {
+      for (final rule in catalog.rewardRulesById.values) {
+        for (final merchantId in rule.selectors.merchantIds) {
+          expect(
+            directory.merchants.any((m) => m.id.value == merchantId.value),
+            isTrue,
+            reason: '${rule.id.value} -> ${merchantId.value}',
+          );
+        }
+      }
     });
 
     test('松屋は三菱UFJカードだけ7%で、三井住友カード／Oliveは基本還元', () {
@@ -924,6 +963,31 @@ void main() {
           reason: '${entry.key} は ${entry.value}pt（200円あたり）',
         );
       }
+    });
+
+    test('クレカ乗車はOliveが8%・SMBCが7%・JCBが10%になる（D-132）', () {
+      final shop = merchant('card_ride');
+      final ranking = evaluator.evaluate(
+        catalog: catalog,
+        amount: yen(200),
+        transactionDate: date('2026-09-29'),
+        merchantId: shop.id,
+        merchantGroupIds: shop.groupIds,
+        categoryIds: shop.categoryIds,
+        conditionContext: ConditionEvaluationContext(
+          states: <StableId, TriState>{
+            id('mizuho_w_point_plan_eligible'): TriState.satisfied,
+            id('jcb_point_up_registered'): TriState.satisfied,
+          },
+        ),
+      );
+
+      // 200円あたり: Olive 16pt（8%）、SMBC 14pt（7%）、JCB 20pt（10%）。
+      expect(entryFor(ranking, 'olive_flexible_pay_gold').totalPoints.points, 16);
+      expect(entryFor(ranking, 'smbc_gold_nl_card').totalPoints.points, 14);
+      expect(entryFor(ranking, 'jcb_card_w').totalPoints.points, 20);
+      expect(entryFor(ranking, 'v_neobank_debit').totalPoints.points, 3,
+          reason: 'V NEOBANKデビット（1.5%）は乗車の上乗せ対象ではない');
     });
 
     test('ポイントアップ未登録ならJCBカードWの優待店上乗せは効かない', () {
