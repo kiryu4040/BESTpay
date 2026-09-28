@@ -56,6 +56,28 @@ final class MerchantCategoryScreen extends StatelessWidget {
   }
 }
 
+/// タイルに収まらない長い名前の略称（D-128）。
+///
+/// 世間でよく使われている呼び方を採用する。ここに無い店は正式名を出す。
+const Map<String, String> merchantShortNames = <String, String>{
+  'kfc': 'ケンタッキー',
+  'doutor': 'ドトール',
+  'excelsior': 'エクセルシオール',
+  'starbucks': 'スタバ',
+  'sanmark_cafe': 'サンマルク',
+  'freshness_burger': 'フレッシュネス',
+  'go_taxi': 'GO',
+  'haruyama': 'はるやま',
+  'akachan_honpo': 'アカチャン',
+  'coca_cola_vending': 'コカ・コーラ',
+  'card_ride': 'クレカ乗車',
+};
+
+/// タイルに出す店舗名（長い名前は略称にする）。
+String merchantShortName(MerchantEntry merchant) {
+  return merchantShortNames[merchant.id.value] ?? merchant.name;
+}
+
 /// 正方形ロゴを規則正しく並べるグリッド（D-092）。
 final class MerchantLogoGrid extends StatelessWidget {
   const MerchantLogoGrid({
@@ -80,12 +102,12 @@ final class MerchantLogoGrid extends StatelessWidget {
     return GridView.builder(
       shrinkWrap: shrinkWrap,
       physics: shrinkWrap ? const NeverScrollableScrollPhysics() : null,
-      padding: const EdgeInsets.fromLTRB(12, 8, 12, 24),
+      padding: const EdgeInsets.fromLTRB(8, 4, 8, 16),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,
-        mainAxisSpacing: 12,
-        crossAxisSpacing: 12,
-        childAspectRatio: 0.82,
+        mainAxisSpacing: 6,
+        crossAxisSpacing: 6,
+        childAspectRatio: 0.92,
       ),
       itemCount: merchants.length,
       itemBuilder: (context, index) {
@@ -102,11 +124,11 @@ final class MerchantLogoGrid extends StatelessWidget {
               LogoTile(
                 assetPath: merchantLogoPath(merchant.id.value),
                 label: merchant.name,
-                size: 72,
+                size: 64,
               ),
-              const SizedBox(height: 6),
+              const SizedBox(height: 2),
               Text(
-                merchant.name,
+                merchantShortName(merchant),
                 maxLines: 2,
                 textAlign: TextAlign.center,
                 overflow: TextOverflow.ellipsis,

@@ -192,27 +192,63 @@ final class RewardRanking {
 
   /// The single best card for this transaction, when one can be chosen.
   ///
-  /// 還元額が同じときは基準カード（みずほ楽天カード）を選ぶ（D-123）。
-  /// 実際に使っているカードが並ぶなら、あえて持ち替える理由がないため。
+  /// 並び順は [compareRankingEntries] が決める。還元額が同じときは
+  /// 受け取れるポイントの優先順位で決まるため（D-127）、ここでは
+  /// 先頭をそのまま返す。基準カードを優先する旧ルール（D-123）は
+  /// この決定で置き換えた。
   RewardRankingEntry? get bestEntry {
     final entries = allEntries;
     if (entries.isEmpty) {
       return null;
     }
 
-    final leader = entries.first;
-    final baseline = baselineEntry;
-    if (baseline != null &&
-        leader.instrumentId != baseline.instrumentId &&
-        baseline.confirmedValue.compareTo(leader.confirmedValue) == 0) {
-      return baseline;
-    }
-
-    return leader;
+    return entries.first;
   }
 
   /// True when no card beats the baseline, so the baseline stays the choice.
   bool get baselineRemainsBest => betterThanBaseline.isEmpty;
+}
+
+
+/// ポイント種別の優先順位（D-127）。
+///
+/// 還元額が同じカードが並んだとき、どのポイントで受け取れるかを基準に
+/// 並び順を決める。数字が小さいほど優先する。
+///
+/// 1. Vポイント／2. みずほポイント／3. 楽天ポイント／4. その他のポイント
+///
+/// この順位は運用上の好みであり、交換価値の優劣を示すものではない。
+int pointProgramPriority(StableId programId) {
+  switch (programId.value) {
+    case 'v_point':
+      return 1;
+    case 'mizuho_point':
+      return 2;
+    case 'rakuten_point':
+      return 3;
+    default:
+      return 4;
+  }
+}
+
+/// そのカードが受け取れるポイントのうち、いちばん優先度の高い種別の順位。
+///
+/// 複数のポイントが同時に付くカード（みずほ楽天カードなど）は、
+/// 優先度の高いほうを代表として使う。ポイントが無いカードは最下位。
+int bestPointProgramPriority(RewardRankingEntry entry) {
+  if (entry.programAwards.isEmpty) {
+    return 4;
+  }
+
+  var best = 4;
+  for (final award in entry.programAwards) {
+    final priority = pointProgramPriority(award.programId);
+    if (priority < best) {
+      best = priority;
+    }
+  }
+
+  return best;
 }
 
 /// Ordering defined by decision D-42.
@@ -224,6 +260,13 @@ int compareRankingEntries(RewardRankingEntry left, RewardRankingEntry right) {
   final valueComparison = right.confirmedValue.compareTo(left.confirmedValue);
   if (valueComparison != 0) {
     return valueComparison;
+  }
+
+  // 還元額が同じときは、受け取れるポイントの優先順位で決める（D-127）。
+  final pointComparison =
+      bestPointProgramPriority(left).compareTo(bestPointProgramPriority(right));
+  if (pointComparison != 0) {
+    return pointComparison;
   }
 
   final confidenceComparison = right.confidence.rankWeight.compareTo(
