@@ -48,11 +48,6 @@ final class CardManagementScreen extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: <Widget>[
-          Text(
-            'ランキングに出したくないカードは、保有したままスイッチを切れます。'
-            '条件はカードをタップした詳細画面からも設定できます。',
-            style: theme.textTheme.bodySmall,
-          ),
           const SizedBox(height: 8),
           for (final instrument in instruments)
             _buildCard(context, controller, instrument),

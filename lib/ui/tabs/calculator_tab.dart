@@ -81,11 +81,7 @@ final class _CalculatorTabState extends State<CalculatorTab> {
             child: ListTile(
               leading: const Icon(Icons.storefront),
               title: Text(_merchant?.name ?? 'お店を選ぶ'),
-              subtitle: Text(
-                _merchant == null
-                    ? 'タップして店舗を選んでください'
-                    : 'この店で計算します',
-              ),
+              subtitle: Text(_merchant?.name ?? '店舗を選ぶ'),
               trailing: const Icon(Icons.chevron_right),
               onTap: () => _pickMerchant(controller),
             ),

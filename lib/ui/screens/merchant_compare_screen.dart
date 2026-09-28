@@ -33,11 +33,6 @@ final class MerchantCompareScreen extends StatelessWidget {
                 const SizedBox(height: 16),
                 Text('カードごとの比較', style: theme.textTheme.titleMedium),
                 const SizedBox(height: 4),
-                Text(
-                  '1万円の支払いで換算した還元率です（金額の入力は不要）。',
-                  style: theme.textTheme.bodySmall,
-                ),
-                const SizedBox(height: 8),
                 for (final entry in controller.ranking!.allEntries)
                   _buildEntry(context, entry),
                 if (merchant.notes.isNotEmpty) ...<Widget>[
@@ -200,7 +195,6 @@ final class MerchantCompareScreen extends StatelessWidget {
                             .join('／'),
                         style: theme.textTheme.bodySmall,
                       ),
-                    Text('タップして詳細', style: theme.textTheme.labelSmall),
                   ],
                 ),
               ),

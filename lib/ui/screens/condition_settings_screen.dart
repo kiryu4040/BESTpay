@@ -40,17 +40,6 @@ final class _ConditionSettingsScreenState extends State<ConditionSettingsScreen>
           : ListView(
               padding: const EdgeInsets.all(16),
               children: <Widget>[
-                Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(12),
-                    child: Text(
-                      'カードをタップすると条件が出ます。'
-                      'あてはまる条件をオンにすると、その分が還元率に加算されます。',
-                      style: theme.textTheme.bodySmall,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 12),
                 for (final instrument in instruments)
                   _buildCardSection(context, controller, instrument.id.value,
                       instrument.name),
