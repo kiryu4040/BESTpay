@@ -305,11 +305,12 @@ void main() {
     expect(controller.conditionContext.states, isNotEmpty);
   });
 
-  testWidgets('年間タブで金額を入力するとカードごとの概算が出る (D-102)', (tester) async {
+  testWidgets('年間タブは会計の記録を促す (D-121)', (tester) async {
     final controller = await build(tester);
     await pump(tester, controller, const YearlyTab());
 
-    expect(find.textContaining('年間の利用額'), findsOneWidget);
+    expect(find.textContaining('会計を記録する'), findsWidgets);
+    expect(find.textContaining('1月から12月末までを1年'), findsOneWidget);
   });
 
   testWidgets('カード詳細から設定へ進める (D-104)', (tester) async {
