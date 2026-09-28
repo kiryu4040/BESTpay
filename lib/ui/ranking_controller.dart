@@ -267,6 +267,29 @@ final class RankingController extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// 金額と店舗を指定して比較する（計算タブ専用・D-115）。
+  ///
+  /// 店舗タブの基準額（1万円）ではなく、利用者が入力した金額で
+  /// その店舗の還元額をカードごとに出す。
+  void compareAtMerchantWithAmount({
+    required MerchantEntry merchant,
+    required MoneyYen amount,
+  }) {
+    _selectedMerchant = merchant;
+    _ranking = _applyVisibility(
+      _useCase.execute(
+        catalog: _catalog,
+        amount: amount,
+        transactionDate: currentJstDate(),
+        conditionContext: conditionContext,
+        merchantId: merchant.id,
+        merchantGroupIds: merchant.groupIds,
+        categoryIds: merchant.categoryIds,
+      ),
+    );
+    notifyListeners();
+  }
+
   /// 年間の還元額を概算する（年間タブ専用・D-102）。
   void computeAnnualSummary({required MoneyYen annualSpend}) {
     _annualSummary = _annualUseCase.execute(

@@ -59,8 +59,13 @@ final class MerchantCompareScreen extends StatelessWidget {
                 ],
                 const SizedBox(height: 16),
                 Text(
-                  '※ 進呈上限と、ポイントアッププログラムの条件達成は'
-                  'まだ計算に入っていません。',
+                  '※ 進呈上限（月50,000ポイント等）と、期間ごとの対象金額上限'
+                  '（三菱UFJカードの50,000円等）はまだ計算に入っていません。',
+                  style: theme.textTheme.bodySmall,
+                ),
+                Text(
+                  '※ 条件つきの上乗せは「設定」タブの還元率の基準（条件）で'
+                  '達成状況を選ぶと反映されます。',
                   style: theme.textTheme.bodySmall,
                 ),
                 Text(

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'tabs/calculator_tab.dart';
-import 'tabs/home_tab.dart';
 import 'tabs/settings_tab.dart';
 import 'tabs/stores_tab.dart';
 import 'tabs/yearly_tab.dart';
@@ -23,8 +22,8 @@ final class BestPayApp extends StatelessWidget {
   }
 }
 
-/// ボトムナビ5タブの骨格。
-/// ホーム / 店舗 / 電卓 / 年間 / 設定
+/// ボトムナビ4タブの骨格（D-117でホームを削除）。
+/// 店舗 / 計算 / 年間 / 設定
 final class AppShell extends StatefulWidget {
   const AppShell({super.key});
 
@@ -36,7 +35,6 @@ final class _AppShellState extends State<AppShell> {
   int _index = 0;
 
   static const List<Widget> _tabs = <Widget>[
-    HomeTab(),
     StoresTab(),
     CalculatorTab(),
     YearlyTab(),
@@ -59,11 +57,6 @@ final class _AppShellState extends State<AppShell> {
         },
         destinations: const <NavigationDestination>[
           NavigationDestination(
-            icon: Icon(Icons.home_outlined),
-            selectedIcon: Icon(Icons.home),
-            label: 'ホーム',
-          ),
-          NavigationDestination(
             icon: Icon(Icons.storefront_outlined),
             selectedIcon: Icon(Icons.storefront),
             label: '店舗',
@@ -71,7 +64,7 @@ final class _AppShellState extends State<AppShell> {
           NavigationDestination(
             icon: Icon(Icons.calculate_outlined),
             selectedIcon: Icon(Icons.calculate),
-            label: '電卓',
+            label: '計算',
           ),
           NavigationDestination(
             icon: Icon(Icons.calendar_today_outlined),
