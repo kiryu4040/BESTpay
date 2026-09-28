@@ -1,6 +1,6 @@
 {
  "schemaVersion": "1.0.0",
- "catalogVersion": "2026.09.28.4",
+ "catalogVersion": "2026.09.28.7",
  "generatedAt": "2026-09-27T00:00:00+09:00",
  "items": [
   {
@@ -215,6 +215,19 @@
    ],
    "notes": [
     "三菱UFJカードのポイントアップ対象店舗の追加に伴い新設（D-113）。"
+   ]
+  },
+  {
+   "id": "drugstore",
+   "name": "ドラッグストア／家電・ホームセンター",
+   "parentCategoryId": null,
+   "status": "active",
+   "sourceIds": [
+    "src_jcb_point_partner",
+    "src_mufg_store_bonus"
+   ],
+   "notes": [
+    "有名チェーンの追加に伴い新設（D-129）。"
    ]
   }
  ]

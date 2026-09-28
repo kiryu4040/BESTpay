@@ -143,7 +143,7 @@ void main() {
   group('カタログのデコード', () {
     test('実カード6枚がデコードでき、Catalogが構築できる', () {
       expect(catalog.isNotEmpty, isTrue);
-      expect(catalog.catalogVersion, '2026.09.28.4');
+      expect(catalog.catalogVersion, '2026.09.28.7');
       expect(catalog.generatedAt, '2026-09-28T00:00:00+09:00');
 
       expect(
@@ -756,13 +756,13 @@ void main() {
     }
 
     test('店舗一覧が16件読み込め、得意店舗なしの受け皿は登録しない', () {
-      expect(directory.merchants.length, 49);
+      expect(directory.merchants.length, 69);
       expect(
         directory.merchants.any((m) => m.id.value == 'other_merchant'),
         isFalse,
       );
       expect(directory.categoriesById.containsKey(id('other_store')), isFalse);
-      expect(directory.categoriesById.length, 13);
+      expect(directory.categoriesById.length, 14);
       expect(directory.search('セブン').single.name, 'セブン-イレブン');
     });
 

@@ -1,6 +1,6 @@
 {
  "schemaVersion": "1.0.0",
- "catalogVersion": "2026.09.28.4",
+ "catalogVersion": "2026.09.28.7",
  "generatedAt": "2026-09-27T00:00:00+09:00",
  "items": [
   {
@@ -1143,6 +1143,397 @@
    ],
    "notes": [
     "三井住友カード／Oliveの対象コンビニ・飲食店、および三菱UFJカードの対象店舗の正確な一覧に基づき追加（D-113）。店舗ごとに対象カードが異なるため、上乗せの可否はカード別のルールで判定する。"
+   ]
+  },
+  {
+   "id": "tokyu_store",
+   "name": "東急ストア",
+   "merchantGroupIds": [
+    "supermarket_chain"
+   ],
+   "categoryIds": [
+    "supermarket"
+   ],
+   "locationIds": [],
+   "status": "active",
+   "sourceIds": [
+    "src_mufg_store_bonus",
+    "src_mufg_pup_release"
+   ],
+   "notes": [
+    "三菱UFJカードのポイントアップ対象店舗（公式の対象店舗一覧で確認）。三井住友カード／Oliveの対象店舗には含まれない。"
+   ]
+  },
+  {
+   "id": "tobu_store",
+   "name": "東武ストア",
+   "merchantGroupIds": [
+    "supermarket_chain"
+   ],
+   "categoryIds": [
+    "supermarket"
+   ],
+   "locationIds": [],
+   "status": "active",
+   "sourceIds": [
+    "src_mufg_store_bonus",
+    "src_mufg_pup_release"
+   ],
+   "notes": [
+    "三菱UFJカードのポイントアップ対象店舗（公式の対象店舗一覧で確認）。三井住友カード／Oliveの対象店舗には含まれない。"
+   ]
+  },
+  {
+   "id": "domy",
+   "name": "ドミー",
+   "merchantGroupIds": [
+    "supermarket_chain"
+   ],
+   "categoryIds": [
+    "supermarket"
+   ],
+   "locationIds": [],
+   "status": "active",
+   "sourceIds": [
+    "src_mufg_store_bonus",
+    "src_mufg_pup_release"
+   ],
+   "notes": [
+    "三菱UFJカードのポイントアップ対象店舗（公式の対象店舗一覧で確認）。三井住友カード／Oliveの対象店舗には含まれない。"
+   ]
+  },
+  {
+   "id": "japan_meat",
+   "name": "ジャパンミート",
+   "merchantGroupIds": [
+    "supermarket_chain"
+   ],
+   "categoryIds": [
+    "supermarket"
+   ],
+   "locationIds": [],
+   "status": "active",
+   "sourceIds": [
+    "src_mufg_store_bonus",
+    "src_mufg_pup_release"
+   ],
+   "notes": [
+    "三菱UFJカードのポイントアップ対象店舗（公式の対象店舗一覧で確認）。三井住友カード／Oliveの対象店舗には含まれない。"
+   ]
+  },
+  {
+   "id": "feel",
+   "name": "フィール",
+   "merchantGroupIds": [
+    "supermarket_chain"
+   ],
+   "categoryIds": [
+    "supermarket"
+   ],
+   "locationIds": [],
+   "status": "active",
+   "sourceIds": [
+    "src_mufg_store_bonus",
+    "src_mufg_pup_release"
+   ],
+   "notes": [
+    "三菱UFJカードのポイントアップ対象店舗（公式の対象店舗一覧で確認）。三井住友カード／Oliveの対象店舗には含まれない。"
+   ]
+  },
+  {
+   "id": "yamanaka",
+   "name": "ヤマナカ",
+   "merchantGroupIds": [
+    "supermarket_chain"
+   ],
+   "categoryIds": [
+    "supermarket"
+   ],
+   "locationIds": [],
+   "status": "active",
+   "sourceIds": [
+    "src_mufg_store_bonus",
+    "src_mufg_pup_release"
+   ],
+   "notes": [
+    "三菱UFJカードのポイントアップ対象店舗（公式の対象店舗一覧で確認）。三井住友カード／Oliveの対象店舗には含まれない。"
+   ]
+  },
+  {
+   "id": "sunlib",
+   "name": "サンリブ",
+   "merchantGroupIds": [
+    "supermarket_chain"
+   ],
+   "categoryIds": [
+    "supermarket"
+   ],
+   "locationIds": [],
+   "status": "active",
+   "sourceIds": [
+    "src_mufg_store_bonus",
+    "src_mufg_pup_release"
+   ],
+   "notes": [
+    "三菱UFJカードのポイントアップ対象店舗（公式の対象店舗一覧で確認）。三井住友カード／Oliveの対象店舗には含まれない。"
+   ]
+  },
+  {
+   "id": "miwa_foodone",
+   "name": "三和・フードワン",
+   "merchantGroupIds": [
+    "supermarket_chain"
+   ],
+   "categoryIds": [
+    "supermarket"
+   ],
+   "locationIds": [],
+   "status": "active",
+   "sourceIds": [
+    "src_mufg_store_bonus",
+    "src_mufg_pup_release"
+   ],
+   "notes": [
+    "三菱UFJカードのポイントアップ対象店舗（公式の対象店舗一覧で確認）。三井住友カード／Oliveの対象店舗には含まれない。"
+   ]
+  },
+  {
+   "id": "aoki_super",
+   "name": "アオキスーパー",
+   "merchantGroupIds": [
+    "supermarket_chain"
+   ],
+   "categoryIds": [
+    "supermarket"
+   ],
+   "locationIds": [],
+   "status": "active",
+   "sourceIds": [
+    "src_mufg_store_bonus",
+    "src_mufg_pup_release"
+   ],
+   "notes": [
+    "三菱UFJカードのポイントアップ対象店舗（公式の対象店舗一覧で確認）。三井住友カード／Oliveの対象店舗には含まれない。"
+   ]
+  },
+  {
+   "id": "life",
+   "name": "ライフ",
+   "merchantGroupIds": [
+    "supermarket_chain"
+   ],
+   "categoryIds": [
+    "supermarket"
+   ],
+   "locationIds": [],
+   "status": "active",
+   "sourceIds": [
+    "src_jcb_point_partner",
+    "src_smbc_vpoint_up_stores",
+    "src_mufg_store_bonus"
+   ],
+   "notes": [
+    "上乗せの対象であることを公式で確認できていない。基本還元のみで計算する（未確認の上乗せは確定値に加算しない・D-50）。"
+   ]
+  },
+  {
+   "id": "seijo_ishii",
+   "name": "成城石井",
+   "merchantGroupIds": [
+    "supermarket_chain"
+   ],
+   "categoryIds": [
+    "supermarket"
+   ],
+   "locationIds": [],
+   "status": "active",
+   "sourceIds": [
+    "src_jcb_point_partner",
+    "src_smbc_vpoint_up_stores",
+    "src_mufg_store_bonus"
+   ],
+   "notes": [
+    "上乗せの対象であることを公式で確認できていない。基本還元のみで計算する（未確認の上乗せは確定値に加算しない・D-50）。"
+   ]
+  },
+  {
+   "id": "aeon",
+   "name": "イオン",
+   "merchantGroupIds": [
+    "supermarket_chain"
+   ],
+   "categoryIds": [
+    "supermarket"
+   ],
+   "locationIds": [],
+   "status": "active",
+   "sourceIds": [
+    "src_jcb_point_partner",
+    "src_smbc_vpoint_up_stores",
+    "src_mufg_store_bonus"
+   ],
+   "notes": [
+    "上乗せの対象であることを公式で確認できていない。基本還元のみで計算する（未確認の上乗せは確定値に加算しない・D-50）。"
+   ]
+  },
+  {
+   "id": "pizzeria",
+   "name": "ピザーラ",
+   "merchantGroupIds": [
+    "pizza_chain"
+   ],
+   "categoryIds": [
+    "pizza"
+   ],
+   "locationIds": [],
+   "status": "active",
+   "sourceIds": [
+    "src_jcb_point_partner",
+    "src_smbc_vpoint_up_stores",
+    "src_mufg_store_bonus"
+   ],
+   "notes": [
+    "上乗せの対象であることを公式で確認できていない。基本還元のみで計算する（未確認の上乗せは確定値に加算しない・D-50）。"
+   ]
+  },
+  {
+   "id": "pizza_la",
+   "name": "PIZZA-LA",
+   "merchantGroupIds": [
+    "pizza_chain"
+   ],
+   "categoryIds": [
+    "pizza"
+   ],
+   "locationIds": [],
+   "status": "active",
+   "sourceIds": [
+    "src_jcb_point_partner",
+    "src_smbc_vpoint_up_stores",
+    "src_mufg_store_bonus"
+   ],
+   "notes": [
+    "上乗せの対象であることを公式で確認できていない。基本還元のみで計算する（未確認の上乗せは確定値に加算しない・D-50）。"
+   ]
+  },
+  {
+   "id": "tenkaippin",
+   "name": "天下一品",
+   "merchantGroupIds": [
+    "fast_food_chain"
+   ],
+   "categoryIds": [
+    "fast_food"
+   ],
+   "locationIds": [],
+   "status": "active",
+   "sourceIds": [
+    "src_jcb_point_partner",
+    "src_smbc_vpoint_up_stores",
+    "src_mufg_store_bonus"
+   ],
+   "notes": [
+    "上乗せの対象であることを公式で確認できていない。基本還元のみで計算する（未確認の上乗せは確定値に加算しない・D-50）。"
+   ]
+  },
+  {
+   "id": "rakuten_market",
+   "name": "楽天市場",
+   "merchantGroupIds": [
+    "online_chain"
+   ],
+   "categoryIds": [
+    "online_shop"
+   ],
+   "locationIds": [],
+   "status": "active",
+   "sourceIds": [
+    "src_jcb_point_partner",
+    "src_smbc_vpoint_up_stores",
+    "src_mufg_store_bonus"
+   ],
+   "notes": [
+    "上乗せの対象であることを公式で確認できていない。基本還元のみで計算する（未確認の上乗せは確定値に加算しない・D-50）。"
+   ]
+  },
+  {
+   "id": "yahoo_shopping",
+   "name": "Yahoo!ショッピング",
+   "merchantGroupIds": [
+    "online_chain"
+   ],
+   "categoryIds": [
+    "online_shop"
+   ],
+   "locationIds": [],
+   "status": "active",
+   "sourceIds": [
+    "src_jcb_point_partner",
+    "src_smbc_vpoint_up_stores",
+    "src_mufg_store_bonus"
+   ],
+   "notes": [
+    "上乗せの対象であることを公式で確認できていない。基本還元のみで計算する（未確認の上乗せは確定値に加算しない・D-50）。"
+   ]
+  },
+  {
+   "id": "mercari",
+   "name": "メルカリ",
+   "merchantGroupIds": [
+    "online_chain"
+   ],
+   "categoryIds": [
+    "online_shop"
+   ],
+   "locationIds": [],
+   "status": "active",
+   "sourceIds": [
+    "src_jcb_point_partner",
+    "src_smbc_vpoint_up_stores",
+    "src_mufg_store_bonus"
+   ],
+   "notes": [
+    "上乗せの対象であることを公式で確認できていない。基本還元のみで計算する（未確認の上乗せは確定値に加算しない・D-50）。"
+   ]
+  },
+  {
+   "id": "yodobashi",
+   "name": "ヨドバシカメラ",
+   "merchantGroupIds": [
+    "drugstore_chain"
+   ],
+   "categoryIds": [
+    "drugstore"
+   ],
+   "locationIds": [],
+   "status": "active",
+   "sourceIds": [
+    "src_jcb_point_partner",
+    "src_smbc_vpoint_up_stores",
+    "src_mufg_store_bonus"
+   ],
+   "notes": [
+    "上乗せの対象であることを公式で確認できていない。基本還元のみで計算する（未確認の上乗せは確定値に加算しない・D-50）。"
+   ]
+  },
+  {
+   "id": "biccamera",
+   "name": "ビックカメラ",
+   "merchantGroupIds": [
+    "drugstore_chain"
+   ],
+   "categoryIds": [
+    "drugstore"
+   ],
+   "locationIds": [],
+   "status": "active",
+   "sourceIds": [
+    "src_jcb_point_partner",
+    "src_smbc_vpoint_up_stores",
+    "src_mufg_store_bonus"
+   ],
+   "notes": [
+    "上乗せの対象であることを公式で確認できていない。基本還元のみで計算する（未確認の上乗せは確定値に加算しない・D-50）。"
    ]
   }
  ]
