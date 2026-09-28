@@ -143,7 +143,7 @@ void main() {
   group('カタログのデコード', () {
     test('実カード6枚がデコードでき、Catalogが構築できる', () {
       expect(catalog.isNotEmpty, isTrue);
-      expect(catalog.catalogVersion, '2026.09.28.2');
+      expect(catalog.catalogVersion, '2026.09.28.3');
       expect(catalog.generatedAt, '2026-09-28T00:00:00+09:00');
 
       expect(
@@ -170,7 +170,7 @@ void main() {
         ],
       );
 
-      expect(catalog.rewardRulesById.length, 37);
+      expect(catalog.rewardRulesById.length, 53);
       expect(catalog.sourcesById.length, 41);
 
       final mizuho = catalog.paymentInstrumentsById[id('mizuho_rakuten_card')]!;
@@ -202,7 +202,7 @@ void main() {
           .where((rule) => rule.status.value == 'draft')
           .toList();
 
-      expect(active.length, 34);
+      expect(active.length, 50);
       expect(draft.length, 3);
 
       for (final rule in catalog.rewardRulesById.values) {
@@ -704,13 +704,13 @@ void main() {
     }
 
     test('店舗一覧が16件読み込め、得意店舗なしの受け皿は登録しない', () {
-      expect(directory.merchants.length, 33);
+      expect(directory.merchants.length, 49);
       expect(
         directory.merchants.any((m) => m.id.value == 'other_merchant'),
         isFalse,
       );
       expect(directory.categoriesById.containsKey(id('other_store')), isFalse);
-      expect(directory.categoriesById.length, 11);
+      expect(directory.categoriesById.length, 13);
       expect(directory.search('セブン').single.name, 'セブン-イレブン');
     });
 
@@ -788,14 +788,38 @@ void main() {
       expect(entryFor(ranking, 'mufg_card').totalPoints.points, 10);
     });
 
-    test('店舗上乗せルールはカテゴリを指定した店にだけ適用される', () {
-      final rule = catalog
-          .rewardRulesById[id('smbc_gold_nl_convenience_fastfood_bonus')]!;
+    test('上乗せはカテゴリではなく店舗単位で判定する（D-113）', () {
+      final smbc =
+          catalog.rewardRulesById[id('smbc_gold_nl_target_store_bonus')]!;
+      expect(smbc.selectors.categoryIds, isEmpty);
+      final smbcStores =
+          smbc.selectors.merchantIds.map((x) => x.value).toList();
+      expect(smbcStores, contains('seven_eleven'));
+      expect(smbcStores, contains('mcdonalds'));
+      expect(smbcStores, isNot(contains('family_mart')));
 
-      expect(rule.selectors.categoryIds.map((id) => id.value).toList(),
-          <String>['convenience_store', 'fast_food']);
-      expect(rule.name.contains('7%'), isTrue);
-      expect(rule.status.value, 'active');
+      final mufg = catalog.rewardRulesById[id('mufg_card_target_store_bonus')]!;
+      final mufgStores =
+          mufg.selectors.merchantIds.map((x) => x.value).toList();
+      expect(mufgStores, contains('matsuya'));
+      expect(mufgStores, isNot(contains('mcdonalds')));
+      expect(mufgStores, isNot(contains('family_mart')));
+    });
+
+    test('ファミリーマートはどのカードの上乗せも受けない（基本還元のみ）', () {
+      final ranking = compareAt('family_mart');
+
+      expect(entryFor(ranking, 'smbc_gold_nl_card').totalPoints.points, 50);
+      expect(entryFor(ranking, 'olive_flexible_pay_gold').totalPoints.points, 50);
+      expect(entryFor(ranking, 'mufg_card').totalPoints.points, 10);
+    });
+
+    test('松屋は三菱UFJカードだけ7%で、三井住友カード／Oliveは基本還元', () {
+      final ranking = compareAt('matsuya');
+
+      expect(entryFor(ranking, 'mufg_card').totalPoints.points, 140);
+      expect(entryFor(ranking, 'smbc_gold_nl_card').totalPoints.points, 50);
+      expect(entryFor(ranking, 'olive_flexible_pay_gold').totalPoints.points, 50);
     });
 
     test('JCB優待店はポイントアップ登録時に倍率どおりになる（要登録・2026-09-28時点）', () {

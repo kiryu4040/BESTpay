@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "catalogVersion": "2026.09.28.2",
+  "catalogVersion": "2026.09.28.3",
   "generatedAt": "2026-09-28T00:00:00+09:00",
   "items": [
     {
@@ -30,19 +30,19 @@
     {
       "fileName": "merchant_groups.json",
       "schemaId": "urn:bestpay:schema:merchant-group:1.0.0",
-      "contentHash": "73b80f52629f65a845146caa4006beb69c9f2227c4b2c4c2c98537b5b9388333",
+      "contentHash": "707d81e1cb5ff7f8e3a384aa095bd3ff54635590c2082171ad0f3bccbeeb6795",
       "required": true
     },
     {
       "fileName": "merchants.json",
       "schemaId": "urn:bestpay:schema:merchant:1.0.0",
-      "contentHash": "f84d91bf8a461121bc7ff99df63b5ed49f61fdbfefce6c54e2c7a734d44f3d6f",
+      "contentHash": "273f7e0c864b630ba88bec80126fed11bf8277b53fe45ded2b85060964034278",
       "required": true
     },
     {
       "fileName": "merchant_categories.json",
       "schemaId": "urn:bestpay:schema:merchant-category:1.0.0",
-      "contentHash": "60531c498d6dff5c79aeddd36f2cc15db40e7ac4595390646fd97477670fc80c",
+      "contentHash": "51bc0442dfbf2c012fd2ebde8a0287c88cb9fa916c4d1e7466284d9ce73b63fd",
       "required": true
     },
     {
@@ -54,13 +54,13 @@
     {
       "fileName": "condition_definitions.json",
       "schemaId": "urn:bestpay:schema:condition-definition:1.0.0",
-      "contentHash": "b88ffa5d02e235569346fb9788b68877e3d072f623365f5c5c9839e980ad1da3",
+      "contentHash": "b1b42f2f3e262e0cbb1ef5114c3e869f44b5f623ada5217930b584d5db6209d2",
       "required": true
     },
     {
       "fileName": "reward_rules.json",
       "schemaId": "urn:bestpay:schema:reward-rule:1.0.0",
-      "contentHash": "3ec2fe013dbcc72a1a1dd0b58a27825eea5539a3e3a4497b7efbd7a37804d8a1",
+      "contentHash": "946afb42c4e4a200217280b60899e6861f85f04d39479d87ae5d7b7fe07bd567",
       "required": true
     },
     {

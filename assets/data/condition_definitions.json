@@ -1,6 +1,6 @@
 {
  "schemaVersion": "1.0.0",
- "catalogVersion": "2026.09.28.2",
+ "catalogVersion": "2026.09.28.3",
  "generatedAt": "2026-09-27T00:00:00+09:00",
  "items": [
   {
@@ -46,6 +46,365 @@
     "既定は notSatisfied（未登録）。登録していない状態ではJCBカードWは基本還元200円2ポイント（1.0%）のままとなる。設定画面で「満たす」に切り替えると、対象店舗の上乗せがランキングに反映される。",
     "登録不要の優待店もあるが、本アプリは登録が必要な店舗のみを対象にしており、登録要否は店舗ごとに異なる。",
     "JCB公式の例（Amazon.co.jp）では、2026-01-13以降は「通常ポイント1倍＋ポイントアップ登録の+2倍」で合計3倍となる。登録の有無が倍率に直結する。"
+   ]
+  },
+  {
+   "id": "seven_app_member_code_presented",
+   "name": "セブン-イレブンアプリの会員コード提示",
+   "description": "セブン-イレブンで支払うときにセブン-イレブンアプリの会員コードを提示すること。提示すると3%（うち0.5%はセブンマイル）が加算される。",
+   "valueType": "boolean",
+   "defaultState": "notSatisfied",
+   "verificationMethod": "userInput",
+   "scope": "user",
+   "sensitivity": "normal",
+   "validFrom": "2026-09-28",
+   "validUntilExclusive": null,
+   "status": "active",
+   "sourceIds": [
+    "src_smbc_vpoint_up_stores",
+    "src_mufg_store_bonus",
+    "src_mufg_pup_release",
+    "src_mufg_pup_rule"
+   ],
+   "notes": [
+    "カタログには条件の定義のみを置き、達成状態はアプリの「還元率の基準（条件）」で入力して端末に保存する（D-101・D-114）。",
+    "「不明」のあいだはその分を確定値に加算しない（D-50）。"
+   ]
+  },
+  {
+   "id": "mufg_pup_mdc_app_login",
+   "name": "MDCアプリに月1回以上ログイン",
+   "description": "三菱UFJカードのポイントアップ条件。MDCアプリに月1回以上ログインすると対象店舗の還元率に+0.5%。",
+   "valueType": "boolean",
+   "defaultState": "notSatisfied",
+   "verificationMethod": "userInput",
+   "scope": "user",
+   "sensitivity": "normal",
+   "validFrom": "2026-09-28",
+   "validUntilExclusive": null,
+   "status": "active",
+   "sourceIds": [
+    "src_smbc_vpoint_up_stores",
+    "src_mufg_store_bonus",
+    "src_mufg_pup_release",
+    "src_mufg_pup_rule"
+   ],
+   "notes": [
+    "カタログには条件の定義のみを置き、達成状態はアプリの「還元率の基準（条件）」で入力して端末に保存する（D-101・D-114）。",
+    "既定は「満たさない」。条件を達成しているときだけ設定画面で「満たす」にすると、対象店舗の還元率に加算される。",
+    "「不明」にしたあいだはその分を確定値に加算しない（D-50）。"
+   ]
+  },
+  {
+   "id": "mufg_pup_monthly_spend_50k",
+   "name": "1ヶ月の合計利用金額5万円以上",
+   "description": "三菱UFJカードのポイントアップ条件。1ヶ月の合計利用金額が5万円以上で+0.5%。",
+   "valueType": "boolean",
+   "defaultState": "notSatisfied",
+   "verificationMethod": "userInput",
+   "scope": "user",
+   "sensitivity": "normal",
+   "validFrom": "2026-09-28",
+   "validUntilExclusive": null,
+   "status": "active",
+   "sourceIds": [
+    "src_smbc_vpoint_up_stores",
+    "src_mufg_store_bonus",
+    "src_mufg_pup_release",
+    "src_mufg_pup_rule"
+   ],
+   "notes": [
+    "カタログには条件の定義のみを置き、達成状態はアプリの「還元率の基準（条件）」で入力して端末に保存する（D-101・D-114）。",
+    "既定は「満たさない」。条件を達成しているときだけ設定画面で「満たす」にすると、対象店舗の還元率に加算される。",
+    "「不明」にしたあいだはその分を確定値に加算しない（D-50）。"
+   ]
+  },
+  {
+   "id": "mufg_pup_applepay_or_wallet",
+   "name": "Apple Pay(QUICPay)またはWalletチャージ",
+   "description": "三菱UFJカードのポイントアップ条件。Apple Pay(QUICPay)での利用またはグローバルポイントWalletへのチャージで+0.5%。",
+   "valueType": "boolean",
+   "defaultState": "notSatisfied",
+   "verificationMethod": "userInput",
+   "scope": "user",
+   "sensitivity": "normal",
+   "validFrom": "2026-09-28",
+   "validUntilExclusive": null,
+   "status": "active",
+   "sourceIds": [
+    "src_smbc_vpoint_up_stores",
+    "src_mufg_store_bonus",
+    "src_mufg_pup_release",
+    "src_mufg_pup_rule"
+   ],
+   "notes": [
+    "カタログには条件の定義のみを置き、達成状態はアプリの「還元率の基準（条件）」で入力して端末に保存する（D-101・D-114）。",
+    "既定は「満たさない」。条件を達成しているときだけ設定画面で「満たす」にすると、対象店舗の還元率に加算される。",
+    "「不明」にしたあいだはその分を確定値に加算しない（D-50）。"
+   ]
+  },
+  {
+   "id": "mufg_pup_installment_or_rakupay",
+   "name": "分割・リボ・カードローンまたは楽Pay登録",
+   "description": "三菱UFJカードのポイントアップ条件。分割・リボ払い・カードローン（各集計期間1万円以上）のいずれか、または楽Pay登録で+2.0%。",
+   "valueType": "boolean",
+   "defaultState": "notSatisfied",
+   "verificationMethod": "userInput",
+   "scope": "user",
+   "sensitivity": "normal",
+   "validFrom": "2026-09-28",
+   "validUntilExclusive": null,
+   "status": "active",
+   "sourceIds": [
+    "src_smbc_vpoint_up_stores",
+    "src_mufg_store_bonus",
+    "src_mufg_pup_release",
+    "src_mufg_pup_rule"
+   ],
+   "notes": [
+    "カタログには条件の定義のみを置き、達成状態はアプリの「還元率の基準（条件）」で入力して端末に保存する（D-101・D-114）。",
+    "既定は「満たさない」。条件を達成しているときだけ設定画面で「満たす」にすると、対象店舗の還元率に加算される。",
+    "「不明」にしたあいだはその分を確定値に加算しない（D-50）。"
+   ]
+  },
+  {
+   "id": "mufg_pup_direct_login",
+   "name": "三菱UFJダイレクトに月1回以上ログイン",
+   "description": "三菱UFJカードのポイントアップ条件。三菱UFJダイレクトに月1回以上ログインで+1.0%。",
+   "valueType": "boolean",
+   "defaultState": "notSatisfied",
+   "verificationMethod": "userInput",
+   "scope": "user",
+   "sensitivity": "normal",
+   "validFrom": "2026-09-28",
+   "validUntilExclusive": null,
+   "status": "active",
+   "sourceIds": [
+    "src_smbc_vpoint_up_stores",
+    "src_mufg_store_bonus",
+    "src_mufg_pup_release",
+    "src_mufg_pup_rule"
+   ],
+   "notes": [
+    "カタログには条件の定義のみを置き、達成状態はアプリの「還元率の基準（条件）」で入力して端末に保存する（D-101・D-114）。",
+    "既定は「満たさない」。条件を達成しているときだけ設定画面で「満たす」にすると、対象店舗の還元率に加算される。",
+    "「不明」にしたあいだはその分を確定値に加算しない（D-50）。"
+   ]
+  },
+  {
+   "id": "mufg_pup_salary_pension_account",
+   "name": "給与・年金の受取口座設定",
+   "description": "三菱UFJカードのポイントアップ条件。給与または年金の受取口座を三菱UFJ銀行に設定すると+1.0%。",
+   "valueType": "boolean",
+   "defaultState": "notSatisfied",
+   "verificationMethod": "userInput",
+   "scope": "user",
+   "sensitivity": "normal",
+   "validFrom": "2026-09-28",
+   "validUntilExclusive": null,
+   "status": "active",
+   "sourceIds": [
+    "src_smbc_vpoint_up_stores",
+    "src_mufg_store_bonus",
+    "src_mufg_pup_release",
+    "src_mufg_pup_rule"
+   ],
+   "notes": [
+    "カタログには条件の定義のみを置き、達成状態はアプリの「還元率の基準（条件）」で入力して端末に保存する（D-101・D-114）。",
+    "既定は「満たさない」。条件を達成しているときだけ設定画面で「満たす」にすると、対象店舗の還元率に加算される。",
+    "「不明」にしたあいだはその分を確定値に加算しない（D-50）。"
+   ]
+  },
+  {
+   "id": "mufg_pup_housing_loan",
+   "name": "住宅ローン契約",
+   "description": "三菱UFJカードのポイントアップ条件。三菱UFJ銀行で住宅ローンを契約すると+1.0%。",
+   "valueType": "boolean",
+   "defaultState": "notSatisfied",
+   "verificationMethod": "userInput",
+   "scope": "user",
+   "sensitivity": "normal",
+   "validFrom": "2026-09-28",
+   "validUntilExclusive": null,
+   "status": "active",
+   "sourceIds": [
+    "src_smbc_vpoint_up_stores",
+    "src_mufg_store_bonus",
+    "src_mufg_pup_release",
+    "src_mufg_pup_rule"
+   ],
+   "notes": [
+    "カタログには条件の定義のみを置き、達成状態はアプリの「還元率の基準（条件）」で入力して端末に保存する（D-101・D-114）。",
+    "既定は「満たさない」。条件を達成しているときだけ設定画面で「満たす」にすると、対象店舗の還元率に加算される。",
+    "「不明」にしたあいだはその分を確定値に加算しない（D-50）。"
+   ]
+  },
+  {
+   "id": "mufg_pup_investment_accumulation",
+   "name": "積立1万円以上",
+   "description": "三菱UFJカードのポイントアップ条件。投資信託・外貨、または三菱UFJ eスマート証券・ウェルスナビで月1万円以上の積立をすると+1.0%。",
+   "valueType": "boolean",
+   "defaultState": "notSatisfied",
+   "verificationMethod": "userInput",
+   "scope": "user",
+   "sensitivity": "normal",
+   "validFrom": "2026-09-28",
+   "validUntilExclusive": null,
+   "status": "active",
+   "sourceIds": [
+    "src_smbc_vpoint_up_stores",
+    "src_mufg_store_bonus",
+    "src_mufg_pup_release",
+    "src_mufg_pup_rule"
+   ],
+   "notes": [
+    "カタログには条件の定義のみを置き、達成状態はアプリの「還元率の基準（条件）」で入力して端末に保存する（D-101・D-114）。",
+    "既定は「満たさない」。条件を達成しているときだけ設定画面で「満たす」にすると、対象店舗の還元率に加算される。",
+    "「不明」にしたあいだはその分を確定値に加算しない（D-50）。"
+   ]
+  },
+  {
+   "id": "mufg_pup_coinplus",
+   "name": "COIN+に口座登録",
+   "description": "三菱UFJカードのポイントアップ条件。COIN+に口座登録すると+0.5%。",
+   "valueType": "boolean",
+   "defaultState": "notSatisfied",
+   "verificationMethod": "userInput",
+   "scope": "user",
+   "sensitivity": "normal",
+   "validFrom": "2026-09-28",
+   "validUntilExclusive": null,
+   "status": "active",
+   "sourceIds": [
+    "src_smbc_vpoint_up_stores",
+    "src_mufg_store_bonus",
+    "src_mufg_pup_release",
+    "src_mufg_pup_rule"
+   ],
+   "notes": [
+    "カタログには条件の定義のみを置き、達成状態はアプリの「還元率の基準（条件）」で入力して端末に保存する（D-101・D-114）。",
+    "既定は「満たさない」。条件を達成しているときだけ設定画面で「満たす」にすると、対象店舗の還元率に加算される。",
+    "「不明」にしたあいだはその分を確定値に加算しない（D-50）。"
+   ]
+  },
+  {
+   "id": "mufg_pup_service_payment_1",
+   "name": "特定サービスのカード払い（1件目）",
+   "description": "三菱UFJカードのポイントアップ条件。対象サービス（携帯電話料金、電気料金、Appleのサービス、ABEMAプレミアム、コミックシーモア、Hulu、日経電子版、flier、Uber One、三井のカーシェアーズ）をカード払いにすると1つにつき+1.0%（最大5つで+5.0%）。",
+   "valueType": "boolean",
+   "defaultState": "notSatisfied",
+   "verificationMethod": "userInput",
+   "scope": "user",
+   "sensitivity": "normal",
+   "validFrom": "2026-09-28",
+   "validUntilExclusive": null,
+   "status": "active",
+   "sourceIds": [
+    "src_smbc_vpoint_up_stores",
+    "src_mufg_store_bonus",
+    "src_mufg_pup_release",
+    "src_mufg_pup_rule"
+   ],
+   "notes": [
+    "カタログには条件の定義のみを置き、達成状態はアプリの「還元率の基準（条件）」で入力して端末に保存する（D-101・D-114）。",
+    "既定は「満たさない」。条件を達成しているときだけ設定画面で「満たす」にすると、対象店舗の還元率に加算される。",
+    "「不明」にしたあいだはその分を確定値に加算しない（D-50）。"
+   ]
+  },
+  {
+   "id": "mufg_pup_service_payment_2",
+   "name": "特定サービスのカード払い（2件目）",
+   "description": "三菱UFJカードのポイントアップ条件。対象サービス（携帯電話料金、電気料金、Appleのサービス、ABEMAプレミアム、コミックシーモア、Hulu、日経電子版、flier、Uber One、三井のカーシェアーズ）をカード払いにすると1つにつき+1.0%（最大5つで+5.0%）。",
+   "valueType": "boolean",
+   "defaultState": "notSatisfied",
+   "verificationMethod": "userInput",
+   "scope": "user",
+   "sensitivity": "normal",
+   "validFrom": "2026-09-28",
+   "validUntilExclusive": null,
+   "status": "active",
+   "sourceIds": [
+    "src_smbc_vpoint_up_stores",
+    "src_mufg_store_bonus",
+    "src_mufg_pup_release",
+    "src_mufg_pup_rule"
+   ],
+   "notes": [
+    "カタログには条件の定義のみを置き、達成状態はアプリの「還元率の基準（条件）」で入力して端末に保存する（D-101・D-114）。",
+    "既定は「満たさない」。条件を達成しているときだけ設定画面で「満たす」にすると、対象店舗の還元率に加算される。",
+    "「不明」にしたあいだはその分を確定値に加算しない（D-50）。"
+   ]
+  },
+  {
+   "id": "mufg_pup_service_payment_3",
+   "name": "特定サービスのカード払い（3件目）",
+   "description": "三菱UFJカードのポイントアップ条件。対象サービス（携帯電話料金、電気料金、Appleのサービス、ABEMAプレミアム、コミックシーモア、Hulu、日経電子版、flier、Uber One、三井のカーシェアーズ）をカード払いにすると1つにつき+1.0%（最大5つで+5.0%）。",
+   "valueType": "boolean",
+   "defaultState": "notSatisfied",
+   "verificationMethod": "userInput",
+   "scope": "user",
+   "sensitivity": "normal",
+   "validFrom": "2026-09-28",
+   "validUntilExclusive": null,
+   "status": "active",
+   "sourceIds": [
+    "src_smbc_vpoint_up_stores",
+    "src_mufg_store_bonus",
+    "src_mufg_pup_release",
+    "src_mufg_pup_rule"
+   ],
+   "notes": [
+    "カタログには条件の定義のみを置き、達成状態はアプリの「還元率の基準（条件）」で入力して端末に保存する（D-101・D-114）。",
+    "既定は「満たさない」。条件を達成しているときだけ設定画面で「満たす」にすると、対象店舗の還元率に加算される。",
+    "「不明」にしたあいだはその分を確定値に加算しない（D-50）。"
+   ]
+  },
+  {
+   "id": "mufg_pup_service_payment_4",
+   "name": "特定サービスのカード払い（4件目）",
+   "description": "三菱UFJカードのポイントアップ条件。対象サービス（携帯電話料金、電気料金、Appleのサービス、ABEMAプレミアム、コミックシーモア、Hulu、日経電子版、flier、Uber One、三井のカーシェアーズ）をカード払いにすると1つにつき+1.0%（最大5つで+5.0%）。",
+   "valueType": "boolean",
+   "defaultState": "notSatisfied",
+   "verificationMethod": "userInput",
+   "scope": "user",
+   "sensitivity": "normal",
+   "validFrom": "2026-09-28",
+   "validUntilExclusive": null,
+   "status": "active",
+   "sourceIds": [
+    "src_smbc_vpoint_up_stores",
+    "src_mufg_store_bonus",
+    "src_mufg_pup_release",
+    "src_mufg_pup_rule"
+   ],
+   "notes": [
+    "カタログには条件の定義のみを置き、達成状態はアプリの「還元率の基準（条件）」で入力して端末に保存する（D-101・D-114）。",
+    "既定は「満たさない」。条件を達成しているときだけ設定画面で「満たす」にすると、対象店舗の還元率に加算される。",
+    "「不明」にしたあいだはその分を確定値に加算しない（D-50）。"
+   ]
+  },
+  {
+   "id": "mufg_pup_service_payment_5",
+   "name": "特定サービスのカード払い（5件目）",
+   "description": "三菱UFJカードのポイントアップ条件。対象サービス（携帯電話料金、電気料金、Appleのサービス、ABEMAプレミアム、コミックシーモア、Hulu、日経電子版、flier、Uber One、三井のカーシェアーズ）をカード払いにすると1つにつき+1.0%（最大5つで+5.0%）。",
+   "valueType": "boolean",
+   "defaultState": "notSatisfied",
+   "verificationMethod": "userInput",
+   "scope": "user",
+   "sensitivity": "normal",
+   "validFrom": "2026-09-28",
+   "validUntilExclusive": null,
+   "status": "active",
+   "sourceIds": [
+    "src_smbc_vpoint_up_stores",
+    "src_mufg_store_bonus",
+    "src_mufg_pup_release",
+    "src_mufg_pup_rule"
+   ],
+   "notes": [
+    "カタログには条件の定義のみを置き、達成状態はアプリの「還元率の基準（条件）」で入力して端末に保存する（D-101・D-114）。",
+    "既定は「満たさない」。条件を達成しているときだけ設定画面で「満たす」にすると、対象店舗の還元率に加算される。",
+    "「不明」にしたあいだはその分を確定値に加算しない（D-50）。"
    ]
   }
  ]

@@ -1,6 +1,6 @@
 {
  "schemaVersion": "1.0.0",
- "catalogVersion": "2026.09.28.2",
+ "catalogVersion": "2026.09.28.3",
  "generatedAt": "2026-09-27T00:00:00+09:00",
  "items": [
   {
@@ -178,6 +178,30 @@
    ],
    "notes": [
     "JCBカードWのポイントアップ対象「クレカ乗車」のグループ（D-110）。"
+   ]
+  },
+  {
+   "id": "vending_machine_chain",
+   "name": "自販機",
+   "status": "active",
+   "sourceIds": [
+    "src_mufg_store_bonus",
+    "src_mufg_pup_release"
+   ],
+   "notes": [
+    "三菱UFJカードの対象店舗追加に伴い新設（D-113）。"
+   ]
+  },
+  {
+   "id": "lifestyle_chain",
+   "name": "生活用品・フィットネス",
+   "status": "active",
+   "sourceIds": [
+    "src_mufg_store_bonus",
+    "src_mufg_pup_release"
+   ],
+   "notes": [
+    "三菱UFJカードの対象店舗追加に伴い新設（D-113）。"
    ]
   }
  ]

@@ -1,6 +1,6 @@
 {
  "schemaVersion": "1.0.0",
- "catalogVersion": "2026.09.28.2",
+ "catalogVersion": "2026.09.28.3",
  "generatedAt": "2026-09-27T00:00:00+09:00",
  "items": [
   {
@@ -27,7 +27,7 @@
     "src_jcb_card_w_s_compare"
    ],
    "notes": [
-    "三井住友カード ゴールド（NL）は対象コンビニ・飲食店でスマホのタッチ決済／モバイルオーダーなら200円につき7%（カード本体のタッチ決済は対象外）。",
+    "三井住友カード／Olive・三菱UFJカードの両方が対象。三井住友カード／Oliveはセブン-イレブンアプリの会員コード提示でさらに3%（うち0.5%はセブンマイル）が加算され、Oliveクレジットモードで最大11%、その他クレジットで最大10%。JCBカードWも3倍。",
     "Oliveフレキシブルペイ ゴールドは同条件で通常0.5%＋7.5%＝最大8%。",
     "三菱UFJカードは対象店舗で7%相当（ポイントアッププログラム達成で最大20%相当、対象店舗利用額の月5万円が上限）。",
     "JCBカードWのJ-POINTパートナー（優待店）でもある（事前のポイントアップ登録が必要）。"
@@ -82,7 +82,7 @@
     "src_mufg_store_bonus"
    ],
    "notes": [
-    "三井住友カード ゴールド（NL）は対象コンビニ・飲食店でスマホのタッチ決済／モバイルオーダーなら200円につき7%（カード本体のタッチ決済は対象外）。",
+    "三井住友カード・Olive・三菱UFJカードのいずれの対象店舗一覧にも含まれないため、上乗せはなく基本還元のみ（この誤りはD-113で修正）。",
     "Oliveフレキシブルペイ ゴールドは同条件で通常0.5%＋7.5%＝最大8%。",
     "三菱UFJカードは対象店舗で7%相当（ポイントアッププログラム達成で最大20%相当、対象店舗利用額の月5万円が上限）。"
    ]
@@ -195,7 +195,7 @@
     "src_jcb_card_w_s_compare"
    ],
    "notes": [
-    "三井住友カード ゴールド（NL）は対象コンビニ・飲食店でスマホのタッチ決済／モバイルオーダーなら200円につき7%（カード本体のタッチ決済は対象外）。",
+    "三井住友カード／Oliveは店頭のスマホタッチ決済とモバイルオーダーの両方が対象。三菱UFJカードの対象店舗一覧には含まれない。JCBカードWはモバイルオーダー・マックデリバリー限定で20倍。",
     "Oliveフレキシブルペイ ゴールドは同条件で通常0.5%＋7.5%＝最大8%。",
     "三菱UFJカードは対象店舗で7%相当（ポイントアッププログラム達成で最大20%相当、対象店舗利用額の月5万円が上限）。",
     "JCBカードWのJ-POINTパートナー（優待店）でもある。ただし対象はモバイルオーダー・マックデリバリーの利用分に限る（事前のポイントアップ登録が必要）。"
@@ -223,7 +223,7 @@
     "src_mufg_store_bonus"
    ],
    "notes": [
-    "三井住友カード ゴールド（NL）は対象コンビニ・飲食店でスマホのタッチ決済／モバイルオーダーなら200円につき7%（カード本体のタッチ決済は対象外）。",
+    "三菱UFJカードの対象店舗（店舗券売機・セルフレジでのクレジット決済／Apple Pay(QUICPay)）。三井住友カード・Oliveの対象店舗一覧には含まれない。",
     "Oliveフレキシブルペイ ゴールドは同条件で通常0.5%＋7.5%＝最大8%。",
     "三菱UFJカードは対象店舗で7%相当（ポイントアッププログラム達成で最大20%相当、対象店舗利用額の月5万円が上限）。"
    ]
@@ -252,7 +252,7 @@
     "src_jcb_card_w_s_compare"
    ],
    "notes": [
-    "三井住友カード ゴールド（NL）は対象コンビニ・飲食店でスマホのタッチ決済／モバイルオーダーなら200円につき7%（カード本体のタッチ決済は対象外）。",
+    "三井住友カード／Oliveではモバイルオーダー（アプリまたはApp Clipを経由したApple Pay決済）のみ対象。三菱UFJカードではスターバックス カードへのオンライン入金のみ対象で、店頭利用は対象外。",
     "Oliveフレキシブルペイ ゴールドは同条件で通常0.5%＋7.5%＝最大8%。",
     "三菱UFJカードは対象店舗で7%相当（ポイントアッププログラム達成で最大20%相当、対象店舗利用額の月5万円が上限）。",
     "JCBカードWのJ-POINTパートナーでもあるが、対象はスターバックス カードへのオンライン入金・オートチャージ・eGift・モバイルオーダーに限られ、店舗での利用分は対象外。"
@@ -334,7 +334,7 @@
     "src_mufg_store_bonus"
    ],
    "notes": [
-    "三井住友カード ゴールド（NL）は対象コンビニ・飲食店でスマホのタッチ決済／モバイルオーダーなら200円につき7%（カード本体のタッチ決済は対象外）。",
+    "三菱UFJカードは「ピザハットオンライン」（公式サイト・公式アプリでのオンライン注文のクレジット決済）のみ対象で、店頭利用は対象外。",
     "Oliveフレキシブルペイ ゴールドは同条件で通常0.5%＋7.5%＝最大8%。",
     "三菱UFJカードは対象店舗で7%相当（ポイントアッププログラム達成で最大20%相当、対象店舗利用額の月5万円が上限）。"
    ]
@@ -807,6 +807,342 @@
     "JCBカードWのJ-POINTパートナー。電車やバスなど全国190以上の対象路線で、JCB ORIGINALシリーズ対象カードのタッチ決済で乗車すると20倍（JCBカードWで10%相当）。事前のポイントアップ登録が必要。",
     "一部対象外の事業者があり、公共交通機関によっては一部の路線・駅・港でのみタッチ決済が使える。JCBデビットでは支払えない場合がある。",
     "JCB公式の特典条件に「ネットショッピングは対象とならない」「スマホレジは対象とならない」の記載がある。"
+   ]
+  },
+  {
+   "id": "mos_burger",
+   "name": "モスバーガー",
+   "merchantGroupIds": [
+    "fast_food_chain"
+   ],
+   "categoryIds": [
+    "fast_food"
+   ],
+   "locationIds": [],
+   "status": "active",
+   "sourceIds": [
+    "src_smbc_vpoint_up_stores",
+    "src_smbc_gold_nl_official",
+    "src_mufg_store_bonus",
+    "src_mufg_pup_release"
+   ],
+   "notes": [
+    "三井住友カード／Oliveの対象コンビニ・飲食店、および三菱UFJカードの対象店舗の正確な一覧に基づき追加（D-113）。店舗ごとに対象カードが異なるため、上乗せの可否はカード別のルールで判定する。"
+   ]
+  },
+  {
+   "id": "kfc",
+   "name": "ケンタッキーフライドチキン",
+   "merchantGroupIds": [
+    "fast_food_chain"
+   ],
+   "categoryIds": [
+    "fast_food"
+   ],
+   "locationIds": [],
+   "status": "active",
+   "sourceIds": [
+    "src_smbc_vpoint_up_stores",
+    "src_smbc_gold_nl_official",
+    "src_mufg_store_bonus",
+    "src_mufg_pup_release"
+   ],
+   "notes": [
+    "三井住友カード／Oliveの対象コンビニ・飲食店、および三菱UFJカードの対象店舗の正確な一覧に基づき追加（D-113）。店舗ごとに対象カードが異なるため、上乗せの可否はカード別のルールで判定する。"
+   ]
+  },
+  {
+   "id": "freshness_burger",
+   "name": "フレッシュネスバーガー",
+   "merchantGroupIds": [
+    "fast_food_chain"
+   ],
+   "categoryIds": [
+    "fast_food"
+   ],
+   "locationIds": [],
+   "status": "active",
+   "sourceIds": [
+    "src_smbc_vpoint_up_stores",
+    "src_smbc_gold_nl_official",
+    "src_mufg_store_bonus",
+    "src_mufg_pup_release"
+   ],
+   "notes": [
+    "三井住友カード／Oliveの対象コンビニ・飲食店、および三菱UFJカードの対象店舗の正確な一覧に基づき追加（D-113）。店舗ごとに対象カードが異なるため、上乗せの可否はカード別のルールで判定する。"
+   ]
+  },
+  {
+   "id": "saizeriya",
+   "name": "サイゼリヤ",
+   "merchantGroupIds": [
+    "family_restaurant_chain"
+   ],
+   "categoryIds": [
+    "family_restaurant"
+   ],
+   "locationIds": [],
+   "status": "active",
+   "sourceIds": [
+    "src_smbc_vpoint_up_stores",
+    "src_smbc_gold_nl_official",
+    "src_mufg_store_bonus",
+    "src_mufg_pup_release"
+   ],
+   "notes": [
+    "三井住友カード／Oliveの対象コンビニ・飲食店、および三菱UFJカードの対象店舗の正確な一覧に基づき追加（D-113）。店舗ごとに対象カードが異なるため、上乗せの可否はカード別のルールで判定する。"
+   ]
+  },
+  {
+   "id": "shabu_you",
+   "name": "しゃぶ葉",
+   "merchantGroupIds": [
+    "family_restaurant_chain"
+   ],
+   "categoryIds": [
+    "family_restaurant"
+   ],
+   "locationIds": [],
+   "status": "active",
+   "sourceIds": [
+    "src_smbc_vpoint_up_stores",
+    "src_smbc_gold_nl_official",
+    "src_mufg_store_bonus",
+    "src_mufg_pup_release"
+   ],
+   "notes": [
+    "三井住友カード／Oliveの対象コンビニ・飲食店、および三菱UFJカードの対象店舗の正確な一覧に基づき追加（D-113）。店舗ごとに対象カードが異なるため、上乗せの可否はカード別のルールで判定する。"
+   ]
+  },
+  {
+   "id": "yumean",
+   "name": "夢庵",
+   "merchantGroupIds": [
+    "family_restaurant_chain"
+   ],
+   "categoryIds": [
+    "family_restaurant"
+   ],
+   "locationIds": [],
+   "status": "active",
+   "sourceIds": [
+    "src_smbc_vpoint_up_stores",
+    "src_smbc_gold_nl_official",
+    "src_mufg_store_bonus",
+    "src_mufg_pup_release"
+   ],
+   "notes": [
+    "三井住友カード／Oliveの対象コンビニ・飲食店、および三菱UFJカードの対象店舗の正確な一覧に基づき追加（D-113）。店舗ごとに対象カードが異なるため、上乗せの可否はカード別のルールで判定する。"
+   ]
+  },
+  {
+   "id": "cocos",
+   "name": "ココス",
+   "merchantGroupIds": [
+    "family_restaurant_chain"
+   ],
+   "categoryIds": [
+    "family_restaurant"
+   ],
+   "locationIds": [],
+   "status": "active",
+   "sourceIds": [
+    "src_smbc_vpoint_up_stores",
+    "src_smbc_gold_nl_official",
+    "src_mufg_store_bonus",
+    "src_mufg_pup_release"
+   ],
+   "notes": [
+    "三井住友カード／Oliveの対象コンビニ・飲食店、および三菱UFJカードの対象店舗の正確な一覧に基づき追加（D-113）。店舗ごとに対象カードが異なるため、上乗せの可否はカード別のルールで判定する。"
+   ]
+  },
+  {
+   "id": "hama_sushi",
+   "name": "はま寿司",
+   "merchantGroupIds": [
+    "kaiten_sushi_chain"
+   ],
+   "categoryIds": [
+    "kaiten_sushi"
+   ],
+   "locationIds": [],
+   "status": "active",
+   "sourceIds": [
+    "src_smbc_vpoint_up_stores",
+    "src_smbc_gold_nl_official",
+    "src_mufg_store_bonus",
+    "src_mufg_pup_release"
+   ],
+   "notes": [
+    "三井住友カード／Oliveの対象コンビニ・飲食店、および三菱UFJカードの対象店舗の正確な一覧に基づき追加（D-113）。店舗ごとに対象カードが異なるため、上乗せの可否はカード別のルールで判定する。"
+   ]
+  },
+  {
+   "id": "kappa_sushi",
+   "name": "かっぱ寿司",
+   "merchantGroupIds": [
+    "kaiten_sushi_chain"
+   ],
+   "categoryIds": [
+    "kaiten_sushi"
+   ],
+   "locationIds": [],
+   "status": "active",
+   "sourceIds": [
+    "src_smbc_vpoint_up_stores",
+    "src_smbc_gold_nl_official",
+    "src_mufg_store_bonus",
+    "src_mufg_pup_release"
+   ],
+   "notes": [
+    "三井住友カード／Oliveの対象コンビニ・飲食店、および三菱UFJカードの対象店舗の正確な一覧に基づき追加（D-113）。店舗ごとに対象カードが異なるため、上乗せの可否はカード別のルールで判定する。"
+   ]
+  },
+  {
+   "id": "doutor",
+   "name": "ドトールコーヒーショップ",
+   "merchantGroupIds": [
+    "cafe_chain"
+   ],
+   "categoryIds": [
+    "cafe"
+   ],
+   "locationIds": [],
+   "status": "active",
+   "sourceIds": [
+    "src_smbc_vpoint_up_stores",
+    "src_smbc_gold_nl_official",
+    "src_mufg_store_bonus",
+    "src_mufg_pup_release"
+   ],
+   "notes": [
+    "三井住友カード／Oliveの対象コンビニ・飲食店、および三菱UFJカードの対象店舗の正確な一覧に基づき追加（D-113）。店舗ごとに対象カードが異なるため、上乗せの可否はカード別のルールで判定する。"
+   ]
+  },
+  {
+   "id": "excelsior",
+   "name": "エクセルシオール カフェ",
+   "merchantGroupIds": [
+    "cafe_chain"
+   ],
+   "categoryIds": [
+    "cafe"
+   ],
+   "locationIds": [],
+   "status": "active",
+   "sourceIds": [
+    "src_smbc_vpoint_up_stores",
+    "src_smbc_gold_nl_official",
+    "src_mufg_store_bonus",
+    "src_mufg_pup_release"
+   ],
+   "notes": [
+    "三井住友カード／Oliveの対象コンビニ・飲食店、および三菱UFJカードの対象店舗の正確な一覧に基づき追加（D-113）。店舗ごとに対象カードが異なるため、上乗せの可否はカード別のルールで判定する。"
+   ]
+  },
+  {
+   "id": "ueshima_coffee",
+   "name": "上島珈琲店",
+   "merchantGroupIds": [
+    "cafe_chain"
+   ],
+   "categoryIds": [
+    "cafe"
+   ],
+   "locationIds": [],
+   "status": "active",
+   "sourceIds": [
+    "src_smbc_vpoint_up_stores",
+    "src_smbc_gold_nl_official",
+    "src_mufg_store_bonus",
+    "src_mufg_pup_release"
+   ],
+   "notes": [
+    "三井住友カード／Oliveの対象コンビニ・飲食店、および三菱UFJカードの対象店舗の正確な一覧に基づき追加（D-113）。店舗ごとに対象カードが異なるため、上乗せの可否はカード別のルールで判定する。"
+   ]
+  },
+  {
+   "id": "cafe_de_crie",
+   "name": "カフェ・ド・クリエ",
+   "merchantGroupIds": [
+    "cafe_chain"
+   ],
+   "categoryIds": [
+    "cafe"
+   ],
+   "locationIds": [],
+   "status": "active",
+   "sourceIds": [
+    "src_smbc_vpoint_up_stores",
+    "src_smbc_gold_nl_official",
+    "src_mufg_store_bonus",
+    "src_mufg_pup_release"
+   ],
+   "notes": [
+    "三井住友カード／Oliveの対象コンビニ・飲食店、および三菱UFJカードの対象店舗の正確な一覧に基づき追加（D-113）。店舗ごとに対象カードが異なるため、上乗せの可否はカード別のルールで判定する。"
+   ]
+  },
+  {
+   "id": "coca_cola_vending",
+   "name": "コカ・コーラ自販機",
+   "merchantGroupIds": [
+    "vending_machine_chain"
+   ],
+   "categoryIds": [
+    "vending_machine"
+   ],
+   "locationIds": [],
+   "status": "active",
+   "sourceIds": [
+    "src_smbc_vpoint_up_stores",
+    "src_smbc_gold_nl_official",
+    "src_mufg_store_bonus",
+    "src_mufg_pup_release"
+   ],
+   "notes": [
+    "三井住友カード／Oliveの対象コンビニ・飲食店、および三菱UFJカードの対象店舗の正確な一覧に基づき追加（D-113）。店舗ごとに対象カードが異なるため、上乗せの可否はカード別のルールで判定する。"
+   ]
+  },
+  {
+   "id": "akachan_honpo",
+   "name": "アカチャンホンポ",
+   "merchantGroupIds": [
+    "lifestyle_chain"
+   ],
+   "categoryIds": [
+    "lifestyle"
+   ],
+   "locationIds": [],
+   "status": "active",
+   "sourceIds": [
+    "src_smbc_vpoint_up_stores",
+    "src_smbc_gold_nl_official",
+    "src_mufg_store_bonus",
+    "src_mufg_pup_release"
+   ],
+   "notes": [
+    "三井住友カード／Oliveの対象コンビニ・飲食店、および三菱UFJカードの対象店舗の正確な一覧に基づき追加（D-113）。店舗ごとに対象カードが異なるため、上乗せの可否はカード別のルールで判定する。"
+   ]
+  },
+  {
+   "id": "curves",
+   "name": "カーブス",
+   "merchantGroupIds": [
+    "lifestyle_chain"
+   ],
+   "categoryIds": [
+    "lifestyle"
+   ],
+   "locationIds": [],
+   "status": "active",
+   "sourceIds": [
+    "src_smbc_vpoint_up_stores",
+    "src_smbc_gold_nl_official",
+    "src_mufg_store_bonus",
+    "src_mufg_pup_release"
+   ],
+   "notes": [
+    "三井住友カード／Oliveの対象コンビニ・飲食店、および三菱UFJカードの対象店舗の正確な一覧に基づき追加（D-113）。店舗ごとに対象カードが異なるため、上乗せの可否はカード別のルールで判定する。"
    ]
   }
  ]

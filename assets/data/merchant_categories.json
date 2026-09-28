@@ -1,6 +1,6 @@
 {
  "schemaVersion": "1.0.0",
- "catalogVersion": "2026.09.28.2",
+ "catalogVersion": "2026.09.28.3",
  "generatedAt": "2026-09-27T00:00:00+09:00",
  "items": [
   {
@@ -189,6 +189,32 @@
    ],
    "notes": [
     "JCBカードWのポイントアップ対象「クレカ乗車」のカテゴリ（D-110）。電車・バスなど全国190以上の対象路線で使える。"
+   ]
+  },
+  {
+   "id": "vending_machine",
+   "name": "自販機",
+   "parentCategoryId": null,
+   "status": "active",
+   "sourceIds": [
+    "src_mufg_store_bonus",
+    "src_mufg_pup_release"
+   ],
+   "notes": [
+    "三菱UFJカードのポイントアップ対象店舗の追加に伴い新設（D-113）。"
+   ]
+  },
+  {
+   "id": "lifestyle",
+   "name": "生活用品・フィットネス",
+   "parentCategoryId": null,
+   "status": "active",
+   "sourceIds": [
+    "src_mufg_store_bonus",
+    "src_mufg_pup_release"
+   ],
+   "notes": [
+    "三菱UFJカードのポイントアップ対象店舗の追加に伴い新設（D-113）。"
    ]
   }
  ]

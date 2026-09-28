@@ -1,6 +1,6 @@
 {
  "schemaVersion": "1.0.0",
- "catalogVersion": "2026.09.28.2",
+ "catalogVersion": "2026.09.28.3",
  "generatedAt": "2026-09-27T00:00:00+09:00",
  "items": [
   {
@@ -580,97 +580,6 @@
    ]
   },
   {
-   "id": "mufg_card_target_store_bonus",
-   "name": "三菱UFJカード対象店舗の上乗せ（合計7%相当）",
-   "description": "対象店舗での上乗せ分。1ポイント5円相当で換算し、基本0.5%に加算して合計7%相当になる。",
-   "ruleKind": "campaignBonus",
-   "selectors": {
-    "instrumentIds": [
-     "mufg_card"
-    ],
-    "modeIds": [],
-    "routeIds": [],
-    "fundingRelationIds": [],
-    "merchantIds": [],
-    "merchantGroupIds": [],
-    "categoryIds": [
-     "convenience_store",
-     "fast_food",
-     "cafe",
-     "kaiten_sushi",
-     "pizza",
-     "supermarket"
-    ],
-    "brandIds": [],
-    "locationIds": [],
-    "transactionTags": []
-   },
-   "exclusions": {
-    "instrumentIds": [],
-    "modeIds": [],
-    "routeIds": [],
-    "fundingRelationIds": [],
-    "merchantIds": [],
-    "merchantGroupIds": [],
-    "categoryIds": [],
-    "brandIds": [],
-    "locationIds": [],
-    "transactionTags": []
-   },
-   "conditionExpression": null,
-   "calculation": {
-    "calculationType": "unitPoints",
-    "amountUnitYen": 1000,
-    "pointsPerUnit": 13,
-    "rounding": "floor"
-   },
-   "outputPointProgramId": "global_point",
-   "aggregation": {
-    "scope": "transaction",
-    "aggregationKey": null,
-    "periodMinimumEligibleSpendYen": 0,
-    "conditionEvaluationTiming": "transaction",
-    "incrementalAward": false
-   },
-   "stacking": {
-    "policy": "stackable",
-    "exclusiveGroupId": null,
-    "replacesRuleIds": [],
-    "suppressesRuleIds": [],
-    "suppressesTags": [],
-    "dependsOnRuleIds": [],
-    "applicationOrder": 100
-   },
-   "cap": null,
-   "validFrom": "2026-09-27",
-   "validUntilExclusive": null,
-   "dateBasis": "transactionDate",
-   "timezone": "Asia/Tokyo",
-   "displayClaim": null,
-   "sourceIds": [
-    "src_olive_gold_official",
-    "src_olive_point_rate",
-    "src_olive_gold_attention",
-    "src_smbc_vpoint_up_program",
-    "src_mufg_global_point",
-    "src_mufg_global_plus",
-    "src_mufg_annual_bonus",
-    "src_mufg_store_bonus"
-   ],
-   "lastVerifiedAt": "2026-09-27",
-   "status": "active",
-   "priority": 100,
-   "tags": [
-    "base_reward"
-   ],
-   "notes": [
-    "ポイントアッププログラム条件達成で最大20%相当になるが、条件の詳細が未確認のため第2期で扱う。",
-    "対象店舗利用額の月50,000円が上限（超過分は基本還元のみ）。上限は計算に反映されていない。",
-    "グローバルポイントWalletでのスマホ決済は対象外（公式に明記）。",
-    "上乗せ分は1ポイント5円相当のグローバルポイントで付与される。基本0.5%に加算して合計7%相当になるよう13pt/1,000円で登録している。"
-   ]
-  },
-  {
    "id": "olive_flexible_pay_gold_annual_bonus_1m",
    "name": "Oliveフレキシブルペイ ゴールド 年間100万円利用特典（10,000ポイント）",
    "description": "デビットモード・クレジットモードの年間100万円利用で毎年10,000ポイント。基本還元には合算しない。",
@@ -831,92 +740,6 @@
     "月次のVポイント集計期間の公式明記は未確認のため、取引単位（transaction）で登録した。",
     "「200円につき1ポイント」に相当する計算単位の公式明記は未確認。率（0.5%）から登録している。",
     "対象コンビニ・飲食店のスマホタッチ決済上乗せ（通常0.5%＋7.5%）は店舗個別データが必要なため今回は登録しない（第2期）。"
-   ]
-  },
-  {
-   "id": "olive_flexible_pay_gold_convenience_fastfood_bonus",
-   "name": "Oliveフレキシブルペイ ゴールド対象コンビニ・飲食店の上乗せ（スマホタッチ決済で最大8%）",
-   "description": "対象コンビニ・飲食店でスマホのVisaタッチ決済／Mastercardタッチ決済／モバイルオーダーを使った場合の上乗せ分。通常0.5%に加算して最大8%になる。",
-   "ruleKind": "campaignBonus",
-   "selectors": {
-    "instrumentIds": [
-     "olive_flexible_pay_gold"
-    ],
-    "modeIds": [],
-    "routeIds": [],
-    "fundingRelationIds": [],
-    "merchantIds": [],
-    "merchantGroupIds": [],
-    "categoryIds": [
-     "convenience_store",
-     "fast_food"
-    ],
-    "brandIds": [],
-    "locationIds": [],
-    "transactionTags": []
-   },
-   "exclusions": {
-    "instrumentIds": [],
-    "modeIds": [],
-    "routeIds": [],
-    "fundingRelationIds": [],
-    "merchantIds": [],
-    "merchantGroupIds": [],
-    "categoryIds": [],
-    "brandIds": [],
-    "locationIds": [],
-    "transactionTags": []
-   },
-   "conditionExpression": null,
-   "calculation": {
-    "calculationType": "unitPoints",
-    "amountUnitYen": 200,
-    "pointsPerUnit": 15,
-    "rounding": "floor"
-   },
-   "outputPointProgramId": "v_point",
-   "aggregation": {
-    "scope": "transaction",
-    "aggregationKey": null,
-    "periodMinimumEligibleSpendYen": 0,
-    "conditionEvaluationTiming": "transaction",
-    "incrementalAward": false
-   },
-   "stacking": {
-    "policy": "stackable",
-    "exclusiveGroupId": null,
-    "replacesRuleIds": [],
-    "suppressesRuleIds": [],
-    "suppressesTags": [],
-    "dependsOnRuleIds": [],
-    "applicationOrder": 100
-   },
-   "cap": null,
-   "validFrom": "2026-09-27",
-   "validUntilExclusive": null,
-   "dateBasis": "transactionDate",
-   "timezone": "Asia/Tokyo",
-   "displayClaim": null,
-   "sourceIds": [
-    "src_olive_gold_official",
-    "src_olive_point_rate",
-    "src_olive_gold_attention",
-    "src_smbc_vpoint_up_program",
-    "src_mufg_global_point",
-    "src_mufg_global_plus",
-    "src_mufg_annual_bonus",
-    "src_mufg_store_bonus"
-   ],
-   "lastVerifiedAt": "2026-09-27",
-   "status": "active",
-   "priority": 100,
-   "tags": [
-    "base_reward"
-   ],
-   "notes": [
-    "公式に「通常0.5%＋7.5%＝最大8%」と明記されている。",
-    "対象チェーン例: セイコーマート、セブン-イレブン、ポプラ、ミニストップ、ローソン、マクドナルド等。",
-    "上乗せ分の月上限は未確認。"
    ]
   },
   {
@@ -1081,92 +904,6 @@
     "月間7%還元分の上限は未確認（Vポイントアッププログラム全体の月50,000ポイント上限は適用）。",
     "Vポイントアッププログラムの月間上限50,000ポイントは cap 未対応のため計算に反映しない（第2期）。",
     "ポイント付与自体の対象外リストは公式ページに明示がなく未確認。"
-   ]
-  },
-  {
-   "id": "smbc_gold_nl_convenience_fastfood_bonus",
-   "name": "三井住友カード ゴールド（NL）対象コンビニ・飲食店の上乗せ（スマホタッチ決済で合計7%）",
-   "description": "対象コンビニ・飲食店でスマホのVisaタッチ決済／Mastercardタッチ決済／モバイルオーダーを使った場合の上乗せ分。基本0.5%に加算して合計7%になる。",
-   "ruleKind": "campaignBonus",
-   "selectors": {
-    "instrumentIds": [
-     "smbc_gold_nl_card"
-    ],
-    "modeIds": [],
-    "routeIds": [],
-    "fundingRelationIds": [],
-    "merchantIds": [],
-    "merchantGroupIds": [],
-    "categoryIds": [
-     "convenience_store",
-     "fast_food"
-    ],
-    "brandIds": [],
-    "locationIds": [],
-    "transactionTags": []
-   },
-   "exclusions": {
-    "instrumentIds": [],
-    "modeIds": [],
-    "routeIds": [],
-    "fundingRelationIds": [],
-    "merchantIds": [],
-    "merchantGroupIds": [],
-    "categoryIds": [],
-    "brandIds": [],
-    "locationIds": [],
-    "transactionTags": []
-   },
-   "conditionExpression": null,
-   "calculation": {
-    "calculationType": "unitPoints",
-    "amountUnitYen": 200,
-    "pointsPerUnit": 13,
-    "rounding": "floor"
-   },
-   "outputPointProgramId": "v_point",
-   "aggregation": {
-    "scope": "transaction",
-    "aggregationKey": null,
-    "periodMinimumEligibleSpendYen": 0,
-    "conditionEvaluationTiming": "transaction",
-    "incrementalAward": false
-   },
-   "stacking": {
-    "policy": "stackable",
-    "exclusiveGroupId": null,
-    "replacesRuleIds": [],
-    "suppressesRuleIds": [],
-    "suppressesTags": [],
-    "dependsOnRuleIds": [],
-    "applicationOrder": 100
-   },
-   "cap": null,
-   "validFrom": "2026-09-27",
-   "validUntilExclusive": null,
-   "dateBasis": "transactionDate",
-   "timezone": "Asia/Tokyo",
-   "displayClaim": null,
-   "sourceIds": [
-    "src_olive_gold_official",
-    "src_olive_point_rate",
-    "src_olive_gold_attention",
-    "src_smbc_vpoint_up_program",
-    "src_mufg_global_point",
-    "src_mufg_global_plus",
-    "src_mufg_annual_bonus",
-    "src_mufg_store_bonus"
-   ],
-   "lastVerifiedAt": "2026-09-27",
-   "status": "active",
-   "priority": 100,
-   "tags": [
-    "base_reward"
-   ],
-   "notes": [
-    "カード本体でのタッチ決済は対象外（公式に明記）。",
-    "月間の上乗せ分の上限は公式に明記がなく未確認（Vポイントアッププログラム全体の月50,000ptは適用される）。",
-    "上乗せ分は合計7%になるよう基本還元との差分13pt/200円で登録している。"
    ]
   },
   {
@@ -3145,6 +2882,1825 @@
     "JCB公式の特典条件: 対象路線でJCB ORIGINALシリーズ対象カードで支払うこと。一部対象外の事業者があり、公共交通機関によっては一部の路線・駅・港でのみタッチ決済が利用可能。JCBデビットでは支払えない場合がある。",
     "表示倍率のうち1倍分が通常ポイント、残りの倍率分がボーナスポイントとして反映される（JCB公式の特典獲得タイミング）。差分方式と整合する。",
     "公式画像にポイント付与の上限額の明記は確認できていない（未確認）。"
+   ]
+  },
+  {
+   "id": "smbc_gold_nl_target_store_bonus",
+   "name": "三井住友カード ゴールド（NL）対象コンビニ・飲食店の上乗せ（7%）",
+   "description": "対象コンビニ・飲食店でスマホのタッチ決済またはモバイルオーダーで支払うと200円につき13ポイントを上乗せする。",
+   "ruleKind": "campaignBonus",
+   "selectors": {
+    "instrumentIds": [
+     "smbc_gold_nl_card"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [
+     "seicomart",
+     "seven_eleven",
+     "poplar",
+     "ministop",
+     "lawson",
+     "mcdonalds",
+     "mos_burger",
+     "kfc",
+     "yoshinoya",
+     "freshness_burger",
+     "saizeriya",
+     "gusto",
+     "bamiyan",
+     "shabu_you",
+     "jonathan",
+     "yumean",
+     "sukiya",
+     "hama_sushi",
+     "cocos",
+     "doutor",
+     "excelsior",
+     "kappa_sushi"
+    ],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": null,
+   "calculation": {
+    "calculationType": "unitPoints",
+    "amountUnitYen": 200,
+    "pointsPerUnit": 13,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "v_point",
+   "aggregation": {
+    "scope": "billingMonth",
+    "aggregationKey": "smbc_gold_nl_target_store_bonus_200",
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": true
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 100
+   },
+   "cap": null,
+   "validFrom": "2026-09-27",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_smbc_gold_nl_official",
+    "src_smbc_vpoint_up_stores"
+   ],
+   "lastVerifiedAt": "2026-09-28",
+   "status": "active",
+   "priority": 100,
+   "tags": [
+    "campaign_bonus",
+    "store_list"
+   ],
+   "notes": [
+    "対象店舗は三井住友カード公式の一覧に基づく22チェーン。カテゴリ単位ではなく店舗単位で判定する（D-113）。",
+    "ファミリーマート・松屋・サンマルクカフェ・ドミノ・ピザ・ジハンピは対象店舗一覧に含まれないため上乗せしない。",
+    "基本還元200円1ポイントと合算して200円14ポイント＝7%。",
+    "カード現物のタッチ決済・iD・差し込み・磁気・ネットショッピング・配達は対象外。原則1万円超で端末挿しになると対象外。",
+    "validFrom は制度の効力発生日が未確認のため、調査レポートの確認日（2026-09-27）をカタログ収載上の暫定開始日として登録している。"
+   ]
+  },
+  {
+   "id": "olive_flexible_pay_gold_target_store_bonus",
+   "name": "Oliveゴールド対象コンビニ・飲食店の上乗せ（8%）",
+   "description": "対象コンビニ・飲食店でスマホのタッチ決済またはモバイルオーダーで支払うと200円につき15ポイントを上乗せする。",
+   "ruleKind": "campaignBonus",
+   "selectors": {
+    "instrumentIds": [
+     "olive_flexible_pay_gold"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [
+     "seicomart",
+     "seven_eleven",
+     "poplar",
+     "ministop",
+     "lawson",
+     "mcdonalds",
+     "mos_burger",
+     "kfc",
+     "yoshinoya",
+     "freshness_burger",
+     "saizeriya",
+     "gusto",
+     "bamiyan",
+     "shabu_you",
+     "jonathan",
+     "yumean",
+     "sukiya",
+     "hama_sushi",
+     "cocos",
+     "doutor",
+     "excelsior",
+     "kappa_sushi"
+    ],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": null,
+   "calculation": {
+    "calculationType": "unitPoints",
+    "amountUnitYen": 200,
+    "pointsPerUnit": 15,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "v_point",
+   "aggregation": {
+    "scope": "billingMonth",
+    "aggregationKey": "olive_flexible_pay_gold_target_store_bonus_200",
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": true
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 100
+   },
+   "cap": null,
+   "validFrom": "2026-02-01",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_olive_gold_official",
+    "src_smbc_vpoint_up_stores"
+   ],
+   "lastVerifiedAt": "2026-09-28",
+   "status": "active",
+   "priority": 100,
+   "tags": [
+    "campaign_bonus",
+    "store_list"
+   ],
+   "notes": [
+    "対象店舗は三井住友カード公式の一覧に基づく22チェーン（SMBCゴールドNLと同じ）。",
+    "Oliveフレキシブルペイ クレジットモードでの支払いが8%、デビットモードは1.5%。",
+    "基本還元200円1ポイントと合算して200円16ポイント＝8%。"
+   ]
+  },
+  {
+   "id": "smbc_seven_app_member_code_bonus",
+   "name": "セブン-イレブン 会員コード提示の上乗せ（+3%）",
+   "description": "セブン-イレブンで支払い時にセブン-イレブンアプリの会員コードを提示すると、200円につき6ポイント（3%）が加算される。",
+   "ruleKind": "campaignBonus",
+   "selectors": {
+    "instrumentIds": [
+     "smbc_gold_nl_card"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [
+     "seven_eleven"
+    ],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": {
+    "nodeType": "condition",
+    "conditionId": "seven_app_member_code_presented"
+   },
+   "calculation": {
+    "calculationType": "unitPoints",
+    "amountUnitYen": 200,
+    "pointsPerUnit": 6,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "v_point",
+   "aggregation": {
+    "scope": "billingMonth",
+    "aggregationKey": "smbc_seven_app_member_code_bonus_200",
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": true
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 100
+   },
+   "cap": null,
+   "validFrom": "2026-09-27",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_smbc_gold_nl_official",
+    "src_smbc_vpoint_up_stores",
+    "src_smbc_vpoint_up_program"
+   ],
+   "lastVerifiedAt": "2026-09-28",
+   "status": "active",
+   "priority": 100,
+   "tags": [
+    "campaign_bonus",
+    "conditional"
+   ],
+   "notes": [
+    "三井住友カード／Oliveのセブン-イレブン最大11%（Oliveクレジットモード）／最大10%（その他クレジット）の内訳の3%。",
+    "3%のうち0.5%はお支払い時にセブン-イレブンアプリの会員コード提示で付与されるセブンマイルで、Vポイントに交換できる。",
+    "会員コードを提示しない場合は加算されない。",
+    "validFrom は制度の効力発生日が未確認のため、調査レポートの確認日（2026-09-27）をカタログ収載上の暫定開始日として登録している。"
+   ]
+  },
+  {
+   "id": "olive_seven_app_member_code_bonus",
+   "name": "セブン-イレブン 会員コード提示の上乗せ（Olive・+3%）",
+   "description": "セブン-イレブンで支払い時にセブン-イレブンアプリの会員コードを提示すると、200円につき6ポイント（3%）が加算される。",
+   "ruleKind": "campaignBonus",
+   "selectors": {
+    "instrumentIds": [
+     "olive_flexible_pay_gold"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [
+     "seven_eleven"
+    ],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": {
+    "nodeType": "condition",
+    "conditionId": "seven_app_member_code_presented"
+   },
+   "calculation": {
+    "calculationType": "unitPoints",
+    "amountUnitYen": 200,
+    "pointsPerUnit": 6,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "v_point",
+   "aggregation": {
+    "scope": "billingMonth",
+    "aggregationKey": "olive_seven_app_member_code_bonus_200",
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": true
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 100
+   },
+   "cap": null,
+   "validFrom": "2026-02-01",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_olive_gold_official",
+    "src_smbc_vpoint_up_stores",
+    "src_smbc_vpoint_up_program"
+   ],
+   "lastVerifiedAt": "2026-09-28",
+   "status": "active",
+   "priority": 100,
+   "tags": [
+    "campaign_bonus",
+    "conditional"
+   ],
+   "notes": [
+    "Oliveクレジットモードで8%＋3%＝最大11%となる内訳の3%。",
+    "3%のうち0.5%はセブンマイル（Vポイントに交換可）。会員コードを提示しない場合は加算されない。"
+   ]
+  },
+  {
+   "id": "mufg_card_target_store_bonus",
+   "name": "三菱UFJカード 対象店舗の上乗せ（7%）",
+   "description": "対象店舗で利用すると1,000円につき13ポイントを上乗せする。",
+   "ruleKind": "campaignBonus",
+   "selectors": {
+    "instrumentIds": [
+     "mufg_card"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [
+     "seven_eleven",
+     "lawson",
+     "kura_sushi",
+     "sushiro",
+     "matsuya",
+     "ok_store",
+     "ozeqi",
+     "hanamasa",
+     "coca_cola_vending",
+     "cafe_de_crie",
+     "ueshima_coffee",
+     "akachan_honpo",
+     "curves"
+    ],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": null,
+   "calculation": {
+    "calculationType": "unitPoints",
+    "amountUnitYen": 1000,
+    "pointsPerUnit": 13,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "global_point",
+   "aggregation": {
+    "scope": "billingMonth",
+    "aggregationKey": "mufg_card_target_store_bonus_1000",
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": true
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 100
+   },
+   "cap": null,
+   "validFrom": "2026-09-27",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_mufg_store_bonus",
+    "src_mufg_pup_release"
+   ],
+   "lastVerifiedAt": "2026-09-28",
+   "status": "active",
+   "priority": 100,
+   "tags": [
+    "campaign_bonus",
+    "store_list"
+   ],
+   "notes": [
+    "対象店舗は三菱UFJニコス公式の対象店舗一覧に基づく13チェーン。カテゴリ単位ではなく店舗単位で判定する（D-113）。",
+    "マクドナルド・モスバーガー・ケンタッキー・吉野家・すき家・サイゼリヤ・ガスト等の飲食店、ファミリーマート、ミニストップ、ポプラ、セイコーマートは三菱UFJカードの対象店舗一覧に含まれないため上乗せしない。",
+    "スターバックスはカードへのオンライン入金のみ、ピザハットはオンライン注文のみが対象で、店頭利用は上乗せの対象外。",
+    "基本還元1,000円1ポイントと合算して1,000円14ポイント＝7%（1ポイント5円相当で計算）。",
+    "validFrom は制度の効力発生日が未確認のため、調査レポートの確認日（2026-09-27）をカタログ収載上の暫定開始日として登録している。"
+   ]
+  },
+  {
+   "id": "mufg_card_mufg_pup_mdc_app_login_bonus",
+   "name": "三菱UFJカード ポイントアップ MDCアプリに月1回以上ログイン（+0.5%）",
+   "description": "ポイントアッププログラムの条件達成により、対象店舗の利用額に上乗せする。",
+   "ruleKind": "campaignBonus",
+   "selectors": {
+    "instrumentIds": [
+     "mufg_card"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [
+     "seven_eleven",
+     "lawson",
+     "kura_sushi",
+     "sushiro",
+     "matsuya",
+     "ok_store",
+     "ozeqi",
+     "hanamasa",
+     "coca_cola_vending",
+     "cafe_de_crie",
+     "ueshima_coffee",
+     "akachan_honpo",
+     "curves"
+    ],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": {
+    "nodeType": "condition",
+    "conditionId": "mufg_pup_mdc_app_login"
+   },
+   "calculation": {
+    "calculationType": "unitPoints",
+    "amountUnitYen": 1000,
+    "pointsPerUnit": 1,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "global_point",
+   "aggregation": {
+    "scope": "billingMonth",
+    "aggregationKey": "mufg_card_mufg_pup_mdc_app_login_bonus_1000",
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": true
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 100
+   },
+   "cap": null,
+   "validFrom": "2026-09-27",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_mufg_pup_release",
+    "src_mufg_pup_rule"
+   ],
+   "lastVerifiedAt": "2026-09-28",
+   "status": "active",
+   "priority": 100,
+   "tags": [
+    "campaign_bonus",
+    "conditional",
+    "point_up_program"
+   ],
+   "notes": [
+    "加算率は対象店舗での利用額に対するもの。条件はアプリの「還元率の基準（条件）」で達成・未達成・不明を選べる（D-114）。",
+    "集計は暦月1日〜末日で判定し、優遇期間は判定の翌月16日〜翌々月15日（三菱UFJニコス利用規約）。",
+    "ポイントアップ分の対象利用金額は各集計期間50,000円が上限（上限はエンジン未対応のため計算には反映していない）。",
+    "validFrom は制度の効力発生日が未確認のため、調査レポートの確認日（2026-09-27）をカタログ収載上の暫定開始日として登録している。"
+   ]
+  },
+  {
+   "id": "mufg_card_mufg_pup_monthly_spend_50k_bonus",
+   "name": "三菱UFJカード ポイントアップ 1ヶ月の合計利用金額5万円以上（+0.5%）",
+   "description": "ポイントアッププログラムの条件達成により、対象店舗の利用額に上乗せする。",
+   "ruleKind": "campaignBonus",
+   "selectors": {
+    "instrumentIds": [
+     "mufg_card"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [
+     "seven_eleven",
+     "lawson",
+     "kura_sushi",
+     "sushiro",
+     "matsuya",
+     "ok_store",
+     "ozeqi",
+     "hanamasa",
+     "coca_cola_vending",
+     "cafe_de_crie",
+     "ueshima_coffee",
+     "akachan_honpo",
+     "curves"
+    ],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": {
+    "nodeType": "condition",
+    "conditionId": "mufg_pup_monthly_spend_50k"
+   },
+   "calculation": {
+    "calculationType": "unitPoints",
+    "amountUnitYen": 1000,
+    "pointsPerUnit": 1,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "global_point",
+   "aggregation": {
+    "scope": "billingMonth",
+    "aggregationKey": "mufg_card_mufg_pup_monthly_spend_50k_bonus_1000",
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": true
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 100
+   },
+   "cap": null,
+   "validFrom": "2026-09-27",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_mufg_pup_release",
+    "src_mufg_pup_rule"
+   ],
+   "lastVerifiedAt": "2026-09-28",
+   "status": "active",
+   "priority": 100,
+   "tags": [
+    "campaign_bonus",
+    "conditional",
+    "point_up_program"
+   ],
+   "notes": [
+    "加算率は対象店舗での利用額に対するもの。条件はアプリの「還元率の基準（条件）」で達成・未達成・不明を選べる（D-114）。",
+    "集計は暦月1日〜末日で判定し、優遇期間は判定の翌月16日〜翌々月15日（三菱UFJニコス利用規約）。",
+    "ポイントアップ分の対象利用金額は各集計期間50,000円が上限（上限はエンジン未対応のため計算には反映していない）。",
+    "validFrom は制度の効力発生日が未確認のため、調査レポートの確認日（2026-09-27）をカタログ収載上の暫定開始日として登録している。"
+   ]
+  },
+  {
+   "id": "mufg_card_mufg_pup_applepay_or_wallet_bonus",
+   "name": "三菱UFJカード ポイントアップ Apple Pay(QUICPay)またはグローバルポイントWalletチャージ（+0.5%）",
+   "description": "ポイントアッププログラムの条件達成により、対象店舗の利用額に上乗せする。",
+   "ruleKind": "campaignBonus",
+   "selectors": {
+    "instrumentIds": [
+     "mufg_card"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [
+     "seven_eleven",
+     "lawson",
+     "kura_sushi",
+     "sushiro",
+     "matsuya",
+     "ok_store",
+     "ozeqi",
+     "hanamasa",
+     "coca_cola_vending",
+     "cafe_de_crie",
+     "ueshima_coffee",
+     "akachan_honpo",
+     "curves"
+    ],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": {
+    "nodeType": "condition",
+    "conditionId": "mufg_pup_applepay_or_wallet"
+   },
+   "calculation": {
+    "calculationType": "unitPoints",
+    "amountUnitYen": 1000,
+    "pointsPerUnit": 1,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "global_point",
+   "aggregation": {
+    "scope": "billingMonth",
+    "aggregationKey": "mufg_card_mufg_pup_applepay_or_wallet_bonus_1000",
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": true
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 100
+   },
+   "cap": null,
+   "validFrom": "2026-09-27",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_mufg_pup_release",
+    "src_mufg_pup_rule"
+   ],
+   "lastVerifiedAt": "2026-09-28",
+   "status": "active",
+   "priority": 100,
+   "tags": [
+    "campaign_bonus",
+    "conditional",
+    "point_up_program"
+   ],
+   "notes": [
+    "加算率は対象店舗での利用額に対するもの。条件はアプリの「還元率の基準（条件）」で達成・未達成・不明を選べる（D-114）。",
+    "集計は暦月1日〜末日で判定し、優遇期間は判定の翌月16日〜翌々月15日（三菱UFJニコス利用規約）。",
+    "ポイントアップ分の対象利用金額は各集計期間50,000円が上限（上限はエンジン未対応のため計算には反映していない）。",
+    "validFrom は制度の効力発生日が未確認のため、調査レポートの確認日（2026-09-27）をカタログ収載上の暫定開始日として登録している。"
+   ]
+  },
+  {
+   "id": "mufg_card_mufg_pup_installment_or_rakupay_bonus",
+   "name": "三菱UFJカード ポイントアップ 分割・リボ・カードローンまたは楽Pay登録（+2.0%）",
+   "description": "ポイントアッププログラムの条件達成により、対象店舗の利用額に上乗せする。",
+   "ruleKind": "campaignBonus",
+   "selectors": {
+    "instrumentIds": [
+     "mufg_card"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [
+     "seven_eleven",
+     "lawson",
+     "kura_sushi",
+     "sushiro",
+     "matsuya",
+     "ok_store",
+     "ozeqi",
+     "hanamasa",
+     "coca_cola_vending",
+     "cafe_de_crie",
+     "ueshima_coffee",
+     "akachan_honpo",
+     "curves"
+    ],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": {
+    "nodeType": "condition",
+    "conditionId": "mufg_pup_installment_or_rakupay"
+   },
+   "calculation": {
+    "calculationType": "unitPoints",
+    "amountUnitYen": 1000,
+    "pointsPerUnit": 4,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "global_point",
+   "aggregation": {
+    "scope": "billingMonth",
+    "aggregationKey": "mufg_card_mufg_pup_installment_or_rakupay_bonus_1000",
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": true
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 100
+   },
+   "cap": null,
+   "validFrom": "2026-09-27",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_mufg_pup_release",
+    "src_mufg_pup_rule"
+   ],
+   "lastVerifiedAt": "2026-09-28",
+   "status": "active",
+   "priority": 100,
+   "tags": [
+    "campaign_bonus",
+    "conditional",
+    "point_up_program"
+   ],
+   "notes": [
+    "加算率は対象店舗での利用額に対するもの。条件はアプリの「還元率の基準（条件）」で達成・未達成・不明を選べる（D-114）。",
+    "集計は暦月1日〜末日で判定し、優遇期間は判定の翌月16日〜翌々月15日（三菱UFJニコス利用規約）。",
+    "ポイントアップ分の対象利用金額は各集計期間50,000円が上限（上限はエンジン未対応のため計算には反映していない）。",
+    "validFrom は制度の効力発生日が未確認のため、調査レポートの確認日（2026-09-27）をカタログ収載上の暫定開始日として登録している。"
+   ]
+  },
+  {
+   "id": "mufg_card_mufg_pup_direct_login_bonus",
+   "name": "三菱UFJカード ポイントアップ 三菱UFJダイレクトに月1回以上ログイン（+1.0%）",
+   "description": "ポイントアッププログラムの条件達成により、対象店舗の利用額に上乗せする。",
+   "ruleKind": "campaignBonus",
+   "selectors": {
+    "instrumentIds": [
+     "mufg_card"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [
+     "seven_eleven",
+     "lawson",
+     "kura_sushi",
+     "sushiro",
+     "matsuya",
+     "ok_store",
+     "ozeqi",
+     "hanamasa",
+     "coca_cola_vending",
+     "cafe_de_crie",
+     "ueshima_coffee",
+     "akachan_honpo",
+     "curves"
+    ],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": {
+    "nodeType": "condition",
+    "conditionId": "mufg_pup_direct_login"
+   },
+   "calculation": {
+    "calculationType": "unitPoints",
+    "amountUnitYen": 1000,
+    "pointsPerUnit": 2,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "global_point",
+   "aggregation": {
+    "scope": "billingMonth",
+    "aggregationKey": "mufg_card_mufg_pup_direct_login_bonus_1000",
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": true
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 100
+   },
+   "cap": null,
+   "validFrom": "2026-09-27",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_mufg_pup_release",
+    "src_mufg_pup_rule"
+   ],
+   "lastVerifiedAt": "2026-09-28",
+   "status": "active",
+   "priority": 100,
+   "tags": [
+    "campaign_bonus",
+    "conditional",
+    "point_up_program"
+   ],
+   "notes": [
+    "加算率は対象店舗での利用額に対するもの。条件はアプリの「還元率の基準（条件）」で達成・未達成・不明を選べる（D-114）。",
+    "集計は暦月1日〜末日で判定し、優遇期間は判定の翌月16日〜翌々月15日（三菱UFJニコス利用規約）。",
+    "ポイントアップ分の対象利用金額は各集計期間50,000円が上限（上限はエンジン未対応のため計算には反映していない）。",
+    "validFrom は制度の効力発生日が未確認のため、調査レポートの確認日（2026-09-27）をカタログ収載上の暫定開始日として登録している。"
+   ]
+  },
+  {
+   "id": "mufg_card_mufg_pup_salary_pension_account_bonus",
+   "name": "三菱UFJカード ポイントアップ 給与・年金の受取口座設定（+1.0%）",
+   "description": "ポイントアッププログラムの条件達成により、対象店舗の利用額に上乗せする。",
+   "ruleKind": "campaignBonus",
+   "selectors": {
+    "instrumentIds": [
+     "mufg_card"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [
+     "seven_eleven",
+     "lawson",
+     "kura_sushi",
+     "sushiro",
+     "matsuya",
+     "ok_store",
+     "ozeqi",
+     "hanamasa",
+     "coca_cola_vending",
+     "cafe_de_crie",
+     "ueshima_coffee",
+     "akachan_honpo",
+     "curves"
+    ],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": {
+    "nodeType": "condition",
+    "conditionId": "mufg_pup_salary_pension_account"
+   },
+   "calculation": {
+    "calculationType": "unitPoints",
+    "amountUnitYen": 1000,
+    "pointsPerUnit": 2,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "global_point",
+   "aggregation": {
+    "scope": "billingMonth",
+    "aggregationKey": "mufg_card_mufg_pup_salary_pension_account_bonus_1000",
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": true
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 100
+   },
+   "cap": null,
+   "validFrom": "2026-09-27",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_mufg_pup_release",
+    "src_mufg_pup_rule"
+   ],
+   "lastVerifiedAt": "2026-09-28",
+   "status": "active",
+   "priority": 100,
+   "tags": [
+    "campaign_bonus",
+    "conditional",
+    "point_up_program"
+   ],
+   "notes": [
+    "加算率は対象店舗での利用額に対するもの。条件はアプリの「還元率の基準（条件）」で達成・未達成・不明を選べる（D-114）。",
+    "集計は暦月1日〜末日で判定し、優遇期間は判定の翌月16日〜翌々月15日（三菱UFJニコス利用規約）。",
+    "ポイントアップ分の対象利用金額は各集計期間50,000円が上限（上限はエンジン未対応のため計算には反映していない）。",
+    "validFrom は制度の効力発生日が未確認のため、調査レポートの確認日（2026-09-27）をカタログ収載上の暫定開始日として登録している。"
+   ]
+  },
+  {
+   "id": "mufg_card_mufg_pup_housing_loan_bonus",
+   "name": "三菱UFJカード ポイントアップ 住宅ローン契約（+1.0%）",
+   "description": "ポイントアッププログラムの条件達成により、対象店舗の利用額に上乗せする。",
+   "ruleKind": "campaignBonus",
+   "selectors": {
+    "instrumentIds": [
+     "mufg_card"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [
+     "seven_eleven",
+     "lawson",
+     "kura_sushi",
+     "sushiro",
+     "matsuya",
+     "ok_store",
+     "ozeqi",
+     "hanamasa",
+     "coca_cola_vending",
+     "cafe_de_crie",
+     "ueshima_coffee",
+     "akachan_honpo",
+     "curves"
+    ],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": {
+    "nodeType": "condition",
+    "conditionId": "mufg_pup_housing_loan"
+   },
+   "calculation": {
+    "calculationType": "unitPoints",
+    "amountUnitYen": 1000,
+    "pointsPerUnit": 2,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "global_point",
+   "aggregation": {
+    "scope": "billingMonth",
+    "aggregationKey": "mufg_card_mufg_pup_housing_loan_bonus_1000",
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": true
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 100
+   },
+   "cap": null,
+   "validFrom": "2026-09-27",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_mufg_pup_release",
+    "src_mufg_pup_rule"
+   ],
+   "lastVerifiedAt": "2026-09-28",
+   "status": "active",
+   "priority": 100,
+   "tags": [
+    "campaign_bonus",
+    "conditional",
+    "point_up_program"
+   ],
+   "notes": [
+    "加算率は対象店舗での利用額に対するもの。条件はアプリの「還元率の基準（条件）」で達成・未達成・不明を選べる（D-114）。",
+    "集計は暦月1日〜末日で判定し、優遇期間は判定の翌月16日〜翌々月15日（三菱UFJニコス利用規約）。",
+    "ポイントアップ分の対象利用金額は各集計期間50,000円が上限（上限はエンジン未対応のため計算には反映していない）。",
+    "validFrom は制度の効力発生日が未確認のため、調査レポートの確認日（2026-09-27）をカタログ収載上の暫定開始日として登録している。"
+   ]
+  },
+  {
+   "id": "mufg_card_mufg_pup_investment_accumulation_bonus",
+   "name": "三菱UFJカード ポイントアップ 投信・外貨・証券・ロボアドで積立1万円以上（+1.0%）",
+   "description": "ポイントアッププログラムの条件達成により、対象店舗の利用額に上乗せする。",
+   "ruleKind": "campaignBonus",
+   "selectors": {
+    "instrumentIds": [
+     "mufg_card"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [
+     "seven_eleven",
+     "lawson",
+     "kura_sushi",
+     "sushiro",
+     "matsuya",
+     "ok_store",
+     "ozeqi",
+     "hanamasa",
+     "coca_cola_vending",
+     "cafe_de_crie",
+     "ueshima_coffee",
+     "akachan_honpo",
+     "curves"
+    ],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": {
+    "nodeType": "condition",
+    "conditionId": "mufg_pup_investment_accumulation"
+   },
+   "calculation": {
+    "calculationType": "unitPoints",
+    "amountUnitYen": 1000,
+    "pointsPerUnit": 2,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "global_point",
+   "aggregation": {
+    "scope": "billingMonth",
+    "aggregationKey": "mufg_card_mufg_pup_investment_accumulation_bonus_1000",
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": true
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 100
+   },
+   "cap": null,
+   "validFrom": "2026-09-27",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_mufg_pup_release",
+    "src_mufg_pup_rule"
+   ],
+   "lastVerifiedAt": "2026-09-28",
+   "status": "active",
+   "priority": 100,
+   "tags": [
+    "campaign_bonus",
+    "conditional",
+    "point_up_program"
+   ],
+   "notes": [
+    "加算率は対象店舗での利用額に対するもの。条件はアプリの「還元率の基準（条件）」で達成・未達成・不明を選べる（D-114）。",
+    "集計は暦月1日〜末日で判定し、優遇期間は判定の翌月16日〜翌々月15日（三菱UFJニコス利用規約）。",
+    "ポイントアップ分の対象利用金額は各集計期間50,000円が上限（上限はエンジン未対応のため計算には反映していない）。",
+    "validFrom は制度の効力発生日が未確認のため、調査レポートの確認日（2026-09-27）をカタログ収載上の暫定開始日として登録している。"
+   ]
+  },
+  {
+   "id": "mufg_card_mufg_pup_coinplus_bonus",
+   "name": "三菱UFJカード ポイントアップ COIN+に口座登録（+0.5%）",
+   "description": "ポイントアッププログラムの条件達成により、対象店舗の利用額に上乗せする。",
+   "ruleKind": "campaignBonus",
+   "selectors": {
+    "instrumentIds": [
+     "mufg_card"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [
+     "seven_eleven",
+     "lawson",
+     "kura_sushi",
+     "sushiro",
+     "matsuya",
+     "ok_store",
+     "ozeqi",
+     "hanamasa",
+     "coca_cola_vending",
+     "cafe_de_crie",
+     "ueshima_coffee",
+     "akachan_honpo",
+     "curves"
+    ],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": {
+    "nodeType": "condition",
+    "conditionId": "mufg_pup_coinplus"
+   },
+   "calculation": {
+    "calculationType": "unitPoints",
+    "amountUnitYen": 1000,
+    "pointsPerUnit": 1,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "global_point",
+   "aggregation": {
+    "scope": "billingMonth",
+    "aggregationKey": "mufg_card_mufg_pup_coinplus_bonus_1000",
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": true
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 100
+   },
+   "cap": null,
+   "validFrom": "2026-09-27",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_mufg_pup_release",
+    "src_mufg_pup_rule"
+   ],
+   "lastVerifiedAt": "2026-09-28",
+   "status": "active",
+   "priority": 100,
+   "tags": [
+    "campaign_bonus",
+    "conditional",
+    "point_up_program"
+   ],
+   "notes": [
+    "加算率は対象店舗での利用額に対するもの。条件はアプリの「還元率の基準（条件）」で達成・未達成・不明を選べる（D-114）。",
+    "集計は暦月1日〜末日で判定し、優遇期間は判定の翌月16日〜翌々月15日（三菱UFJニコス利用規約）。",
+    "ポイントアップ分の対象利用金額は各集計期間50,000円が上限（上限はエンジン未対応のため計算には反映していない）。",
+    "validFrom は制度の効力発生日が未確認のため、調査レポートの確認日（2026-09-27）をカタログ収載上の暫定開始日として登録している。"
+   ]
+  },
+  {
+   "id": "mufg_card_mufg_pup_service_payment_1_bonus",
+   "name": "三菱UFJカード ポイントアップ 特定サービスのカード払い（1件目・+1.0%）",
+   "description": "特定のサービスをカード払いにすると、1つにつき1.0%を上乗せする（最大5つ）。",
+   "ruleKind": "campaignBonus",
+   "selectors": {
+    "instrumentIds": [
+     "mufg_card"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [
+     "seven_eleven",
+     "lawson",
+     "kura_sushi",
+     "sushiro",
+     "matsuya",
+     "ok_store",
+     "ozeqi",
+     "hanamasa",
+     "coca_cola_vending",
+     "cafe_de_crie",
+     "ueshima_coffee",
+     "akachan_honpo",
+     "curves"
+    ],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": {
+    "nodeType": "condition",
+    "conditionId": "mufg_pup_service_payment_1"
+   },
+   "calculation": {
+    "calculationType": "unitPoints",
+    "amountUnitYen": 1000,
+    "pointsPerUnit": 2,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "global_point",
+   "aggregation": {
+    "scope": "billingMonth",
+    "aggregationKey": "mufg_card_mufg_pup_service_payment_1_bonus_1000",
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": true
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 100
+   },
+   "cap": null,
+   "validFrom": "2026-09-27",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_mufg_pup_release",
+    "src_mufg_pup_rule"
+   ],
+   "lastVerifiedAt": "2026-09-28",
+   "status": "active",
+   "priority": 100,
+   "tags": [
+    "campaign_bonus",
+    "conditional",
+    "point_up_program"
+   ],
+   "notes": [
+    "対象サービス: 携帯電話料金、電気料金、Appleのサービス、ABEMAプレミアム、コミックシーモア、Hulu、日経電子版、本の要約サービスflier、Uber One、三井のカーシェアーズ。",
+    "1つにつき1.0%、最大5つまでで最大+5.0%。件数ごとに条件を分けているため、契約数に応じて1件ずつ設定できる（D-114）。",
+    "validFrom は制度の効力発生日が未確認のため、調査レポートの確認日（2026-09-27）をカタログ収載上の暫定開始日として登録している。"
+   ]
+  },
+  {
+   "id": "mufg_card_mufg_pup_service_payment_2_bonus",
+   "name": "三菱UFJカード ポイントアップ 特定サービスのカード払い（2件目・+1.0%）",
+   "description": "特定のサービスをカード払いにすると、1つにつき1.0%を上乗せする（最大5つ）。",
+   "ruleKind": "campaignBonus",
+   "selectors": {
+    "instrumentIds": [
+     "mufg_card"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [
+     "seven_eleven",
+     "lawson",
+     "kura_sushi",
+     "sushiro",
+     "matsuya",
+     "ok_store",
+     "ozeqi",
+     "hanamasa",
+     "coca_cola_vending",
+     "cafe_de_crie",
+     "ueshima_coffee",
+     "akachan_honpo",
+     "curves"
+    ],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": {
+    "nodeType": "condition",
+    "conditionId": "mufg_pup_service_payment_2"
+   },
+   "calculation": {
+    "calculationType": "unitPoints",
+    "amountUnitYen": 1000,
+    "pointsPerUnit": 2,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "global_point",
+   "aggregation": {
+    "scope": "billingMonth",
+    "aggregationKey": "mufg_card_mufg_pup_service_payment_2_bonus_1000",
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": true
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 100
+   },
+   "cap": null,
+   "validFrom": "2026-09-27",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_mufg_pup_release",
+    "src_mufg_pup_rule"
+   ],
+   "lastVerifiedAt": "2026-09-28",
+   "status": "active",
+   "priority": 100,
+   "tags": [
+    "campaign_bonus",
+    "conditional",
+    "point_up_program"
+   ],
+   "notes": [
+    "対象サービス: 携帯電話料金、電気料金、Appleのサービス、ABEMAプレミアム、コミックシーモア、Hulu、日経電子版、本の要約サービスflier、Uber One、三井のカーシェアーズ。",
+    "1つにつき1.0%、最大5つまでで最大+5.0%。件数ごとに条件を分けているため、契約数に応じて1件ずつ設定できる（D-114）。",
+    "validFrom は制度の効力発生日が未確認のため、調査レポートの確認日（2026-09-27）をカタログ収載上の暫定開始日として登録している。"
+   ]
+  },
+  {
+   "id": "mufg_card_mufg_pup_service_payment_3_bonus",
+   "name": "三菱UFJカード ポイントアップ 特定サービスのカード払い（3件目・+1.0%）",
+   "description": "特定のサービスをカード払いにすると、1つにつき1.0%を上乗せする（最大5つ）。",
+   "ruleKind": "campaignBonus",
+   "selectors": {
+    "instrumentIds": [
+     "mufg_card"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [
+     "seven_eleven",
+     "lawson",
+     "kura_sushi",
+     "sushiro",
+     "matsuya",
+     "ok_store",
+     "ozeqi",
+     "hanamasa",
+     "coca_cola_vending",
+     "cafe_de_crie",
+     "ueshima_coffee",
+     "akachan_honpo",
+     "curves"
+    ],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": {
+    "nodeType": "condition",
+    "conditionId": "mufg_pup_service_payment_3"
+   },
+   "calculation": {
+    "calculationType": "unitPoints",
+    "amountUnitYen": 1000,
+    "pointsPerUnit": 2,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "global_point",
+   "aggregation": {
+    "scope": "billingMonth",
+    "aggregationKey": "mufg_card_mufg_pup_service_payment_3_bonus_1000",
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": true
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 100
+   },
+   "cap": null,
+   "validFrom": "2026-09-27",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_mufg_pup_release",
+    "src_mufg_pup_rule"
+   ],
+   "lastVerifiedAt": "2026-09-28",
+   "status": "active",
+   "priority": 100,
+   "tags": [
+    "campaign_bonus",
+    "conditional",
+    "point_up_program"
+   ],
+   "notes": [
+    "対象サービス: 携帯電話料金、電気料金、Appleのサービス、ABEMAプレミアム、コミックシーモア、Hulu、日経電子版、本の要約サービスflier、Uber One、三井のカーシェアーズ。",
+    "1つにつき1.0%、最大5つまでで最大+5.0%。件数ごとに条件を分けているため、契約数に応じて1件ずつ設定できる（D-114）。",
+    "validFrom は制度の効力発生日が未確認のため、調査レポートの確認日（2026-09-27）をカタログ収載上の暫定開始日として登録している。"
+   ]
+  },
+  {
+   "id": "mufg_card_mufg_pup_service_payment_4_bonus",
+   "name": "三菱UFJカード ポイントアップ 特定サービスのカード払い（4件目・+1.0%）",
+   "description": "特定のサービスをカード払いにすると、1つにつき1.0%を上乗せする（最大5つ）。",
+   "ruleKind": "campaignBonus",
+   "selectors": {
+    "instrumentIds": [
+     "mufg_card"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [
+     "seven_eleven",
+     "lawson",
+     "kura_sushi",
+     "sushiro",
+     "matsuya",
+     "ok_store",
+     "ozeqi",
+     "hanamasa",
+     "coca_cola_vending",
+     "cafe_de_crie",
+     "ueshima_coffee",
+     "akachan_honpo",
+     "curves"
+    ],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": {
+    "nodeType": "condition",
+    "conditionId": "mufg_pup_service_payment_4"
+   },
+   "calculation": {
+    "calculationType": "unitPoints",
+    "amountUnitYen": 1000,
+    "pointsPerUnit": 2,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "global_point",
+   "aggregation": {
+    "scope": "billingMonth",
+    "aggregationKey": "mufg_card_mufg_pup_service_payment_4_bonus_1000",
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": true
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 100
+   },
+   "cap": null,
+   "validFrom": "2026-09-27",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_mufg_pup_release",
+    "src_mufg_pup_rule"
+   ],
+   "lastVerifiedAt": "2026-09-28",
+   "status": "active",
+   "priority": 100,
+   "tags": [
+    "campaign_bonus",
+    "conditional",
+    "point_up_program"
+   ],
+   "notes": [
+    "対象サービス: 携帯電話料金、電気料金、Appleのサービス、ABEMAプレミアム、コミックシーモア、Hulu、日経電子版、本の要約サービスflier、Uber One、三井のカーシェアーズ。",
+    "1つにつき1.0%、最大5つまでで最大+5.0%。件数ごとに条件を分けているため、契約数に応じて1件ずつ設定できる（D-114）。",
+    "validFrom は制度の効力発生日が未確認のため、調査レポートの確認日（2026-09-27）をカタログ収載上の暫定開始日として登録している。"
+   ]
+  },
+  {
+   "id": "mufg_card_mufg_pup_service_payment_5_bonus",
+   "name": "三菱UFJカード ポイントアップ 特定サービスのカード払い（5件目・+1.0%）",
+   "description": "特定のサービスをカード払いにすると、1つにつき1.0%を上乗せする（最大5つ）。",
+   "ruleKind": "campaignBonus",
+   "selectors": {
+    "instrumentIds": [
+     "mufg_card"
+    ],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [
+     "seven_eleven",
+     "lawson",
+     "kura_sushi",
+     "sushiro",
+     "matsuya",
+     "ok_store",
+     "ozeqi",
+     "hanamasa",
+     "coca_cola_vending",
+     "cafe_de_crie",
+     "ueshima_coffee",
+     "akachan_honpo",
+     "curves"
+    ],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "exclusions": {
+    "instrumentIds": [],
+    "modeIds": [],
+    "routeIds": [],
+    "fundingRelationIds": [],
+    "merchantIds": [],
+    "merchantGroupIds": [],
+    "categoryIds": [],
+    "brandIds": [],
+    "locationIds": [],
+    "transactionTags": []
+   },
+   "conditionExpression": {
+    "nodeType": "condition",
+    "conditionId": "mufg_pup_service_payment_5"
+   },
+   "calculation": {
+    "calculationType": "unitPoints",
+    "amountUnitYen": 1000,
+    "pointsPerUnit": 2,
+    "rounding": "floor"
+   },
+   "outputPointProgramId": "global_point",
+   "aggregation": {
+    "scope": "billingMonth",
+    "aggregationKey": "mufg_card_mufg_pup_service_payment_5_bonus_1000",
+    "periodMinimumEligibleSpendYen": 0,
+    "conditionEvaluationTiming": "transaction",
+    "incrementalAward": true
+   },
+   "stacking": {
+    "policy": "stackable",
+    "exclusiveGroupId": null,
+    "replacesRuleIds": [],
+    "suppressesRuleIds": [],
+    "suppressesTags": [],
+    "dependsOnRuleIds": [],
+    "applicationOrder": 100
+   },
+   "cap": null,
+   "validFrom": "2026-09-27",
+   "validUntilExclusive": null,
+   "dateBasis": "transactionDate",
+   "timezone": "Asia/Tokyo",
+   "displayClaim": null,
+   "sourceIds": [
+    "src_mufg_pup_release",
+    "src_mufg_pup_rule"
+   ],
+   "lastVerifiedAt": "2026-09-28",
+   "status": "active",
+   "priority": 100,
+   "tags": [
+    "campaign_bonus",
+    "conditional",
+    "point_up_program"
+   ],
+   "notes": [
+    "対象サービス: 携帯電話料金、電気料金、Appleのサービス、ABEMAプレミアム、コミックシーモア、Hulu、日経電子版、本の要約サービスflier、Uber One、三井のカーシェアーズ。",
+    "1つにつき1.0%、最大5つまでで最大+5.0%。件数ごとに条件を分けているため、契約数に応じて1件ずつ設定できる（D-114）。",
+    "validFrom は制度の効力発生日が未確認のため、調査レポートの確認日（2026-09-27）をカタログ収載上の暫定開始日として登録している。"
    ]
   }
  ]
