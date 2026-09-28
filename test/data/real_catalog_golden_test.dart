@@ -673,6 +673,58 @@ void main() {
     });
   });
 
+  group('ポイント種別の優先順位（D-127）', () {
+    test('Vポイント＞みずほポイント＞楽天ポイント＞その他の順に並ぶ', () {
+      final ranking = evaluator.evaluate(
+        catalog: catalog,
+        amount: yen(10000),
+        transactionDate: transactionDate,
+        conditionContext: satisfiedContext(),
+      );
+
+      int priorityOf(String cardId) =>
+          bestPointProgramPriority(entryFor(ranking, cardId));
+
+      expect(priorityOf('olive_flexible_pay_gold'), 1);
+      expect(priorityOf('smbc_gold_nl_card'), 1);
+      expect(priorityOf('mizuho_rakuten_card'), 2);
+      expect(priorityOf('mufg_card'), 4);
+
+      expect(
+        priorityOf('olive_flexible_pay_gold') <
+            priorityOf('mizuho_rakuten_card'),
+        isTrue,
+        reason: 'Vポイントのほうが優先される',
+      );
+    });
+
+    test('同額なら優先度の高いポイントのカードが上位になる', () {
+      final ranking = evaluator.evaluate(
+        catalog: catalog,
+        amount: yen(10000),
+        transactionDate: transactionDate,
+        conditionContext: satisfiedContext(),
+      );
+
+      // 三菱UFJカード（10pt・グローバルポイント）と
+      // みずほ楽天カード（200pt・みずほ＋楽天）は額が違うため、
+      // 額の大きいほうが先になる（ポイント優先より額が先）。
+      expect(
+        entryFor(ranking, 'mizuho_rakuten_card').totalPoints.points >
+            entryFor(ranking, 'mufg_card').totalPoints.points,
+        isTrue,
+      );
+
+      final baseline = ranking.baselineEntry!;
+      final olive = entryFor(ranking, 'olive_flexible_pay_gold');
+      expect(
+        olive.confirmedValue.compareTo(baseline.confirmedValue) < 0,
+        isTrue,
+        reason: 'Oliveは基本還元のみでは基準（2%）を下回るので順位は下',
+      );
+    });
+  });
+
   group('店舗を選ぶだけの比較（D-088〜D-090）', () {
     MerchantEntry merchant(String idValue) {
       return directory.merchants.firstWhere(
@@ -731,11 +783,19 @@ void main() {
         reason: '基準（みずほ楽天カード・Wポイント対象者）は2%',
       );
       expect(ranking.bestEntry!.instrumentId.value, 'olive_flexible_pay_gold');
+      // 同額（700円）の三菱UFJカードとSMBCゴールドNLは、受け取れるポイントの
+      // 優先順位で並ぶ。VポイントのSMBCが先、グローバルポイントの三菱UFJが後（D-127）。
       expect(
         ranking.betterThanBaseline
             .map((entry) => entry.instrumentId.value)
             .toList(),
-        <String>['olive_flexible_pay_gold', 'mufg_card', 'smbc_gold_nl_card'],
+        <String>['olive_flexible_pay_gold', 'smbc_gold_nl_card', 'mufg_card'],
+      );
+      expect(
+        entryFor(ranking, 'mufg_card').confirmedValue.micros,
+        entryFor(ranking, 'smbc_gold_nl_card').confirmedValue.micros,
+        reason: '還元額（円）が同じ700円であること。点数の単位が違うため'
+            '比較するのは円換算後の値',
       );
     });
 
