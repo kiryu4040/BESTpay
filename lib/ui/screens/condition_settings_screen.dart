@@ -6,13 +6,23 @@ import 'package:provider/provider.dart';
 import '../ranking_controller.dart';
 import '../widgets/logo_tile.dart';
 
-/// 還元率の条件をカードごとに設定する画面（D-114・D-119）。
+/// 還元率の条件をカードごとに設定する画面（D-114・D-119・D-122）。
 ///
+/// 条件は今後も増えるため、カードをタップすると中身が出し入れできる。
 /// 三つの状態（満たす／満たさない／不明）は分かりにくいため、
 /// 「その条件を計算に入れるかどうか」の入切で選ぶ。
 /// 個数で決まる条件は、1項目のまま数を増減できる。
-final class ConditionSettingsScreen extends StatelessWidget {
+final class ConditionSettingsScreen extends StatefulWidget {
   const ConditionSettingsScreen({super.key});
+
+  @override
+  State<ConditionSettingsScreen> createState() =>
+      _ConditionSettingsScreenState();
+}
+
+final class _ConditionSettingsScreenState extends State<ConditionSettingsScreen> {
+  /// 開いているカード。最初はすべて閉じておく。
+  final Set<String> _expanded = <String>{};
 
   @override
   Widget build(BuildContext context) {
@@ -34,31 +44,96 @@ final class ConditionSettingsScreen extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(12),
                     child: Text(
-                      'あてはまる条件をオンにすると、その分が還元率に加算されます。'
-                      'オフのあいだは計算に入りません。',
+                      'カードをタップすると条件が出ます。'
+                      'あてはまる条件をオンにすると、その分が還元率に加算されます。',
                       style: theme.textTheme.bodySmall,
                     ),
                   ),
                 ),
                 const SizedBox(height: 12),
-                for (final instrument in instruments) ...<Widget>[
-                  _buildCardHeader(context, controller, instrument.id.value,
+                for (final instrument in instruments)
+                  _buildCardSection(context, controller, instrument.id.value,
                       instrument.name),
-                  const SizedBox(height: 8),
-                  for (final option in _visibleOptions(
-                      controller.conditionsForInstrument(instrument.id.value)))
-                    _buildOption(context, controller, option),
-                  const SizedBox(height: 16),
-                ],
               ],
             ),
     );
   }
 
-  /// 個数で選ぶ条件は、まとまりの先頭だけを出す（D-119）。
-  List<ConditionOption> _visibleOptions(
-    List<ConditionOption> options,
+  Widget _buildCardSection(
+    BuildContext context,
+    RankingController controller,
+    String instrumentId,
+    String name,
   ) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final isOpen = _expanded.contains(instrumentId);
+    final options = _visibleOptions(
+      controller.conditionsForInstrument(instrumentId),
+    );
+
+    return Card(
+      clipBehavior: Clip.antiAlias,
+      margin: const EdgeInsets.only(bottom: 12),
+      child: Column(
+        children: <Widget>[
+          InkWell(
+            onTap: () => setState(() {
+              if (isOpen) {
+                _expanded.remove(instrumentId);
+              } else {
+                _expanded.add(instrumentId);
+              }
+            }),
+            child: Container(
+              padding: const EdgeInsets.all(12),
+              color: colorScheme.surfaceContainerHighest,
+              child: Row(
+                children: <Widget>[
+                  LogoTile(
+                    assetPath: cardLogoPath(instrumentId),
+                    label: name,
+                    size: 44,
+                    padding: 3,
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(name, style: theme.textTheme.titleMedium),
+                        Text(
+                          controller.conditionSummaryFor(instrumentId),
+                          style: theme.textTheme.bodySmall,
+                        ),
+                      ],
+                    ),
+                  ),
+                  Icon(
+                    isOpen ? Icons.expand_less : Icons.expand_more,
+                    color: colorScheme.primary,
+                  ),
+                ],
+              ),
+            ),
+          ),
+          if (isOpen)
+            Padding(
+              padding: const EdgeInsets.fromLTRB(12, 4, 12, 12),
+              child: Column(
+                children: <Widget>[
+                  for (final option in options)
+                    _buildOption(context, controller, option),
+                ],
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+
+  /// 個数で選ぶ条件は、まとまりの先頭だけを出す（D-119）。
+  List<ConditionOption> _visibleOptions(List<ConditionOption> options) {
     final seenGroups = <String>{};
     final visible = <ConditionOption>[];
 
@@ -77,47 +152,6 @@ final class ConditionSettingsScreen extends StatelessWidget {
     return visible;
   }
 
-  Widget _buildCardHeader(
-    BuildContext context,
-    RankingController controller,
-    String instrumentId,
-    String name,
-  ) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: colorScheme.surfaceContainerHighest,
-        borderRadius: BorderRadius.circular(14),
-      ),
-      child: Row(
-        children: <Widget>[
-          LogoTile(
-            assetPath: cardLogoPath(instrumentId),
-            label: name,
-            size: 44,
-            padding: 3,
-          ),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(name, style: theme.textTheme.titleMedium),
-                Text(
-                  controller.conditionSummaryFor(instrumentId),
-                  style: theme.textTheme.bodySmall,
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
   Widget _buildOption(
     BuildContext context,
     RankingController controller,
@@ -130,74 +164,66 @@ final class ConditionSettingsScreen extends StatelessWidget {
       final count = controller.conditionCountOf(groupId);
       final max = option.countGroupMax;
 
-      return Card(
-        child: Padding(
-          padding: const EdgeInsets.all(12),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(option.name, style: theme.textTheme.titleSmall),
-              const SizedBox(height: 4),
-              Text(option.description, style: theme.textTheme.bodySmall),
-              const SizedBox(height: 8),
-              Row(
-                children: <Widget>[
-                  IconButton(
-                    onPressed: count <= 0
-                        ? null
-                        : () => controller.setConditionCount(groupId, count - 1),
-                    icon: const Icon(Icons.remove_circle_outline),
-                  ),
-                  Text(
-                    '$count / $max 件',
-                    style: theme.textTheme.titleMedium,
-                  ),
-                  IconButton(
-                    onPressed: count >= max
-                        ? null
-                        : () => controller.setConditionCount(groupId, count + 1),
-                    icon: const Icon(Icons.add_circle_outline),
-                  ),
-                  const Spacer(),
-                  Text(
-                    count == 0 ? '計算に入れない' : '+${count}.0%',
-                    style: theme.textTheme.bodySmall,
-                  ),
-                ],
-              ),
-              _notesTile(theme, option.notes),
-            ],
-          ),
+      return Padding(
+        padding: const EdgeInsets.only(top: 8),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(option.name, style: theme.textTheme.titleSmall),
+            const SizedBox(height: 4),
+            Text(option.description, style: theme.textTheme.bodySmall),
+            Row(
+              children: <Widget>[
+                IconButton(
+                  onPressed: count <= 0
+                      ? null
+                      : () => controller.setConditionCount(groupId, count - 1),
+                  icon: const Icon(Icons.remove_circle_outline),
+                ),
+                Text('$count / $max 件', style: theme.textTheme.titleMedium),
+                IconButton(
+                  onPressed: count >= max
+                      ? null
+                      : () => controller.setConditionCount(groupId, count + 1),
+                  icon: const Icon(Icons.add_circle_outline),
+                ),
+                const Spacer(),
+                Text(
+                  count == 0 ? '計算に入れない' : '+$count.0%',
+                  style: theme.textTheme.bodySmall,
+                ),
+              ],
+            ),
+            _notesTile(theme, option.notes),
+          ],
         ),
       );
     }
 
     final isOn = controller.conditionStateOf(option.id) == TriState.satisfied;
 
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(12),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Row(
-              children: <Widget>[
-                Expanded(
-                  child: Text(option.name, style: theme.textTheme.titleSmall),
+    return Padding(
+      padding: const EdgeInsets.only(top: 8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              Expanded(
+                child: Text(option.name, style: theme.textTheme.titleSmall),
+              ),
+              Switch(
+                value: isOn,
+                onChanged: (value) => controller.setConditionState(
+                  option.id,
+                  value ? TriState.satisfied : TriState.notSatisfied,
                 ),
-                Switch(
-                  value: isOn,
-                  onChanged: (value) => controller.setConditionState(
-                    option.id,
-                    value ? TriState.satisfied : TriState.notSatisfied,
-                  ),
-                ),
-              ],
-            ),
-            Text(option.description, style: theme.textTheme.bodySmall),
-            _notesTile(theme, option.notes),
-          ],
-        ),
+              ),
+            ],
+          ),
+          Text(option.description, style: theme.textTheme.bodySmall),
+          _notesTile(theme, option.notes),
+        ],
       ),
     );
   }

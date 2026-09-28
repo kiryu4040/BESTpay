@@ -7,114 +7,52 @@ import '../widgets/logo_tile.dart';
 import 'merchant_compare_screen.dart';
 import 'merchant_order_screen.dart';
 
-/// カテゴリ内の店舗一覧。並べ替えができる（D-093）。
-final class MerchantCategoryScreen extends StatefulWidget {
+/// カテゴリ内の店舗一覧。
+///
+/// 並び順は利用者が手で決める（設定タブの「店舗の並べ替え」・D-099）。
+/// 名前順・カタログ順・還元率順といった自動の並べ替えは持たない（D-124）。
+final class MerchantCategoryScreen extends StatelessWidget {
   const MerchantCategoryScreen({super.key, required this.category});
 
   final MerchantCategory category;
 
   @override
-  State<MerchantCategoryScreen> createState() => _MerchantCategoryScreenState();
-}
-
-/// 一覧の並べ替え方。
-enum MerchantSortOrder {
-  catalog('カタログ順'),
-  name('名前順'),
-  rate('還元率が高い順');
-
-  const MerchantSortOrder(this.label);
-
-  final String label;
-}
-
-final class _MerchantCategoryScreenState extends State<MerchantCategoryScreen> {
-  MerchantSortOrder _order = MerchantSortOrder.catalog;
-
-  @override
   Widget build(BuildContext context) {
     final controller = context.watch<RankingController>();
-    final merchants = _sortedMerchants(controller);
+    final merchants = controller.merchantsInCategoryOrdered(category.id);
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.category.name),
+        title: Text(category.name),
         actions: <Widget>[
           IconButton(
             tooltip: '店舗の並べ替え',
             icon: const Icon(Icons.reorder),
             onPressed: () => Navigator.of(context).push(
               MaterialPageRoute<void>(
-                builder: (_) => MerchantOrderScreen(category: widget.category),
+                builder: (_) => MerchantOrderScreen(category: category),
               ),
             ),
           ),
         ],
       ),
-      body: Column(
-        children: <Widget>[
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.fromLTRB(12, 12, 12, 4),
-            child: Row(
-              children: <Widget>[
-                for (final order in MerchantSortOrder.values)
-                  Padding(
-                    padding: const EdgeInsets.only(right: 8),
-                    child: ChoiceChip(
-                      label: Text(order.label),
-                      selected: _order == order,
-                      onSelected: (_) => setState(() => _order = order),
-                    ),
+      body: merchants.isEmpty
+          ? const Padding(
+              padding: EdgeInsets.all(24),
+              child: Text('このカテゴリの店舗はまだありません。'),
+            )
+          : MerchantLogoGrid(
+              merchants: merchants,
+              onTap: (merchant) {
+                context.read<RankingController>().compareAtMerchant(merchant);
+                Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (_) => MerchantCompareScreen(merchant: merchant),
                   ),
-              ],
+                );
+              },
             ),
-          ),
-          Expanded(
-            child: merchants.isEmpty
-                ? const Padding(
-                    padding: EdgeInsets.all(24),
-                    child: Text('このカテゴリの店舗はまだありません。'),
-                  )
-                : MerchantLogoGrid(
-                    merchants: merchants,
-                    rateLabel: _order == MerchantSortOrder.rate
-                        ? controller.bestRateLabelAt
-                        : null,
-                    onTap: (merchant) {
-                      context.read<RankingController>().compareAtMerchant(merchant);
-                      Navigator.of(context).push(
-                        MaterialPageRoute<void>(
-                          builder: (_) => MerchantCompareScreen(merchant: merchant),
-                        ),
-                      );
-                    },
-                  ),
-          ),
-        ],
-      ),
     );
-  }
-
-  List<MerchantEntry> _sortedMerchants(RankingController controller) {
-    final merchants =
-        controller.merchantsInCategoryOrdered(widget.category.id).toList();
-
-    switch (_order) {
-      case MerchantSortOrder.catalog:
-        break;
-      case MerchantSortOrder.name:
-        merchants.sort((left, right) => left.name.compareTo(right.name));
-      case MerchantSortOrder.rate:
-        merchants.sort((left, right) {
-          final byRate = controller
-              .bestRateHundredthsPercentAt(right)
-              .compareTo(controller.bestRateHundredthsPercentAt(left));
-          return byRate != 0 ? byRate : left.name.compareTo(right.name);
-        });
-    }
-
-    return merchants;
   }
 }
 
@@ -131,7 +69,7 @@ final class MerchantLogoGrid extends StatelessWidget {
   final List<MerchantEntry> merchants;
   final void Function(MerchantEntry merchant) onTap;
 
-  /// タイル下に添える補足（還元率順のときだけ渡す）。
+  /// タイル下に添える補足（必要なときだけ渡す）。
   final String Function(MerchantEntry merchant)? rateLabel;
 
   /// 親のスクロール内に置くときは true。

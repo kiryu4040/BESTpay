@@ -191,13 +191,24 @@ final class RewardRanking {
       allEntries.where((entry) => entry.beatsBaseline).toList();
 
   /// The single best card for this transaction, when one can be chosen.
+  ///
+  /// 還元額が同じときは基準カード（みずほ楽天カード）を選ぶ（D-123）。
+  /// 実際に使っているカードが並ぶなら、あえて持ち替える理由がないため。
   RewardRankingEntry? get bestEntry {
     final entries = allEntries;
     if (entries.isEmpty) {
       return null;
     }
 
-    return entries.first;
+    final leader = entries.first;
+    final baseline = baselineEntry;
+    if (baseline != null &&
+        leader.instrumentId != baseline.instrumentId &&
+        baseline.confirmedValue.compareTo(leader.confirmedValue) == 0) {
+      return baseline;
+    }
+
+    return leader;
   }
 
   /// True when no card beats the baseline, so the baseline stays the choice.

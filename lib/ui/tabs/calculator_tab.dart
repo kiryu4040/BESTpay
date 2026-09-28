@@ -14,7 +14,7 @@ import '../screens/card_detail_screen.dart';
 /// 計算タブ（D-115）。
 ///
 /// 金額と店舗を選ぶと、その店舗でその金額を払ったときに
-/// カードごとに何円ぶん還元されるかを出す。
+/// カードごとに何円還元されるかを出す。
 final class CalculatorTab extends StatefulWidget {
   const CalculatorTab({super.key});
 
@@ -23,8 +23,7 @@ final class CalculatorTab extends StatefulWidget {
 }
 
 final class _CalculatorTabState extends State<CalculatorTab> {
-  final TextEditingController _amountController =
-      TextEditingController(text: '10000');
+  final TextEditingController _amountController = TextEditingController();
   MerchantEntry? _merchant;
   String? _errorText;
 
@@ -46,7 +45,7 @@ final class _CalculatorTabState extends State<CalculatorTab> {
         padding: const EdgeInsets.all(16),
         children: <Widget>[
           Text(
-            '金額とお店を選ぶと、そのお店で何円ぶん還元されるかを出します。',
+            '金額とお店を選ぶと、そのお店で何円還元されるかを出します。',
             style: theme.textTheme.bodyMedium,
           ),
           const SizedBox(height: 12),
@@ -177,7 +176,7 @@ final class _CalculatorTabState extends State<CalculatorTab> {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      '${_group(winner.confirmedValue.yenRounded)}円 ぶん還元',
+                      '${_group(winner.confirmedValue.yenRounded)}円還元',
                       style: theme.textTheme.headlineSmall,
                     ),
                     Text(
@@ -234,7 +233,7 @@ final class _CalculatorTabState extends State<CalculatorTab> {
                       style: theme.textTheme.titleMedium,
                     ),
                     Text(
-                      '${_group(entry.confirmedValue.yenRounded)}円ぶん'
+                      '${_group(entry.confirmedValue.yenRounded)}円還元'
                       '（${_formatRate(entry.effectiveRate)}）',
                       style: theme.textTheme.bodyLarge,
                     ),
