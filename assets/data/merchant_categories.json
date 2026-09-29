@@ -1,246 +1,259 @@
 {
- "schemaVersion": "1.0.0",
- "catalogVersion": "2026.09.29.2",
- "generatedAt": "2026-09-27T00:00:00+09:00",
- "items": [
-  {
-   "id": "convenience_store",
-   "name": "コンビニ",
-   "parentCategoryId": null,
-   "status": "active",
-   "sourceIds": [
-    "src_olive_gold_official",
-    "src_olive_point_rate",
-    "src_olive_gold_attention",
-    "src_smbc_vpoint_up_program",
-    "src_mufg_global_point",
-    "src_mufg_global_plus",
-    "src_mufg_annual_bonus",
-    "src_mufg_store_bonus"
-   ],
-   "notes": [
-    "第1期の店舗カテゴリ。制度改定時はこのカテゴリ単位でルールの有効区間を更新する。"
-   ]
-  },
-  {
-   "id": "fast_food",
-   "name": "ファストフード",
-   "parentCategoryId": null,
-   "status": "active",
-   "sourceIds": [
-    "src_olive_gold_official",
-    "src_olive_point_rate",
-    "src_olive_gold_attention",
-    "src_smbc_vpoint_up_program",
-    "src_mufg_global_point",
-    "src_mufg_global_plus",
-    "src_mufg_annual_bonus",
-    "src_mufg_store_bonus"
-   ],
-   "notes": [
-    "第1期の店舗カテゴリ。制度改定時はこのカテゴリ単位でルールの有効区間を更新する。"
-   ]
-  },
-  {
-   "id": "cafe",
-   "name": "カフェ",
-   "parentCategoryId": null,
-   "status": "active",
-   "sourceIds": [
-    "src_olive_gold_official",
-    "src_olive_point_rate",
-    "src_olive_gold_attention",
-    "src_smbc_vpoint_up_program",
-    "src_mufg_global_point",
-    "src_mufg_global_plus",
-    "src_mufg_annual_bonus",
-    "src_mufg_store_bonus"
-   ],
-   "notes": [
-    "第1期の店舗カテゴリ。制度改定時はこのカテゴリ単位でルールの有効区間を更新する。"
-   ]
-  },
-  {
-   "id": "kaiten_sushi",
-   "name": "回転寿司",
-   "parentCategoryId": null,
-   "status": "active",
-   "sourceIds": [
-    "src_olive_gold_official",
-    "src_olive_point_rate",
-    "src_olive_gold_attention",
-    "src_smbc_vpoint_up_program",
-    "src_mufg_global_point",
-    "src_mufg_global_plus",
-    "src_mufg_annual_bonus",
-    "src_mufg_store_bonus"
-   ],
-   "notes": [
-    "第1期の店舗カテゴリ。制度改定時はこのカテゴリ単位でルールの有効区間を更新する。"
-   ]
-  },
-  {
-   "id": "pizza",
-   "name": "ピザ",
-   "parentCategoryId": null,
-   "status": "active",
-   "sourceIds": [
-    "src_olive_gold_official",
-    "src_olive_point_rate",
-    "src_olive_gold_attention",
-    "src_smbc_vpoint_up_program",
-    "src_mufg_global_point",
-    "src_mufg_global_plus",
-    "src_mufg_annual_bonus",
-    "src_mufg_store_bonus"
-   ],
-   "notes": [
-    "第1期の店舗カテゴリ。制度改定時はこのカテゴリ単位でルールの有効区間を更新する。"
-   ]
-  },
-  {
-   "id": "supermarket",
-   "name": "スーパー",
-   "parentCategoryId": null,
-   "status": "active",
-   "sourceIds": [
-    "src_olive_gold_official",
-    "src_olive_point_rate",
-    "src_olive_gold_attention",
-    "src_smbc_vpoint_up_program",
-    "src_mufg_global_point",
-    "src_mufg_global_plus",
-    "src_mufg_annual_bonus",
-    "src_mufg_store_bonus"
-   ],
-   "notes": [
-    "第1期の店舗カテゴリ。制度改定時はこのカテゴリ単位でルールの有効区間を更新する。"
-   ]
-  },
-  {
-   "id": "online_shop",
-   "name": "ネット通販",
-   "parentCategoryId": null,
-   "status": "active",
-   "sourceIds": [
-    "src_olive_gold_official",
-    "src_olive_point_rate",
-    "src_olive_gold_attention",
-    "src_smbc_vpoint_up_program",
-    "src_mufg_global_point",
-    "src_mufg_global_plus",
-    "src_mufg_annual_bonus",
-    "src_mufg_store_bonus"
-   ],
-   "notes": [
-    "第1期の店舗カテゴリ。制度改定時はこのカテゴリ単位でルールの有効区間を更新する。"
-   ]
-  },
-  {
-   "id": "family_restaurant",
-   "name": "ファミリーレストラン",
-   "parentCategoryId": null,
-   "status": "active",
-   "sourceIds": [
-    "src_jcb_point_partner",
-    "src_jcb_point_partner_guide",
-    "src_jcb_card_w_s_compare"
-   ],
-   "notes": [
-    "JCBカードWのポイントアップ（J-POINTパートナー）対応で追加した店舗カテゴリ（D-105）。"
-   ]
-  },
-  {
-   "id": "ride_hailing",
-   "name": "配車・タクシー",
-   "parentCategoryId": null,
-   "status": "active",
-   "sourceIds": [
-    "src_jcb_point_partner",
-    "src_jcb_point_partner_guide",
-    "src_jcb_card_w_s_compare"
-   ],
-   "notes": [
-    "JCBカードWのポイントアップ（J-POINTパートナー）対応で追加した店舗カテゴリ（D-105）。"
-   ]
-  },
-  {
-   "id": "fashion",
-   "name": "ファッション",
-   "parentCategoryId": null,
-   "status": "active",
-   "sourceIds": [
-    "src_jcb_point_partner",
-    "src_jcb_point_partner_guide",
-    "src_jcb_card_w_s_compare"
-   ],
-   "notes": [
-    "JCBカードWのポイントアップ（J-POINTパートナー）対応で追加した店舗カテゴリ（D-105）。"
-   ]
-  },
-  {
-   "id": "card_ride",
-   "name": "クレカ乗車",
-   "parentCategoryId": null,
-   "status": "active",
-   "sourceIds": [
-    "src_jcb_point_partner",
-    "src_jcb_card_w_s_compare"
-   ],
-   "notes": [
-    "JCBカードWのポイントアップ対象「クレカ乗車」のカテゴリ（D-110）。電車・バスなど全国190以上の対象路線で使える。"
-   ]
-  },
-  {
-   "id": "vending_machine",
-   "name": "自販機",
-   "parentCategoryId": null,
-   "status": "active",
-   "sourceIds": [
-    "src_mufg_store_bonus",
-    "src_mufg_pup_release"
-   ],
-   "notes": [
-    "三菱UFJカードのポイントアップ対象店舗の追加に伴い新設（D-113）。"
-   ]
-  },
-  {
-   "id": "lifestyle",
-   "name": "生活用品・フィットネス",
-   "parentCategoryId": null,
-   "status": "active",
-   "sourceIds": [
-    "src_mufg_store_bonus",
-    "src_mufg_pup_release"
-   ],
-   "notes": [
-    "三菱UFJカードのポイントアップ対象店舗の追加に伴い新設（D-113）。"
-   ]
-  },
-  {
-   "id": "drugstore",
-   "name": "ドラッグストア／家電・ホームセンター",
-   "parentCategoryId": null,
-   "status": "active",
-   "sourceIds": [
-    "src_jcb_point_partner",
-    "src_mufg_store_bonus"
-   ],
-   "notes": [
-    "有名チェーンの追加に伴い新設（D-129）。"
-   ]
-  },
-  {
-   "id": "car_life",
-   "name": "レンタカー・カーライフ",
-   "parentCategoryId": null,
-   "status": "active",
-   "sourceIds": [
-    "src_jcb_point_partner"
-   ],
-   "notes": [
-    "JCBカードWの優待店（オリックスレンタカー）の追加に伴い新設（D-135）。"
-   ]
-  }
- ]
+  "schemaVersion": "1.0.0",
+  "catalogVersion": "2026.09.29.3",
+  "generatedAt": "2026-09-27T00:00:00+09:00",
+  "items": [
+    {
+      "id": "convenience_store",
+      "name": "コンビニ",
+      "parentCategoryId": null,
+      "status": "active",
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_olive_point_rate",
+        "src_olive_gold_attention",
+        "src_smbc_vpoint_up_program",
+        "src_mufg_global_point",
+        "src_mufg_global_plus",
+        "src_mufg_annual_bonus",
+        "src_mufg_store_bonus"
+      ],
+      "notes": [
+        "第1期の店舗カテゴリ。制度改定時はこのカテゴリ単位でルールの有効区間を更新する。"
+      ]
+    },
+    {
+      "id": "fast_food",
+      "name": "ファストフード",
+      "parentCategoryId": null,
+      "status": "active",
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_olive_point_rate",
+        "src_olive_gold_attention",
+        "src_smbc_vpoint_up_program",
+        "src_mufg_global_point",
+        "src_mufg_global_plus",
+        "src_mufg_annual_bonus",
+        "src_mufg_store_bonus"
+      ],
+      "notes": [
+        "第1期の店舗カテゴリ。制度改定時はこのカテゴリ単位でルールの有効区間を更新する。"
+      ]
+    },
+    {
+      "id": "cafe",
+      "name": "カフェ",
+      "parentCategoryId": null,
+      "status": "active",
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_olive_point_rate",
+        "src_olive_gold_attention",
+        "src_smbc_vpoint_up_program",
+        "src_mufg_global_point",
+        "src_mufg_global_plus",
+        "src_mufg_annual_bonus",
+        "src_mufg_store_bonus"
+      ],
+      "notes": [
+        "第1期の店舗カテゴリ。制度改定時はこのカテゴリ単位でルールの有効区間を更新する。"
+      ]
+    },
+    {
+      "id": "kaiten_sushi",
+      "name": "回転寿司",
+      "parentCategoryId": null,
+      "status": "active",
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_olive_point_rate",
+        "src_olive_gold_attention",
+        "src_smbc_vpoint_up_program",
+        "src_mufg_global_point",
+        "src_mufg_global_plus",
+        "src_mufg_annual_bonus",
+        "src_mufg_store_bonus"
+      ],
+      "notes": [
+        "第1期の店舗カテゴリ。制度改定時はこのカテゴリ単位でルールの有効区間を更新する。"
+      ]
+    },
+    {
+      "id": "pizza",
+      "name": "ピザ",
+      "parentCategoryId": null,
+      "status": "active",
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_olive_point_rate",
+        "src_olive_gold_attention",
+        "src_smbc_vpoint_up_program",
+        "src_mufg_global_point",
+        "src_mufg_global_plus",
+        "src_mufg_annual_bonus",
+        "src_mufg_store_bonus"
+      ],
+      "notes": [
+        "第1期の店舗カテゴリ。制度改定時はこのカテゴリ単位でルールの有効区間を更新する。"
+      ]
+    },
+    {
+      "id": "supermarket",
+      "name": "スーパー",
+      "parentCategoryId": null,
+      "status": "active",
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_olive_point_rate",
+        "src_olive_gold_attention",
+        "src_smbc_vpoint_up_program",
+        "src_mufg_global_point",
+        "src_mufg_global_plus",
+        "src_mufg_annual_bonus",
+        "src_mufg_store_bonus"
+      ],
+      "notes": [
+        "第1期の店舗カテゴリ。制度改定時はこのカテゴリ単位でルールの有効区間を更新する。"
+      ]
+    },
+    {
+      "id": "online_shop",
+      "name": "ネット通販",
+      "parentCategoryId": null,
+      "status": "active",
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_olive_point_rate",
+        "src_olive_gold_attention",
+        "src_smbc_vpoint_up_program",
+        "src_mufg_global_point",
+        "src_mufg_global_plus",
+        "src_mufg_annual_bonus",
+        "src_mufg_store_bonus"
+      ],
+      "notes": [
+        "第1期の店舗カテゴリ。制度改定時はこのカテゴリ単位でルールの有効区間を更新する。"
+      ]
+    },
+    {
+      "id": "family_restaurant",
+      "name": "ファミリーレストラン",
+      "parentCategoryId": null,
+      "status": "active",
+      "sourceIds": [
+        "src_jcb_point_partner",
+        "src_jcb_point_partner_guide",
+        "src_jcb_card_w_s_compare"
+      ],
+      "notes": [
+        "JCBカードWのポイントアップ（J-POINTパートナー）対応で追加した店舗カテゴリ（D-105）。"
+      ]
+    },
+    {
+      "id": "ride_hailing",
+      "name": "配車・タクシー",
+      "parentCategoryId": null,
+      "status": "active",
+      "sourceIds": [
+        "src_jcb_point_partner",
+        "src_jcb_point_partner_guide",
+        "src_jcb_card_w_s_compare"
+      ],
+      "notes": [
+        "JCBカードWのポイントアップ（J-POINTパートナー）対応で追加した店舗カテゴリ（D-105）。"
+      ]
+    },
+    {
+      "id": "fashion",
+      "name": "ファッション",
+      "parentCategoryId": null,
+      "status": "active",
+      "sourceIds": [
+        "src_jcb_point_partner",
+        "src_jcb_point_partner_guide",
+        "src_jcb_card_w_s_compare"
+      ],
+      "notes": [
+        "JCBカードWのポイントアップ（J-POINTパートナー）対応で追加した店舗カテゴリ（D-105）。"
+      ]
+    },
+    {
+      "id": "card_ride",
+      "name": "クレカ乗車",
+      "parentCategoryId": null,
+      "status": "active",
+      "sourceIds": [
+        "src_jcb_point_partner",
+        "src_jcb_card_w_s_compare"
+      ],
+      "notes": [
+        "JCBカードWのポイントアップ対象「クレカ乗車」のカテゴリ（D-110）。電車・バスなど全国190以上の対象路線で使える。"
+      ]
+    },
+    {
+      "id": "vending_machine",
+      "name": "自販機",
+      "parentCategoryId": null,
+      "status": "active",
+      "sourceIds": [
+        "src_mufg_store_bonus",
+        "src_mufg_pup_release"
+      ],
+      "notes": [
+        "三菱UFJカードのポイントアップ対象店舗の追加に伴い新設（D-113）。"
+      ]
+    },
+    {
+      "id": "lifestyle",
+      "name": "生活用品・フィットネス",
+      "parentCategoryId": null,
+      "status": "active",
+      "sourceIds": [
+        "src_mufg_store_bonus",
+        "src_mufg_pup_release"
+      ],
+      "notes": [
+        "三菱UFJカードのポイントアップ対象店舗の追加に伴い新設（D-113）。"
+      ]
+    },
+    {
+      "id": "drugstore",
+      "name": "ドラッグストア／家電・ホームセンター",
+      "parentCategoryId": null,
+      "status": "active",
+      "sourceIds": [
+        "src_jcb_point_partner",
+        "src_mufg_store_bonus"
+      ],
+      "notes": [
+        "有名チェーンの追加に伴い新設（D-129）。"
+      ]
+    },
+    {
+      "id": "car_life",
+      "name": "レンタカー・カーライフ",
+      "parentCategoryId": null,
+      "status": "active",
+      "sourceIds": [
+        "src_jcb_point_partner"
+      ],
+      "notes": [
+        "JCBカードWの優待店（オリックスレンタカー）の追加に伴い新設（D-135）。"
+      ]
+    },
+    {
+      "id": "department_store",
+      "name": "百貨店",
+      "parentCategoryId": null,
+      "status": "active",
+      "sourceIds": [
+        "src_jcb_point_partner",
+        "src_jcb_card_w_s_compare"
+      ],
+      "notes": [
+        "JCBカードWのJ-POINTパートナーに百貨店が複数掲載されているため新設した（D-138）。"
+      ]
+    }
+  ]
 }

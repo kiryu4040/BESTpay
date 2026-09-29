@@ -1,743 +1,803 @@
 {
- "schemaVersion": "1.0.0",
- "catalogVersion": "2026.09.29.1",
- "generatedAt": "2026-09-27T00:00:00+09:00",
- "items": [
-  {
-   "id": "src_mizuho_rakuten_official",
-   "title": "みずほ楽天カード（クレジットカード）",
-   "url": "https://www.mizuhobank.co.jp/rakutencard/index.html",
-   "publisher": "株式会社みずほ銀行",
-   "sourceType": "officialProductPage",
-   "publishedAt": null,
-   "lastVerifiedAt": "2026-09-27",
-   "accessStatus": "accessible",
-   "reliability": "primary",
-   "relevantSections": [
-    "ポイント還元率 1％還元（100円につき1ポイント）",
-    "年会費永年無料",
-    "Wポイントプラン注意事項"
-   ],
-   "summary": "みずほ楽天カードの公式商品ページ。楽天ポイント1%と条件付きのみずほポイント（Wポイントプラン）を案内。",
-   "contentHash": null,
-   "notes": []
-  },
-  {
-   "id": "src_rakuten_point_rate",
-   "title": "楽天カード ポイント還元率について",
-   "url": "https://www.rakuten-card.co.jp/point/pointrate/",
-   "publisher": "楽天カード株式会社",
-   "sourceType": "officialProductPage",
-   "publishedAt": null,
-   "lastVerifiedAt": "2026-09-27",
-   "accessStatus": "accessible",
-   "reliability": "primary",
-   "relevantSections": [
-    "※1回のカードショッピング（お買い物ごと）のご利用金額に対して100円につき1ポイントを進呈",
-    "公共料金・税金は500円ご利用につき1ポイント進呈",
-    "保険料（2024-08-01利用分より）は200円ご利用につき1ポイント進呈",
-    "携帯電話ご利用料金（2024-08-01利用分より）は200円ご利用につき1ポイント進呈",
-    "上記記載のない事業者でのご利用分は100円につき1ポイント進呈",
-    "ポイント進呈対象外の利用（年会費・手数料・キャッシング・他社決済サービスへのチャージ等）"
-   ],
-   "summary": "楽天カードのポイント還元率の公式ページ。1回のお買い物ごとの100円1ポイント、公共料金・税金500円1pt、保険料・携帯電話料金200円1ptのカテゴリ別単位、対象外利用を明記。",
-   "contentHash": null,
-   "notes": [
-    "カテゴリ別単位の対象事業者リストは本文に列挙されているが、第1期はリストを登録しない。"
-   ]
-  },
-  {
-   "id": "src_rakuten_news_20230801",
-   "title": "楽天カード利用獲得ポイント計算方法変更のご案内",
-   "url": "https://www.rakuten-card.co.jp/info/news/20230801",
-   "publisher": "楽天カード株式会社",
-   "sourceType": "officialNewsRelease",
-   "publishedAt": "2023-08-01",
-   "lastVerifiedAt": "2026-09-27",
-   "accessStatus": "accessible",
-   "reliability": "primary",
-   "relevantSections": [
-    "ポイント計算は100円未満のご利用分は切り捨て"
-   ],
-   "summary": "2023-08-01付の公式お知らせ。100円未満切捨ての端数処理を明記。",
-   "contentHash": null,
-   "notes": []
-  },
-  {
-   "id": "src_rakuten_faq_calc",
-   "title": "カード利用による獲得ポイントの計算方法（FAQ）",
-   "url": "https://support.rakuten-card.jp/faq/show/153733",
-   "publisher": "楽天カード株式会社",
-   "sourceType": "officialFaq",
-   "publishedAt": null,
-   "lastVerifiedAt": "2026-09-27",
-   "accessStatus": "accessible",
-   "reliability": "primary",
-   "relevantSections": [
-    "獲得ポイントの計算方法"
-   ],
-   "summary": "楽天カード公式FAQ。ポイント計算方法の説明。",
-   "contentHash": null,
-   "notes": []
-  },
-  {
-   "id": "src_rakuten_faq_award_date",
-   "title": "ポイント進呈日FAQ",
-   "url": "https://car.faq.rakuten.net/s/article/000032544",
-   "publisher": "楽天カード株式会社",
-   "sourceType": "officialFaq",
-   "publishedAt": null,
-   "lastVerifiedAt": "2026-09-27",
-   "accessStatus": "accessible",
-   "reliability": "primary",
-   "relevantSections": [
-    "毎月1日から末日までのご利用情報が弊社に到着するタイミング"
-   ],
-   "summary": "楽天カード公式FAQ。利用情報の到着タイミングで進呈月が変わることを説明。",
-   "contentHash": null,
-   "notes": []
-  },
-  {
-   "id": "src_cnet_mizuho_2pct",
-   "title": "「みずほ楽天カード」還元率2%（CNET Japan）",
-   "url": "https://japan.cnet.com/article/35252356/",
-   "publisher": "CNET Japan",
-   "sourceType": "secondaryArticle",
-   "publishedAt": "2026-09-07",
-   "lastVerifiedAt": "2026-09-27",
-   "accessStatus": "accessible",
-   "reliability": "secondary",
-   "relevantSections": [
-    "還元率2%への引き上げ報道"
-   ],
-   "summary": "2026-09-07付の二次情報報道。公式の2%はWポイントプラン（条件付き・最長1年）であり全利用者共通の恒常2%ではない。",
-   "contentHash": null,
-   "notes": [
-    "二次情報のため確定情報として扱わない。"
-   ]
-  },
-  {
-   "id": "src_olive_gold_official",
-   "title": "Olive ゴールドとは",
-   "url": "https://www.smbc.co.jp/kojin/olive-account/gold/",
-   "publisher": "三井住友銀行",
-   "sourceType": "officialProductPage",
-   "publishedAt": null,
-   "lastVerifiedAt": "2026-09-27",
-   "accessStatus": "accessible",
-   "reliability": "primary",
-   "relevantSections": [
-    "お支払いモードとポイント還元率（クレジットモード0.5％／デビットモード0.5％／ポイント払いモード0.5％）",
-    "年会費5,500円と年100万円利用での永年無料",
-    "毎年、年間100万円以上のご利用で10,000ポイント"
-   ],
-   "summary": "Oliveフレキシブルペイ ゴールドの公式商品ページ。3モードすべて0.5%であることをお支払いモード表に明記。",
-   "contentHash": null,
-   "notes": []
-  },
-  {
-   "id": "src_olive_point_rate",
-   "title": "OliveのVポイント還元率",
-   "url": "https://www.smbc.co.jp/kojin/olive-account/merit/point_rate/",
-   "publisher": "三井住友銀行",
-   "sourceType": "officialProductPage",
-   "publishedAt": null,
-   "lastVerifiedAt": "2026-09-27",
-   "accessStatus": "accessible",
-   "reliability": "primary",
-   "relevantSections": [
-    "クレジットモードの利用で利用額の0.5％還元",
-    "対象のコンビニ・飲食店でスマホのタッチ決済は+7.5%"
-   ],
-   "summary": "OliveのVポイント還元率の公式案内。クレジットモード0.5%と対象店舗の上乗せを明記。",
-   "contentHash": null,
-   "notes": []
-  },
-  {
-   "id": "src_olive_gold_attention",
-   "title": "特典の詳細およびご注意事項（Olive Gold）",
-   "url": "https://www.smbc-card.com/nyukai/pop/olive_flexible_pay_gold-numberless_attention.jsp",
-   "publisher": "三井住友カード株式会社",
-   "sourceType": "officialTerms",
-   "publishedAt": null,
-   "lastVerifiedAt": "2026-09-27",
-   "accessStatus": "accessible",
-   "reliability": "primary",
-   "relevantSections": [
-    "年間100万円利用特典の集計期間",
-    "集計対象外取引"
-   ],
-   "summary": "Oliveフレキシブルペイ ゴールドの特典条件（年100万円特典の集計期間・対象外）を明記。",
-   "contentHash": null,
-   "notes": []
-  },
-  {
-   "id": "src_smbc_vpoint_up_program",
-   "title": "Vポイントアッププログラム",
-   "url": "https://www.smbc-card.com/nyukai/merit/vpoint_up_program.jsp",
-   "publisher": "三井住友カード株式会社",
-   "sourceType": "officialProductPage",
-   "publishedAt": null,
-   "lastVerifiedAt": "2026-09-27",
-   "accessStatus": "accessible",
-   "reliability": "primary",
-   "relevantSections": [
-    "1ヵ月あたり1カード50,000ポイント上限",
-    "対象店舗の上乗せ"
-   ],
-   "summary": "Vポイントアッププログラムの公式案内。月間上限と対象店舗の上乗せを説明。",
-   "contentHash": null,
-   "notes": []
-  },
-  {
-   "id": "src_olive_privilege",
-   "title": "選べる特典",
-   "url": "https://www.smbc.co.jp/kojin/olive-account/merit/privilege/",
-   "publisher": "三井住友銀行",
-   "sourceType": "officialProductPage",
-   "publishedAt": null,
-   "lastVerifiedAt": "2026-09-27",
-   "accessStatus": "accessible",
-   "reliability": "primary",
-   "relevantSections": [
-    "選べる特典"
-   ],
-   "summary": "Oliveの選べる特典の公式案内。",
-   "contentHash": null,
-   "notes": []
-  },
-  {
-   "id": "src_smbc_service_revision",
-   "title": "サービス改定のお知らせ",
-   "url": "https://www.smbc-card.com/mem/cardinfo/25/cardinfo4030019.jsp",
-   "publisher": "三井住友カード株式会社",
-   "sourceType": "officialNewsRelease",
-   "publishedAt": null,
-   "lastVerifiedAt": "2026-09-27",
-   "accessStatus": "accessible",
-   "reliability": "primary",
-   "relevantSections": [
-    "2026-03-01利用分より集計対象外に追加（au PAY、Kyash、JAL Pay、バンドルカード）"
-   ],
-   "summary": "三井住友カードのサービス改定お知らせ。2026-03-01利用分より集計対象外取引を追加。",
-   "contentHash": null,
-   "notes": []
-  },
-  {
-   "id": "src_kakaku_olive_gold",
-   "title": "Oliveフレキシブルペイ ゴールドの特徴（価格.com）",
-   "url": "https://kakaku.com/card/item.asp?id=008300",
-   "publisher": "価格.com",
-   "sourceType": "secondaryArticle",
-   "publishedAt": null,
-   "lastVerifiedAt": "2026-09-27",
-   "accessStatus": "accessible",
-   "reliability": "secondary",
-   "relevantSections": [
-    "ポイント払いモードの還元率0.25%との記載"
-   ],
-   "summary": "二次情報。ポイント払いモードの還元率を0.25%と記載しているが公式（三井住友銀行ページ）は0.5%。",
-   "contentHash": null,
-   "notes": [
-    "二次情報のため採用しない。"
-   ]
-  },
-  {
-   "id": "src_smbc_gold_nl_official",
-   "title": "三井住友カード ゴールド（NL）",
-   "url": "https://www.smbc-card.com/nyukai/card/gold-numberless.jsp",
-   "publisher": "三井住友カード株式会社",
-   "sourceType": "officialProductPage",
-   "publishedAt": null,
-   "lastVerifiedAt": "2026-09-27",
-   "accessStatus": "accessible",
-   "reliability": "primary",
-   "relevantSections": [
-    "【通常】ご利用金額200円（税込）につき1ポイント",
-    "対象コンビニ・飲食店で200円につき7%",
-    "年会費5,500円"
-   ],
-   "summary": "三井住友カード ゴールド（NL）の公式商品ページ。通常還元・対象店舗上乗せ・年会費を案内。",
-   "contentHash": null,
-   "notes": []
-  },
-  {
-   "id": "src_smbc_gold_nl_attention",
-   "title": "特典の詳細およびご注意事項（ゴールドNL）",
-   "url": "https://www.smbc-card.com/nyukai/pop/gold-numberless_attention.jsp",
-   "publisher": "三井住友カード株式会社",
-   "sourceType": "officialTerms",
-   "publishedAt": null,
-   "lastVerifiedAt": "2026-09-27",
-   "accessStatus": "accessible",
-   "reliability": "primary",
-   "relevantSections": [
-    "年間100万円利用特典",
-    "集計対象外取引"
-   ],
-   "summary": "三井住友カード ゴールド（NL）の特典条件・対象外取引を明記。",
-   "contentHash": null,
-   "notes": []
-  },
-  {
-   "id": "src_smbc_vpoint_up_stores",
-   "title": "Vポイントアッププログラム 対象店舗",
-   "url": "https://www.smbc.co.jp/kojin/vpoint-up/",
-   "publisher": "三井住友銀行",
-   "sourceType": "officialProductPage",
-   "publishedAt": null,
-   "lastVerifiedAt": "2026-09-27",
-   "accessStatus": "accessible",
-   "reliability": "primary",
-   "relevantSections": [
-    "対象店舗一覧"
-   ],
-   "summary": "Vポイントアッププログラムの対象店舗の公式案内。",
-   "contentHash": null,
-   "notes": []
-  },
-  {
-   "id": "src_smbc_faq_annual_1m",
-   "title": "Q&A: 年間100万円利用特典の付与時期",
-   "url": "https://qa.smbc-card.com/mem/nyukai/detail?site=4H4A00IO&category=16&id=2150",
-   "publisher": "三井住友カード株式会社",
-   "sourceType": "officialFaq",
-   "publishedAt": null,
-   "lastVerifiedAt": "2026-09-27",
-   "accessStatus": "accessible",
-   "reliability": "secondary",
-   "relevantSections": [
-    "年間100万円利用特典の付与時期"
-   ],
-   "summary": "三井住友カード公式FAQ。年間100万円利用特典の付与時期を説明。",
-   "contentHash": null,
-   "notes": []
-  },
-  {
-   "id": "src_mufg_global_point",
-   "title": "グローバルポイントをためる",
-   "url": "https://www.cr.mufg.jp/mufgcard/point/global/index.html",
-   "publisher": "三菱UFJニコス株式会社",
-   "sourceType": "officialProductPage",
-   "publishedAt": null,
-   "lastVerifiedAt": "2026-09-27",
-   "accessStatus": "accessible",
-   "reliability": "primary",
-   "relevantSections": [
-    "1ヵ月のご利用金額合計1,000円ごとに1ポイント",
-    "1,000円未満切捨て"
-   ],
-   "summary": "グローバルポイントのため方の公式案内。計算単位と端数処理を明記。",
-   "contentHash": null,
-   "notes": []
-  },
-  {
-   "id": "src_mufg_global_plus",
-   "title": "グローバルPLUS",
-   "url": "https://www.cr.mufg.jp/mufgcard/point/global/save/gplus/index.html",
-   "publisher": "三菱UFJニコス株式会社",
-   "sourceType": "officialProductPage",
-   "publishedAt": null,
-   "lastVerifiedAt": "2026-09-27",
-   "accessStatus": "accessible",
-   "reliability": "primary",
-   "relevantSections": [
-    "対象期間は原則毎月16日〜翌月15日",
-    "小数点以下切り捨て"
-   ],
-   "summary": "グローバルPLUSの公式案内。対象期間（16日〜翌月15日）と端数処理を明記。",
-   "contentHash": null,
-   "notes": []
-  },
-  {
-   "id": "src_mufg_annual_bonus",
-   "title": "年間利用ボーナス",
-   "url": "https://www.cr.mufg.jp/mufgcard/point/global/save/pt/index.html",
-   "publisher": "三菱UFJニコス株式会社",
-   "sourceType": "officialProductPage",
-   "publishedAt": null,
-   "lastVerifiedAt": "2026-09-27",
-   "accessStatus": "accessible",
-   "reliability": "primary",
-   "relevantSections": [
-    "ゴールド限定・年間100万円で2,200ポイント",
-    "会員1人あたり2,200ポイント上限"
-   ],
-   "summary": "年間利用ボーナスの公式案内。ゴールド限定であることと上限を明記。",
-   "contentHash": null,
-   "notes": []
-  },
-  {
-   "id": "src_mufg_store_bonus",
-   "title": "対象店舗で最大20%ポイント還元",
-   "url": "https://www.cr.mufg.jp/mufgcard/point/global/save/convenience_store/index.html",
-   "publisher": "三菱UFJニコス株式会社",
-   "sourceType": "officialProductPage",
-   "publishedAt": null,
-   "lastVerifiedAt": "2026-09-27",
-   "accessStatus": "accessible",
-   "reliability": "primary",
-   "relevantSections": [
-    "対象店舗7%相当",
-    "集計期間ごとの対象店舗利用金額合計50,000円が上限"
-   ],
-   "summary": "対象店舗の上乗せの公式案内。上乗せ条件と月上限を明記。",
-   "contentHash": null,
-   "notes": []
-  },
-  {
-   "id": "src_mufg_excluding",
-   "title": "基本ポイント付与率が異なる/集計対象外",
-   "url": "https://www.cr.mufg.jp/mufgcard/point/global/excluding/index.html",
-   "publisher": "三菱UFJニコス株式会社",
-   "sourceType": "officialTerms",
-   "publishedAt": "2026-09-14",
-   "lastVerifiedAt": "2026-09-27",
-   "accessStatus": "accessible",
-   "reliability": "primary",
-   "relevantSections": [
-    "集計対象外取引",
-    "公共料金・税金・保険料・通信費は5,000円ごとに1ポイント（2027-01-12請求分より）"
-   ],
-   "summary": "集計対象外と基本ポイント付与率が異なる取引の公式案内（2026-09-14現在）。",
-   "contentHash": null,
-   "notes": []
-  },
-  {
-   "id": "src_mufg_bank_card",
-   "title": "三菱UFJカード（三菱UFJ銀行）",
-   "url": "https://www.bk.mufg.jp/tsukau/credit/sagasu/mucard/index.html",
-   "publisher": "株式会社三菱UFJ銀行",
-   "sourceType": "officialProductPage",
-   "publishedAt": null,
-   "lastVerifiedAt": "2026-09-27",
-   "accessStatus": "accessible",
-   "reliability": "primary",
-   "relevantSections": [
-    "1,000円1ポイント（1ポイント5円相当）",
-    "年会費永年無料"
-   ],
-   "summary": "三菱UFJ銀行のカード紹介ページ。実質0.5%と年会費を案内。",
-   "contentHash": null,
-   "notes": []
-  },
-  {
-   "id": "src_jcb_card_w_official",
-   "title": "【公式】JCBカード W",
-   "url": "https://www.jcb.co.jp/promotion/ordercard/w/index.html",
-   "publisher": "株式会社ジェーシービー",
-   "sourceType": "officialProductPage",
-   "publishedAt": null,
-   "lastVerifiedAt": "2026-09-27",
-   "accessStatus": "accessible",
-   "reliability": "primary",
-   "relevantSections": [
-    "200円（税込）＝2ポイント",
-    "39歳までに入会すれば永年無料"
-   ],
-   "summary": "JCBカードWの公式商品ページ。ポイント還元と年会費を案内。",
-   "contentHash": null,
-   "notes": []
-  },
-  {
-   "id": "src_jcb_card_w_order",
-   "title": "高いポイント還元率、年会費無料のJCBカードW",
-   "url": "https://www.jcb.co.jp/ordercard/kojin_card/os_card_w.html",
-   "publisher": "株式会社ジェーシービー",
-   "sourceType": "officialProductPage",
-   "publishedAt": null,
-   "lastVerifiedAt": "2026-09-27",
-   "accessStatus": "accessible",
-   "reliability": "primary",
-   "relevantSections": [
-    "JCBカードWの特徴"
-   ],
-   "summary": "JCBカードWの申込ページ。",
-   "contentHash": null,
-   "notes": []
-  },
-  {
-   "id": "src_jcb_point_about",
-   "title": "J-POINTの仕組み",
-   "url": "https://www.jcb.co.jp/point/about/index.html",
-   "publisher": "株式会社ジェーシービー",
-   "sourceType": "officialProductPage",
-   "publishedAt": null,
-   "lastVerifiedAt": "2026-09-27",
-   "accessStatus": "accessible",
-   "reliability": "primary",
-   "relevantSections": [
-    "ご利用金額の集計期間は毎月16日〜翌月15日",
-    "毎月のご利用額を合計してからポイント換算し小数点以下は切り捨て"
-   ],
-   "summary": "J-POINTの仕組みの公式案内。集計期間と月合計換算・切捨てを明記。",
-   "contentHash": null,
-   "notes": []
-  },
-  {
-   "id": "src_jcb_point_bonus",
-   "title": "J-POINTボーナス",
-   "url": "https://www.jcb.co.jp/point/j-point-bonus/index.html",
-   "publisher": "株式会社ジェーシービー",
-   "sourceType": "officialProductPage",
-   "publishedAt": null,
-   "lastVerifiedAt": "2026-09-27",
-   "accessStatus": "accessible",
-   "reliability": "primary",
-   "relevantSections": [
-    "年間50万円ごとにボーナスポイント",
-    "集計期間は毎年12月16日〜翌年12月15日"
-   ],
-   "summary": "J-POINTボーナスの公式案内。段階的な付与数と集計期間を明記。",
-   "contentHash": null,
-   "notes": []
-  },
-  {
-   "id": "src_jcb_point_excluding",
-   "title": "J-POINT付与の対象にならない場合",
-   "url": "https://www.jcb.co.jp/point/pop/excluding.html",
-   "publisher": "株式会社ジェーシービー",
-   "sourceType": "officialTerms",
-   "publishedAt": "2026-01",
-   "lastVerifiedAt": "2026-09-27",
-   "accessStatus": "accessible",
-   "reliability": "primary",
-   "relevantSections": [
-    "ポイント付与対象外の利用"
-   ],
-   "summary": "J-POINT付与対象外の利用の公式案内（2026年1月現在）。",
-   "contentHash": null,
-   "notes": []
-  },
-  {
-   "id": "src_jcb_point_news",
-   "title": "JCBの新ポイントJ-POINT",
-   "url": "https://www.jcb.co.jp/promotion/j-point/",
-   "publisher": "株式会社ジェーシービー",
-   "sourceType": "officialNewsRelease",
-   "publishedAt": null,
-   "lastVerifiedAt": "2026-09-27",
-   "accessStatus": "accessible",
-   "reliability": "primary",
-   "relevantSections": [
-    "2026年1月にOki DokiポイントからJ-POINTへリニューアル"
-   ],
-   "summary": "J-POINTへのリニューアル告知。付与条件が1,000円1P→200円1Pに変更。",
-   "contentHash": null,
-   "notes": []
-  },
-  {
-   "id": "src_netbk_revision_20260731",
-   "title": "【V NEOBANK】ポイントプログラムの改定について",
-   "url": "https://www.netbk.co.jp/contents/company/info/2026/0731_006043.html",
-   "publisher": "株式会社ドコモSMTBネット銀行（旧: 住信SBIネット銀行株式会社）",
-   "sourceType": "officialNewsRelease",
-   "publishedAt": "2026-07-31",
-   "lastVerifiedAt": "2026-09-27",
-   "accessStatus": "accessible",
-   "reliability": "primary",
-   "relevantSections": [
-    "2026-11-01以降到着の売上確定データ分から1.25%",
-    "対象外取引の追加",
-    "1ポイント未満の端数は切り捨て"
-   ],
-   "summary": "2026-07-31付の公式お知らせ。還元率引き下げと対象外取引の追加、日付基準（売上確定データ到着日）を明記。",
-   "contentHash": null,
-   "notes": []
-  },
-  {
-   "id": "src_netbk_vneobank",
-   "title": "V NEOBANK（Vポイント支店）",
-   "url": "https://www.netbk.co.jp/contents/lineup/neobank/tneobank/",
-   "publisher": "株式会社ドコモSMTBネット銀行",
-   "sourceType": "officialProductPage",
-   "publishedAt": null,
-   "lastVerifiedAt": "2026-09-27",
-   "accessStatus": "accessible",
-   "reliability": "primary",
-   "relevantSections": [
-    "1P = 1円相当",
-    "月間合計1,000円以上利用が条件"
-   ],
-   "summary": "V NEOBANK（Vポイント支店）の公式案内。Vポイントの価値と月間最低利用額を説明。",
-   "contentHash": null,
-   "notes": [
-    "住信SBIネット銀行株式会社は2026-08-03付で株式会社ドコモSMTBネット銀行に商号変更。"
-   ]
-  },
-  {
-   "id": "src_vneobank_debit_lp",
-   "title": "V NEOBANKデビットカード紹介",
-   "url": "https://tneobank.tsite.jp/lp/debit/",
-   "publisher": "V NEOBANK（銀行代理業者）",
-   "sourceType": "officialProductPage",
-   "publishedAt": null,
-   "lastVerifiedAt": "2026-09-27",
-   "accessStatus": "accessible",
-   "reliability": "primary",
-   "relevantSections": [
-    "ご利用料金無料",
-    "Mastercard®加盟店・Apple Pay・Google Pay対応"
-   ],
-   "summary": "V NEOBANKデビットの公式紹介ページ（銀行代理業者）。",
-   "contentHash": null,
-   "notes": [
-    "銀行代理業者が運営する公式ページ。"
-   ]
-  },
-  {
-   "id": "src_itmedia_vneobank_revision",
-   "title": "V NEOBANK、11月にポイントプログラム改定（ITmedia）",
-   "url": "https://www.itmedia.co.jp/mobile/articles/2608/03/news064.html",
-   "publisher": "ITmedia",
-   "sourceType": "secondaryArticle",
-   "publishedAt": "2026-08-03",
-   "lastVerifiedAt": "2026-09-27",
-   "accessStatus": "accessible",
-   "reliability": "secondary",
-   "relevantSections": [
-    "2026-11のポイントプログラム改定報道"
-   ],
-   "summary": "二次情報報道。改定内容（1.25%への引き下げ等）を報道。",
-   "contentHash": null,
-   "notes": [
-    "二次情報のため確定情報として扱わない。"
-   ]
-  },
-  {
-   "id": "src_jcb_point_partner",
-   "title": "J-POINTパートナー（優待店）",
-   "url": "https://j-pointpartner.jcb.co.jp/index.html",
-   "publisher": "株式会社ジェーシービー",
-   "sourceType": "officialProductPage",
-   "publishedAt": null,
-   "lastVerifiedAt": "2026-09-28",
-   "accessStatus": "accessible",
-   "reliability": "primary",
-   "relevantSections": [],
-   "summary": "J-POINTパートナー（優待店）の一覧と登録の案内。優待店は事前のポイントアップ登録が必要。最大20倍の対象。",
-   "contentHash": null,
-   "notes": []
-  },
-  {
-   "id": "src_jcb_point_partner_guide",
-   "title": "J-POINTパートナー ご利用ガイド",
-   "url": "https://j-pointpartner.jcb.co.jp/about",
-   "publisher": "株式会社ジェーシービー",
-   "sourceType": "officialProductPage",
-   "publishedAt": null,
-   "lastVerifiedAt": "2026-09-28",
-   "accessStatus": "accessible",
-   "reliability": "primary",
-   "relevantSections": [],
-   "summary": "J-POINTパートナーのご利用ガイド。ポイントアップ登録の仕組み、登録不要の店舗、対象外条件を記載。",
-   "contentHash": null,
-   "notes": []
-  },
-  {
-   "id": "src_jcb_card_w_s_compare",
-   "title": "JCBカードWとJCBカードSの違い（公式）",
-   "url": "https://www.jcb.co.jp/ordercard/special/s_w.html",
-   "publisher": "株式会社ジェーシービー",
-   "sourceType": "officialProductPage",
-   "publishedAt": null,
-   "lastVerifiedAt": "2026-09-28",
-   "accessStatus": "accessible",
-   "reliability": "primary",
-   "relevantSections": [],
-   "summary": "JCBカードWの基本還元1.0%（200円2ポイント）と、J-POINTパートナー店での最大21倍を記載。",
-   "contentHash": null,
-   "notes": []
-  },
-  {
-   "id": "src_jcb_jpoint_special",
-   "title": "JCBカードのポイント「J-POINT」とは（公式）",
-   "url": "https://www.jcb.co.jp/ordercard/special/jpoint.html",
-   "publisher": "株式会社ジェーシービー",
-   "sourceType": "officialProductPage",
-   "publishedAt": null,
-   "lastVerifiedAt": "2026-09-28",
-   "accessStatus": "accessible",
-   "reliability": "primary",
-   "relevantSections": [],
-   "summary": "J-POINTの概要。JCBカードWがJ-POINTボーナスの対象外である旨、優待店の追加情報を記載。",
-   "contentHash": null,
-   "notes": []
-  },
-  {
-   "id": "src_jcb_partner_release",
-   "title": "【J-POINTリリース】ポイント最大10%還元ショップが大幅拡大（PR TIMES）",
-   "url": "https://prtimes.jp/main/html/rd/p/000001302.000011361.html",
-   "publisher": "PR TIMES（株式会社ジェーシービー発表）",
-   "sourceType": "officialProductPage",
-   "publishedAt": null,
-   "lastVerifiedAt": "2026-09-28",
-   "accessStatus": "accessible",
-   "reliability": "primary",
-   "relevantSections": [],
-   "summary": "J-POINTリリース時に拡大した優待ショップ（Uber・S.RIDE・GO・App Store・Google Play・Hulu・U-NEXT・Amazon.co.jp・Uber Eats・Qoo10）と各倍率。",
-   "contentHash": null,
-   "notes": []
-  },
-  {
-   "id": "src_mufg_pup_release",
-   "title": "「エムット」の利得性向上を目的とするサービス拡充について（三菱UFJフィナンシャル・グループ）",
-   "url": "https://kabu.com/company/pressrelease/20260601_3.html",
-   "publisher": "三菱UFJフィナンシャル・グループ",
-   "sourceType": "officialProductPage",
-   "publishedAt": null,
-   "lastVerifiedAt": "2026-09-28",
-   "accessStatus": "accessible",
-   "reliability": "primary",
-   "relevantSections": [],
-   "summary": "三菱UFJカードのポイントアッププログラムの加算条件11項目と各加算率、対象店舗の拡大を記載。",
-   "contentHash": null,
-   "notes": []
-  },
-  {
-   "id": "src_mufg_pup_rule",
-   "title": "三菱UFJカード ポイントアッププログラム利用規約",
-   "url": "https://www.cr.mufg.jp/mufgcard/point/global/save/convenience_store/rule.html",
-   "publisher": "三菱UFJニコス株式会社",
-   "sourceType": "officialProductPage",
-   "publishedAt": null,
-   "lastVerifiedAt": "2026-09-28",
-   "accessStatus": "accessible",
-   "reliability": "primary",
-   "relevantSections": [],
-   "summary": "ポイントアッププログラム利用規約。判定期間は暦月1日〜末日、優遇期間は翌月16日〜翌々月15日。",
-   "contentHash": null,
-   "notes": []
-  },
-  {
-   "id": "src_rakuten_point_home",
-   "title": "楽天カード ポイント（公式）",
-   "url": "https://www.rakuten-card.co.jp/point/",
-   "publisher": "楽天カード株式会社",
-   "sourceType": "officialProductPage",
-   "publishedAt": null,
-   "lastVerifiedAt": "2026-09-28",
-   "accessStatus": "accessible",
-   "reliability": "primary",
-   "relevantSections": [],
-   "summary": "楽天カードのポイントページ。通常100円につき1ポイント、楽天市場3%の内訳、有効期限を記載。",
-   "contentHash": null,
-   "notes": []
-  },
-  {
-   "id": "src_smbc_transit_point_up",
-   "title": "スマホのタッチ決済乗車で最大8％還元！（三井住友カード）",
-   "url": "https://www.smbc-card.com/mem/for_transit/point_up.jsp",
-   "publisher": "三井住友カード株式会社",
-   "sourceType": "officialProductPage",
-   "publishedAt": null,
-   "lastVerifiedAt": "2026-09-29",
-   "accessStatus": "accessible",
-   "reliability": "primary",
-   "relevantSections": [],
-   "summary": "全国の鉄道・バスの対象路線でスマホのタッチ決済乗車をすると200円につき7％、Oliveフレキシブルペイ クレジットモードなら8％のVポイント還元。2026-07-01以降の利用が対象。上限はカード券種ごとに毎月1,000ポイント。",
-   "contentHash": null,
-   "notes": []
-  }
- ]
+  "schemaVersion": "1.0.0",
+  "catalogVersion": "2026.09.29.3",
+  "generatedAt": "2026-09-27T00:00:00+09:00",
+  "items": [
+    {
+      "id": "src_mizuho_rakuten_official",
+      "title": "みずほ楽天カード（クレジットカード）",
+      "url": "https://www.mizuhobank.co.jp/rakutencard/index.html",
+      "publisher": "株式会社みずほ銀行",
+      "sourceType": "officialProductPage",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-09-27",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [
+        "ポイント還元率 1％還元（100円につき1ポイント）",
+        "年会費永年無料",
+        "Wポイントプラン注意事項"
+      ],
+      "summary": "みずほ楽天カードの公式商品ページ。楽天ポイント1%と条件付きのみずほポイント（Wポイントプラン）を案内。",
+      "contentHash": null,
+      "notes": []
+    },
+    {
+      "id": "src_rakuten_point_rate",
+      "title": "楽天カード ポイント還元率について",
+      "url": "https://www.rakuten-card.co.jp/point/pointrate/",
+      "publisher": "楽天カード株式会社",
+      "sourceType": "officialProductPage",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-09-27",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [
+        "※1回のカードショッピング（お買い物ごと）のご利用金額に対して100円につき1ポイントを進呈",
+        "公共料金・税金は500円ご利用につき1ポイント進呈",
+        "保険料（2024-08-01利用分より）は200円ご利用につき1ポイント進呈",
+        "携帯電話ご利用料金（2024-08-01利用分より）は200円ご利用につき1ポイント進呈",
+        "上記記載のない事業者でのご利用分は100円につき1ポイント進呈",
+        "ポイント進呈対象外の利用（年会費・手数料・キャッシング・他社決済サービスへのチャージ等）"
+      ],
+      "summary": "楽天カードのポイント還元率の公式ページ。1回のお買い物ごとの100円1ポイント、公共料金・税金500円1pt、保険料・携帯電話料金200円1ptのカテゴリ別単位、対象外利用を明記。",
+      "contentHash": null,
+      "notes": [
+        "カテゴリ別単位の対象事業者リストは本文に列挙されているが、第1期はリストを登録しない。"
+      ]
+    },
+    {
+      "id": "src_rakuten_news_20230801",
+      "title": "楽天カード利用獲得ポイント計算方法変更のご案内",
+      "url": "https://www.rakuten-card.co.jp/info/news/20230801",
+      "publisher": "楽天カード株式会社",
+      "sourceType": "officialNewsRelease",
+      "publishedAt": "2023-08-01",
+      "lastVerifiedAt": "2026-09-27",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [
+        "ポイント計算は100円未満のご利用分は切り捨て"
+      ],
+      "summary": "2023-08-01付の公式お知らせ。100円未満切捨ての端数処理を明記。",
+      "contentHash": null,
+      "notes": []
+    },
+    {
+      "id": "src_rakuten_faq_calc",
+      "title": "カード利用による獲得ポイントの計算方法（FAQ）",
+      "url": "https://support.rakuten-card.jp/faq/show/153733",
+      "publisher": "楽天カード株式会社",
+      "sourceType": "officialFaq",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-09-27",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [
+        "獲得ポイントの計算方法"
+      ],
+      "summary": "楽天カード公式FAQ。ポイント計算方法の説明。",
+      "contentHash": null,
+      "notes": []
+    },
+    {
+      "id": "src_rakuten_faq_award_date",
+      "title": "ポイント進呈日FAQ",
+      "url": "https://car.faq.rakuten.net/s/article/000032544",
+      "publisher": "楽天カード株式会社",
+      "sourceType": "officialFaq",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-09-27",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [
+        "毎月1日から末日までのご利用情報が弊社に到着するタイミング"
+      ],
+      "summary": "楽天カード公式FAQ。利用情報の到着タイミングで進呈月が変わることを説明。",
+      "contentHash": null,
+      "notes": []
+    },
+    {
+      "id": "src_cnet_mizuho_2pct",
+      "title": "「みずほ楽天カード」還元率2%（CNET Japan）",
+      "url": "https://japan.cnet.com/article/35252356/",
+      "publisher": "CNET Japan",
+      "sourceType": "secondaryArticle",
+      "publishedAt": "2026-09-07",
+      "lastVerifiedAt": "2026-09-27",
+      "accessStatus": "accessible",
+      "reliability": "secondary",
+      "relevantSections": [
+        "還元率2%への引き上げ報道"
+      ],
+      "summary": "2026-09-07付の二次情報報道。公式の2%はWポイントプラン（条件付き・最長1年）であり全利用者共通の恒常2%ではない。",
+      "contentHash": null,
+      "notes": [
+        "二次情報のため確定情報として扱わない。"
+      ]
+    },
+    {
+      "id": "src_olive_gold_official",
+      "title": "Olive ゴールドとは",
+      "url": "https://www.smbc.co.jp/kojin/olive-account/gold/",
+      "publisher": "三井住友銀行",
+      "sourceType": "officialProductPage",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-09-27",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [
+        "お支払いモードとポイント還元率（クレジットモード0.5％／デビットモード0.5％／ポイント払いモード0.5％）",
+        "年会費5,500円と年100万円利用での永年無料",
+        "毎年、年間100万円以上のご利用で10,000ポイント"
+      ],
+      "summary": "Oliveフレキシブルペイ ゴールドの公式商品ページ。3モードすべて0.5%であることをお支払いモード表に明記。",
+      "contentHash": null,
+      "notes": []
+    },
+    {
+      "id": "src_olive_point_rate",
+      "title": "OliveのVポイント還元率",
+      "url": "https://www.smbc.co.jp/kojin/olive-account/merit/point_rate/",
+      "publisher": "三井住友銀行",
+      "sourceType": "officialProductPage",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-09-27",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [
+        "クレジットモードの利用で利用額の0.5％還元",
+        "対象のコンビニ・飲食店でスマホのタッチ決済は+7.5%"
+      ],
+      "summary": "OliveのVポイント還元率の公式案内。クレジットモード0.5%と対象店舗の上乗せを明記。",
+      "contentHash": null,
+      "notes": []
+    },
+    {
+      "id": "src_olive_gold_attention",
+      "title": "特典の詳細およびご注意事項（Olive Gold）",
+      "url": "https://www.smbc-card.com/nyukai/pop/olive_flexible_pay_gold-numberless_attention.jsp",
+      "publisher": "三井住友カード株式会社",
+      "sourceType": "officialTerms",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-09-27",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [
+        "年間100万円利用特典の集計期間",
+        "集計対象外取引"
+      ],
+      "summary": "Oliveフレキシブルペイ ゴールドの特典条件（年100万円特典の集計期間・対象外）を明記。",
+      "contentHash": null,
+      "notes": []
+    },
+    {
+      "id": "src_smbc_vpoint_up_program",
+      "title": "Vポイントアッププログラム",
+      "url": "https://www.smbc-card.com/nyukai/merit/vpoint_up_program.jsp",
+      "publisher": "三井住友カード株式会社",
+      "sourceType": "officialProductPage",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-09-27",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [
+        "1ヵ月あたり1カード50,000ポイント上限",
+        "対象店舗の上乗せ"
+      ],
+      "summary": "Vポイントアッププログラムの公式案内。月間上限と対象店舗の上乗せを説明。",
+      "contentHash": null,
+      "notes": []
+    },
+    {
+      "id": "src_olive_privilege",
+      "title": "選べる特典",
+      "url": "https://www.smbc.co.jp/kojin/olive-account/merit/privilege/",
+      "publisher": "三井住友銀行",
+      "sourceType": "officialProductPage",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-09-27",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [
+        "選べる特典"
+      ],
+      "summary": "Oliveの選べる特典の公式案内。",
+      "contentHash": null,
+      "notes": []
+    },
+    {
+      "id": "src_smbc_service_revision",
+      "title": "サービス改定のお知らせ",
+      "url": "https://www.smbc-card.com/mem/cardinfo/25/cardinfo4030019.jsp",
+      "publisher": "三井住友カード株式会社",
+      "sourceType": "officialNewsRelease",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-09-27",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [
+        "2026-03-01利用分より集計対象外に追加（au PAY、Kyash、JAL Pay、バンドルカード）"
+      ],
+      "summary": "三井住友カードのサービス改定お知らせ。2026-03-01利用分より集計対象外取引を追加。",
+      "contentHash": null,
+      "notes": []
+    },
+    {
+      "id": "src_kakaku_olive_gold",
+      "title": "Oliveフレキシブルペイ ゴールドの特徴（価格.com）",
+      "url": "https://kakaku.com/card/item.asp?id=008300",
+      "publisher": "価格.com",
+      "sourceType": "secondaryArticle",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-09-27",
+      "accessStatus": "accessible",
+      "reliability": "secondary",
+      "relevantSections": [
+        "ポイント払いモードの還元率0.25%との記載"
+      ],
+      "summary": "二次情報。ポイント払いモードの還元率を0.25%と記載しているが公式（三井住友銀行ページ）は0.5%。",
+      "contentHash": null,
+      "notes": [
+        "二次情報のため採用しない。"
+      ]
+    },
+    {
+      "id": "src_smbc_gold_nl_official",
+      "title": "三井住友カード ゴールド（NL）",
+      "url": "https://www.smbc-card.com/nyukai/card/gold-numberless.jsp",
+      "publisher": "三井住友カード株式会社",
+      "sourceType": "officialProductPage",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-09-27",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [
+        "【通常】ご利用金額200円（税込）につき1ポイント",
+        "対象コンビニ・飲食店で200円につき7%",
+        "年会費5,500円"
+      ],
+      "summary": "三井住友カード ゴールド（NL）の公式商品ページ。通常還元・対象店舗上乗せ・年会費を案内。",
+      "contentHash": null,
+      "notes": []
+    },
+    {
+      "id": "src_smbc_gold_nl_attention",
+      "title": "特典の詳細およびご注意事項（ゴールドNL）",
+      "url": "https://www.smbc-card.com/nyukai/pop/gold-numberless_attention.jsp",
+      "publisher": "三井住友カード株式会社",
+      "sourceType": "officialTerms",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-09-27",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [
+        "年間100万円利用特典",
+        "集計対象外取引"
+      ],
+      "summary": "三井住友カード ゴールド（NL）の特典条件・対象外取引を明記。",
+      "contentHash": null,
+      "notes": []
+    },
+    {
+      "id": "src_smbc_vpoint_up_stores",
+      "title": "Vポイントアッププログラム 対象店舗",
+      "url": "https://www.smbc.co.jp/kojin/vpoint-up/",
+      "publisher": "三井住友銀行",
+      "sourceType": "officialProductPage",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-09-27",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [
+        "対象店舗一覧"
+      ],
+      "summary": "Vポイントアッププログラムの対象店舗の公式案内。",
+      "contentHash": null,
+      "notes": []
+    },
+    {
+      "id": "src_smbc_faq_annual_1m",
+      "title": "Q&A: 年間100万円利用特典の付与時期",
+      "url": "https://qa.smbc-card.com/mem/nyukai/detail?site=4H4A00IO&category=16&id=2150",
+      "publisher": "三井住友カード株式会社",
+      "sourceType": "officialFaq",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-09-27",
+      "accessStatus": "accessible",
+      "reliability": "secondary",
+      "relevantSections": [
+        "年間100万円利用特典の付与時期"
+      ],
+      "summary": "三井住友カード公式FAQ。年間100万円利用特典の付与時期を説明。",
+      "contentHash": null,
+      "notes": []
+    },
+    {
+      "id": "src_mufg_global_point",
+      "title": "グローバルポイントをためる",
+      "url": "https://www.cr.mufg.jp/mufgcard/point/global/index.html",
+      "publisher": "三菱UFJニコス株式会社",
+      "sourceType": "officialProductPage",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-09-27",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [
+        "1ヵ月のご利用金額合計1,000円ごとに1ポイント",
+        "1,000円未満切捨て"
+      ],
+      "summary": "グローバルポイントのため方の公式案内。計算単位と端数処理を明記。",
+      "contentHash": null,
+      "notes": []
+    },
+    {
+      "id": "src_mufg_global_plus",
+      "title": "グローバルPLUS",
+      "url": "https://www.cr.mufg.jp/mufgcard/point/global/save/gplus/index.html",
+      "publisher": "三菱UFJニコス株式会社",
+      "sourceType": "officialProductPage",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-09-27",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [
+        "対象期間は原則毎月16日〜翌月15日",
+        "小数点以下切り捨て"
+      ],
+      "summary": "グローバルPLUSの公式案内。対象期間（16日〜翌月15日）と端数処理を明記。",
+      "contentHash": null,
+      "notes": []
+    },
+    {
+      "id": "src_mufg_annual_bonus",
+      "title": "年間利用ボーナス",
+      "url": "https://www.cr.mufg.jp/mufgcard/point/global/save/pt/index.html",
+      "publisher": "三菱UFJニコス株式会社",
+      "sourceType": "officialProductPage",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-09-27",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [
+        "ゴールド限定・年間100万円で2,200ポイント",
+        "会員1人あたり2,200ポイント上限"
+      ],
+      "summary": "年間利用ボーナスの公式案内。ゴールド限定であることと上限を明記。",
+      "contentHash": null,
+      "notes": []
+    },
+    {
+      "id": "src_mufg_store_bonus",
+      "title": "対象店舗で最大20%ポイント還元",
+      "url": "https://www.cr.mufg.jp/mufgcard/point/global/save/convenience_store/index.html",
+      "publisher": "三菱UFJニコス株式会社",
+      "sourceType": "officialProductPage",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-09-27",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [
+        "対象店舗7%相当",
+        "集計期間ごとの対象店舗利用金額合計50,000円が上限"
+      ],
+      "summary": "対象店舗の上乗せの公式案内。上乗せ条件と月上限を明記。",
+      "contentHash": null,
+      "notes": []
+    },
+    {
+      "id": "src_mufg_excluding",
+      "title": "基本ポイント付与率が異なる/集計対象外",
+      "url": "https://www.cr.mufg.jp/mufgcard/point/global/excluding/index.html",
+      "publisher": "三菱UFJニコス株式会社",
+      "sourceType": "officialTerms",
+      "publishedAt": "2026-09-14",
+      "lastVerifiedAt": "2026-09-27",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [
+        "集計対象外取引",
+        "公共料金・税金・保険料・通信費は5,000円ごとに1ポイント（2027-01-12請求分より）"
+      ],
+      "summary": "集計対象外と基本ポイント付与率が異なる取引の公式案内（2026-09-14現在）。",
+      "contentHash": null,
+      "notes": []
+    },
+    {
+      "id": "src_mufg_bank_card",
+      "title": "三菱UFJカード（三菱UFJ銀行）",
+      "url": "https://www.bk.mufg.jp/tsukau/credit/sagasu/mucard/index.html",
+      "publisher": "株式会社三菱UFJ銀行",
+      "sourceType": "officialProductPage",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-09-27",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [
+        "1,000円1ポイント（1ポイント5円相当）",
+        "年会費永年無料"
+      ],
+      "summary": "三菱UFJ銀行のカード紹介ページ。実質0.5%と年会費を案内。",
+      "contentHash": null,
+      "notes": []
+    },
+    {
+      "id": "src_jcb_card_w_official",
+      "title": "【公式】JCBカード W",
+      "url": "https://www.jcb.co.jp/promotion/ordercard/w/index.html",
+      "publisher": "株式会社ジェーシービー",
+      "sourceType": "officialProductPage",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-09-27",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [
+        "200円（税込）＝2ポイント",
+        "39歳までに入会すれば永年無料"
+      ],
+      "summary": "JCBカードWの公式商品ページ。ポイント還元と年会費を案内。",
+      "contentHash": null,
+      "notes": []
+    },
+    {
+      "id": "src_jcb_card_w_order",
+      "title": "高いポイント還元率、年会費無料のJCBカードW",
+      "url": "https://www.jcb.co.jp/ordercard/kojin_card/os_card_w.html",
+      "publisher": "株式会社ジェーシービー",
+      "sourceType": "officialProductPage",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-09-27",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [
+        "JCBカードWの特徴"
+      ],
+      "summary": "JCBカードWの申込ページ。",
+      "contentHash": null,
+      "notes": []
+    },
+    {
+      "id": "src_jcb_point_about",
+      "title": "J-POINTの仕組み",
+      "url": "https://www.jcb.co.jp/point/about/index.html",
+      "publisher": "株式会社ジェーシービー",
+      "sourceType": "officialProductPage",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-09-27",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [
+        "ご利用金額の集計期間は毎月16日〜翌月15日",
+        "毎月のご利用額を合計してからポイント換算し小数点以下は切り捨て"
+      ],
+      "summary": "J-POINTの仕組みの公式案内。集計期間と月合計換算・切捨てを明記。",
+      "contentHash": null,
+      "notes": []
+    },
+    {
+      "id": "src_jcb_point_bonus",
+      "title": "J-POINTボーナス",
+      "url": "https://www.jcb.co.jp/point/j-point-bonus/index.html",
+      "publisher": "株式会社ジェーシービー",
+      "sourceType": "officialProductPage",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-09-27",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [
+        "年間50万円ごとにボーナスポイント",
+        "集計期間は毎年12月16日〜翌年12月15日"
+      ],
+      "summary": "J-POINTボーナスの公式案内。段階的な付与数と集計期間を明記。",
+      "contentHash": null,
+      "notes": []
+    },
+    {
+      "id": "src_jcb_point_excluding",
+      "title": "J-POINT付与の対象にならない場合",
+      "url": "https://www.jcb.co.jp/point/pop/excluding.html",
+      "publisher": "株式会社ジェーシービー",
+      "sourceType": "officialTerms",
+      "publishedAt": "2026-01",
+      "lastVerifiedAt": "2026-09-27",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [
+        "ポイント付与対象外の利用"
+      ],
+      "summary": "J-POINT付与対象外の利用の公式案内（2026年1月現在）。",
+      "contentHash": null,
+      "notes": []
+    },
+    {
+      "id": "src_jcb_point_news",
+      "title": "JCBの新ポイントJ-POINT",
+      "url": "https://www.jcb.co.jp/promotion/j-point/",
+      "publisher": "株式会社ジェーシービー",
+      "sourceType": "officialNewsRelease",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-09-27",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [
+        "2026年1月にOki DokiポイントからJ-POINTへリニューアル"
+      ],
+      "summary": "J-POINTへのリニューアル告知。付与条件が1,000円1P→200円1Pに変更。",
+      "contentHash": null,
+      "notes": []
+    },
+    {
+      "id": "src_netbk_revision_20260731",
+      "title": "【V NEOBANK】ポイントプログラムの改定について",
+      "url": "https://www.netbk.co.jp/contents/company/info/2026/0731_006043.html",
+      "publisher": "株式会社ドコモSMTBネット銀行（旧: 住信SBIネット銀行株式会社）",
+      "sourceType": "officialNewsRelease",
+      "publishedAt": "2026-07-31",
+      "lastVerifiedAt": "2026-09-27",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [
+        "2026-11-01以降到着の売上確定データ分から1.25%",
+        "対象外取引の追加",
+        "1ポイント未満の端数は切り捨て"
+      ],
+      "summary": "2026-07-31付の公式お知らせ。還元率引き下げと対象外取引の追加、日付基準（売上確定データ到着日）を明記。",
+      "contentHash": null,
+      "notes": []
+    },
+    {
+      "id": "src_netbk_vneobank",
+      "title": "V NEOBANK（Vポイント支店）",
+      "url": "https://www.netbk.co.jp/contents/lineup/neobank/tneobank/",
+      "publisher": "株式会社ドコモSMTBネット銀行",
+      "sourceType": "officialProductPage",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-09-27",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [
+        "1P = 1円相当",
+        "月間合計1,000円以上利用が条件"
+      ],
+      "summary": "V NEOBANK（Vポイント支店）の公式案内。Vポイントの価値と月間最低利用額を説明。",
+      "contentHash": null,
+      "notes": [
+        "住信SBIネット銀行株式会社は2026-08-03付で株式会社ドコモSMTBネット銀行に商号変更。"
+      ]
+    },
+    {
+      "id": "src_vneobank_debit_lp",
+      "title": "V NEOBANKデビットカード紹介",
+      "url": "https://tneobank.tsite.jp/lp/debit/",
+      "publisher": "V NEOBANK（銀行代理業者）",
+      "sourceType": "officialProductPage",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-09-27",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [
+        "ご利用料金無料",
+        "Mastercard®加盟店・Apple Pay・Google Pay対応"
+      ],
+      "summary": "V NEOBANKデビットの公式紹介ページ（銀行代理業者）。",
+      "contentHash": null,
+      "notes": [
+        "銀行代理業者が運営する公式ページ。"
+      ]
+    },
+    {
+      "id": "src_itmedia_vneobank_revision",
+      "title": "V NEOBANK、11月にポイントプログラム改定（ITmedia）",
+      "url": "https://www.itmedia.co.jp/mobile/articles/2608/03/news064.html",
+      "publisher": "ITmedia",
+      "sourceType": "secondaryArticle",
+      "publishedAt": "2026-08-03",
+      "lastVerifiedAt": "2026-09-27",
+      "accessStatus": "accessible",
+      "reliability": "secondary",
+      "relevantSections": [
+        "2026-11のポイントプログラム改定報道"
+      ],
+      "summary": "二次情報報道。改定内容（1.25%への引き下げ等）を報道。",
+      "contentHash": null,
+      "notes": [
+        "二次情報のため確定情報として扱わない。"
+      ]
+    },
+    {
+      "id": "src_jcb_point_partner",
+      "title": "J-POINTパートナー（優待店）",
+      "url": "https://j-pointpartner.jcb.co.jp/index.html",
+      "publisher": "株式会社ジェーシービー",
+      "sourceType": "officialProductPage",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-09-28",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [],
+      "summary": "J-POINTパートナー（優待店）の一覧と登録の案内。優待店は事前のポイントアップ登録が必要。最大20倍の対象。",
+      "contentHash": null,
+      "notes": []
+    },
+    {
+      "id": "src_jcb_point_partner_guide",
+      "title": "J-POINTパートナー ご利用ガイド",
+      "url": "https://j-pointpartner.jcb.co.jp/about",
+      "publisher": "株式会社ジェーシービー",
+      "sourceType": "officialProductPage",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-09-28",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [],
+      "summary": "J-POINTパートナーのご利用ガイド。ポイントアップ登録の仕組み、登録不要の店舗、対象外条件を記載。",
+      "contentHash": null,
+      "notes": []
+    },
+    {
+      "id": "src_jcb_card_w_s_compare",
+      "title": "JCBカードWとJCBカードSの違い（公式）",
+      "url": "https://www.jcb.co.jp/ordercard/special/s_w.html",
+      "publisher": "株式会社ジェーシービー",
+      "sourceType": "officialProductPage",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-09-28",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [],
+      "summary": "JCBカードWの基本還元1.0%（200円2ポイント）と、J-POINTパートナー店での最大21倍を記載。",
+      "contentHash": null,
+      "notes": []
+    },
+    {
+      "id": "src_jcb_jpoint_special",
+      "title": "JCBカードのポイント「J-POINT」とは（公式）",
+      "url": "https://www.jcb.co.jp/ordercard/special/jpoint.html",
+      "publisher": "株式会社ジェーシービー",
+      "sourceType": "officialProductPage",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-09-28",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [],
+      "summary": "J-POINTの概要。JCBカードWがJ-POINTボーナスの対象外である旨、優待店の追加情報を記載。",
+      "contentHash": null,
+      "notes": []
+    },
+    {
+      "id": "src_jcb_partner_release",
+      "title": "【J-POINTリリース】ポイント最大10%還元ショップが大幅拡大（PR TIMES）",
+      "url": "https://prtimes.jp/main/html/rd/p/000001302.000011361.html",
+      "publisher": "PR TIMES（株式会社ジェーシービー発表）",
+      "sourceType": "officialProductPage",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-09-28",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [],
+      "summary": "J-POINTリリース時に拡大した優待ショップ（Uber・S.RIDE・GO・App Store・Google Play・Hulu・U-NEXT・Amazon.co.jp・Uber Eats・Qoo10）と各倍率。",
+      "contentHash": null,
+      "notes": []
+    },
+    {
+      "id": "src_mufg_pup_release",
+      "title": "「エムット」の利得性向上を目的とするサービス拡充について（三菱UFJフィナンシャル・グループ）",
+      "url": "https://kabu.com/company/pressrelease/20260601_3.html",
+      "publisher": "三菱UFJフィナンシャル・グループ",
+      "sourceType": "officialProductPage",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-09-28",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [],
+      "summary": "三菱UFJカードのポイントアッププログラムの加算条件11項目と各加算率、対象店舗の拡大を記載。",
+      "contentHash": null,
+      "notes": []
+    },
+    {
+      "id": "src_mufg_pup_rule",
+      "title": "三菱UFJカード ポイントアッププログラム利用規約",
+      "url": "https://www.cr.mufg.jp/mufgcard/point/global/save/convenience_store/rule.html",
+      "publisher": "三菱UFJニコス株式会社",
+      "sourceType": "officialProductPage",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-09-28",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [],
+      "summary": "ポイントアッププログラム利用規約。判定期間は暦月1日〜末日、優遇期間は翌月16日〜翌々月15日。",
+      "contentHash": null,
+      "notes": []
+    },
+    {
+      "id": "src_rakuten_point_home",
+      "title": "楽天カード ポイント（公式）",
+      "url": "https://www.rakuten-card.co.jp/point/",
+      "publisher": "楽天カード株式会社",
+      "sourceType": "officialProductPage",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-09-28",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [],
+      "summary": "楽天カードのポイントページ。通常100円につき1ポイント、楽天市場3%の内訳、有効期限を記載。",
+      "contentHash": null,
+      "notes": []
+    },
+    {
+      "id": "src_smbc_transit_point_up",
+      "title": "スマホのタッチ決済乗車で最大8％還元！（三井住友カード）",
+      "url": "https://www.smbc-card.com/mem/for_transit/point_up.jsp",
+      "publisher": "三井住友カード株式会社",
+      "sourceType": "officialProductPage",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-09-29",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [],
+      "summary": "全国の鉄道・バスの対象路線でスマホのタッチ決済乗車をすると200円につき7％、Oliveフレキシブルペイ クレジットモードなら8％のVポイント還元。2026-07-01以降の利用が対象。上限はカード券種ごとに毎月1,000ポイント。",
+      "contentHash": null,
+      "notes": []
+    },
+    {
+      "id": "src_sumitomo_vitality_vpup",
+      "title": "Vポイントアッププログラム特典（住友生命 Vitality）",
+      "url": "https://vitality.sumitomolife.co.jp/guide_partner/detail/vpup.html",
+      "publisher": "住友生命保険",
+      "sourceType": "officialProductPage",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-09-29",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [
+        "1ヵ月あたり1カード50,000ポイント上限",
+        "対象店舗の上乗せ"
+      ],
+      "summary": "Vポイントアッププログラムの公式案内。月間上限と対象店舗の上乗せを説明。",
+      "contentHash": null,
+      "notes": [
+        "Vitalityステータス別のVポイント還元率（ゴールド+2.0%／シルバー+1.5%／ブロンズ+1.0%／ブルー+0.5%）を確定。"
+      ]
+    },
+    {
+      "id": "src_smbcnikko_olive",
+      "title": "Oliveアカウント連携（SMBC日興証券）",
+      "url": "https://www.smbcnikko.co.jp/service/group/olive/",
+      "publisher": "SMBC日興証券",
+      "sourceType": "officialProductPage",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-09-29",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [
+        "1ヵ月あたり1カード50,000ポイント上限",
+        "対象店舗の上乗せ"
+      ],
+      "summary": "Vポイントアッププログラムの公式案内。月間上限と対象店舗の上乗せを説明。",
+      "contentHash": null,
+      "notes": [
+        "投信積立3万円以上で+0.5%、NISA口座で投信積立3万円以上でさらに+0.5%。"
+      ]
+    },
+    {
+      "id": "src_smbc_premium_loan_vpup",
+      "title": "三井住友カード プレミアムカードローン Vポイントアップ",
+      "url": "https://www.smbc-card.com/nyukai/loan/premiumplus/vpup.jsp",
+      "publisher": "三井住友カード",
+      "sourceType": "officialProductPage",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-09-29",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [
+        "1ヵ月あたり1カード50,000ポイント上限",
+        "対象店舗の上乗せ"
+      ],
+      "summary": "Vポイントアッププログラムの公式案内。月間上限と対象店舗の上乗せを説明。",
+      "contentHash": null,
+      "notes": [
+        "カードローンによる加算は金額段階の記載がなく、上限値（+3%）のみ確認できる。"
+      ]
+    }
+  ]
 }

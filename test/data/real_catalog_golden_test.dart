@@ -143,7 +143,7 @@ void main() {
   group('カタログのデコード', () {
     test('実カード6枚がデコードでき、Catalogが構築できる', () {
       expect(catalog.isNotEmpty, isTrue);
-      expect(catalog.catalogVersion, '2026.09.29.2');
+      expect(catalog.catalogVersion, '2026.09.29.3');
       expect(catalog.generatedAt, '2026-09-29T00:00:00+09:00');
 
       expect(
@@ -170,8 +170,8 @@ void main() {
         ],
       );
 
-      expect(catalog.rewardRulesById.length, 70);
-      expect(catalog.sourcesById.length, 42);
+      expect(catalog.rewardRulesById.length, 85);
+      expect(catalog.sourcesById.length, 45);
 
       final mizuho = catalog.paymentInstrumentsById[id('mizuho_rakuten_card')]!;
       expect(mizuho.instrumentType, 'creditCard');
@@ -202,7 +202,7 @@ void main() {
           .where((rule) => rule.status.value == 'draft')
           .toList();
 
-      expect(active.length, 67);
+      expect(active.length, 82);
       expect(draft.length, 3);
 
       for (final rule in catalog.rewardRulesById.values) {
@@ -756,13 +756,13 @@ void main() {
     }
 
     test('店舗一覧が16件読み込め、得意店舗なしの受け皿は登録しない', () {
-      expect(directory.merchants.length, 60);
+      expect(directory.merchants.length, 77);
       expect(
         directory.merchants.any((m) => m.id.value == 'other_merchant'),
         isFalse,
       );
       expect(directory.categoriesById.containsKey(id('other_store')), isFalse);
-      expect(directory.categoriesById.length, 15);
+      expect(directory.categoriesById.length, 16);
       expect(directory.search('セブン').single.name, 'セブン-イレブン');
     });
 
@@ -885,19 +885,25 @@ void main() {
       expect(mufgStores, isNot(contains('family_mart')));
     });
 
-    test('上乗せのない店舗はカタログから削除されている（D-133）', () {
-      // ファミリーマート・ライフ・成城石井・イオン・ピザーラ・PIZZA-LA・
-      // 天下一品・メルカリ・Yahoo!ショッピング・ヨドバシカメラ・ビックカメラは
-      // 高還元の対象がないため削除した。
-      for (final removed in <String>[
-        'family_mart', 'life', 'seijo_ishii', 'aeon', 'pizzeria', 'pizza_la',
-        'tenkaippin', 'mercari', 'yahoo_shopping', 'yodobashi', 'biccamera',
+    test('利用頻度の高い7店舗は復活し、残りの4店舗は削除のまま（D-133・D-137）', () {
+      final doc = readCatalogDocument('merchants.json');
+      final ids = (doc['items']! as List)
+          .cast<Map<String, dynamic>>()
+          .map((item) => item['id'] as String)
+          .toSet();
+      for (final mid in <String>[
+        'family_mart',
+        'tenkaippin',
+        'aeon',
+        'mercari',
+        'yahoo_shopping',
+        'yodobashi',
+        'biccamera',
       ]) {
-        expect(
-          directory.merchants.any((m) => m.id.value == removed),
-          isFalse,
-          reason: '$removed は削除されていること',
-        );
+        expect(ids, contains(mid));
+      }
+      for (final mid in <String>['life', 'seijo_ishii', 'pizza_la', 'pizzala']) {
+        expect(ids, isNot(contains(mid)));
       }
     });
 
@@ -1003,6 +1009,81 @@ void main() {
       );
 
       expect(entryFor(ranking, 'jcb_card_w').totalPoints.points, 2);
+    });
+  });
+
+  group('2026.09.29.3 の追加・復活（D-137・D-138）', () {
+    test('復活した7店舗が店舗カタログにある', () {
+      final doc = readCatalogDocument('merchants.json');
+      final ids = (doc['items']! as List)
+          .cast<Map<String, dynamic>>()
+          .map((item) => item['id'] as String)
+          .toSet();
+      for (final mid in <String>[
+        'family_mart',
+        'tenkaippin',
+        'aeon',
+        'mercari',
+        'yahoo_shopping',
+        'yodobashi',
+        'biccamera',
+      ]) {
+        expect(ids, contains(mid));
+      }
+    });
+
+    test('見逃していた高還元店舗の上乗せルールが登録されている', () {
+      final rule = catalog.rewardRulesById[id('jcb_card_w_point_up_starbucks')]!;
+      expect(rule.status.value, 'active');
+      expect(
+        rule.selectors.merchantIds.map((e) => e.value).toList(),
+        <String>['starbucks'],
+      );
+      for (final rid in <String>[
+        'jcb_card_w_point_up_disney_plus',
+        'jcb_card_w_point_up_times_road_service',
+        'jcb_card_w_point_up_owndays',
+        'jcb_card_w_point_up_budget_rentacar',
+        'jcb_card_w_point_up_keio_department',
+        'jcb_card_w_point_up_daishin_drug',
+        'jcb_card_w_point_up_hummingbird',
+        'jcb_card_w_point_up_paru_ezuriko',
+        'jcb_card_w_point_up_look_contact',
+        'jcb_card_w_point_up_fukudaya',
+      ]) {
+        expect(catalog.rewardRulesById.containsKey(id(rid)), isTrue, reason: rid);
+      }
+    });
+
+    test('Vitalityは4段階、SMBC日興証券は2条件に分かれている', () {
+      for (final rid in <String>[
+        'smbc_card_smbc_pup_vitality_gold_bonus',
+        'smbc_card_smbc_pup_vitality_silver_bonus',
+        'smbc_card_smbc_pup_vitality_bronze_bonus',
+        'smbc_card_smbc_pup_vitality_blue_bonus',
+        'smbc_card_smbc_pup_nikko_tsumitate_bonus',
+        'smbc_card_smbc_pup_nikko_nisa_bonus',
+      ]) {
+        expect(catalog.rewardRulesById.containsKey(id(rid)), isTrue, reason: rid);
+      }
+      expect(
+        catalog.rewardRulesById
+            .containsKey(id('smbc_card_smbc_pup_sumitomo_life_vitality_bonus')),
+        isFalse,
+      );
+      expect(
+        catalog.rewardRulesById.containsKey(id('smbc_card_smbc_pup_smbc_nikko_bonus')),
+        isFalse,
+      );
+
+      final doc = readCatalogDocument('condition_definitions.json');
+      final ids = (doc['items']! as List)
+          .cast<Map<String, dynamic>>()
+          .map((item) => item['id'] as String)
+          .toSet();
+      expect(ids, contains('smbc_pup_vitality_gold'));
+      expect(ids, contains('smbc_pup_vitality_blue'));
+      expect(ids, contains('smbc_pup_nikko_nisa'));
     });
   });
 }
