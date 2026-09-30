@@ -143,7 +143,7 @@ void main() {
   group('カタログのデコード', () {
     test('実カード6枚がデコードでき、Catalogが構築できる', () {
       expect(catalog.isNotEmpty, isTrue);
-      expect(catalog.catalogVersion, '2026.09.29.3');
+      expect(catalog.catalogVersion, '2026.09.30.1');
       expect(catalog.generatedAt, '2026-09-29T00:00:00+09:00');
 
       expect(
@@ -764,6 +764,23 @@ void main() {
       expect(directory.categoriesById.containsKey(id('other_store')), isFalse);
       expect(directory.categoriesById.length, 16);
       expect(directory.search('セブン').single.name, 'セブン-イレブン');
+    });
+
+    test('ひらがな・カタカナ・半角カナ・略称でも絞り込める（D-140）', () {
+      expect(directory.search('スタバ').single.name, 'スターバックス');
+      expect(directory.search('すたば').single.name, 'スターバックス');
+      expect(directory.search('ｽﾀﾊﾞ').single.name, 'スターバックス');
+      expect(directory.search('スターバ').single.name, 'スターバックス');
+      expect(directory.search('ファミマ').single.name, 'ファミリーマート');
+      expect(directory.search('まつや').single.name, '松屋');
+      expect(directory.search('よしのや').single.name, '吉野家');
+      expect(directory.search('マック').single.name, 'マクドナルド');
+      expect(directory.search('にくのはなまさ').single.name, '肉のハナマサ');
+      expect(directory.search('ドミノピザ').single.name, 'ドミノ・ピザ');
+      expect(directory.search('Ａｍａｚｏｎ').single.name, 'Amazon.co.jp');
+      expect(directory.search('らくてん').map((m) => m.id.value), contains('rakuten_market'));
+      expect(directory.search('・').length, directory.merchants.length);
+      expect(directory.search('存在しない店').isEmpty, isTrue);
     });
 
     test('セブン-イレブンではOliveゴールドが8%で最上位になる', () {

@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "catalogVersion": "2026.09.29.3",
+  "catalogVersion": "2026.09.30.1",
   "generatedAt": "2026-09-29T00:00:00+09:00",
   "items": [
     {
@@ -36,7 +36,7 @@
     {
       "fileName": "merchants.json",
       "schemaId": "urn:bestpay:schema:merchant:1.0.0",
-      "contentHash": "6b6017dbd70aaf97f176eacda726e24601a5488b43c4c2c9a31fe0aa75841d25",
+      "contentHash": "c85046452eb2db4228e7a5a6fc1d30d410e6559a9095465adef1a465769db249",
       "required": true
     },
     {
