@@ -1,5 +1,7 @@
 import 'package:bestpay/core/value_objects/stable_id.dart';
 
+import 'merchant_search_normalizer.dart';
+
 /// カタログに登録された店舗1件。
 final class MerchantEntry {
   const MerchantEntry({
@@ -9,10 +11,14 @@ final class MerchantEntry {
     required this.categoryIds,
     required this.notes,
     required this.status,
+    this.searchAliases = const <String>[],
   });
 
   final StableId id;
   final String name;
+
+  /// 検索のときにだけ使う別名（略称・読み方・英字表記）。D-140。
+  final List<String> searchAliases;
   final List<StableId> groupIds;
   final List<StableId> categoryIds;
   final List<String> notes;
@@ -60,17 +66,67 @@ final class MerchantDirectory {
 
   bool get isNotEmpty => merchants.isNotEmpty;
 
-  /// 名前の部分一致で絞り込む。空文字なら全件を返す。
+  /// 店舗名と別名を正規化して絞り込む（D-140）。
+  ///
+  /// ひらがな・カタカナ・半角カナ・全角英数の違いを吸収するので、
+  /// 「すたば」でも「ｽﾀﾊﾞ」でも「スターバ」でもスターバックスが出る。
+  /// 空文字（記号だけの入力も含む）なら全件を返す。
   List<MerchantEntry> search(String query) {
-    final needle = query.trim();
+    final needle = normalizeForSearch(query);
     if (needle.isEmpty) {
       return merchants;
     }
 
-    return <MerchantEntry>[
-      for (final merchant in merchants)
-        if (merchant.name.contains(needle)) merchant,
-    ];
+    final hits = <_SearchHit>[];
+    for (var index = 0; index < merchants.length; index++) {
+      final merchant = merchants[index];
+      final score = _matchScore(merchant, needle);
+      if (score != null) {
+        hits.add(_SearchHit(score: score, index: index, merchant: merchant));
+      }
+    }
+
+    // 前方一致を先に、同じ順位ならカタログの並び順のまま返す。
+    hits.sort((left, right) {
+      if (left.score != right.score) {
+        return left.score - right.score;
+      }
+      return left.index - right.index;
+    });
+
+    return List<MerchantEntry>.unmodifiable(
+      <MerchantEntry>[for (final hit in hits) hit.merchant],
+    );
+  }
+
+  /// 一致の強さ。小さいほど上位に出す。一致しなければ null。
+  static int? _matchScore(MerchantEntry merchant, String needle) {
+    final name = normalizeForSearch(merchant.name);
+    if (name.startsWith(needle)) {
+      return 0;
+    }
+    if (name.contains(needle)) {
+      return 1;
+    }
+
+    var best = 4;
+    for (final alias in merchant.searchAliases) {
+      final normalized = normalizeForSearch(alias);
+      if (normalized.isEmpty) {
+        continue;
+      }
+      if (normalized.startsWith(needle)) {
+        if (best > 2) {
+          best = 2;
+        }
+        continue;
+      }
+      if (normalized.contains(needle) && best > 3) {
+        best = 3;
+      }
+    }
+
+    return best == 4 ? null : best;
   }
 
   /// カテゴリの表示順。カタログに無いカテゴリは末尾に回す。
@@ -108,4 +164,16 @@ final class MerchantDirectory {
 
     return null;
   }
+}
+
+final class _SearchHit {
+  const _SearchHit({
+    required this.score,
+    required this.index,
+    required this.merchant,
+  });
+
+  final int score;
+  final int index;
+  final MerchantEntry merchant;
 }

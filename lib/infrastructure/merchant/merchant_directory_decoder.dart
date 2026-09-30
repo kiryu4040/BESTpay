@@ -33,6 +33,7 @@ final class MerchantDirectoryDecoder {
           categoryIds: _stableIds(raw['categoryIds']),
           notes: _strings(raw['notes']),
           status: 'active',
+          searchAliases: _strings(raw['searchAliases']),
         ),
       );
     }

@@ -80,7 +80,7 @@ final class _MerchantListScreenState extends State<MerchantListScreen> {
             controller: _searchController,
             decoration: const InputDecoration(
               labelText: '店舗を検索',
-              hintText: '例: セブン',
+              hintText: '例: セブン、すたば、ファミマ',
               prefixIcon: Icon(Icons.search),
               border: OutlineInputBorder(),
             ),
