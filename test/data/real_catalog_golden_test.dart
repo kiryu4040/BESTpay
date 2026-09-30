@@ -143,35 +143,42 @@ void main() {
   group('カタログのデコード', () {
     test('実カード6枚がデコードでき、Catalogが構築できる', () {
       expect(catalog.isNotEmpty, isTrue);
-      expect(catalog.catalogVersion, '2026.09.30.1');
+      expect(catalog.catalogVersion, '2026.10.01.1');
       expect(catalog.generatedAt, '2026-09-29T00:00:00+09:00');
 
       expect(
         catalog.paymentInstrumentsById.keys.map((key) => key.value).toList()
           ..sort(),
         <String>[
+          'aeon_card',
+          'd_card',
           'jcb_card_w',
           'mizuho_rakuten_card',
           'mufg_card',
           'olive_flexible_pay_gold',
+          'paypay_card',
           'smbc_gold_nl_card',
           'v_neobank_debit',
+          'welcia_card',
         ],
       );
 
       expect(
         catalog.pointProgramsById.keys.map((key) => key.value).toList()..sort(),
         <String>[
+          'd_point',
           'global_point',
           'j_point',
           'mizuho_point',
+          'paypay_point',
           'rakuten_point',
           'v_point',
+          'waon_point',
         ],
       );
 
-      expect(catalog.rewardRulesById.length, 85);
-      expect(catalog.sourcesById.length, 45);
+      expect(catalog.rewardRulesById.length, 118);
+      expect(catalog.sourcesById.length, 57);
 
       final mizuho = catalog.paymentInstrumentsById[id('mizuho_rakuten_card')]!;
       expect(mizuho.instrumentType, 'creditCard');
@@ -202,7 +209,7 @@ void main() {
           .where((rule) => rule.status.value == 'draft')
           .toList();
 
-      expect(active.length, 82);
+      expect(active.length, 115);
       expect(draft.length, 3);
 
       for (final rule in catalog.rewardRulesById.values) {
@@ -584,7 +591,7 @@ void main() {
       );
 
       expect(ranking.estimated, isEmpty);
-      expect(ranking.confirmed.length, 6);
+      expect(ranking.confirmed.length, 10);
 
       for (var index = 1; index < ranking.confirmed.length; index++) {
         expect(
@@ -756,13 +763,13 @@ void main() {
     }
 
     test('店舗一覧が16件読み込め、得意店舗なしの受け皿は登録しない', () {
-      expect(directory.merchants.length, 77);
+      expect(directory.merchants.length, 109);
       expect(
         directory.merchants.any((m) => m.id.value == 'other_merchant'),
         isFalse,
       );
       expect(directory.categoriesById.containsKey(id('other_store')), isFalse);
-      expect(directory.categoriesById.length, 16);
+      expect(directory.categoriesById.length, 17);
       expect(directory.search('セブン').single.name, 'セブン-イレブン');
     });
 
@@ -774,7 +781,11 @@ void main() {
       expect(directory.search('ファミマ').single.name, 'ファミリーマート');
       expect(directory.search('まつや').single.name, '松屋');
       expect(directory.search('よしのや').single.name, '吉野家');
-      expect(directory.search('マック').single.name, 'マクドナルド');
+      expect(directory.search('マクド').single.name, 'マクドナルド');
+      expect(
+        directory.search('マック').map((m) => m.id.value),
+        containsAll(<String>['maxvalu', 'mcdonalds']),
+      );
       expect(directory.search('にくのはなまさ').single.name, '肉のハナマサ');
       expect(directory.search('ドミノピザ').single.name, 'ドミノ・ピザ');
       expect(directory.search('Ａｍａｚｏｎ').single.name, 'Amazon.co.jp');

@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "catalogVersion": "2026.09.29.3",
+  "catalogVersion": "2026.10.01.1",
   "generatedAt": "2026-09-27T00:00:00+09:00",
   "items": [
     {
@@ -7801,6 +7801,2757 @@
         "加算率は対象のコンビニ・飲食店でのスマホタッチ決済・モバイルオーダーの利用額に対するもの（200円につき1ポイント＝+0.5%）。",
         "SMBC日興証券の公式ページで確定。投信積立3万円以上で+0.5%、NISA口座での投信積立3万円以上でさらに+0.5%（合計最大+1.0%）。2つは同時に満たせるためルールを分けている。",
         "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。"
+      ]
+    },
+    {
+      "id": "aeon_card_base",
+      "name": "イオンカード 基本還元（200円につき1WAON POINT）",
+      "description": "イオンマークのカード払い200円（税込）につき1WAON POINT。",
+      "ruleKind": "baseReward",
+      "selectors": {
+        "instrumentIds": [
+          "aeon_card"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": null,
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 200,
+        "pointsPerUnit": 1,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "waon_point",
+      "aggregation": {
+        "scope": "transaction",
+        "aggregationKey": null,
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": false
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 10
+      },
+      "cap": null,
+      "validFrom": "2026-10-01",
+      "validUntilExclusive": null,
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_aeon_card_official",
+        "src_aeon_point_official"
+      ],
+      "lastVerifiedAt": "2026-10-01",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "base_reward"
+      ],
+      "notes": [
+        "イオンマークのカード払い200円（税込）につき1WAON POINT（0.5%）。",
+        "イオングループの対象店舗では別ルールで2倍（200円2ポイント）になる。",
+        "端数処理・月次集計期間の公式明記は未確認のため、取引単位（transaction）で切り捨てを仮定して登録した。"
+      ]
+    },
+    {
+      "id": "aeon_card_aeon_group_bonus",
+      "name": "イオンカード イオングループ対象店舗の上乗せ（いつでも2倍）",
+      "description": "イオングループの対象店舗では200円につき1WAON POINTを上乗せし、合計2ポイント（1.0%）にする。",
+      "ruleKind": "campaignBonus",
+      "selectors": {
+        "instrumentIds": [
+          "aeon_card"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [
+          "aeon",
+          "ministop",
+          "maxvalu",
+          "the_big",
+          "aeon_style",
+          "daiei",
+          "aeon_supercenter",
+          "sunday",
+          "maibasket"
+        ],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": null,
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 200,
+        "pointsPerUnit": 1,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "waon_point",
+      "aggregation": {
+        "scope": "billingMonth",
+        "aggregationKey": "aeon_card_aeon_group_bonus_200",
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": true
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 100
+      },
+      "cap": null,
+      "validFrom": "2026-10-01",
+      "validUntilExclusive": null,
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_aeon_card_official",
+        "src_aeon_point_official",
+        "src_aeon_anytime_double",
+        "src_aeon_thanks_day"
+      ],
+      "lastVerifiedAt": "2026-10-01",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "campaign_bonus",
+        "store_list"
+      ],
+      "notes": [
+        "イオングループの対象店舗ならいつでもWAON POINT基本の2倍（200円2WAON POINT＝1.0%）。",
+        "対象は全国のイオン・イオンスタイル・イオンモール・ダイエー・グルメシティ・マックスバリュ・イオンスーパーセンター他。",
+        "AEON Payのスマホ決済も対象。AEON Payを除くQRコード・バーコード決済は対象外。",
+        "基本還元200円1ポイントと合算して200円2ポイント。",
+        "その他のポイント倍付企画と重複せず、高倍率の企画が優先される。"
+      ]
+    },
+    {
+      "id": "aeon_card_ariga10_card_bonus",
+      "name": "イオンカード ありが10デー（イオンカード払い 5倍）",
+      "description": "毎月10日にイオン・イオンスタイル直営売場でイオンカード払いをすると、200円につき4WAON POINTを上乗せし合計5ポイントにする。",
+      "ruleKind": "campaignBonus",
+      "selectors": {
+        "instrumentIds": [
+          "aeon_card"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [
+          "aeon",
+          "aeon_style"
+        ],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": {
+        "nodeType": "condition",
+        "conditionId": "aeon_ariga10_card"
+      },
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 200,
+        "pointsPerUnit": 4,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "waon_point",
+      "aggregation": {
+        "scope": "billingMonth",
+        "aggregationKey": "aeon_card_ariga10_card_bonus_200",
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": true
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 100
+      },
+      "cap": null,
+      "validFrom": "2026-10-01",
+      "validUntilExclusive": null,
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_aeon_ariga10",
+        "src_aeon_card_official"
+      ],
+      "lastVerifiedAt": "2026-10-01",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "campaign_bonus",
+        "conditional"
+      ],
+      "notes": [
+        "毎月10日のありが10デー。イオンカード・電子マネーWAONカードの利用で200円につき5ポイント（基本の5倍）。",
+        "基本還元200円1ポイントと合算して200円5ポイント＝2.5%。",
+        "高倍率優先のため、いつでも2倍（200円2ポイント）は適用されず5ポイントになる。差分4ポイントで登録している。",
+        "対象は本州（東北を除く）・四国のイオン／イオンスタイル直営売場。",
+        "AEON Payのスマホ決済の場合は別ルール（10倍）。条件はどちらか一方だけをオンにすること。"
+      ]
+    },
+    {
+      "id": "aeon_card_ariga10_aeonpay_bonus",
+      "name": "イオンカード ありが10デー（AEON Pay 10倍）",
+      "description": "毎月10日にイオン・イオンスタイル直営売場でAEON Payのスマホ決済をすると、200円につき9WAON POINTを上乗せし合計10ポイントにする。",
+      "ruleKind": "campaignBonus",
+      "selectors": {
+        "instrumentIds": [
+          "aeon_card"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [
+          "aeon",
+          "aeon_style"
+        ],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": {
+        "nodeType": "condition",
+        "conditionId": "aeon_ariga10_aeonpay"
+      },
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 200,
+        "pointsPerUnit": 9,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "waon_point",
+      "aggregation": {
+        "scope": "billingMonth",
+        "aggregationKey": "aeon_card_ariga10_aeonpay_bonus_200",
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": true
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 100
+      },
+      "cap": null,
+      "validFrom": "2026-10-01",
+      "validUntilExclusive": null,
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_aeon_ariga10",
+        "src_aeon_card_official"
+      ],
+      "lastVerifiedAt": "2026-10-01",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "campaign_bonus",
+        "conditional"
+      ],
+      "notes": [
+        "毎月10日のありが10デー。AEON Payのスマホ決済で200円につき10ポイント（基本の10倍）。",
+        "基本還元200円1ポイントと合算して200円10ポイント＝5%。",
+        "対象は本州（東北を除く）・四国のイオン／イオンスタイル直営売場。",
+        "イオンカード払いの場合は別ルール（5倍）。条件はどちらか一方だけをオンにすること。"
+      ]
+    },
+    {
+      "id": "aeon_card_thanks_day_bonus",
+      "name": "イオンカード お客さま感謝デー（5%OFF）",
+      "description": "毎月20日・30日にイオングループの対象店舗で支払うと買い物代金が5%OFFになる。200円につき10WAON POINT相当として登録する。",
+      "ruleKind": "campaignBonus",
+      "selectors": {
+        "instrumentIds": [
+          "aeon_card"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [
+          "aeon",
+          "aeon_style",
+          "maxvalu",
+          "aeon_supercenter",
+          "sunday",
+          "the_big",
+          "daiei",
+          "maibasket"
+        ],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": {
+        "nodeType": "condition",
+        "conditionId": "aeon_thanks_day"
+      },
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 200,
+        "pointsPerUnit": 10,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "waon_point",
+      "aggregation": {
+        "scope": "billingMonth",
+        "aggregationKey": "aeon_card_thanks_day_bonus_200",
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": true
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 100
+      },
+      "cap": null,
+      "validFrom": "2026-10-01",
+      "validUntilExclusive": null,
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_aeon_thanks_day",
+        "src_aeon_card_official"
+      ],
+      "lastVerifiedAt": "2026-10-01",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "campaign_bonus",
+        "conditional"
+      ],
+      "notes": [
+        "毎月20日・30日はお客さま感謝デー。イオングループ対象店舗で買い物代金が5%OFF。",
+        "これはポイント進呈ではなく値引き。値引き額を同額の還元として円換算で登録している（200円につき10ポイント＝5%）。",
+        "対象はイオン・マックスバリュ・イオンスーパーセンター・サンデー・ビブレ・ザ・ビッグなど。一部対象外店舗・対象外商品あり。",
+        "交通系電子マネーでの支払いは対象外。",
+        "値引き後の金額に対してポイントが付く場合、実際の合計特典はわずかに下がる。"
+      ]
+    },
+    {
+      "id": "welcia_card_base",
+      "name": "ウエルシアカード 基本還元（200円につき1WAON POINT）",
+      "description": "イオンマークのカードとして200円（税込）につき1WAON POINT。",
+      "ruleKind": "baseReward",
+      "selectors": {
+        "instrumentIds": [
+          "welcia_card"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": null,
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 200,
+        "pointsPerUnit": 1,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "waon_point",
+      "aggregation": {
+        "scope": "transaction",
+        "aggregationKey": null,
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": false
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 10
+      },
+      "cap": null,
+      "validFrom": "2026-10-01",
+      "validUntilExclusive": null,
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_aeon_welcia_card",
+        "src_aeon_point_official"
+      ],
+      "lastVerifiedAt": "2026-10-01",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "base_reward"
+      ],
+      "notes": [
+        "ウエルシアカードはイオンマークのカードのため、通常は200円（税込）につき1WAON POINT（0.5%）。",
+        "ウエルシアグループの対象店舗では別ルールで1.5%になる。"
+      ]
+    },
+    {
+      "id": "welcia_card_aeon_group_bonus",
+      "name": "ウエルシアカード イオングループ対象店舗の上乗せ（いつでも2倍）",
+      "description": "イオングループの対象店舗では200円につき1WAON POINTを上乗せし、合計2ポイント（1.0%）にする。",
+      "ruleKind": "campaignBonus",
+      "selectors": {
+        "instrumentIds": [
+          "welcia_card"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [
+          "aeon",
+          "ministop",
+          "maxvalu",
+          "the_big",
+          "aeon_style",
+          "daiei",
+          "aeon_supercenter",
+          "sunday",
+          "maibasket"
+        ],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": null,
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 200,
+        "pointsPerUnit": 1,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "waon_point",
+      "aggregation": {
+        "scope": "billingMonth",
+        "aggregationKey": "welcia_card_aeon_group_bonus_200",
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": true
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 100
+      },
+      "cap": null,
+      "validFrom": "2026-10-01",
+      "validUntilExclusive": null,
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_aeon_card_official",
+        "src_aeon_point_official",
+        "src_aeon_anytime_double",
+        "src_aeon_thanks_day"
+      ],
+      "lastVerifiedAt": "2026-10-01",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "campaign_bonus",
+        "store_list"
+      ],
+      "notes": [
+        "イオンマークのカード共通特典。イオングループの対象店舗ならいつでも基本の2倍（1.0%）。"
+      ]
+    },
+    {
+      "id": "welcia_card_welcia_group_bonus",
+      "name": "ウエルシアカード ウエルシアグループの上乗せ（1.5%）",
+      "description": "ウエルシアグループの対象店舗でクレジット払いをすると、200円につき2WAON POINTを上乗せし合計3ポイント（1.5%）にする。",
+      "ruleKind": "campaignBonus",
+      "selectors": {
+        "instrumentIds": [
+          "welcia_card"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [
+          "welcia",
+          "hac_drug",
+          "kokumin",
+          "kinko_yakuhin",
+          "dax_drug",
+          "super_drug_himawari",
+          "maruedrug",
+          "happy_drug",
+          "yodoya_drug",
+          "fuku_yakuhin",
+          "towoya_yakkyoku"
+        ],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": null,
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 200,
+        "pointsPerUnit": 2,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "waon_point",
+      "aggregation": {
+        "scope": "billingMonth",
+        "aggregationKey": "welcia_card_welcia_group_bonus_200",
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": true
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 100
+      },
+      "cap": null,
+      "validFrom": "2026-10-01",
+      "validUntilExclusive": null,
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_aeon_welcia_card",
+        "src_aeon_point_official"
+      ],
+      "lastVerifiedAt": "2026-10-01",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "campaign_bonus",
+        "store_list"
+      ],
+      "notes": [
+        "ウエルシアグループの対象店舗でカード提示1%、クレジット払い1.5%。",
+        "基本還元200円1ポイントと合算して200円3ポイント＝1.5%。",
+        "対象はウエルシア・ハックドラッグ・金光薬品・とをしや薬局・ダックス・スーパードラッグひまわり・マルエドラッグ・ハッピー・ドラッグ・よどやドラッグ・ふく薬品・コクミン。ウェルパークは対象外。",
+        "毎月20日のウエルシアお客さま感謝デーにWAON POINTを使うと1.5倍分になる（計算には反映していない）。"
+      ]
+    },
+    {
+      "id": "welcia_card_10th_bonus",
+      "name": "ウエルシアカード 毎月10日の10%デー",
+      "description": "毎月10日にウエルシアグループの対象店舗でクレジット払いをすると、200円につき17WAON POINTを上乗せし合計20ポイント（10%）にする。",
+      "ruleKind": "campaignBonus",
+      "selectors": {
+        "instrumentIds": [
+          "welcia_card"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [
+          "welcia",
+          "hac_drug",
+          "kokumin",
+          "kinko_yakuhin",
+          "dax_drug",
+          "super_drug_himawari",
+          "maruedrug",
+          "happy_drug",
+          "yodoya_drug",
+          "fuku_yakuhin",
+          "towoya_yakkyoku"
+        ],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": {
+        "nodeType": "condition",
+        "conditionId": "welcia_10th_day"
+      },
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 200,
+        "pointsPerUnit": 17,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "waon_point",
+      "aggregation": {
+        "scope": "billingMonth",
+        "aggregationKey": "welcia_card_10th_bonus_200",
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": true
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 100
+      },
+      "cap": null,
+      "validFrom": "2026-10-01",
+      "validUntilExclusive": null,
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_aeon_welcia_card",
+        "src_aeon_point_official"
+      ],
+      "lastVerifiedAt": "2026-10-01",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "campaign_bonus",
+        "conditional"
+      ],
+      "notes": [
+        "毎月10日のクレジット払いは200円につき20WAON POINT（10%）。カード提示を併せると最大11%。",
+        "基本還元200円1ポイントと合算して200円20ポイント＝10%。",
+        "付与は1%分が当月25日、残り9%分が翌月25日。",
+        "対象店舗はウエルシアグループの11チェーン。ウェルパークは対象外。"
+      ]
+    },
+    {
+      "id": "d_card_base",
+      "name": "dカード 基本還元（100円につき1ポイント）",
+      "description": "dカード・dカード（iD）・dカードを支払い設定したd払いで100円（税込）につき1ポイント。",
+      "ruleKind": "baseReward",
+      "selectors": {
+        "instrumentIds": [
+          "d_card"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": null,
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 100,
+        "pointsPerUnit": 1,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "d_point",
+      "aggregation": {
+        "scope": "transaction",
+        "aggregationKey": null,
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": false
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 10
+      },
+      "cap": null,
+      "validFrom": "2026-10-01",
+      "validUntilExclusive": "2027-01-01",
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_dcard_official",
+        "src_dpoint_tokuyaku_about"
+      ],
+      "lastVerifiedAt": "2026-10-01",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "base_reward"
+      ],
+      "notes": [
+        "dカード・dカード（iD）・dカードを支払い設定したd払いで100円（税込）につき1ポイント（1.0%）。",
+        "2027年1月利用分から一般dカードは200円1ポイント（0.5%）に改定されるため、別ルール（d_card_base_2027）を登録している。",
+        "端数処理の公式明記は未確認のため、取引単位で切り捨てを仮定して登録した。"
+      ]
+    },
+    {
+      "id": "d_card_base_2027",
+      "name": "dカード 基本還元（200円につき1ポイント・2027年1月利用分から）",
+      "description": "2027年1月利用分から、一般のdカードは200円（税込）につき1ポイントになる。",
+      "ruleKind": "baseReward",
+      "selectors": {
+        "instrumentIds": [
+          "d_card"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": null,
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 200,
+        "pointsPerUnit": 1,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "d_point",
+      "aggregation": {
+        "scope": "transaction",
+        "aggregationKey": null,
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": false
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 10
+      },
+      "cap": null,
+      "validFrom": "2027-01-01",
+      "validUntilExclusive": null,
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_dcard_revision_2027"
+      ],
+      "lastVerifiedAt": "2026-10-01",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "base_reward"
+      ],
+      "notes": [
+        "2027年1月利用分から、dカード GOLD U／GOLD／PLATINUM以外の一般dカードは200円1ポイント（0.5%）に引き下げられる。",
+        "スマホのタッチ決済は2027年5月利用分から200円2ポイント（1%）。",
+        "有効区間は半開区間 [2027-01-01, 無期限)。"
+      ]
+    },
+    {
+      "id": "d_card_tokuyaku_matsumotokiyoshi",
+      "name": "dカード特約店 マツモトキヨシ（100円につき+2ポイント）",
+      "description": "dカード特約店のマツモトキヨシで支払うと100円につき2ポイントを上乗せする。",
+      "ruleKind": "campaignBonus",
+      "selectors": {
+        "instrumentIds": [
+          "d_card"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [
+          "matsumotokiyoshi"
+        ],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": null,
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 100,
+        "pointsPerUnit": 2,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "d_point",
+      "aggregation": {
+        "scope": "billingMonth",
+        "aggregationKey": "d_card_tokuyaku_matsumotokiyoshi_100",
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": true
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 100
+      },
+      "cap": null,
+      "validFrom": "2026-10-01",
+      "validUntilExclusive": null,
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_dcard_official",
+        "src_dpoint_tokuyaku_about"
+      ],
+      "lastVerifiedAt": "2026-10-01",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "campaign_bonus",
+        "store_list"
+      ],
+      "notes": [
+        "dカード特約店では決済ポイント（1%）に加えて特約店ポイントが上乗せされる。",
+        "100円につき+2ポイントを上乗せとして登録している。",
+        "対象決済はdカード（Visa/Mastercard）・dカード（iD）・dカードを支払い設定したd払い。",
+        "dカード以外のクレジットカードでのiD、d払いタッチ／バーチャルカード、電話料金合算払いのd払いは対象外。",
+        "一部対象外の店舗・商品がある。",
+        "2027年1月利用分からの基本還元改定後も特約店ポイントは上乗せされる。"
+      ]
+    },
+    {
+      "id": "d_card_tokuyaku_cocokara_fine",
+      "name": "dカード特約店 ココカラファイン（100円につき+2ポイント）",
+      "description": "dカード特約店のココカラファインで支払うと100円につき2ポイントを上乗せする。",
+      "ruleKind": "campaignBonus",
+      "selectors": {
+        "instrumentIds": [
+          "d_card"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [
+          "cocokara_fine"
+        ],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": null,
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 100,
+        "pointsPerUnit": 2,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "d_point",
+      "aggregation": {
+        "scope": "billingMonth",
+        "aggregationKey": "d_card_tokuyaku_cocokara_fine_100",
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": true
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 100
+      },
+      "cap": null,
+      "validFrom": "2026-10-01",
+      "validUntilExclusive": null,
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_dcard_official",
+        "src_dpoint_tokuyaku_about"
+      ],
+      "lastVerifiedAt": "2026-10-01",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "campaign_bonus",
+        "store_list"
+      ],
+      "notes": [
+        "dカード特約店では決済ポイント（1%）に加えて特約店ポイントが上乗せされる。",
+        "100円につき+2ポイントを上乗せとして登録している。",
+        "対象決済はdカード（Visa/Mastercard）・dカード（iD）・dカードを支払い設定したd払い。",
+        "dカード以外のクレジットカードでのiD、d払いタッチ／バーチャルカード、電話料金合算払いのd払いは対象外。",
+        "一部対象外の店舗・商品がある。",
+        "2027年1月利用分からの基本還元改定後も特約店ポイントは上乗せされる。"
+      ]
+    },
+    {
+      "id": "d_card_tokuyaku_kokumin",
+      "name": "dカード特約店 コクミン（100円につき+2ポイント）",
+      "description": "dカード特約店のコクミンで支払うと100円につき2ポイントを上乗せする。",
+      "ruleKind": "campaignBonus",
+      "selectors": {
+        "instrumentIds": [
+          "d_card"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [
+          "kokumin"
+        ],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": null,
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 100,
+        "pointsPerUnit": 2,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "d_point",
+      "aggregation": {
+        "scope": "billingMonth",
+        "aggregationKey": "d_card_tokuyaku_kokumin_100",
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": true
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 100
+      },
+      "cap": null,
+      "validFrom": "2026-10-01",
+      "validUntilExclusive": null,
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_dcard_official",
+        "src_dpoint_tokuyaku_about"
+      ],
+      "lastVerifiedAt": "2026-10-01",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "campaign_bonus",
+        "store_list"
+      ],
+      "notes": [
+        "dカード特約店では決済ポイント（1%）に加えて特約店ポイントが上乗せされる。",
+        "100円につき+2ポイントを上乗せとして登録している。",
+        "対象決済はdカード（Visa/Mastercard）・dカード（iD）・dカードを支払い設定したd払い。",
+        "dカード以外のクレジットカードでのiD、d払いタッチ／バーチャルカード、電話料金合算払いのd払いは対象外。",
+        "一部対象外の店舗・商品がある。",
+        "2027年1月利用分からの基本還元改定後も特約店ポイントは上乗せされる。"
+      ]
+    },
+    {
+      "id": "d_card_tokuyaku_takashimaya",
+      "name": "dカード特約店 高島屋（100円につき+1ポイント）",
+      "description": "dカード特約店の高島屋で支払うと200円につき1ポイントを上乗せする。",
+      "ruleKind": "campaignBonus",
+      "selectors": {
+        "instrumentIds": [
+          "d_card"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [
+          "takashimaya"
+        ],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": null,
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 200,
+        "pointsPerUnit": 1,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "d_point",
+      "aggregation": {
+        "scope": "billingMonth",
+        "aggregationKey": "d_card_tokuyaku_takashimaya_200",
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": true
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 100
+      },
+      "cap": null,
+      "validFrom": "2026-10-01",
+      "validUntilExclusive": null,
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_dcard_official",
+        "src_dpoint_tokuyaku_about"
+      ],
+      "lastVerifiedAt": "2026-10-01",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "campaign_bonus",
+        "store_list"
+      ],
+      "notes": [
+        "dカード特約店では決済ポイント（1%）に加えて特約店ポイントが上乗せされる。",
+        "200円につき+1ポイントを上乗せとして登録している。",
+        "対象決済はdカード（Visa/Mastercard）・dカード（iD）・dカードを支払い設定したd払い。",
+        "dカード以外のクレジットカードでのiD、d払いタッチ／バーチャルカード、電話料金合算払いのd払いは対象外。",
+        "一部対象外の店舗・商品がある。",
+        "2027年1月利用分からの基本還元改定後も特約店ポイントは上乗せされる。"
+      ]
+    },
+    {
+      "id": "d_card_tokuyaku_kinokuniya",
+      "name": "dカード特約店 紀伊國屋書店（100円につき+1ポイント）",
+      "description": "dカード特約店の紀伊國屋書店で支払うと100円につき1ポイントを上乗せする。",
+      "ruleKind": "campaignBonus",
+      "selectors": {
+        "instrumentIds": [
+          "d_card"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [
+          "kinokuniya"
+        ],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": null,
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 100,
+        "pointsPerUnit": 1,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "d_point",
+      "aggregation": {
+        "scope": "billingMonth",
+        "aggregationKey": "d_card_tokuyaku_kinokuniya_100",
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": true
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 100
+      },
+      "cap": null,
+      "validFrom": "2026-10-01",
+      "validUntilExclusive": null,
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_dcard_official",
+        "src_dpoint_tokuyaku_about"
+      ],
+      "lastVerifiedAt": "2026-10-01",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "campaign_bonus",
+        "store_list"
+      ],
+      "notes": [
+        "dカード特約店では決済ポイント（1%）に加えて特約店ポイントが上乗せされる。",
+        "100円につき+1ポイントを上乗せとして登録している。",
+        "対象決済はdカード（Visa/Mastercard）・dカード（iD）・dカードを支払い設定したd払い。",
+        "dカード以外のクレジットカードでのiD、d払いタッチ／バーチャルカード、電話料金合算払いのd払いは対象外。",
+        "一部対象外の店舗・商品がある。",
+        "2027年1月利用分からの基本還元改定後も特約店ポイントは上乗せされる。"
+      ]
+    },
+    {
+      "id": "d_card_tokuyaku_maruzen",
+      "name": "dカード特約店 丸善（100円につき+1ポイント）",
+      "description": "dカード特約店の丸善で支払うと200円につき1ポイントを上乗せする。",
+      "ruleKind": "campaignBonus",
+      "selectors": {
+        "instrumentIds": [
+          "d_card"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [
+          "maruzen"
+        ],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": null,
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 200,
+        "pointsPerUnit": 1,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "d_point",
+      "aggregation": {
+        "scope": "billingMonth",
+        "aggregationKey": "d_card_tokuyaku_maruzen_200",
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": true
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 100
+      },
+      "cap": null,
+      "validFrom": "2026-10-01",
+      "validUntilExclusive": null,
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_dcard_official",
+        "src_dpoint_tokuyaku_about"
+      ],
+      "lastVerifiedAt": "2026-10-01",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "campaign_bonus",
+        "store_list"
+      ],
+      "notes": [
+        "dカード特約店では決済ポイント（1%）に加えて特約店ポイントが上乗せされる。",
+        "200円につき+1ポイントを上乗せとして登録している。",
+        "対象決済はdカード（Visa/Mastercard）・dカード（iD）・dカードを支払い設定したd払い。",
+        "dカード以外のクレジットカードでのiD、d払いタッチ／バーチャルカード、電話料金合算払いのd払いは対象外。",
+        "一部対象外の店舗・商品がある。",
+        "2027年1月利用分からの基本還元改定後も特約店ポイントは上乗せされる。"
+      ]
+    },
+    {
+      "id": "d_card_tokuyaku_junku_do",
+      "name": "dカード特約店 ジュンク堂書店（100円につき+1ポイント）",
+      "description": "dカード特約店のジュンク堂書店で支払うと200円につき1ポイントを上乗せする。",
+      "ruleKind": "campaignBonus",
+      "selectors": {
+        "instrumentIds": [
+          "d_card"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [
+          "junku_do"
+        ],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": null,
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 200,
+        "pointsPerUnit": 1,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "d_point",
+      "aggregation": {
+        "scope": "billingMonth",
+        "aggregationKey": "d_card_tokuyaku_junku_do_200",
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": true
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 100
+      },
+      "cap": null,
+      "validFrom": "2026-10-01",
+      "validUntilExclusive": null,
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_dcard_official",
+        "src_dpoint_tokuyaku_about"
+      ],
+      "lastVerifiedAt": "2026-10-01",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "campaign_bonus",
+        "store_list"
+      ],
+      "notes": [
+        "dカード特約店では決済ポイント（1%）に加えて特約店ポイントが上乗せされる。",
+        "200円につき+1ポイントを上乗せとして登録している。",
+        "対象決済はdカード（Visa/Mastercard）・dカード（iD）・dカードを支払い設定したd払い。",
+        "dカード以外のクレジットカードでのiD、d払いタッチ／バーチャルカード、電話料金合算払いのd払いは対象外。",
+        "一部対象外の店舗・商品がある。",
+        "2027年1月利用分からの基本還元改定後も特約店ポイントは上乗せされる。"
+      ]
+    },
+    {
+      "id": "d_card_tokuyaku_tower_records",
+      "name": "dカード特約店 タワーレコード（100円につき+1ポイント）",
+      "description": "dカード特約店のタワーレコードで支払うと100円につき1ポイントを上乗せする。",
+      "ruleKind": "campaignBonus",
+      "selectors": {
+        "instrumentIds": [
+          "d_card"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [
+          "tower_records"
+        ],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": null,
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 100,
+        "pointsPerUnit": 1,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "d_point",
+      "aggregation": {
+        "scope": "billingMonth",
+        "aggregationKey": "d_card_tokuyaku_tower_records_100",
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": true
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 100
+      },
+      "cap": null,
+      "validFrom": "2026-10-01",
+      "validUntilExclusive": null,
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_dcard_official",
+        "src_dpoint_tokuyaku_about"
+      ],
+      "lastVerifiedAt": "2026-10-01",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "campaign_bonus",
+        "store_list"
+      ],
+      "notes": [
+        "dカード特約店では決済ポイント（1%）に加えて特約店ポイントが上乗せされる。",
+        "100円につき+1ポイントを上乗せとして登録している。",
+        "対象決済はdカード（Visa/Mastercard）・dカード（iD）・dカードを支払い設定したd払い。",
+        "dカード以外のクレジットカードでのiD、d払いタッチ／バーチャルカード、電話料金合算払いのd払いは対象外。",
+        "一部対象外の店舗・商品がある。",
+        "2027年1月利用分からの基本還元改定後も特約店ポイントは上乗せされる。"
+      ]
+    },
+    {
+      "id": "d_card_tokuyaku_big_echo",
+      "name": "dカード特約店 カラオケビッグエコー（100円につき+2ポイント）",
+      "description": "dカード特約店のカラオケビッグエコーで支払うと100円につき2ポイントを上乗せする。",
+      "ruleKind": "campaignBonus",
+      "selectors": {
+        "instrumentIds": [
+          "d_card"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [
+          "big_echo"
+        ],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": null,
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 100,
+        "pointsPerUnit": 2,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "d_point",
+      "aggregation": {
+        "scope": "billingMonth",
+        "aggregationKey": "d_card_tokuyaku_big_echo_100",
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": true
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 100
+      },
+      "cap": null,
+      "validFrom": "2026-10-01",
+      "validUntilExclusive": null,
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_dcard_official",
+        "src_dpoint_tokuyaku_about"
+      ],
+      "lastVerifiedAt": "2026-10-01",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "campaign_bonus",
+        "store_list"
+      ],
+      "notes": [
+        "dカード特約店では決済ポイント（1%）に加えて特約店ポイントが上乗せされる。",
+        "100円につき+2ポイントを上乗せとして登録している。",
+        "対象決済はdカード（Visa/Mastercard）・dカード（iD）・dカードを支払い設定したd払い。",
+        "dカード以外のクレジットカードでのiD、d払いタッチ／バーチャルカード、電話料金合算払いのd払いは対象外。",
+        "一部対象外の店舗・商品がある。",
+        "2027年1月利用分からの基本還元改定後も特約店ポイントは上乗せされる。"
+      ]
+    },
+    {
+      "id": "d_card_tokuyaku_golf_me",
+      "name": "dカード特約店 GOLF me!（100円につき+4ポイント）",
+      "description": "dカード特約店のGOLF me!で支払うと100円につき4ポイントを上乗せする。",
+      "ruleKind": "campaignBonus",
+      "selectors": {
+        "instrumentIds": [
+          "d_card"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [
+          "golf_me"
+        ],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": null,
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 100,
+        "pointsPerUnit": 4,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "d_point",
+      "aggregation": {
+        "scope": "billingMonth",
+        "aggregationKey": "d_card_tokuyaku_golf_me_100",
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": true
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 100
+      },
+      "cap": null,
+      "validFrom": "2026-10-01",
+      "validUntilExclusive": null,
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_dcard_official",
+        "src_dpoint_tokuyaku_about"
+      ],
+      "lastVerifiedAt": "2026-10-01",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "campaign_bonus",
+        "store_list"
+      ],
+      "notes": [
+        "dカード特約店では決済ポイント（1%）に加えて特約店ポイントが上乗せされる。",
+        "100円につき+4ポイントを上乗せとして登録している。",
+        "対象決済はdカード（Visa/Mastercard）・dカード（iD）・dカードを支払い設定したd払い。",
+        "dカード以外のクレジットカードでのiD、d払いタッチ／バーチャルカード、電話料金合算払いのd払いは対象外。",
+        "一部対象外の店舗・商品がある。",
+        "2027年1月利用分からの基本還元改定後も特約店ポイントは上乗せされる。"
+      ]
+    },
+    {
+      "id": "d_card_tokuyaku_club_med",
+      "name": "dカード特約店 クラブメッド（100円につき+3ポイント）",
+      "description": "dカード特約店のクラブメッドで支払うと100円につき3ポイントを上乗せする。",
+      "ruleKind": "campaignBonus",
+      "selectors": {
+        "instrumentIds": [
+          "d_card"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [
+          "club_med"
+        ],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": null,
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 100,
+        "pointsPerUnit": 3,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "d_point",
+      "aggregation": {
+        "scope": "billingMonth",
+        "aggregationKey": "d_card_tokuyaku_club_med_100",
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": true
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 100
+      },
+      "cap": null,
+      "validFrom": "2026-10-01",
+      "validUntilExclusive": null,
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_dcard_official",
+        "src_dpoint_tokuyaku_about"
+      ],
+      "lastVerifiedAt": "2026-10-01",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "campaign_bonus",
+        "store_list"
+      ],
+      "notes": [
+        "dカード特約店では決済ポイント（1%）に加えて特約店ポイントが上乗せされる。",
+        "100円につき+3ポイントを上乗せとして登録している。",
+        "対象決済はdカード（Visa/Mastercard）・dカード（iD）・dカードを支払い設定したd払い。",
+        "dカード以外のクレジットカードでのiD、d払いタッチ／バーチャルカード、電話料金合算払いのd払いは対象外。",
+        "一部対象外の店舗・商品がある。",
+        "2027年1月利用分からの基本還元改定後も特約店ポイントは上乗せされる。"
+      ]
+    },
+    {
+      "id": "d_card_tokuyaku_sakai_hikkoshi",
+      "name": "dカード特約店 サカイ引越センター（100円につき+3ポイント）",
+      "description": "dカード特約店のサカイ引越センターで支払うと100円につき3ポイントを上乗せする。",
+      "ruleKind": "campaignBonus",
+      "selectors": {
+        "instrumentIds": [
+          "d_card"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [
+          "sakai_hikkoshi"
+        ],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": null,
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 100,
+        "pointsPerUnit": 3,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "d_point",
+      "aggregation": {
+        "scope": "billingMonth",
+        "aggregationKey": "d_card_tokuyaku_sakai_hikkoshi_100",
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": true
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 100
+      },
+      "cap": null,
+      "validFrom": "2026-10-01",
+      "validUntilExclusive": null,
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_dcard_official",
+        "src_dpoint_tokuyaku_about"
+      ],
+      "lastVerifiedAt": "2026-10-01",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "campaign_bonus",
+        "store_list"
+      ],
+      "notes": [
+        "dカード特約店では決済ポイント（1%）に加えて特約店ポイントが上乗せされる。",
+        "100円につき+3ポイントを上乗せとして登録している。",
+        "対象決済はdカード（Visa/Mastercard）・dカード（iD）・dカードを支払い設定したd払い。",
+        "dカード以外のクレジットカードでのiD、d払いタッチ／バーチャルカード、電話料金合算払いのd払いは対象外。",
+        "一部対象外の店舗・商品がある。",
+        "2027年1月利用分からの基本還元改定後も特約店ポイントは上乗せされる。"
+      ]
+    },
+    {
+      "id": "d_card_tokuyaku_adidas_online",
+      "name": "dカード特約店 アディダス オンラインショップ（100円につき+1ポイント）",
+      "description": "dカード特約店のアディダス オンラインショップで支払うと100円につき1ポイントを上乗せする。",
+      "ruleKind": "campaignBonus",
+      "selectors": {
+        "instrumentIds": [
+          "d_card"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [
+          "adidas_online"
+        ],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": null,
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 100,
+        "pointsPerUnit": 1,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "d_point",
+      "aggregation": {
+        "scope": "billingMonth",
+        "aggregationKey": "d_card_tokuyaku_adidas_online_100",
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": true
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 100
+      },
+      "cap": null,
+      "validFrom": "2026-10-01",
+      "validUntilExclusive": null,
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_dcard_official",
+        "src_dpoint_tokuyaku_about"
+      ],
+      "lastVerifiedAt": "2026-10-01",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "campaign_bonus",
+        "store_list"
+      ],
+      "notes": [
+        "dカード特約店では決済ポイント（1%）に加えて特約店ポイントが上乗せされる。",
+        "100円につき+1ポイントを上乗せとして登録している。",
+        "対象決済はdカード（Visa/Mastercard）・dカード（iD）・dカードを支払い設定したd払い。",
+        "dカード以外のクレジットカードでのiD、d払いタッチ／バーチャルカード、電話料金合算払いのd払いは対象外。",
+        "一部対象外の店舗・商品がある。",
+        "2027年1月利用分からの基本還元改定後も特約店ポイントは上乗せされる。"
+      ]
+    },
+    {
+      "id": "d_card_tokuyaku_suit_square",
+      "name": "dカード特約店 SUIT SQUARE（100円につき+1ポイント）",
+      "description": "dカード特約店のSUIT SQUAREで支払うと100円につき1ポイントを上乗せする。",
+      "ruleKind": "campaignBonus",
+      "selectors": {
+        "instrumentIds": [
+          "d_card"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [
+          "suit_square"
+        ],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": null,
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 100,
+        "pointsPerUnit": 1,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "d_point",
+      "aggregation": {
+        "scope": "billingMonth",
+        "aggregationKey": "d_card_tokuyaku_suit_square_100",
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": true
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 100
+      },
+      "cap": null,
+      "validFrom": "2026-10-01",
+      "validUntilExclusive": null,
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_dcard_official",
+        "src_dpoint_tokuyaku_about"
+      ],
+      "lastVerifiedAt": "2026-10-01",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "campaign_bonus",
+        "store_list"
+      ],
+      "notes": [
+        "dカード特約店では決済ポイント（1%）に加えて特約店ポイントが上乗せされる。",
+        "100円につき+1ポイントを上乗せとして登録している。",
+        "対象決済はdカード（Visa/Mastercard）・dカード（iD）・dカードを支払い設定したd払い。",
+        "dカード以外のクレジットカードでのiD、d払いタッチ／バーチャルカード、電話料金合算払いのd払いは対象外。",
+        "一部対象外の店舗・商品がある。",
+        "2027年1月利用分からの基本還元改定後も特約店ポイントは上乗せされる。"
+      ]
+    },
+    {
+      "id": "d_card_tokuyaku_doutor",
+      "name": "dカード特約店 ドトールコーヒーショップ（100円につき+3ポイント）",
+      "description": "dカード特約店のドトールコーヒーショップで支払うと100円につき3ポイントを上乗せする。",
+      "ruleKind": "campaignBonus",
+      "selectors": {
+        "instrumentIds": [
+          "d_card"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [
+          "doutor"
+        ],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": null,
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 100,
+        "pointsPerUnit": 3,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "d_point",
+      "aggregation": {
+        "scope": "billingMonth",
+        "aggregationKey": "d_card_tokuyaku_doutor_100",
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": true
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 100
+      },
+      "cap": null,
+      "validFrom": "2026-10-01",
+      "validUntilExclusive": null,
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_dcard_official",
+        "src_dpoint_tokuyaku_about"
+      ],
+      "lastVerifiedAt": "2026-10-01",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "campaign_bonus",
+        "store_list"
+      ],
+      "notes": [
+        "dカード特約店では決済ポイント（1%）に加えて特約店ポイントが上乗せされる。",
+        "100円につき+3ポイントを上乗せとして登録している。",
+        "対象決済はdカード（Visa/Mastercard）・dカード（iD）・dカードを支払い設定したd払い。",
+        "dカード以外のクレジットカードでのiD、d払いタッチ／バーチャルカード、電話料金合算払いのd払いは対象外。",
+        "一部対象外の店舗・商品がある。",
+        "2027年1月利用分からの基本還元改定後も特約店ポイントは上乗せされる。"
+      ]
+    },
+    {
+      "id": "d_card_tokuyaku_excelsior",
+      "name": "dカード特約店 エクセルシオール カフェ（100円につき+3ポイント）",
+      "description": "dカード特約店のエクセルシオール カフェで支払うと100円につき3ポイントを上乗せする。",
+      "ruleKind": "campaignBonus",
+      "selectors": {
+        "instrumentIds": [
+          "d_card"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [
+          "excelsior"
+        ],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": null,
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 100,
+        "pointsPerUnit": 3,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "d_point",
+      "aggregation": {
+        "scope": "billingMonth",
+        "aggregationKey": "d_card_tokuyaku_excelsior_100",
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": true
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 100
+      },
+      "cap": null,
+      "validFrom": "2026-10-01",
+      "validUntilExclusive": null,
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_dcard_official",
+        "src_dpoint_tokuyaku_about"
+      ],
+      "lastVerifiedAt": "2026-10-01",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "campaign_bonus",
+        "store_list"
+      ],
+      "notes": [
+        "dカード特約店では決済ポイント（1%）に加えて特約店ポイントが上乗せされる。",
+        "100円につき+3ポイントを上乗せとして登録している。",
+        "対象決済はdカード（Visa/Mastercard）・dカード（iD）・dカードを支払い設定したd払い。",
+        "dカード以外のクレジットカードでのiD、d払いタッチ／バーチャルカード、電話料金合算払いのd払いは対象外。",
+        "一部対象外の店舗・商品がある。",
+        "2027年1月利用分からの基本還元改定後も特約店ポイントは上乗せされる。"
+      ]
+    },
+    {
+      "id": "d_card_tokuyaku_aoyama_tailor",
+      "name": "dカード特約店 洋服の青山（100円につき+1ポイント）",
+      "description": "dカード特約店の洋服の青山で支払うと100円につき1ポイントを上乗せする。",
+      "ruleKind": "campaignBonus",
+      "selectors": {
+        "instrumentIds": [
+          "d_card"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [
+          "aoyama_tailor"
+        ],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": null,
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 100,
+        "pointsPerUnit": 1,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "d_point",
+      "aggregation": {
+        "scope": "billingMonth",
+        "aggregationKey": "d_card_tokuyaku_aoyama_tailor_100",
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": true
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 100
+      },
+      "cap": null,
+      "validFrom": "2026-10-01",
+      "validUntilExclusive": null,
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_dcard_official",
+        "src_dpoint_tokuyaku_about"
+      ],
+      "lastVerifiedAt": "2026-10-01",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "campaign_bonus",
+        "store_list"
+      ],
+      "notes": [
+        "dカード特約店では決済ポイント（1%）に加えて特約店ポイントが上乗せされる。",
+        "100円につき+1ポイントを上乗せとして登録している。",
+        "対象決済はdカード（Visa/Mastercard）・dカード（iD）・dカードを支払い設定したd払い。",
+        "dカード以外のクレジットカードでのiD、d払いタッチ／バーチャルカード、電話料金合算払いのd払いは対象外。",
+        "一部対象外の店舗・商品がある。",
+        "2027年1月利用分からの基本還元改定後も特約店ポイントは上乗せされる。"
+      ]
+    },
+    {
+      "id": "d_card_tokuyaku_orix_rentacar",
+      "name": "dカード特約店 オリックスレンタカー（100円につき+3ポイント）",
+      "description": "dカード特約店のオリックスレンタカーで支払うと100円につき3ポイントを上乗せする。",
+      "ruleKind": "campaignBonus",
+      "selectors": {
+        "instrumentIds": [
+          "d_card"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [
+          "orix_rentacar"
+        ],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": null,
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 100,
+        "pointsPerUnit": 3,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "d_point",
+      "aggregation": {
+        "scope": "billingMonth",
+        "aggregationKey": "d_card_tokuyaku_orix_rentacar_100",
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": true
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 100
+      },
+      "cap": null,
+      "validFrom": "2026-10-01",
+      "validUntilExclusive": null,
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_dcard_official",
+        "src_dpoint_tokuyaku_about"
+      ],
+      "lastVerifiedAt": "2026-10-01",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "campaign_bonus",
+        "store_list"
+      ],
+      "notes": [
+        "dカード特約店では決済ポイント（1%）に加えて特約店ポイントが上乗せされる。",
+        "100円につき+3ポイントを上乗せとして登録している。",
+        "対象決済はdカード（Visa/Mastercard）・dカード（iD）・dカードを支払い設定したd払い。",
+        "dカード以外のクレジットカードでのiD、d払いタッチ／バーチャルカード、電話料金合算払いのd払いは対象外。",
+        "一部対象外の店舗・商品がある。",
+        "2027年1月利用分からの基本還元改定後も特約店ポイントは上乗せされる。"
+      ]
+    },
+    {
+      "id": "paypay_card_base",
+      "name": "PayPayカード 基本還元（200円につき2ポイント）",
+      "description": "PayPayカードの利用200円（税込）につき2PayPayポイント。",
+      "ruleKind": "baseReward",
+      "selectors": {
+        "instrumentIds": [
+          "paypay_card"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": null,
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 200,
+        "pointsPerUnit": 2,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "paypay_point",
+      "aggregation": {
+        "scope": "transaction",
+        "aggregationKey": null,
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": false
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 10
+      },
+      "cap": null,
+      "validFrom": "2026-10-01",
+      "validUntilExclusive": null,
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_paypay_card_point"
+      ],
+      "lastVerifiedAt": "2026-10-01",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "base_reward"
+      ],
+      "notes": [
+        "200円（税込）につき2PayPayポイント（基本1.0%）。",
+        "1ポイント＝1円相当。",
+        "端数処理の公式明記は未確認のため、取引単位で切り捨てを仮定して登録した。"
+      ]
+    },
+    {
+      "id": "paypay_card_step_bonus",
+      "name": "PayPayカード 条件達成特典（+0.5%）",
+      "description": "200円以上30回かつ10万円以上の利用で0.5%が加算され、合計1.5%になる。",
+      "ruleKind": "campaignBonus",
+      "selectors": {
+        "instrumentIds": [
+          "paypay_card"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": {
+        "nodeType": "condition",
+        "conditionId": "paypay_step_achieved"
+      },
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 200,
+        "pointsPerUnit": 1,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "paypay_point",
+      "aggregation": {
+        "scope": "billingMonth",
+        "aggregationKey": "paypay_card_step_bonus_200",
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": true
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 100
+      },
+      "cap": null,
+      "validFrom": "2026-10-01",
+      "validUntilExclusive": null,
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_paypay_card_point"
+      ],
+      "lastVerifiedAt": "2026-10-01",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "campaign_bonus",
+        "conditional"
+      ],
+      "notes": [
+        "条件達成特典（200円以上30回＆10万円以上利用）で0.5%が加算され、適用期間は合計最大1.5%。",
+        "判定期間と適用期間はPayPayステップの規定による。",
+        "基本還元200円2ポイントと合算して200円3ポイント＝1.5%。"
+      ]
+    },
+    {
+      "id": "paypay_card_yahoo_shopping_bonus",
+      "name": "PayPayカード Yahoo!ショッピングの上乗せ（毎日最大5%）",
+      "description": "Yahoo!ショッピングで支払うと、200円につき8PayPayポイントを上乗せし合計10ポイント（5%）にする。",
+      "ruleKind": "campaignBonus",
+      "selectors": {
+        "instrumentIds": [
+          "paypay_card"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [
+          "yahoo_shopping"
+        ],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": {
+        "nodeType": "condition",
+        "conditionId": "paypay_app_verified"
+      },
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 200,
+        "pointsPerUnit": 8,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "paypay_point",
+      "aggregation": {
+        "scope": "billingMonth",
+        "aggregationKey": "paypay_card_yahoo_shopping_bonus_200",
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": true
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 100
+      },
+      "cap": null,
+      "validFrom": "2026-10-01",
+      "validUntilExclusive": null,
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_paypay_card_point"
+      ],
+      "lastVerifiedAt": "2026-10-01",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "campaign_bonus",
+        "conditional"
+      ],
+      "notes": [
+        "Yahoo!ショッピング・LOHACOで毎日最大5%（PayPayステップ1%＋ストアポイント1%＋毎日もらえる3%）。",
+        "PayPayアプリ登録と本人確認（eKYC）が必要。",
+        "基本還元200円2ポイントと合算して200円10ポイント＝5%。",
+        "「毎日もらえる3%」は期間限定ポイントで、付与上限がある（2026-09-05以降は1人あたり2,000円相当）。cap未対応のため計算には反映していない。",
+        "LYPプレミアム スタンダードプラン会員はさらに2%加算される（本カタログでは未登録）。"
+      ]
+    },
+    {
+      "id": "paypay_card_lohaco_bonus",
+      "name": "PayPayカード LOHACOの上乗せ（毎日最大5%）",
+      "description": "LOHACOで支払うと、200円につき8PayPayポイントを上乗せし合計10ポイント（5%）にする。",
+      "ruleKind": "campaignBonus",
+      "selectors": {
+        "instrumentIds": [
+          "paypay_card"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [
+          "lohaco"
+        ],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": {
+        "nodeType": "condition",
+        "conditionId": "paypay_app_verified"
+      },
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 200,
+        "pointsPerUnit": 8,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "paypay_point",
+      "aggregation": {
+        "scope": "billingMonth",
+        "aggregationKey": "paypay_card_lohaco_bonus_200",
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": true
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 100
+      },
+      "cap": null,
+      "validFrom": "2026-10-01",
+      "validUntilExclusive": null,
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_paypay_card_point"
+      ],
+      "lastVerifiedAt": "2026-10-01",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "campaign_bonus",
+        "conditional"
+      ],
+      "notes": [
+        "Yahoo!ショッピング・LOHACOで毎日最大5%（PayPayステップ1%＋ストアポイント1%＋毎日もらえる3%）。",
+        "PayPayアプリ登録と本人確認（eKYC）が必要。",
+        "基本還元200円2ポイントと合算して200円10ポイント＝5%。",
+        "付与上限がある。cap未対応のため計算には反映していない。"
       ]
     }
   ]

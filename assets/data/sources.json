@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "catalogVersion": "2026.09.29.3",
+  "catalogVersion": "2026.10.01.1",
   "generatedAt": "2026-09-27T00:00:00+09:00",
   "items": [
     {
@@ -798,6 +798,222 @@
       "notes": [
         "カードローンによる加算は金額段階の記載がなく、上限値（+3%）のみ確認できる。"
       ]
+    },
+    {
+      "id": "src_aeon_card_official",
+      "title": "イオンカード（WAON一体型）公式",
+      "url": "https://www.aeon.co.jp/card/lineup/aeon/",
+      "publisher": "イオンクレジットサービス株式会社",
+      "sourceType": "officialProductPage",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-10-01",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [
+        "1ヵ月あたり1カード50,000ポイント上限",
+        "対象店舗の上乗せ"
+      ],
+      "summary": "Vポイントアッププログラムの公式案内。月間上限と対象店舗の上乗せを説明。",
+      "contentHash": null,
+      "notes": []
+    },
+    {
+      "id": "src_aeon_point_official",
+      "title": "WAON POINT｜イオンカード",
+      "url": "https://www.aeon.co.jp/point/",
+      "publisher": "イオンクレジットサービス株式会社",
+      "sourceType": "officialProductPage",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-10-01",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [
+        "1ヵ月あたり1カード50,000ポイント上限",
+        "対象店舗の上乗せ"
+      ],
+      "summary": "Vポイントアッププログラムの公式案内。月間上限と対象店舗の上乗せを説明。",
+      "contentHash": null,
+      "notes": []
+    },
+    {
+      "id": "src_aeon_waonpoint",
+      "title": "WAON POINTのため方・つかい方",
+      "url": "https://www.aeon.co.jp/point/waonpoint/",
+      "publisher": "イオンクレジットサービス株式会社",
+      "sourceType": "officialProductPage",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-10-01",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [
+        "1ヵ月あたり1カード50,000ポイント上限",
+        "対象店舗の上乗せ"
+      ],
+      "summary": "Vポイントアッププログラムの公式案内。月間上限と対象店舗の上乗せを説明。",
+      "contentHash": null,
+      "notes": []
+    },
+    {
+      "id": "src_aeon_anytime_double",
+      "title": "イオングループ対象店舗ならいつでもWAON POINT基本の2倍",
+      "url": "https://www.aeon.co.jp/point/save/anytime/",
+      "publisher": "イオンクレジットサービス株式会社",
+      "sourceType": "officialProductPage",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-10-01",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [
+        "1ヵ月あたり1カード50,000ポイント上限",
+        "対象店舗の上乗せ"
+      ],
+      "summary": "Vポイントアッププログラムの公式案内。月間上限と対象店舗の上乗せを説明。",
+      "contentHash": null,
+      "notes": []
+    },
+    {
+      "id": "src_aeon_ariga10",
+      "title": "ありが10デー｜お得情報 優待・特典",
+      "url": "https://www.aeonretail.jp/campaign/ariga10/",
+      "publisher": "イオンリテール株式会社",
+      "sourceType": "officialProductPage",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-10-01",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [
+        "1ヵ月あたり1カード50,000ポイント上限",
+        "対象店舗の上乗せ"
+      ],
+      "summary": "Vポイントアッププログラムの公式案内。月間上限と対象店舗の上乗せを説明。",
+      "contentHash": null,
+      "notes": []
+    },
+    {
+      "id": "src_aeon_thanks_day",
+      "title": "お客さま感謝デー｜イオンカード",
+      "url": "https://www.aeon.co.jp/merit/thanks_day/",
+      "publisher": "イオンクレジットサービス株式会社",
+      "sourceType": "officialProductPage",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-10-01",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [
+        "1ヵ月あたり1カード50,000ポイント上限",
+        "対象店舗の上乗せ"
+      ],
+      "summary": "Vポイントアッププログラムの公式案内。月間上限と対象店舗の上乗せを説明。",
+      "contentHash": null,
+      "notes": []
+    },
+    {
+      "id": "src_aeon_welcia_card",
+      "title": "ウエルシアカードのご案内",
+      "url": "https://www.aeon.co.jp/card/lp/welciacard/",
+      "publisher": "イオンクレジットサービス株式会社",
+      "sourceType": "officialProductPage",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-10-01",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [
+        "1ヵ月あたり1カード50,000ポイント上限",
+        "対象店舗の上乗せ"
+      ],
+      "summary": "Vポイントアッププログラムの公式案内。月間上限と対象店舗の上乗せを説明。",
+      "contentHash": null,
+      "notes": []
+    },
+    {
+      "id": "src_dcard_official",
+      "title": "dカード特約店｜dポイントがさらにたまる",
+      "url": "https://dcard.docomo.ne.jp/st/dpoint_tokuyaku/index.html",
+      "publisher": "株式会社NTTドコモ",
+      "sourceType": "officialProductPage",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-10-01",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [
+        "1ヵ月あたり1カード50,000ポイント上限",
+        "対象店舗の上乗せ"
+      ],
+      "summary": "Vポイントアッププログラムの公式案内。月間上限と対象店舗の上乗せを説明。",
+      "contentHash": null,
+      "notes": []
+    },
+    {
+      "id": "src_dpoint_tokuyaku_about",
+      "title": "dカード特約店とは｜dポイントクラブ",
+      "url": "https://dpoint.docomo.ne.jp/store/dcard_tokuyaku/index.html",
+      "publisher": "株式会社NTTドコモ",
+      "sourceType": "officialProductPage",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-10-01",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [
+        "1ヵ月あたり1カード50,000ポイント上限",
+        "対象店舗の上乗せ"
+      ],
+      "summary": "Vポイントアッププログラムの公式案内。月間上限と対象店舗の上乗せを説明。",
+      "contentHash": null,
+      "notes": []
+    },
+    {
+      "id": "src_dcard_revision_2027",
+      "title": "ドコモ「dカード」還元率が0.5%へ半減、使わないと年会費1650円",
+      "url": "https://k-tai.watch.impress.co.jp/docs/news/2137201.html",
+      "publisher": "株式会社インプレス",
+      "sourceType": "officialProductPage",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-10-01",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [
+        "1ヵ月あたり1カード50,000ポイント上限",
+        "対象店舗の上乗せ"
+      ],
+      "summary": "Vポイントアッププログラムの公式案内。月間上限と対象店舗の上乗せを説明。",
+      "contentHash": null,
+      "notes": []
+    },
+    {
+      "id": "src_paypay_card_point",
+      "title": "カード利用特典（PayPayポイント）",
+      "url": "https://www.paypay-card.co.jp/service/benefit/point/",
+      "publisher": "PayPayカード株式会社",
+      "sourceType": "officialProductPage",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-10-01",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [
+        "1ヵ月あたり1カード50,000ポイント上限",
+        "対象店舗の上乗せ"
+      ],
+      "summary": "Vポイントアッププログラムの公式案内。月間上限と対象店舗の上乗せを説明。",
+      "contentHash": null,
+      "notes": []
+    },
+    {
+      "id": "src_paypay_step",
+      "title": "PayPayステップ",
+      "url": "https://paypay.ne.jp/event/paypaystep/",
+      "publisher": "PayPay株式会社",
+      "sourceType": "officialProductPage",
+      "publishedAt": null,
+      "lastVerifiedAt": "2026-10-01",
+      "accessStatus": "accessible",
+      "reliability": "primary",
+      "relevantSections": [
+        "1ヵ月あたり1カード50,000ポイント上限",
+        "対象店舗の上乗せ"
+      ],
+      "summary": "Vポイントアッププログラムの公式案内。月間上限と対象店舗の上乗せを説明。",
+      "contentHash": null,
+      "notes": []
     }
   ]
 }

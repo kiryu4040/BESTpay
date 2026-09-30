@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "catalogVersion": "2026.09.30.1",
+  "catalogVersion": "2026.10.01.1",
   "generatedAt": "2026-09-27T00:00:00+09:00",
   "items": [
     {
@@ -2009,6 +2009,733 @@
         "福田屋",
         "福田屋百貨店",
         "ふくだや"
+      ]
+    },
+    {
+      "id": "maxvalu",
+      "name": "マックスバリュ",
+      "merchantGroupIds": [
+        "supermarket_chain"
+      ],
+      "categoryIds": [
+        "supermarket"
+      ],
+      "locationIds": [],
+      "status": "active",
+      "sourceIds": [
+        "src_aeon_card_official",
+        "src_aeon_point_official",
+        "src_aeon_anytime_double",
+        "src_aeon_thanks_day"
+      ],
+      "notes": [
+        "イオングループの対象店舗。イオンマークのカード払いでいつでも200円2WAON POINT（1.0%）。毎月20日・30日のお客さま感謝デーは5%OFF。"
+      ],
+      "searchAliases": [
+        "まっくすばりゅ",
+        "マックスバリュー"
+      ]
+    },
+    {
+      "id": "the_big",
+      "name": "ザ・ビッグ",
+      "merchantGroupIds": [
+        "supermarket_chain"
+      ],
+      "categoryIds": [
+        "supermarket"
+      ],
+      "locationIds": [],
+      "status": "active",
+      "sourceIds": [
+        "src_aeon_card_official",
+        "src_aeon_point_official",
+        "src_aeon_anytime_double",
+        "src_aeon_thanks_day"
+      ],
+      "notes": [
+        "イオングループの対象店舗。イオンマークのカード払いでいつでも200円2WAON POINT（1.0%）。毎月20日・30日のお客さま感謝デーは5%OFF。"
+      ],
+      "searchAliases": [
+        "ざびっぐ",
+        "ビッグ"
+      ]
+    },
+    {
+      "id": "aeon_style",
+      "name": "イオンスタイル",
+      "merchantGroupIds": [
+        "supermarket_chain"
+      ],
+      "categoryIds": [
+        "supermarket"
+      ],
+      "locationIds": [],
+      "status": "active",
+      "sourceIds": [
+        "src_aeon_card_official",
+        "src_aeon_point_official",
+        "src_aeon_anytime_double",
+        "src_aeon_thanks_day"
+      ],
+      "notes": [
+        "イオングループの対象店舗。いつでも200円2WAON POINT。毎月10日のありが10デーはイオンカードで5倍（AEON Payは10倍）、毎月20日・30日は5%OFF。"
+      ],
+      "searchAliases": [
+        "いおんすたいる",
+        "イオンスタイル"
+      ]
+    },
+    {
+      "id": "daiei",
+      "name": "ダイエー",
+      "merchantGroupIds": [
+        "supermarket_chain"
+      ],
+      "categoryIds": [
+        "supermarket"
+      ],
+      "locationIds": [],
+      "status": "active",
+      "sourceIds": [
+        "src_aeon_card_official",
+        "src_aeon_point_official",
+        "src_aeon_anytime_double",
+        "src_aeon_thanks_day"
+      ],
+      "notes": [
+        "イオングループの対象店舗。イオンマークのカード払いでいつでも200円2WAON POINT（1.0%）。毎月20日・30日のお客さま感謝デーは5%OFF。"
+      ],
+      "searchAliases": [
+        "だいえー"
+      ]
+    },
+    {
+      "id": "aeon_supercenter",
+      "name": "イオンスーパーセンター",
+      "merchantGroupIds": [
+        "supermarket_chain"
+      ],
+      "categoryIds": [
+        "supermarket"
+      ],
+      "locationIds": [],
+      "status": "active",
+      "sourceIds": [
+        "src_aeon_card_official",
+        "src_aeon_point_official",
+        "src_aeon_anytime_double",
+        "src_aeon_thanks_day"
+      ],
+      "notes": [
+        "イオングループの対象店舗。イオンマークのカード払いでいつでも200円2WAON POINT（1.0%）。毎月20日・30日のお客さま感謝デーは5%OFF。"
+      ],
+      "searchAliases": [
+        "いおんすーぱーせんたー"
+      ]
+    },
+    {
+      "id": "sunday",
+      "name": "サンデー",
+      "merchantGroupIds": [
+        "supermarket_chain"
+      ],
+      "categoryIds": [
+        "supermarket"
+      ],
+      "locationIds": [],
+      "status": "active",
+      "sourceIds": [
+        "src_aeon_card_official",
+        "src_aeon_point_official",
+        "src_aeon_anytime_double",
+        "src_aeon_thanks_day"
+      ],
+      "notes": [
+        "イオングループの対象店舗。イオンマークのカード払いでいつでも200円2WAON POINT（1.0%）。毎月20日・30日のお客さま感謝デーは5%OFF。"
+      ],
+      "searchAliases": [
+        "さんでー"
+      ]
+    },
+    {
+      "id": "maibasket",
+      "name": "まいばすけっと",
+      "merchantGroupIds": [
+        "supermarket_chain"
+      ],
+      "categoryIds": [
+        "supermarket"
+      ],
+      "locationIds": [],
+      "status": "active",
+      "sourceIds": [
+        "src_aeon_card_official",
+        "src_aeon_point_official",
+        "src_aeon_anytime_double",
+        "src_aeon_thanks_day"
+      ],
+      "notes": [
+        "イオングループの対象店舗。イオンマークのカード払いでいつでも200円2WAON POINT（1.0%）。"
+      ],
+      "searchAliases": [
+        "まいばすけっと"
+      ]
+    },
+    {
+      "id": "welcia",
+      "name": "ウエルシア",
+      "merchantGroupIds": [
+        "drugstore_chain"
+      ],
+      "categoryIds": [
+        "drugstore"
+      ],
+      "locationIds": [],
+      "status": "active",
+      "sourceIds": [
+        "src_aeon_welcia_card",
+        "src_aeon_point_official"
+      ],
+      "notes": [
+        "ウエルシアグループの対象店舗。ウエルシアカードのクレジット払いで200円3WAON POINT（1.5%）、毎月10日は200円20WAON POINT（10%）。カード提示を併用すると最大11%。"
+      ],
+      "searchAliases": [
+        "うえるしあ",
+        "ウエルシア薬局"
+      ]
+    },
+    {
+      "id": "hac_drug",
+      "name": "ハックドラッグ",
+      "merchantGroupIds": [
+        "drugstore_chain"
+      ],
+      "categoryIds": [
+        "drugstore"
+      ],
+      "locationIds": [],
+      "status": "active",
+      "sourceIds": [
+        "src_aeon_welcia_card",
+        "src_aeon_point_official"
+      ],
+      "notes": [
+        "ウエルシアグループの対象店舗。ウエルシアカードのクレジット払いで1.5%、毎月10日は10%。"
+      ],
+      "searchAliases": [
+        "はっくどらっぐ",
+        "ハック"
+      ]
+    },
+    {
+      "id": "kokumin",
+      "name": "コクミン",
+      "merchantGroupIds": [
+        "drugstore_chain"
+      ],
+      "categoryIds": [
+        "drugstore"
+      ],
+      "locationIds": [],
+      "status": "active",
+      "sourceIds": [
+        "src_aeon_welcia_card",
+        "src_aeon_point_official",
+        "src_dcard_official",
+        "src_dpoint_tokuyaku_about"
+      ],
+      "notes": [
+        "ウエルシアグループの対象店舗。ウエルシアカードのクレジット払いで1.5%、毎月10日は10%。dカード特約店でもある（100円につき+2ポイント）。"
+      ],
+      "searchAliases": [
+        "こくみん",
+        "コクミンドラッグ"
+      ]
+    },
+    {
+      "id": "kinko_yakuhin",
+      "name": "金光薬品",
+      "merchantGroupIds": [
+        "drugstore_chain"
+      ],
+      "categoryIds": [
+        "drugstore"
+      ],
+      "locationIds": [],
+      "status": "active",
+      "sourceIds": [
+        "src_aeon_welcia_card",
+        "src_aeon_point_official"
+      ],
+      "notes": [
+        "ウエルシアグループの対象店舗。ウエルシアカードのクレジット払いで1.5%、毎月10日は10%。"
+      ],
+      "searchAliases": [
+        "きんこうやくひん"
+      ]
+    },
+    {
+      "id": "dax_drug",
+      "name": "ダックス",
+      "merchantGroupIds": [
+        "drugstore_chain"
+      ],
+      "categoryIds": [
+        "drugstore"
+      ],
+      "locationIds": [],
+      "status": "active",
+      "sourceIds": [
+        "src_aeon_welcia_card",
+        "src_aeon_point_official"
+      ],
+      "notes": [
+        "ウエルシアグループの対象店舗。ウエルシアカードのクレジット払いで1.5%、毎月10日は10%。"
+      ],
+      "searchAliases": [
+        "だっくす"
+      ]
+    },
+    {
+      "id": "super_drug_himawari",
+      "name": "スーパードラッグひまわり",
+      "merchantGroupIds": [
+        "drugstore_chain"
+      ],
+      "categoryIds": [
+        "drugstore"
+      ],
+      "locationIds": [],
+      "status": "active",
+      "sourceIds": [
+        "src_aeon_welcia_card",
+        "src_aeon_point_official"
+      ],
+      "notes": [
+        "ウエルシアグループの対象店舗。ウエルシアカードのクレジット払いで1.5%、毎月10日は10%。"
+      ],
+      "searchAliases": [
+        "ひまわり",
+        "すーぱーどらっぐひまわり"
+      ]
+    },
+    {
+      "id": "maruedrug",
+      "name": "マルエドラッグ",
+      "merchantGroupIds": [
+        "drugstore_chain"
+      ],
+      "categoryIds": [
+        "drugstore"
+      ],
+      "locationIds": [],
+      "status": "active",
+      "sourceIds": [
+        "src_aeon_welcia_card",
+        "src_aeon_point_official"
+      ],
+      "notes": [
+        "ウエルシアグループの対象店舗。ウエルシアカードのクレジット払いで1.5%、毎月10日は10%。"
+      ],
+      "searchAliases": [
+        "まるえどらっぐ"
+      ]
+    },
+    {
+      "id": "happy_drug",
+      "name": "ハッピー・ドラッグ",
+      "merchantGroupIds": [
+        "drugstore_chain"
+      ],
+      "categoryIds": [
+        "drugstore"
+      ],
+      "locationIds": [],
+      "status": "active",
+      "sourceIds": [
+        "src_aeon_welcia_card",
+        "src_aeon_point_official"
+      ],
+      "notes": [
+        "ウエルシアグループの対象店舗。ウエルシアカードのクレジット払いで1.5%、毎月10日は10%。"
+      ],
+      "searchAliases": [
+        "はっぴーどらっぐ"
+      ]
+    },
+    {
+      "id": "yodoya_drug",
+      "name": "よどやドラッグ",
+      "merchantGroupIds": [
+        "drugstore_chain"
+      ],
+      "categoryIds": [
+        "drugstore"
+      ],
+      "locationIds": [],
+      "status": "active",
+      "sourceIds": [
+        "src_aeon_welcia_card",
+        "src_aeon_point_official"
+      ],
+      "notes": [
+        "ウエルシアグループの対象店舗。ウエルシアカードのクレジット払いで1.5%、毎月10日は10%。"
+      ],
+      "searchAliases": [
+        "よどや"
+      ]
+    },
+    {
+      "id": "fuku_yakuhin",
+      "name": "ふく薬品",
+      "merchantGroupIds": [
+        "drugstore_chain"
+      ],
+      "categoryIds": [
+        "drugstore"
+      ],
+      "locationIds": [],
+      "status": "active",
+      "sourceIds": [
+        "src_aeon_welcia_card",
+        "src_aeon_point_official"
+      ],
+      "notes": [
+        "ウエルシアグループの対象店舗。ウエルシアカードのクレジット払いで1.5%、毎月10日は10%。JCBカードWのJ-POINTパートナーでもある（2倍）。"
+      ],
+      "searchAliases": [
+        "ふくやくひん"
+      ]
+    },
+    {
+      "id": "towoya_yakkyoku",
+      "name": "とをしや薬局",
+      "merchantGroupIds": [
+        "drugstore_chain"
+      ],
+      "categoryIds": [
+        "drugstore"
+      ],
+      "locationIds": [],
+      "status": "active",
+      "sourceIds": [
+        "src_aeon_welcia_card",
+        "src_aeon_point_official"
+      ],
+      "notes": [
+        "ウエルシアグループの対象店舗。ウエルシアカードのクレジット払いで1.5%、毎月10日は10%。"
+      ],
+      "searchAliases": [
+        "とをしや"
+      ]
+    },
+    {
+      "id": "matsumotokiyoshi",
+      "name": "マツモトキヨシ",
+      "merchantGroupIds": [
+        "drugstore_chain"
+      ],
+      "categoryIds": [
+        "drugstore"
+      ],
+      "locationIds": [],
+      "status": "active",
+      "sourceIds": [
+        "src_dcard_official",
+        "src_dpoint_tokuyaku_about"
+      ],
+      "notes": [
+        "dカード特約店（100円につき+2ポイント）。dカードの基本1%と合算して3%。"
+      ],
+      "searchAliases": [
+        "まつきよ",
+        "マツキヨ",
+        "まつもときよし"
+      ]
+    },
+    {
+      "id": "cocokara_fine",
+      "name": "ココカラファイン",
+      "merchantGroupIds": [
+        "drugstore_chain"
+      ],
+      "categoryIds": [
+        "drugstore"
+      ],
+      "locationIds": [],
+      "status": "active",
+      "sourceIds": [
+        "src_dcard_official",
+        "src_dpoint_tokuyaku_about"
+      ],
+      "notes": [
+        "dカード特約店（100円につき+2ポイント）。dカードの基本1%と合算して3%。"
+      ],
+      "searchAliases": [
+        "ここからふぁいん",
+        "ココカラ"
+      ]
+    },
+    {
+      "id": "takashimaya",
+      "name": "高島屋",
+      "merchantGroupIds": [
+        "department_store_chain"
+      ],
+      "categoryIds": [
+        "department_store"
+      ],
+      "locationIds": [],
+      "status": "active",
+      "sourceIds": [
+        "src_dcard_official",
+        "src_dpoint_tokuyaku_about"
+      ],
+      "notes": [
+        "dカード特約店（200円につき+1ポイント）。dカードの基本1%と合算して1.5%。"
+      ],
+      "searchAliases": [
+        "たかしまや",
+        "タカシマヤ"
+      ]
+    },
+    {
+      "id": "kinokuniya",
+      "name": "紀伊國屋書店",
+      "merchantGroupIds": [],
+      "categoryIds": [
+        "book_media"
+      ],
+      "locationIds": [],
+      "status": "active",
+      "sourceIds": [
+        "src_dcard_official",
+        "src_dpoint_tokuyaku_about"
+      ],
+      "notes": [
+        "dカード特約店（100円につき+1ポイント）。dカードの基本1%と合算して2%。"
+      ],
+      "searchAliases": [
+        "きのくにや",
+        "紀伊国屋書店"
+      ]
+    },
+    {
+      "id": "maruzen",
+      "name": "丸善",
+      "merchantGroupIds": [],
+      "categoryIds": [
+        "book_media"
+      ],
+      "locationIds": [],
+      "status": "active",
+      "sourceIds": [
+        "src_dcard_official",
+        "src_dpoint_tokuyaku_about"
+      ],
+      "notes": [
+        "dカード特約店（200円につき+1ポイント）。dカードの基本1%と合算して1.5%。"
+      ],
+      "searchAliases": [
+        "まるぜん"
+      ]
+    },
+    {
+      "id": "junku_do",
+      "name": "ジュンク堂書店",
+      "merchantGroupIds": [],
+      "categoryIds": [
+        "book_media"
+      ],
+      "locationIds": [],
+      "status": "active",
+      "sourceIds": [
+        "src_dcard_official",
+        "src_dpoint_tokuyaku_about"
+      ],
+      "notes": [
+        "dカード特約店（200円につき+1ポイント）。dカードの基本1%と合算して1.5%。"
+      ],
+      "searchAliases": [
+        "じゅんくどう",
+        "ジュンク堂"
+      ]
+    },
+    {
+      "id": "tower_records",
+      "name": "タワーレコード",
+      "merchantGroupIds": [],
+      "categoryIds": [
+        "book_media"
+      ],
+      "locationIds": [],
+      "status": "active",
+      "sourceIds": [
+        "src_dcard_official",
+        "src_dpoint_tokuyaku_about"
+      ],
+      "notes": [
+        "dカード特約店（100円につき+1ポイント）。dカードの基本1%と合算して2%。"
+      ],
+      "searchAliases": [
+        "たわーれこーど",
+        "タワレコ"
+      ]
+    },
+    {
+      "id": "big_echo",
+      "name": "カラオケビッグエコー",
+      "merchantGroupIds": [],
+      "categoryIds": [
+        "book_media"
+      ],
+      "locationIds": [],
+      "status": "active",
+      "sourceIds": [
+        "src_dcard_official",
+        "src_dpoint_tokuyaku_about"
+      ],
+      "notes": [
+        "dカード特約店（100円につき+2ポイント）。dカードの基本1%と合算して3%。"
+      ],
+      "searchAliases": [
+        "びっぐえこー",
+        "ビッグエコー"
+      ]
+    },
+    {
+      "id": "golf_me",
+      "name": "GOLF me!",
+      "merchantGroupIds": [],
+      "categoryIds": [
+        "book_media"
+      ],
+      "locationIds": [],
+      "status": "active",
+      "sourceIds": [
+        "src_dcard_official",
+        "src_dpoint_tokuyaku_about"
+      ],
+      "notes": [
+        "dカード特約店（100円につき+4ポイント）。dカードの基本1%と合算して5%。"
+      ],
+      "searchAliases": [
+        "ごるふみー",
+        "ゴルフミー"
+      ]
+    },
+    {
+      "id": "club_med",
+      "name": "クラブメッド",
+      "merchantGroupIds": [
+        "lifestyle_chain"
+      ],
+      "categoryIds": [
+        "lifestyle"
+      ],
+      "locationIds": [],
+      "status": "active",
+      "sourceIds": [
+        "src_dcard_official",
+        "src_dpoint_tokuyaku_about"
+      ],
+      "notes": [
+        "dカード特約店（100円につき+3ポイント）。dカードの基本1%と合算して4%。"
+      ],
+      "searchAliases": [
+        "くらぶめっど"
+      ]
+    },
+    {
+      "id": "sakai_hikkoshi",
+      "name": "サカイ引越センター",
+      "merchantGroupIds": [
+        "lifestyle_chain"
+      ],
+      "categoryIds": [
+        "lifestyle"
+      ],
+      "locationIds": [],
+      "status": "active",
+      "sourceIds": [
+        "src_dcard_official",
+        "src_dpoint_tokuyaku_about"
+      ],
+      "notes": [
+        "dカード特約店（100円につき+3ポイント）。dカードの基本1%と合算して4%。"
+      ],
+      "searchAliases": [
+        "さかいひっこし",
+        "サカイ"
+      ]
+    },
+    {
+      "id": "adidas_online",
+      "name": "アディダス オンラインショップ",
+      "merchantGroupIds": [
+        "ファッションチェーン"
+      ],
+      "categoryIds": [
+        "fashion"
+      ],
+      "locationIds": [],
+      "status": "active",
+      "sourceIds": [
+        "src_dcard_official",
+        "src_dpoint_tokuyaku_about"
+      ],
+      "notes": [
+        "dカード特約店（100円につき+1ポイント）。dカードの基本1%と合算して2%。"
+      ],
+      "searchAliases": [
+        "あでぃだす",
+        "adidas"
+      ]
+    },
+    {
+      "id": "suit_square",
+      "name": "SUIT SQUARE",
+      "merchantGroupIds": [
+        "ファッションチェーン"
+      ],
+      "categoryIds": [
+        "fashion"
+      ],
+      "locationIds": [],
+      "status": "active",
+      "sourceIds": [
+        "src_dcard_official",
+        "src_dpoint_tokuyaku_about"
+      ],
+      "notes": [
+        "dカード特約店（100円につき+1ポイント）。dカードの基本1%と合算して2%。"
+      ],
+      "searchAliases": [
+        "すーつくえあ",
+        "スーツスクエア"
+      ]
+    },
+    {
+      "id": "lohaco",
+      "name": "LOHACO",
+      "merchantGroupIds": [
+        "online_chain"
+      ],
+      "categoryIds": [
+        "online_shop"
+      ],
+      "locationIds": [],
+      "status": "active",
+      "sourceIds": [
+        "src_paypay_card_point"
+      ],
+      "notes": [
+        "PayPayカードで毎日最大5%（PayPayステップ1%＋ストアポイント1%＋毎日もらえる3%）。PayPayアプリ登録と本人確認が必要。"
+      ],
+      "searchAliases": [
+        "ろはこ",
+        "LOHACO"
       ]
     }
   ]

@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "catalogVersion": "2026.09.29.3",
+  "catalogVersion": "2026.10.01.1",
   "generatedAt": "2026-09-27T00:00:00+09:00",
   "items": [
     {
@@ -921,6 +921,160 @@
         "「不明」のあいだはその分を確定値に加算しない（D-50）。",
         "SMBC日興証券の公式ページで確定（投信積立3万円以上で+0.5%、NISA口座での投信積立3万円以上でさらに+0.5%、合計最大+1.0%）。",
         "2つの条件は両方満たすことができ、その場合は合計+1.0%となる。"
+      ]
+    },
+    {
+      "id": "aeon_ariga10_card",
+      "name": "毎月10日の「ありが10デー」（イオンカード払い）",
+      "description": "毎月10日にイオン・イオンスタイル直営売場でイオンカード払いをすると、WAON POINTが200円につき5ポイント（基本の5倍）になる。",
+      "valueType": "boolean",
+      "defaultState": "notSatisfied",
+      "verificationMethod": "userInput",
+      "scope": "user",
+      "sensitivity": "normal",
+      "validFrom": "2026-10-01",
+      "validUntilExclusive": null,
+      "status": "active",
+      "ownerInstrumentIds": [
+        "イオンカード",
+        "aeon_card"
+      ],
+      "sourceIds": [
+        "src_aeon_ariga10",
+        "src_aeon_card_official"
+      ],
+      "notes": [
+        "毎月10日だけの特典。当日に買い物をするときだけ「満たす」にしてください。",
+        "AEON Payのスマホ決済を使う場合は、もう一方の条件（AEON Pay）だけをオンにしてください。両方をオンにすると還元率が過大になります。",
+        "対象は本州（東北を除く）・四国のイオン／イオンスタイル直営売場。調剤・たばこ・切手・商品券などは対象外。"
+      ]
+    },
+    {
+      "id": "aeon_ariga10_aeonpay",
+      "name": "毎月10日の「ありが10デー」（AEON Payのスマホ決済）",
+      "description": "毎月10日にイオン・イオンスタイル直営売場でAEON Payのスマホ決済をすると、WAON POINTが200円につき10ポイント（基本の10倍）になる。",
+      "valueType": "boolean",
+      "defaultState": "notSatisfied",
+      "verificationMethod": "userInput",
+      "scope": "user",
+      "sensitivity": "normal",
+      "validFrom": "2026-10-01",
+      "validUntilExclusive": null,
+      "status": "active",
+      "ownerInstrumentIds": [
+        "イオンカード",
+        "aeon_card"
+      ],
+      "sourceIds": [
+        "src_aeon_ariga10",
+        "src_aeon_card_official"
+      ],
+      "notes": [
+        "毎月10日だけの特典。AEON Payで支払うときだけ「満たす」にしてください。",
+        "イオンカード払いの場合は、もう一方の条件（イオンカード払い）だけをオンにしてください。",
+        "対象は本州（東北を除く）・四国のイオン／イオンスタイル直営売場。"
+      ]
+    },
+    {
+      "id": "aeon_thanks_day",
+      "name": "毎月20日・30日の「お客さま感謝デー」",
+      "description": "毎月20日・30日にイオングループの対象店舗でイオンマークのカード払い・AEON Pay・イオンiD・電子マネーWAONなどで支払うと、買い物代金が5%OFFになる。",
+      "valueType": "boolean",
+      "defaultState": "notSatisfied",
+      "verificationMethod": "userInput",
+      "scope": "user",
+      "sensitivity": "normal",
+      "validFrom": "2026-10-01",
+      "validUntilExclusive": null,
+      "status": "active",
+      "ownerInstrumentIds": [
+        "イオンカード",
+        "aeon_card"
+      ],
+      "sourceIds": [
+        "src_aeon_thanks_day",
+        "src_aeon_card_official"
+      ],
+      "notes": [
+        "毎月20日と30日だけの特典。当日に買い物をするときだけ「満たす」にしてください。",
+        "これはポイント進呈ではなく買い物代金の値引きです。アプリでは値引き額を同額の還元として円換算で表示します。",
+        "一部対象外店舗・対象外商品がある。交通系電子マネーは対象外。"
+      ]
+    },
+    {
+      "id": "welcia_10th_day",
+      "name": "毎月10日（ウエルシアカードの10%デー）",
+      "description": "毎月10日にウエルシアグループの対象店舗でウエルシアカードをクレジット払いすると、WAON POINTが200円につき20ポイント（10%）になる。カード提示を併せると最大11%。",
+      "valueType": "boolean",
+      "defaultState": "notSatisfied",
+      "verificationMethod": "userInput",
+      "scope": "user",
+      "sensitivity": "normal",
+      "validFrom": "2026-10-01",
+      "validUntilExclusive": null,
+      "status": "active",
+      "ownerInstrumentIds": [
+        "ウエルシアカード",
+        "welcia_card"
+      ],
+      "sourceIds": [
+        "src_aeon_welcia_card"
+      ],
+      "notes": [
+        "毎月10日だけの特典。当日に買い物をするときだけ「満たす」にしてください。",
+        "カード提示のみの場合は1%、クレジット払いのみの場合は10%、両方なら最大11%。",
+        "付与は1%分が当月25日、残り9%分が翌月25日。",
+        "ウェルパークは対象外。"
+      ]
+    },
+    {
+      "id": "paypay_step_achieved",
+      "name": "PayPayステップの条件達成（200円以上30回＆10万円以上）",
+      "description": "直近の判定期間にPayPayカードでの決済が200円以上30回かつ合計10万円以上あると、翌期間の付与率に0.5%が加算される。",
+      "valueType": "boolean",
+      "defaultState": "notSatisfied",
+      "verificationMethod": "userInput",
+      "scope": "user",
+      "sensitivity": "normal",
+      "validFrom": "2026-10-01",
+      "validUntilExclusive": null,
+      "status": "active",
+      "ownerInstrumentIds": [
+        "PayPayカード",
+        "paypay_card"
+      ],
+      "sourceIds": [
+        "src_paypay_card_point",
+        "src_paypay_step"
+      ],
+      "notes": [
+        "判定期間と適用期間はPayPayステップの規定による。",
+        "達成していない期間は基本の1.0%のみ。"
+      ]
+    },
+    {
+      "id": "paypay_app_verified",
+      "name": "PayPayアプリ登録と本人確認（eKYC）済み",
+      "description": "PayPayアプリにPayPayカードを登録し、PayPayの本人確認（eKYC）を完了していると、Yahoo!ショッピング・LOHACOの特典（毎日最大5%）やPayPayステップの対象になる。",
+      "valueType": "boolean",
+      "defaultState": "notSatisfied",
+      "verificationMethod": "userInput",
+      "scope": "user",
+      "sensitivity": "normal",
+      "validFrom": "2026-10-01",
+      "validUntilExclusive": null,
+      "status": "active",
+      "ownerInstrumentIds": [
+        "PayPayカード",
+        "paypay_card"
+      ],
+      "sourceIds": [
+        "src_paypay_card_point",
+        "src_paypay_step"
+      ],
+      "notes": [
+        "Yahoo!ショッピング・LOHACOの「毎日最大5%」にはアプリ登録と本人確認が必要。",
+        "未完了の場合は基本付与率のみ。"
       ]
     }
   ]

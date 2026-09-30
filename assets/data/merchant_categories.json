@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "catalogVersion": "2026.09.29.3",
+  "catalogVersion": "2026.10.01.1",
   "generatedAt": "2026-09-27T00:00:00+09:00",
   "items": [
     {
@@ -253,6 +253,19 @@
       ],
       "notes": [
         "JCBカードWのJ-POINTパートナーに百貨店が複数掲載されているため新設した（D-138）。"
+      ]
+    },
+    {
+      "id": "book_media",
+      "name": "書店・音楽・娯楽",
+      "parentCategoryId": null,
+      "status": "active",
+      "sourceIds": [
+        "src_dcard_official",
+        "src_dpoint_tokuyaku_about"
+      ],
+      "notes": [
+        "dカード特約店に書店・レコード店・カラオケが複数掲載されているため新設した（D-143）。"
       ]
     }
   ]
