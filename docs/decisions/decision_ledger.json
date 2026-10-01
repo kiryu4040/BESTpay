@@ -1215,6 +1215,14 @@
       "decision": "Androidのランチャーアイコンを、扇形に並んだ3枚のカードの手前1枚が金色に光る図（案C）へ変更した。輝き・キラキラのエフェクトはユーザーの指示で削除。アプリの寒色テーマに合わせた深い青緑（#0C435C）の背景で、文字や透かしは入れない。Android 8以降の丸・角丸マスクに対応するため、従来の正方形画像（ic_launcher.png、48〜192px）に加えて、アダプティブアイコン（mipmap-anydpi-v26/ic_launcher.xml＋ic_launcher_foreground.png 108〜432px、背景色はvalues/colors.xmlのic_launcher_background）を新設した。前景の絵は108dpのうち84dpに収め、マスクで切れる領域（中央72dp）にカードが掛からないようにしている。",
       "phase": "1期",
       "source": "user"
+    },
+    {
+      "id": "D-150",
+      "area": "build",
+      "title": "アイコン変更が端末に反映されない原因への対策",
+      "decision": "rev24で新しいランチャーアイコンを入れたが端末に反映されなかった。原因は(1) android/app/build.gradle の versionCode が 1 に固定されており、pubspec の version と無関係に全APKが同一バージョンだったためAndroidが「同じアプリの再インストール」と扱い、ランチャーがキャッシュした旧アイコンを表示し続けること、(2) 端末側のランチャーアイコンキャッシュ、(3) ビルドが失敗した場合に旧APKを入れ直してしまうこと、の3つが重なるため。対策として versionCode=2 / versionName=2.0.1（pubspecは 2.0.1+2）に更新し、ワークフローに「アイコン3点セットの存在確認」と「完成APKのversionCode・application-iconの表示」の2ステップを追加して、ログで確認できるようにした。端末側はアプリを完全にアンインストールしてから入れ直すのが確実。",
+      "phase": "1期",
+      "source": "user"
     }
   ]
 }

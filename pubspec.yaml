@@ -1,7 +1,7 @@
 name: bestpay
 description: "BESTpay v2 - 店舗と金額から保有カードの還元額ランキングを出す個人利用アプリ。"
 publish_to: 'none'
-version: 2.0.0+1
+version: 2.0.1+2
 
 environment:
   sdk: ^3.5.0
