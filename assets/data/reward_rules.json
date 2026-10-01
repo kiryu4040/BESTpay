@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "catalogVersion": "2026.10.01.2",
+  "catalogVersion": "2026.10.01.3",
   "generatedAt": "2026-09-27T00:00:00+09:00",
   "items": [
     {
@@ -906,88 +906,6 @@
         "月間7%還元分の上限は未確認（Vポイントアッププログラム全体の月50,000ポイント上限は適用）。",
         "Vポイントアッププログラムの月間上限50,000ポイントは cap 未対応のため計算に反映しない（第2期）。",
         "ポイント付与自体の対象外リストは公式ページに明示がなく未確認。"
-      ]
-    },
-    {
-      "id": "v_neobank_debit_base_1_25",
-      "name": "V NEOBANKデビット 基本還元 1.25%（2026-11-01以降到着分）",
-      "description": "2026-11-01以降に売上確定データが到着した分の還元率1.25%。改定は上書きせず別ルールとして登録する（決定台帳 D-40）。",
-      "ruleKind": "baseReward",
-      "selectors": {
-        "instrumentIds": [
-          "v_neobank_debit"
-        ],
-        "modeIds": [],
-        "routeIds": [],
-        "fundingRelationIds": [],
-        "merchantIds": [],
-        "merchantGroupIds": [],
-        "categoryIds": [],
-        "brandIds": [],
-        "locationIds": [],
-        "transactionTags": []
-      },
-      "exclusions": {
-        "instrumentIds": [],
-        "modeIds": [],
-        "routeIds": [],
-        "fundingRelationIds": [],
-        "merchantIds": [],
-        "merchantGroupIds": [],
-        "categoryIds": [],
-        "brandIds": [],
-        "locationIds": [],
-        "transactionTags": []
-      },
-      "conditionExpression": null,
-      "calculation": {
-        "calculationType": "rateFraction",
-        "numerator": 1,
-        "denominator": 80,
-        "rounding": "floor"
-      },
-      "outputPointProgramId": "v_point",
-      "aggregation": {
-        "scope": "transaction",
-        "aggregationKey": null,
-        "periodMinimumEligibleSpendYen": 0,
-        "conditionEvaluationTiming": "transaction",
-        "incrementalAward": false
-      },
-      "stacking": {
-        "policy": "stackable",
-        "exclusiveGroupId": null,
-        "replacesRuleIds": [],
-        "suppressesRuleIds": [],
-        "suppressesTags": [],
-        "dependsOnRuleIds": [],
-        "applicationOrder": 20
-      },
-      "cap": null,
-      "validFrom": "2026-11-01",
-      "validUntilExclusive": null,
-      "dateBasis": "settlementDataReceivedDate",
-      "timezone": "Asia/Tokyo",
-      "displayClaim": null,
-      "sourceIds": [
-        "src_netbk_revision_20260731",
-        "src_itmedia_vneobank_revision"
-      ],
-      "lastVerifiedAt": "2026-09-27",
-      "status": "active",
-      "priority": 100,
-      "tags": [
-        "base_reward",
-        "revision_2026_11"
-      ],
-      "notes": [
-        "2026-11-01以降到着の売上確定データ分から還元率は1.25%（＝1/80）。",
-        "日付基準は売上確定データの到着日（settlementDataReceivedDate）。",
-        "有効区間は半開区間 [2026-11-01, ∞) として登録する。10月中の利用でも到着が11-01以降なら新率が適用される。",
-        "同日到着分より対象外取引を大幅追加（他社決済サービスへのチャージ、鉄道、公共料金、税金、病院、非営利団体への会費・寄付等）。対象外リストはエンジン未実装のため notes のみに残す（第2期）。",
-        "月間合計1,000円以上の利用が条件。現エンジンでは月間最低利用額を条件として表現できないため notes のみに残す。",
-        "1ポイント未満の端数は切り捨て。",
-        "改定は上書きせず2本のルールとして登録する（決定台帳 D-40）。"
       ]
     },
     {

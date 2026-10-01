@@ -143,7 +143,7 @@ void main() {
   group('カタログのデコード', () {
     test('実カード6枚がデコードでき、Catalogが構築できる', () {
       expect(catalog.isNotEmpty, isTrue);
-      expect(catalog.catalogVersion, '2026.10.01.2');
+      expect(catalog.catalogVersion, '2026.10.01.3');
       expect(catalog.generatedAt, '2026-09-29T00:00:00+09:00');
 
       expect(
@@ -177,7 +177,7 @@ void main() {
         ],
       );
 
-      expect(catalog.rewardRulesById.length, 118);
+      expect(catalog.rewardRulesById.length, 117);
       expect(catalog.sourcesById.length, 57);
 
       final mizuho = catalog.paymentInstrumentsById[id('mizuho_rakuten_card')]!;
@@ -209,7 +209,7 @@ void main() {
           .where((rule) => rule.status.value == 'draft')
           .toList();
 
-      expect(active.length, 112);
+      expect(active.length, 111);
       expect(draft.length, 6);
 
       for (final rule in catalog.rewardRulesById.values) {
@@ -510,28 +510,7 @@ void main() {
       expect(result.pointsByProgram[id('v_point')]!.points, 150);
     });
 
-    test('2026-11-01到着は1.25%（125pt）', () {
-      final result = evaluateRuleSet(
-        catalog.rulesApplicableToInstrument(id('v_neobank_debit')),
-        vNeobankInput(
-          amountYen: 10000,
-          settlementDataReceivedDate: '2026-11-01',
-        ),
-      );
 
-      expect(result.pointsByProgram[id('v_point')]!.points, 125);
-    });
-
-    test('改定は2本のルールとして登録され、有効区間が半開区間で重複しない', () {
-      final legacy = catalog.rewardRulesById[id('v_neobank_debit_base_1_5')]!;
-      final revised = catalog.rewardRulesById[id('v_neobank_debit_base_1_25')]!;
-
-      expect(legacy.dateBasis.value, 'settlementDataReceivedDate');
-      expect(revised.dateBasis.value, 'settlementDataReceivedDate');
-      expect(legacy.validityPeriod.endsBefore.toString(), '2026-11-01');
-      expect(revised.validityPeriod.startsOn.toString(), '2026-11-01');
-      expect(revised.validityPeriod.endsBefore, isNull);
-    });
   });
 
   group('みずほ楽天カードの条件付きWポイント', () {
