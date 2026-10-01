@@ -143,8 +143,8 @@ void main() {
   group('カタログのデコード', () {
     test('実カード6枚がデコードでき、Catalogが構築できる', () {
       expect(catalog.isNotEmpty, isTrue);
-      expect(catalog.catalogVersion, '2026.10.01.3');
-      expect(catalog.generatedAt, '2026-09-29T00:00:00+09:00');
+      expect(catalog.catalogVersion, '2026.10.01.4');
+      expect(catalog.generatedAt, '2026-10-01T00:00:00+09:00');
 
       expect(
         catalog.paymentInstrumentsById.keys.map((key) => key.value).toList()

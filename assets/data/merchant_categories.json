@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "catalogVersion": "2026.10.01.3",
+  "catalogVersion": "2026.10.01.4",
   "generatedAt": "2026-09-27T00:00:00+09:00",
   "items": [
     {
@@ -179,7 +179,7 @@
       ]
     },
     {
-      "id": "card_ride",
+      "id": "card_ride_service",
       "name": "クレカ乗車",
       "parentCategoryId": null,
       "status": "active",
@@ -266,6 +266,42 @@
       ],
       "notes": [
         "dカード特約店に書店・レコード店・カラオケが複数掲載されているため新設した（D-143）。"
+      ]
+    },
+    {
+      "id": "rakuten_insurance_category",
+      "name": "楽天保険",
+      "parentCategoryId": null,
+      "status": "draft",
+      "sourceIds": [
+        "src_rakuten_point_rate"
+      ],
+      "notes": [
+        "みずほ楽天カードの楽天サービス上乗せ用。該当ルールは draft のため計算には使われない。"
+      ]
+    },
+    {
+      "id": "rakuten_mobile_carrier_category",
+      "name": "楽天モバイル",
+      "parentCategoryId": null,
+      "status": "draft",
+      "sourceIds": [
+        "src_rakuten_point_rate"
+      ],
+      "notes": [
+        "みずほ楽天カードの楽天サービス上乗せ用。該当ルールは draft のため計算には使われない。"
+      ]
+    },
+    {
+      "id": "rakuten_utility_and_tax_category",
+      "name": "楽天 公共料金・税金",
+      "parentCategoryId": null,
+      "status": "draft",
+      "sourceIds": [
+        "src_rakuten_point_rate"
+      ],
+      "notes": [
+        "みずほ楽天カードの楽天サービス上乗せ用。該当ルールは draft のため計算には使われない。"
       ]
     }
   ]
