@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "catalogVersion": "2026.10.01.1",
+  "catalogVersion": "2026.10.01.2",
   "generatedAt": "2026-09-27T00:00:00+09:00",
   "items": [
     {
@@ -23,7 +23,7 @@
         "src_rakuten_point_rate",
         "src_mizuho_rakuten_official"
       ],
-      "lastVerifiedAt": "2026-09-27",
+      "lastVerifiedAt": "2026-10-01",
       "notes": [
         "1P = 1円相当（楽天市場等で利用可）。",
         "有効期限の公式明記は確認できず未確認。",
@@ -43,17 +43,19 @@
         }
       },
       "expiration": {
-        "expirationType": "unknown"
+        "expirationType": "durationMonths",
+        "months": 24
       },
       "status": "active",
       "sourceIds": [
         "src_mizuho_rakuten_official"
       ],
-      "lastVerifiedAt": "2026-09-27",
+      "lastVerifiedAt": "2026-10-01",
       "notes": [
         "みずほポイント1Pは楽天ポイント1Pに等価交換でき、1P = 1円相当（Amazonギフト・PayPayポイント等）。",
         "交換先により価値が変わる可能性があり、最小値は未確認。",
-        "Wポイントプランで付与される（条件は reward_rules の該当ルールと condition_definitions を参照）。"
+        "Wポイントプランで付与される（条件は reward_rules の該当ルールと condition_definitions を参照）。",
+        "有効期限は付与月の24か月後の月末23時59分まで。"
       ]
     },
     {
@@ -78,7 +80,7 @@
         "src_smbc_gold_nl_official",
         "src_netbk_vneobank"
       ],
-      "lastVerifiedAt": "2026-09-27",
+      "lastVerifiedAt": "2026-10-01",
       "notes": [
         "1P = 1円相当（標準。ドコモSMTBネット銀行 V NEOBANKページの記載）。",
         "運営会社の正確な名称および最小交換価値は未確認。",
@@ -105,7 +107,7 @@
         "src_mufg_global_point",
         "src_mufg_bank_card"
       ],
-      "lastVerifiedAt": "2026-09-27",
+      "lastVerifiedAt": "2026-10-01",
       "notes": [
         "1P = 5円相当（商品交換の場合）。キャッシュバック交換は1P = 4円。",
         "最大交換価値は未確認。有効期限も未確認。"
@@ -132,7 +134,7 @@
         "src_jcb_card_w_official",
         "src_jcb_point_about"
       ],
-      "lastVerifiedAt": "2026-09-27",
+      "lastVerifiedAt": "2026-10-01",
       "notes": [
         "1P = 最大1円分相当として利用可。",
         "有効期限: 一般カードは獲得月より2年間（24ヵ月）。",
@@ -152,7 +154,8 @@
         }
       },
       "expiration": {
-        "expirationType": "unknown"
+        "expirationType": "durationMonths",
+        "months": 24
       },
       "status": "active",
       "sourceIds": [
@@ -163,7 +166,8 @@
       "notes": [
         "イオンマークのカード払い200円（税込）につき1ポイント。",
         "1ポイント＝1円から対象店舗でのお支払いに使える。",
-        "イオングループ各店・WAON POINT加盟店で利用可。"
+        "イオングループ各店・WAON POINT加盟店で利用可。",
+        "有効期限は初回進呈月を起点に最大2年間。各獲得分が必ず丸2年間有効という意味ではない。"
       ]
     },
     {
@@ -179,7 +183,8 @@
         }
       },
       "expiration": {
-        "expirationType": "unknown"
+        "expirationType": "durationMonths",
+        "months": 12
       },
       "status": "active",
       "sourceIds": [
@@ -190,7 +195,8 @@
       "notes": [
         "dカードの利用100円（税込）につき1ポイント。",
         "1ポイント＝1円相当として利用できる。",
-        "2027年1月利用分から一般dカードは200円1ポイントに改定予定。"
+        "2027年1月利用分から一般dカードは200円1ポイントに改定予定。",
+        "最後にためる・つかう等の対象利用をした日から12か月。対象利用のたびに期限が延長される。期間・用途限定ポイントは別の有効期限。"
       ]
     },
     {

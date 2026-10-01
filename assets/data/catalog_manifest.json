@@ -1,12 +1,12 @@
 {
   "schemaVersion": "1.0.0",
-  "catalogVersion": "2026.10.01.1",
+  "catalogVersion": "2026.10.01.2",
   "generatedAt": "2026-09-29T00:00:00+09:00",
   "items": [
     {
       "fileName": "payment_instruments.json",
       "schemaId": "urn:bestpay:schema:payment-instrument:1.0.0",
-      "contentHash": "91a0572fd2729c91f1feab368bc491a120c1c90fa6586568dbe769347a7c0a8a",
+      "contentHash": "5ec47bde96569a37c8452d14b37d15a820fab2eff74da604f8028e8b1caeb852",
       "required": true
     },
     {
@@ -48,19 +48,19 @@
     {
       "fileName": "point_programs.json",
       "schemaId": "urn:bestpay:schema:point-program:1.0.0",
-      "contentHash": "a75f0627e14eee3cc3ccaa10b7f32200301c234f9e69b9d83de8a410be774483",
+      "contentHash": "a2e5e369e7ba2694aed7f77f6cb8758b024f59e4802fff16bee59a133a37647e",
       "required": true
     },
     {
       "fileName": "condition_definitions.json",
       "schemaId": "urn:bestpay:schema:condition-definition:1.0.0",
-      "contentHash": "d79e144453978e29d856d0d1f01ba40ad93ae1721d5c47c9f1181d42198c49f1",
+      "contentHash": "1fcb98f9f8b3f5b188a180941bfbb9aeb52842797e0a50473b42b1aa0d055816",
       "required": true
     },
     {
       "fileName": "reward_rules.json",
       "schemaId": "urn:bestpay:schema:reward-rule:1.0.0",
-      "contentHash": "192127ca0c2d9f2e07ebf3a2b89c4143b932d3703cd2429f0f038d750417ccaa",
+      "contentHash": "18754d253d861f8f526cfd4fcac8d1f571a733d4f130f6f9fceb3d78e37aa652",
       "required": true
     },
     {

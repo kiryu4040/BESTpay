@@ -143,7 +143,7 @@ void main() {
   group('カタログのデコード', () {
     test('実カード6枚がデコードでき、Catalogが構築できる', () {
       expect(catalog.isNotEmpty, isTrue);
-      expect(catalog.catalogVersion, '2026.10.01.1');
+      expect(catalog.catalogVersion, '2026.10.01.2');
       expect(catalog.generatedAt, '2026-09-29T00:00:00+09:00');
 
       expect(
@@ -209,8 +209,8 @@ void main() {
           .where((rule) => rule.status.value == 'draft')
           .toList();
 
-      expect(active.length, 115);
-      expect(draft.length, 3);
+      expect(active.length, 112);
+      expect(draft.length, 6);
 
       for (final rule in catalog.rewardRulesById.values) {
         expect(rule.cap, isNull, reason: rule.id.value);
@@ -343,7 +343,10 @@ void main() {
           .toList()
         ..sort();
 
-      expect(draft, <String>[
+      expect(draft..sort(), <String>[
+        'jcb_card_w_point_up_go_taxi',
+        'jcb_card_w_point_up_s_ride',
+        'jcb_card_w_point_up_uber',
         'mizuho_rakuten_insurance_draft',
         'mizuho_rakuten_mobile_draft',
         'mizuho_rakuten_utility_draft',
@@ -970,13 +973,13 @@ void main() {
 
       // 店舗ID -> 200円あたりの期待ポイント（倍率どおり）
       const expected = <String, int>{
-        'sukiya': 20,        // 20倍
-        'card_ride': 20,     // 20倍（クレカ乗車）
-        'gusto': 20,         // 20倍
-        'seven_eleven': 3,   // 3倍
-        'amazon_jp': 3,      // 3倍
-        'aoyama_tailor': 5,  // 5倍
-        'uber': 10,          // 10倍
+        'sukiya': 21,        // 20倍
+        'card_ride': 21,     // 20倍（クレカ乗車）
+        'gusto': 21,         // 20倍
+        'seven_eleven': 4,   // 3倍
+        'amazon_jp': 4,      // 3倍
+        'aoyama_tailor': 6,  // 5倍
+        'uber': 11,          // 10倍
       };
 
       for (final entry in expected.entries) {
@@ -1019,7 +1022,7 @@ void main() {
       // 200円あたり: Olive 16pt（8%）、SMBC 14pt（7%）、JCB 20pt（10%）。
       expect(entryFor(ranking, 'olive_flexible_pay_gold').totalPoints.points, 16);
       expect(entryFor(ranking, 'smbc_gold_nl_card').totalPoints.points, 14);
-      expect(entryFor(ranking, 'jcb_card_w').totalPoints.points, 20);
+      expect(entryFor(ranking, 'jcb_card_w').totalPoints.points, 21);
       expect(entryFor(ranking, 'v_neobank_debit').totalPoints.points, 3,
           reason: 'V NEOBANKデビット（1.5%）は乗車の上乗せ対象ではない');
     });

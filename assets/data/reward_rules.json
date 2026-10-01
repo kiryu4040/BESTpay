@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "catalogVersion": "2026.10.01.1",
+  "catalogVersion": "2026.10.01.2",
   "generatedAt": "2026-09-27T00:00:00+09:00",
   "items": [
     {
@@ -1077,7 +1077,7 @@
     {
       "id": "jcb_card_w_point_up_mcdonalds",
       "name": "JCBカードW ポイントアップ（マクドナルド 20倍）",
-      "description": "対象店舗でJCBカードWを利用したときのポイントアップ（20倍）。差分の18ポイントを上乗せする。",
+      "description": "対象店舗でJCBカードWを利用したときのポイントアップ（20倍）。差分の19ポイントを上乗せする。",
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
@@ -1114,7 +1114,7 @@
       "calculation": {
         "calculationType": "unitPoints",
         "amountUnitYen": 200,
-        "pointsPerUnit": 18,
+        "pointsPerUnit": 19,
         "rounding": "floor"
       },
       "outputPointProgramId": "j_point",
@@ -1146,7 +1146,7 @@
         "src_jcb_card_w_s_compare",
         "src_jcb_jpoint_special"
       ],
-      "lastVerifiedAt": "2026-09-28",
+      "lastVerifiedAt": "2026-10-01",
       "status": "active",
       "priority": 100,
       "tags": [
@@ -1154,17 +1154,18 @@
         "point_up_program"
       ],
       "notes": [
-        "J-POINTパートナー（優待店）の優待倍率は「20倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が20ポイントになるよう差分の18ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
+        "J-POINTパートナー（優待店）の優待倍率は「20倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が21ポイントになるよう差分の19ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
         "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
         "倍率はJCBカードW利用時の値。利用者提示のJ-POINTパートナー掲載店舗一覧（2026年時点）とJCB公式ページで確認。",
         "対象はモバイルオーダー・マックデリバリーの利用分に限る（店頭カウンター・カード現物提示は対象外）。",
-        "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。"
+        "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。",
+        "J-POINTパートナーの表示倍率には基本1倍が含まれる。JCBカードWは自前の+1倍があるため、表示倍率にさらに1倍が加算される（公式サイトの注記）。D-145で差分を+1修正した。"
       ]
     },
     {
       "id": "jcb_card_w_point_up_sukiya",
       "name": "JCBカードW ポイントアップ（すき家 20倍）",
-      "description": "対象店舗でJCBカードWを利用したときのポイントアップ（20倍）。差分の18ポイントを上乗せする。",
+      "description": "対象店舗でJCBカードWを利用したときのポイントアップ（20倍）。差分の19ポイントを上乗せする。",
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
@@ -1201,7 +1202,7 @@
       "calculation": {
         "calculationType": "unitPoints",
         "amountUnitYen": 200,
-        "pointsPerUnit": 18,
+        "pointsPerUnit": 19,
         "rounding": "floor"
       },
       "outputPointProgramId": "j_point",
@@ -1233,7 +1234,7 @@
         "src_jcb_card_w_s_compare",
         "src_jcb_jpoint_special"
       ],
-      "lastVerifiedAt": "2026-09-28",
+      "lastVerifiedAt": "2026-10-01",
       "status": "active",
       "priority": 100,
       "tags": [
@@ -1241,16 +1242,17 @@
         "point_up_program"
       ],
       "notes": [
-        "J-POINTパートナー（優待店）の優待倍率は「20倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が20ポイントになるよう差分の18ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
+        "J-POINTパートナー（優待店）の優待倍率は「20倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が21ポイントになるよう差分の19ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
         "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
         "倍率はJCBカードW利用時の値。利用者提示のJ-POINTパートナー掲載店舗一覧（2026年時点）とJCB公式ページで確認。",
-        "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。"
+        "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。",
+        "J-POINTパートナーの表示倍率には基本1倍が含まれる。JCBカードWは自前の+1倍があるため、表示倍率にさらに1倍が加算される（公式サイトの注記）。D-145で差分を+1修正した。"
       ]
     },
     {
       "id": "jcb_card_w_point_up_yoshinoya",
       "name": "JCBカードW ポイントアップ（吉野家 20倍）",
-      "description": "対象店舗でJCBカードWを利用したときのポイントアップ（20倍）。差分の18ポイントを上乗せする。",
+      "description": "対象店舗でJCBカードWを利用したときのポイントアップ（20倍）。差分の19ポイントを上乗せする。",
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
@@ -1287,7 +1289,7 @@
       "calculation": {
         "calculationType": "unitPoints",
         "amountUnitYen": 200,
-        "pointsPerUnit": 18,
+        "pointsPerUnit": 19,
         "rounding": "floor"
       },
       "outputPointProgramId": "j_point",
@@ -1319,7 +1321,7 @@
         "src_jcb_card_w_s_compare",
         "src_jcb_jpoint_special"
       ],
-      "lastVerifiedAt": "2026-09-28",
+      "lastVerifiedAt": "2026-10-01",
       "status": "active",
       "priority": 100,
       "tags": [
@@ -1327,16 +1329,17 @@
         "point_up_program"
       ],
       "notes": [
-        "J-POINTパートナー（優待店）の優待倍率は「20倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が20ポイントになるよう差分の18ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
+        "J-POINTパートナー（優待店）の優待倍率は「20倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が21ポイントになるよう差分の19ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
         "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
         "倍率はJCBカードW利用時の値。利用者提示のJ-POINTパートナー掲載店舗一覧（2026年時点）とJCB公式ページで確認。",
-        "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。"
+        "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。",
+        "J-POINTパートナーの表示倍率には基本1倍が含まれる。JCBカードWは自前の+1倍があるため、表示倍率にさらに1倍が加算される（公式サイトの注記）。D-145で差分を+1修正した。"
       ]
     },
     {
       "id": "jcb_card_w_point_up_sanmark_cafe",
       "name": "JCBカードW ポイントアップ（サンマルクカフェ 20倍）",
-      "description": "対象店舗でJCBカードWを利用したときのポイントアップ（20倍）。差分の18ポイントを上乗せする。",
+      "description": "対象店舗でJCBカードWを利用したときのポイントアップ（20倍）。差分の19ポイントを上乗せする。",
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
@@ -1373,7 +1376,7 @@
       "calculation": {
         "calculationType": "unitPoints",
         "amountUnitYen": 200,
-        "pointsPerUnit": 18,
+        "pointsPerUnit": 19,
         "rounding": "floor"
       },
       "outputPointProgramId": "j_point",
@@ -1405,7 +1408,7 @@
         "src_jcb_card_w_s_compare",
         "src_jcb_jpoint_special"
       ],
-      "lastVerifiedAt": "2026-09-28",
+      "lastVerifiedAt": "2026-10-01",
       "status": "active",
       "priority": 100,
       "tags": [
@@ -1413,16 +1416,17 @@
         "point_up_program"
       ],
       "notes": [
-        "J-POINTパートナー（優待店）の優待倍率は「20倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が20ポイントになるよう差分の18ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
+        "J-POINTパートナー（優待店）の優待倍率は「20倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が21ポイントになるよう差分の19ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
         "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
         "倍率はJCBカードW利用時の値。利用者提示のJ-POINTパートナー掲載店舗一覧（2026年時点）とJCB公式ページで確認。",
-        "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。"
+        "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。",
+        "J-POINTパートナーの表示倍率には基本1倍が含まれる。JCBカードWは自前の+1倍があるため、表示倍率にさらに1倍が加算される（公式サイトの注記）。D-145で差分を+1修正した。"
       ]
     },
     {
       "id": "jcb_card_w_point_up_domino_pizza",
       "name": "JCBカードW ポイントアップ（ドミノ・ピザ 20倍）",
-      "description": "対象店舗でJCBカードWを利用したときのポイントアップ（20倍）。差分の18ポイントを上乗せする。",
+      "description": "対象店舗でJCBカードWを利用したときのポイントアップ（20倍）。差分の19ポイントを上乗せする。",
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
@@ -1459,7 +1463,7 @@
       "calculation": {
         "calculationType": "unitPoints",
         "amountUnitYen": 200,
-        "pointsPerUnit": 18,
+        "pointsPerUnit": 19,
         "rounding": "floor"
       },
       "outputPointProgramId": "j_point",
@@ -1491,7 +1495,7 @@
         "src_jcb_card_w_s_compare",
         "src_jcb_jpoint_special"
       ],
-      "lastVerifiedAt": "2026-09-28",
+      "lastVerifiedAt": "2026-10-01",
       "status": "active",
       "priority": 100,
       "tags": [
@@ -1499,16 +1503,17 @@
         "point_up_program"
       ],
       "notes": [
-        "J-POINTパートナー（優待店）の優待倍率は「20倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が20ポイントになるよう差分の18ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
+        "J-POINTパートナー（優待店）の優待倍率は「20倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が21ポイントになるよう差分の19ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
         "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
         "倍率はJCBカードW利用時の値。利用者提示のJ-POINTパートナー掲載店舗一覧（2026年時点）とJCB公式ページで確認。",
-        "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。"
+        "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。",
+        "J-POINTパートナーの表示倍率には基本1倍が含まれる。JCBカードWは自前の+1倍があるため、表示倍率にさらに1倍が加算される（公式サイトの注記）。D-145で差分を+1修正した。"
       ]
     },
     {
       "id": "jcb_card_w_point_up_gusto",
       "name": "JCBカードW ポイントアップ（ガスト 20倍）",
-      "description": "対象店舗でJCBカードWを利用したときのポイントアップ（20倍）。差分の18ポイントを上乗せする。",
+      "description": "対象店舗でJCBカードWを利用したときのポイントアップ（20倍）。差分の19ポイントを上乗せする。",
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
@@ -1545,7 +1550,7 @@
       "calculation": {
         "calculationType": "unitPoints",
         "amountUnitYen": 200,
-        "pointsPerUnit": 18,
+        "pointsPerUnit": 19,
         "rounding": "floor"
       },
       "outputPointProgramId": "j_point",
@@ -1577,7 +1582,7 @@
         "src_jcb_card_w_s_compare",
         "src_jcb_jpoint_special"
       ],
-      "lastVerifiedAt": "2026-09-28",
+      "lastVerifiedAt": "2026-10-01",
       "status": "active",
       "priority": 100,
       "tags": [
@@ -1585,16 +1590,17 @@
         "point_up_program"
       ],
       "notes": [
-        "J-POINTパートナー（優待店）の優待倍率は「20倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が20ポイントになるよう差分の18ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
+        "J-POINTパートナー（優待店）の優待倍率は「20倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が21ポイントになるよう差分の19ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
         "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
         "倍率はJCBカードW利用時の値。利用者提示のJ-POINTパートナー掲載店舗一覧（2026年時点）とJCB公式ページで確認。",
-        "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。"
+        "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。",
+        "J-POINTパートナーの表示倍率には基本1倍が含まれる。JCBカードWは自前の+1倍があるため、表示倍率にさらに1倍が加算される（公式サイトの注記）。D-145で差分を+1修正した。"
       ]
     },
     {
       "id": "jcb_card_w_point_up_bamiyan",
       "name": "JCBカードW ポイントアップ（バーミヤン 20倍）",
-      "description": "対象店舗でJCBカードWを利用したときのポイントアップ（20倍）。差分の18ポイントを上乗せする。",
+      "description": "対象店舗でJCBカードWを利用したときのポイントアップ（20倍）。差分の19ポイントを上乗せする。",
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
@@ -1631,7 +1637,7 @@
       "calculation": {
         "calculationType": "unitPoints",
         "amountUnitYen": 200,
-        "pointsPerUnit": 18,
+        "pointsPerUnit": 19,
         "rounding": "floor"
       },
       "outputPointProgramId": "j_point",
@@ -1663,7 +1669,7 @@
         "src_jcb_card_w_s_compare",
         "src_jcb_jpoint_special"
       ],
-      "lastVerifiedAt": "2026-09-28",
+      "lastVerifiedAt": "2026-10-01",
       "status": "active",
       "priority": 100,
       "tags": [
@@ -1671,16 +1677,17 @@
         "point_up_program"
       ],
       "notes": [
-        "J-POINTパートナー（優待店）の優待倍率は「20倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が20ポイントになるよう差分の18ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
+        "J-POINTパートナー（優待店）の優待倍率は「20倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が21ポイントになるよう差分の19ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
         "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
         "倍率はJCBカードW利用時の値。利用者提示のJ-POINTパートナー掲載店舗一覧（2026年時点）とJCB公式ページで確認。",
-        "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。"
+        "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。",
+        "J-POINTパートナーの表示倍率には基本1倍が含まれる。JCBカードWは自前の+1倍があるため、表示倍率にさらに1倍が加算される（公式サイトの注記）。D-145で差分を+1修正した。"
       ]
     },
     {
       "id": "jcb_card_w_point_up_jonathan",
       "name": "JCBカードW ポイントアップ（ジョナサン 20倍）",
-      "description": "対象店舗でJCBカードWを利用したときのポイントアップ（20倍）。差分の18ポイントを上乗せする。",
+      "description": "対象店舗でJCBカードWを利用したときのポイントアップ（20倍）。差分の19ポイントを上乗せする。",
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
@@ -1717,7 +1724,7 @@
       "calculation": {
         "calculationType": "unitPoints",
         "amountUnitYen": 200,
-        "pointsPerUnit": 18,
+        "pointsPerUnit": 19,
         "rounding": "floor"
       },
       "outputPointProgramId": "j_point",
@@ -1749,7 +1756,7 @@
         "src_jcb_card_w_s_compare",
         "src_jcb_jpoint_special"
       ],
-      "lastVerifiedAt": "2026-09-28",
+      "lastVerifiedAt": "2026-10-01",
       "status": "active",
       "priority": 100,
       "tags": [
@@ -1757,16 +1764,17 @@
         "point_up_program"
       ],
       "notes": [
-        "J-POINTパートナー（優待店）の優待倍率は「20倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が20ポイントになるよう差分の18ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
+        "J-POINTパートナー（優待店）の優待倍率は「20倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が21ポイントになるよう差分の19ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
         "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
         "倍率はJCBカードW利用時の値。利用者提示のJ-POINTパートナー掲載店舗一覧（2026年時点）とJCB公式ページで確認。",
-        "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。"
+        "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。",
+        "J-POINTパートナーの表示倍率には基本1倍が含まれる。JCBカードWは自前の+1倍があるため、表示倍率にさらに1倍が加算される（公式サイトの注記）。D-145で差分を+1修正した。"
       ]
     },
     {
       "id": "jcb_card_w_point_up_jhanpi",
       "name": "JCBカードW ポイントアップ（ジハンピ 20倍）",
-      "description": "対象店舗でJCBカードWを利用したときのポイントアップ（20倍）。差分の18ポイントを上乗せする。",
+      "description": "対象店舗でJCBカードWを利用したときのポイントアップ（20倍）。差分の19ポイントを上乗せする。",
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
@@ -1803,7 +1811,7 @@
       "calculation": {
         "calculationType": "unitPoints",
         "amountUnitYen": 200,
-        "pointsPerUnit": 18,
+        "pointsPerUnit": 19,
         "rounding": "floor"
       },
       "outputPointProgramId": "j_point",
@@ -1835,7 +1843,7 @@
         "src_jcb_card_w_s_compare",
         "src_jcb_jpoint_special"
       ],
-      "lastVerifiedAt": "2026-09-28",
+      "lastVerifiedAt": "2026-10-01",
       "status": "active",
       "priority": 100,
       "tags": [
@@ -1843,16 +1851,17 @@
         "point_up_program"
       ],
       "notes": [
-        "J-POINTパートナー（優待店）の優待倍率は「20倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が20ポイントになるよう差分の18ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
+        "J-POINTパートナー（優待店）の優待倍率は「20倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が21ポイントになるよう差分の19ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
         "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
         "倍率はJCBカードW利用時の値。利用者提示のJ-POINTパートナー掲載店舗一覧（2026年時点）とJCB公式ページで確認。",
-        "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。"
+        "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。",
+        "J-POINTパートナーの表示倍率には基本1倍が含まれる。JCBカードWは自前の+1倍があるため、表示倍率にさらに1倍が加算される（公式サイトの注記）。D-145で差分を+1修正した。"
       ]
     },
     {
       "id": "jcb_card_w_point_up_uber",
       "name": "JCBカードW ポイントアップ（Uber 10倍）",
-      "description": "対象店舗でJCBカードWを利用したときのポイントアップ（10倍）。差分の8ポイントを上乗せする。",
+      "description": "対象店舗でJCBカードWを利用したときのポイントアップ（10倍）。差分の9ポイントを上乗せする。",
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
@@ -1889,7 +1898,7 @@
       "calculation": {
         "calculationType": "unitPoints",
         "amountUnitYen": 200,
-        "pointsPerUnit": 8,
+        "pointsPerUnit": 9,
         "rounding": "floor"
       },
       "outputPointProgramId": "j_point",
@@ -1921,25 +1930,22 @@
         "src_jcb_card_w_s_compare",
         "src_jcb_jpoint_special"
       ],
-      "lastVerifiedAt": "2026-09-28",
-      "status": "active",
+      "lastVerifiedAt": "2026-10-01",
+      "status": "draft",
       "priority": 100,
       "tags": [
         "campaign_bonus",
-        "point_up_program"
+        "premium_only",
+        "unverified"
       ],
       "notes": [
-        "J-POINTパートナー（優待店）の優待倍率は「10倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が10ポイントになるよう差分の8ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
-        "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
-        "倍率はJCBカードW利用時の値。利用者提示のJ-POINTパートナー掲載店舗一覧（2026年時点）とJCB公式ページで確認。",
-        "2026年1月のJ-POINTリリース時は7.5%と案内されていたが、利用者提示の最新店舗一覧は10倍。最新一覧の値を採用している。",
-        "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。"
+        "J-POINTパートナーのUberは「JCBオリジナルシリーズのプレミアムカード（ゴールド以上）会員様限定」で、プレミアム以外のカードは対象外。JCBカードWは対象外のため計算に使わない（D-145）。2026-04-13以降の表示倍率は10倍（2026-01-13〜04-12は15倍）。"
       ]
     },
     {
       "id": "jcb_card_w_point_up_s_ride",
       "name": "JCBカードW ポイントアップ（S.RIDE 10倍）",
-      "description": "対象店舗でJCBカードWを利用したときのポイントアップ（10倍）。差分の8ポイントを上乗せする。",
+      "description": "対象店舗でJCBカードWを利用したときのポイントアップ（10倍）。差分の9ポイントを上乗せする。",
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
@@ -1976,7 +1982,7 @@
       "calculation": {
         "calculationType": "unitPoints",
         "amountUnitYen": 200,
-        "pointsPerUnit": 8,
+        "pointsPerUnit": 9,
         "rounding": "floor"
       },
       "outputPointProgramId": "j_point",
@@ -2008,24 +2014,22 @@
         "src_jcb_card_w_s_compare",
         "src_jcb_jpoint_special"
       ],
-      "lastVerifiedAt": "2026-09-28",
-      "status": "active",
+      "lastVerifiedAt": "2026-10-01",
+      "status": "draft",
       "priority": 100,
       "tags": [
         "campaign_bonus",
-        "point_up_program"
+        "premium_only",
+        "unverified"
       ],
       "notes": [
-        "J-POINTパートナー（優待店）の優待倍率は「10倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が10ポイントになるよう差分の8ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
-        "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
-        "倍率はJCBカードW利用時の値。利用者提示のJ-POINTパートナー掲載店舗一覧（2026年時点）とJCB公式ページで確認。",
-        "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。"
+        "J-POINTパートナーのS.RIDEは「JCBオリジナルシリーズのプレミアムカード（ゴールド以上）会員様限定」で、プレミアム以外のカードは対象外。JCBカードWは対象外のため計算に使わない（D-145）。"
       ]
     },
     {
       "id": "jcb_card_w_point_up_go_taxi",
       "name": "JCBカードW ポイントアップ（タクシーアプリGO 10倍）",
-      "description": "対象店舗でJCBカードWを利用したときのポイントアップ（10倍）。差分の8ポイントを上乗せする。",
+      "description": "対象店舗でJCBカードWを利用したときのポイントアップ（10倍）。差分の9ポイントを上乗せする。",
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
@@ -2062,7 +2066,7 @@
       "calculation": {
         "calculationType": "unitPoints",
         "amountUnitYen": 200,
-        "pointsPerUnit": 8,
+        "pointsPerUnit": 9,
         "rounding": "floor"
       },
       "outputPointProgramId": "j_point",
@@ -2094,25 +2098,22 @@
         "src_jcb_card_w_s_compare",
         "src_jcb_jpoint_special"
       ],
-      "lastVerifiedAt": "2026-09-28",
-      "status": "active",
+      "lastVerifiedAt": "2026-10-01",
+      "status": "draft",
       "priority": 100,
       "tags": [
         "campaign_bonus",
-        "point_up_program"
+        "premium_only",
+        "unverified"
       ],
       "notes": [
-        "J-POINTパートナー（優待店）の優待倍率は「10倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が10ポイントになるよう差分の8ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
-        "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
-        "倍率はJCBカードW利用時の値。利用者提示のJ-POINTパートナー掲載店舗一覧（2026年時点）とJCB公式ページで確認。",
-        "利用者提示の一覧では「プレミアムでおトク」の区分に掲載されている。",
-        "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。"
+        "タクシーアプリGOは、過去の調査でプレミアムカード限定の優待情報があるが、現行の個別条件を再確認できていない。JCBカードWの優待として採用しない（D-145）。"
       ]
     },
     {
       "id": "jcb_card_w_point_up_aoyama_tailor",
       "name": "JCBカードW ポイントアップ（洋服の青山 5倍）",
-      "description": "対象店舗でJCBカードWを利用したときのポイントアップ（5倍）。差分の3ポイントを上乗せする。",
+      "description": "対象店舗でJCBカードWを利用したときのポイントアップ（5倍）。差分の4ポイントを上乗せする。",
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
@@ -2149,7 +2150,7 @@
       "calculation": {
         "calculationType": "unitPoints",
         "amountUnitYen": 200,
-        "pointsPerUnit": 3,
+        "pointsPerUnit": 4,
         "rounding": "floor"
       },
       "outputPointProgramId": "j_point",
@@ -2181,7 +2182,7 @@
         "src_jcb_card_w_s_compare",
         "src_jcb_jpoint_special"
       ],
-      "lastVerifiedAt": "2026-09-28",
+      "lastVerifiedAt": "2026-10-01",
       "status": "active",
       "priority": 100,
       "tags": [
@@ -2189,16 +2190,17 @@
         "point_up_program"
       ],
       "notes": [
-        "J-POINTパートナー（優待店）の優待倍率は「5倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が5ポイントになるよう差分の3ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
+        "J-POINTパートナー（優待店）の優待倍率は「5倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が6ポイントになるよう差分の4ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
         "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
         "倍率はJCBカードW利用時の値。利用者提示のJ-POINTパートナー掲載店舗一覧（2026年時点）とJCB公式ページで確認。",
-        "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。"
+        "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。",
+        "J-POINTパートナーの表示倍率には基本1倍が含まれる。JCBカードWは自前の+1倍があるため、表示倍率にさらに1倍が加算される（公式サイトの注記）。D-145で差分を+1修正した。"
       ]
     },
     {
       "id": "jcb_card_w_point_up_aoki",
       "name": "JCBカードW ポイントアップ（AOKI 5倍）",
-      "description": "対象店舗でJCBカードWを利用したときのポイントアップ（5倍）。差分の3ポイントを上乗せする。",
+      "description": "対象店舗でJCBカードWを利用したときのポイントアップ（5倍）。差分の4ポイントを上乗せする。",
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
@@ -2235,7 +2237,7 @@
       "calculation": {
         "calculationType": "unitPoints",
         "amountUnitYen": 200,
-        "pointsPerUnit": 3,
+        "pointsPerUnit": 4,
         "rounding": "floor"
       },
       "outputPointProgramId": "j_point",
@@ -2267,7 +2269,7 @@
         "src_jcb_card_w_s_compare",
         "src_jcb_jpoint_special"
       ],
-      "lastVerifiedAt": "2026-09-28",
+      "lastVerifiedAt": "2026-10-01",
       "status": "active",
       "priority": 100,
       "tags": [
@@ -2275,16 +2277,17 @@
         "point_up_program"
       ],
       "notes": [
-        "J-POINTパートナー（優待店）の優待倍率は「5倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が5ポイントになるよう差分の3ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
+        "J-POINTパートナー（優待店）の優待倍率は「5倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が6ポイントになるよう差分の4ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
         "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
         "倍率はJCBカードW利用時の値。利用者提示のJ-POINTパートナー掲載店舗一覧（2026年時点）とJCB公式ページで確認。",
-        "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。"
+        "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。",
+        "J-POINTパートナーの表示倍率には基本1倍が含まれる。JCBカードWは自前の+1倍があるため、表示倍率にさらに1倍が加算される（公式サイトの注記）。D-145で差分を+1修正した。"
       ]
     },
     {
       "id": "jcb_card_w_point_up_haruyama",
       "name": "JCBカードW ポイントアップ（はるやまチェーン 5倍）",
-      "description": "対象店舗でJCBカードWを利用したときのポイントアップ（5倍）。差分の3ポイントを上乗せする。",
+      "description": "対象店舗でJCBカードWを利用したときのポイントアップ（5倍）。差分の4ポイントを上乗せする。",
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
@@ -2321,7 +2324,7 @@
       "calculation": {
         "calculationType": "unitPoints",
         "amountUnitYen": 200,
-        "pointsPerUnit": 3,
+        "pointsPerUnit": 4,
         "rounding": "floor"
       },
       "outputPointProgramId": "j_point",
@@ -2353,7 +2356,7 @@
         "src_jcb_card_w_s_compare",
         "src_jcb_jpoint_special"
       ],
-      "lastVerifiedAt": "2026-09-28",
+      "lastVerifiedAt": "2026-10-01",
       "status": "active",
       "priority": 100,
       "tags": [
@@ -2361,16 +2364,17 @@
         "point_up_program"
       ],
       "notes": [
-        "J-POINTパートナー（優待店）の優待倍率は「5倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が5ポイントになるよう差分の3ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
+        "J-POINTパートナー（優待店）の優待倍率は「5倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が6ポイントになるよう差分の4ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
         "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
         "倍率はJCBカードW利用時の値。利用者提示のJ-POINTパートナー掲載店舗一覧（2026年時点）とJCB公式ページで確認。",
-        "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。"
+        "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。",
+        "J-POINTパートナーの表示倍率には基本1倍が含まれる。JCBカードWは自前の+1倍があるため、表示倍率にさらに1倍が加算される（公式サイトの注記）。D-145で差分を+1修正した。"
       ]
     },
     {
       "id": "jcb_card_w_point_up_poplar",
       "name": "JCBカードW ポイントアップ（ポプラグループ 5倍）",
-      "description": "対象店舗でJCBカードWを利用したときのポイントアップ（5倍）。差分の3ポイントを上乗せする。",
+      "description": "対象店舗でJCBカードWを利用したときのポイントアップ（5倍）。差分の4ポイントを上乗せする。",
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
@@ -2407,7 +2411,7 @@
       "calculation": {
         "calculationType": "unitPoints",
         "amountUnitYen": 200,
-        "pointsPerUnit": 3,
+        "pointsPerUnit": 4,
         "rounding": "floor"
       },
       "outputPointProgramId": "j_point",
@@ -2439,7 +2443,7 @@
         "src_jcb_card_w_s_compare",
         "src_jcb_jpoint_special"
       ],
-      "lastVerifiedAt": "2026-09-28",
+      "lastVerifiedAt": "2026-10-01",
       "status": "active",
       "priority": 100,
       "tags": [
@@ -2447,17 +2451,18 @@
         "point_up_program"
       ],
       "notes": [
-        "J-POINTパートナー（優待店）の優待倍率は「5倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が5ポイントになるよう差分の3ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
+        "J-POINTパートナー（優待店）の優待倍率は「5倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が6ポイントになるよう差分の4ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
         "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
         "倍率はJCBカードW利用時の値。利用者提示のJ-POINTパートナー掲載店舗一覧（2026年時点）とJCB公式ページで確認。",
         "J-POINTパートナーでの表記は「ポプラグループ」。カタログのポプラ店舗に適用する。",
-        "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。"
+        "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。",
+        "J-POINTパートナーの表示倍率には基本1倍が含まれる。JCBカードWは自前の+1倍があるため、表示倍率にさらに1倍が加算される（公式サイトの注記）。D-145で差分を+1修正した。"
       ]
     },
     {
       "id": "jcb_card_w_point_up_seven_eleven",
       "name": "JCBカードW ポイントアップ（セブン-イレブン 3倍）",
-      "description": "対象店舗でJCBカードWを利用したときのポイントアップ（3倍）。差分の1ポイントを上乗せする。",
+      "description": "対象店舗でJCBカードWを利用したときのポイントアップ（3倍）。差分の2ポイントを上乗せする。",
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
@@ -2494,7 +2499,7 @@
       "calculation": {
         "calculationType": "unitPoints",
         "amountUnitYen": 200,
-        "pointsPerUnit": 1,
+        "pointsPerUnit": 2,
         "rounding": "floor"
       },
       "outputPointProgramId": "j_point",
@@ -2526,7 +2531,7 @@
         "src_jcb_card_w_s_compare",
         "src_jcb_jpoint_special"
       ],
-      "lastVerifiedAt": "2026-09-28",
+      "lastVerifiedAt": "2026-10-01",
       "status": "active",
       "priority": 100,
       "tags": [
@@ -2534,17 +2539,18 @@
         "point_up_program"
       ],
       "notes": [
-        "J-POINTパートナー（優待店）の優待倍率は「3倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が3ポイントになるよう差分の1ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
+        "J-POINTパートナー（優待店）の優待倍率は「3倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が4ポイントになるよう差分の2ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
         "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
         "倍率はJCBカードW利用時の値。利用者提示のJ-POINTパートナー掲載店舗一覧（2026年時点）とJCB公式ページで確認。",
         "JCB公式カードページは「最大4倍」と記載するが、利用者提示の最新店舗一覧は3倍。最新一覧の値を採用している。一部対象外店舗があり、法人会員は対象外。",
-        "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。"
+        "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。",
+        "J-POINTパートナーの表示倍率には基本1倍が含まれる。JCBカードWは自前の+1倍があるため、表示倍率にさらに1倍が加算される（公式サイトの注記）。D-145で差分を+1修正した。"
       ]
     },
     {
       "id": "jcb_card_w_point_up_amazon_jp",
       "name": "JCBカードW ポイントアップ（Amazon.co.jp 3倍）",
-      "description": "対象店舗でJCBカードWを利用したときのポイントアップ（3倍）。差分の1ポイントを上乗せする。",
+      "description": "対象店舗でJCBカードWを利用したときのポイントアップ（3倍）。差分の2ポイントを上乗せする。",
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
@@ -2581,7 +2587,7 @@
       "calculation": {
         "calculationType": "unitPoints",
         "amountUnitYen": 200,
-        "pointsPerUnit": 1,
+        "pointsPerUnit": 2,
         "rounding": "floor"
       },
       "outputPointProgramId": "j_point",
@@ -2613,7 +2619,7 @@
         "src_jcb_card_w_s_compare",
         "src_jcb_jpoint_special"
       ],
-      "lastVerifiedAt": "2026-09-28",
+      "lastVerifiedAt": "2026-10-01",
       "status": "active",
       "priority": 100,
       "tags": [
@@ -2621,17 +2627,18 @@
         "point_up_program"
       ],
       "notes": [
-        "J-POINTパートナー（優待店）の優待倍率は「3倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が3ポイントになるよう差分の1ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
+        "J-POINTパートナー（優待店）の優待倍率は「3倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が4ポイントになるよう差分の2ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
         "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
         "倍率はJCBカードW利用時の値。利用者提示のJ-POINTパートナー掲載店舗一覧（2026年時点）とJCB公式ページで確認。",
         "JCB公式カードページは「最大4倍」と記載するが、利用者提示の最新店舗一覧は3倍。最新一覧の値を採用している。",
-        "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。"
+        "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。",
+        "J-POINTパートナーの表示倍率には基本1倍が含まれる。JCBカードWは自前の+1倍があるため、表示倍率にさらに1倍が加算される（公式サイトの注記）。D-145で差分を+1修正した。"
       ]
     },
     {
       "id": "jcb_card_w_point_up_qoo10",
       "name": "JCBカードW ポイントアップ（Qoo10 3倍）",
-      "description": "対象店舗でJCBカードWを利用したときのポイントアップ（3倍）。差分の1ポイントを上乗せする。",
+      "description": "対象店舗でJCBカードWを利用したときのポイントアップ（3倍）。差分の2ポイントを上乗せする。",
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
@@ -2668,7 +2675,7 @@
       "calculation": {
         "calculationType": "unitPoints",
         "amountUnitYen": 200,
-        "pointsPerUnit": 1,
+        "pointsPerUnit": 2,
         "rounding": "floor"
       },
       "outputPointProgramId": "j_point",
@@ -2700,7 +2707,7 @@
         "src_jcb_card_w_s_compare",
         "src_jcb_jpoint_special"
       ],
-      "lastVerifiedAt": "2026-09-28",
+      "lastVerifiedAt": "2026-10-01",
       "status": "active",
       "priority": 100,
       "tags": [
@@ -2708,16 +2715,17 @@
         "point_up_program"
       ],
       "notes": [
-        "J-POINTパートナー（優待店）の優待倍率は「3倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が3ポイントになるよう差分の1ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
+        "J-POINTパートナー（優待店）の優待倍率は「3倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が4ポイントになるよう差分の2ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
         "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
         "倍率はJCBカードW利用時の値。利用者提示のJ-POINTパートナー掲載店舗一覧（2026年時点）とJCB公式ページで確認。",
-        "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。"
+        "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。",
+        "J-POINTパートナーの表示倍率には基本1倍が含まれる。JCBカードWは自前の+1倍があるため、表示倍率にさらに1倍が加算される（公式サイトの注記）。D-145で差分を+1修正した。"
       ]
     },
     {
       "id": "jcb_card_w_point_up_uber_eats",
       "name": "JCBカードW ポイントアップ（Uber Eats 3倍）",
-      "description": "対象店舗でJCBカードWを利用したときのポイントアップ（3倍）。差分の1ポイントを上乗せする。",
+      "description": "対象店舗でJCBカードWを利用したときのポイントアップ（3倍）。差分の2ポイントを上乗せする。",
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
@@ -2754,7 +2762,7 @@
       "calculation": {
         "calculationType": "unitPoints",
         "amountUnitYen": 200,
-        "pointsPerUnit": 1,
+        "pointsPerUnit": 2,
         "rounding": "floor"
       },
       "outputPointProgramId": "j_point",
@@ -2786,7 +2794,7 @@
         "src_jcb_card_w_s_compare",
         "src_jcb_jpoint_special"
       ],
-      "lastVerifiedAt": "2026-09-28",
+      "lastVerifiedAt": "2026-10-01",
       "status": "active",
       "priority": 100,
       "tags": [
@@ -2794,16 +2802,17 @@
         "point_up_program"
       ],
       "notes": [
-        "J-POINTパートナー（優待店）の優待倍率は「3倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が3ポイントになるよう差分の1ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
+        "J-POINTパートナー（優待店）の優待倍率は「3倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が4ポイントになるよう差分の2ポイントを上乗せとして登録している（D-091 と同じ考え方）。",
         "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
         "倍率はJCBカードW利用時の値。利用者提示のJ-POINTパートナー掲載店舗一覧（2026年時点）とJCB公式ページで確認。",
-        "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。"
+        "集計キーはルールごとに分けている。エンジンは集計キー単位で期間スナップショットを共有するため、基本還元と上乗せで計算式が異なる場合は同じキーを使うと増分が混ざる。",
+        "J-POINTパートナーの表示倍率には基本1倍が含まれる。JCBカードWは自前の+1倍があるため、表示倍率にさらに1倍が加算される（公式サイトの注記）。D-145で差分を+1修正した。"
       ]
     },
     {
       "id": "jcb_card_w_point_up_card_ride",
       "name": "JCBカードW ポイントアップ（クレカ乗車 20倍）",
-      "description": "クレカ乗車でJCBカードWを利用したときのポイントアップ（20倍）。差分の18ポイントを上乗せする。",
+      "description": "クレカ乗車でJCBカードWを利用したときのポイントアップ（20倍）。差分の19ポイントを上乗せする。",
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
@@ -2840,7 +2849,7 @@
       "calculation": {
         "calculationType": "unitPoints",
         "amountUnitYen": 200,
-        "pointsPerUnit": 18,
+        "pointsPerUnit": 19,
         "rounding": "floor"
       },
       "outputPointProgramId": "j_point",
@@ -2871,7 +2880,7 @@
         "src_jcb_card_w_s_compare",
         "src_jcb_jpoint_special"
       ],
-      "lastVerifiedAt": "2026-09-28",
+      "lastVerifiedAt": "2026-10-01",
       "status": "active",
       "priority": 100,
       "tags": [
@@ -2883,7 +2892,8 @@
         "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
         "JCB公式の特典条件: 対象路線でJCB ORIGINALシリーズ対象カードで支払うこと。一部対象外の事業者があり、公共交通機関によっては一部の路線・駅・港でのみタッチ決済が利用可能。JCBデビットでは支払えない場合がある。",
         "表示倍率のうち1倍分が通常ポイント、残りの倍率分がボーナスポイントとして反映される（JCB公式の特典獲得タイミング）。差分方式と整合する。",
-        "公式画像にポイント付与の上限額の明記は確認できていない（未確認）。"
+        "公式画像にポイント付与の上限額の明記は確認できていない（未確認）。",
+        "J-POINTパートナーの表示倍率には基本1倍が含まれる。JCBカードWは自前の+1倍があるため、表示倍率にさらに1倍が加算される（公式サイトの注記）。D-145で差分を+1修正した。"
       ]
     },
     {
@@ -4944,7 +4954,7 @@
       "sourceIds": [
         "src_rakuten_point_rate"
       ],
-      "lastVerifiedAt": "2026-09-29",
+      "lastVerifiedAt": "2026-10-01",
       "status": "active",
       "priority": 100,
       "tags": [
@@ -4952,14 +4962,16 @@
         "rakuten_market"
       ],
       "notes": [
-        "楽天市場での還元は、楽天カード通常利用分1%（基本ルールで登録済み）に、楽天市場分1%と楽天カード特典分1%を加えた合計3%。",
-        "Wポイントプランにより、楽天市場分の楽天ポイント（通常ポイント）と同数のみずほポイントも進呈される（月10,000ポイント上限）。"
+        "楽天市場での還元は公式に「最大合計4%」。内訳は みずほポイント1%＋楽天カード特典分・楽天市場ご利用分2%＋楽天カード通常分1%。",
+        "このルールは楽天ポイント側の上乗せ2%（楽天カード特典分1%＋楽天市場ご利用分1%）を登録している。基本還元1%は別ルール。",
+        "みずほポイント1%はWポイントプランの同数進呈ルール（mirrorReward）で別途加算される。",
+        "税込カード利用額と税抜商品額で計算基準が異なるため、常に厳密に4%が戻るとは限らない。"
       ]
     },
     {
       "id": "jcb_card_w_point_up_orix_rentacar",
       "name": "JCBカードW ポイントアップ（オリックスレンタカー 6倍）",
-      "description": "オリックスレンタカーでJCBカードWを利用するとポイントアップ（6倍）。差分の4ポイントを上乗せする。",
+      "description": "オリックスレンタカーでJCBカードWを利用するとポイントアップ（6倍）。差分の5ポイントを上乗せする。",
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
@@ -4996,7 +5008,7 @@
       "calculation": {
         "calculationType": "unitPoints",
         "amountUnitYen": 200,
-        "pointsPerUnit": 4,
+        "pointsPerUnit": 5,
         "rounding": "floor"
       },
       "outputPointProgramId": "j_point",
@@ -5025,7 +5037,7 @@
       "sourceIds": [
         "src_jcb_point_partner"
       ],
-      "lastVerifiedAt": "2026-09-29",
+      "lastVerifiedAt": "2026-10-01",
       "status": "active",
       "priority": 100,
       "tags": [
@@ -5034,7 +5046,8 @@
       ],
       "notes": [
         "JCBカードWの基本還元（200円2ポイント＝2倍）との差分4ポイントを上乗せとして登録している（D-107）。",
-        "事前のポイントアップ登録が必要。"
+        "事前のポイントアップ登録が必要。",
+        "J-POINTパートナーの表示倍率には基本1倍が含まれる。JCBカードWは自前の+1倍があるため、表示倍率にさらに1倍が加算される（公式サイトの注記）。D-145で差分を+1修正した。"
       ]
     },
     {
@@ -5146,8 +5159,8 @@
     },
     {
       "id": "smbc_card_smbc_pup_yen_deposit_250man_bonus",
-      "name": "三井住友カード／Olive Vポイントアップ 円預金の月末残高250万円以上",
-      "description": "Oliveアカウントご契約口座の円普通預金の月末残高が250万円以上で+0.5%。残高が大きいほど段階的に上がるが、区分の金額は公式に未確認のため達成済みのこの段階のみ登録している。",
+      "name": "三井住友カード／Olive Vポイントアップ 円預金250万円以上500万円未満（+0.5%）",
+      "description": "Olive口座の円普通預金の月末残高が250万円以上500万円未満のとき、対象店舗のVポイント還元率が+0.5%される（200円につき1ポイントの上乗せ）。",
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
@@ -5206,7 +5219,7 @@
       "calculation": {
         "calculationType": "unitPoints",
         "amountUnitYen": 200,
-        "pointsPerUnit": 2,
+        "pointsPerUnit": 1,
         "rounding": "floor"
       },
       "outputPointProgramId": "v_point",
@@ -5237,7 +5250,7 @@
         "src_olive_gold_official",
         "src_smbc_gold_nl_official"
       ],
-      "lastVerifiedAt": "2026-09-29",
+      "lastVerifiedAt": "2026-10-01",
       "status": "active",
       "priority": 100,
       "tags": [
@@ -5246,8 +5259,10 @@
         "point_up_program"
       ],
       "notes": [
-        "加算率は対象のコンビニ・飲食店でのスマホタッチ決済・モバイルオーダーの利用額に対するもの（200円につき2ポイント＝+1%）。",
-        "条件はアプリの「還元率の条件」でカードごとに選べる（D-114・D-122）。",
+        "加算率は対象のコンビニ・飲食店でのスマホタッチ決済・モバイルオーダーの利用額に対するもの（200円につき1ポイント＝+0.5%）。",
+        "円預金の段階は250万〜500万未満+0.5%／500万〜750万未満+1%／750万〜1,000万未満+1.5%／1,000万〜2,000万未満+2%／2,000万以上+3%。",
+        "当初は上限値（+1%）で登録していたが、公式に段階が記載されていることを確認し+0.5%に修正した（D-145）。",
+        "残高が大きい上位段階は条件を分けていない。上の段階に当てはまる場合はこの条件をオフにし、必要なら上位段階を追加すること。",
         "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。"
       ]
     },
@@ -6217,7 +6232,7 @@
     {
       "id": "jcb_card_w_point_up_starbucks",
       "name": "JCBカードW ポイントアップ（スターバックス 20倍）",
-      "description": "スターバックスでJCBカードWを利用したときのポイントアップ（20倍）。差分の18ポイントを上乗せする。",
+      "description": "スターバックスでJCBカードWを利用したときのポイントアップ（20倍）。差分の19ポイントを上乗せする。",
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
@@ -6254,7 +6269,7 @@
       "calculation": {
         "calculationType": "unitPoints",
         "amountUnitYen": 200,
-        "pointsPerUnit": 18,
+        "pointsPerUnit": 19,
         "rounding": "floor"
       },
       "outputPointProgramId": "j_point",
@@ -6285,7 +6300,7 @@
         "src_jcb_card_w_s_compare",
         "src_jcb_jpoint_special"
       ],
-      "lastVerifiedAt": "2026-09-29",
+      "lastVerifiedAt": "2026-10-01",
       "status": "active",
       "priority": 100,
       "tags": [
@@ -6293,17 +6308,18 @@
         "point_up_program"
       ],
       "notes": [
-        "J-POINTパートナー（優待店）の優待倍率は「20倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が20ポイントになるよう差分の18ポイントを上乗せとして登録している（D-091・D-107）。",
+        "J-POINTパートナー（優待店）の優待倍率は「20倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が21ポイントになるよう差分の19ポイントを上乗せとして登録している（D-091・D-107）。",
         "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
         "倍率は利用者提示のJ-POINTパートナー掲載店舗一覧（2026年9月時点）で確認した。",
         "集計キーはルールごとに分けている（D-108）。",
-        "対象はスターバックス カードへのオンライン入金・オートチャージ、モバイルオーダー、Starbucks eGiftの利用分に限られる。店舗でのカード提示は対象外。"
+        "対象はスターバックス カードへのオンライン入金・オートチャージ、モバイルオーダー、Starbucks eGiftの利用分に限られる。店舗でのカード提示は対象外。",
+        "J-POINTパートナーの表示倍率には基本1倍が含まれる。JCBカードWは自前の+1倍があるため、表示倍率にさらに1倍が加算される（公式サイトの注記）。D-145で差分を+1修正した。"
       ]
     },
     {
       "id": "jcb_card_w_point_up_disney_plus",
       "name": "JCBカードW ポイントアップ（ディズニープラス 20倍）",
-      "description": "ディズニープラスでJCBカードWを利用したときのポイントアップ（20倍）。差分の18ポイントを上乗せする。",
+      "description": "ディズニープラスでJCBカードWを利用したときのポイントアップ（20倍）。差分の19ポイントを上乗せする。",
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
@@ -6340,7 +6356,7 @@
       "calculation": {
         "calculationType": "unitPoints",
         "amountUnitYen": 200,
-        "pointsPerUnit": 18,
+        "pointsPerUnit": 19,
         "rounding": "floor"
       },
       "outputPointProgramId": "j_point",
@@ -6371,7 +6387,7 @@
         "src_jcb_card_w_s_compare",
         "src_jcb_jpoint_special"
       ],
-      "lastVerifiedAt": "2026-09-29",
+      "lastVerifiedAt": "2026-10-01",
       "status": "active",
       "priority": 100,
       "tags": [
@@ -6379,17 +6395,18 @@
         "point_up_program"
       ],
       "notes": [
-        "J-POINTパートナー（優待店）の優待倍率は「20倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が20ポイントになるよう差分の18ポイントを上乗せとして登録している（D-091・D-107）。",
+        "J-POINTパートナー（優待店）の優待倍率は「20倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が21ポイントになるよう差分の19ポイントを上乗せとして登録している（D-091・D-107）。",
         "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
         "倍率は利用者提示のJ-POINTパートナー掲載店舗一覧（2026年9月時点）で確認した。",
         "集計キーはルールごとに分けている（D-108）。",
-        "動画配信サービスの月額利用分。"
+        "動画配信サービスの月額利用分。",
+        "J-POINTパートナーの表示倍率には基本1倍が含まれる。JCBカードWは自前の+1倍があるため、表示倍率にさらに1倍が加算される（公式サイトの注記）。D-145で差分を+1修正した。"
       ]
     },
     {
       "id": "jcb_card_w_point_up_times_road_service",
       "name": "JCBカードW ポイントアップ（タイムズロードサービス 20倍）",
-      "description": "タイムズロードサービスでJCBカードWを利用したときのポイントアップ（20倍）。差分の18ポイントを上乗せする。",
+      "description": "タイムズロードサービスでJCBカードWを利用したときのポイントアップ（20倍）。差分の19ポイントを上乗せする。",
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
@@ -6426,7 +6443,7 @@
       "calculation": {
         "calculationType": "unitPoints",
         "amountUnitYen": 200,
-        "pointsPerUnit": 18,
+        "pointsPerUnit": 19,
         "rounding": "floor"
       },
       "outputPointProgramId": "j_point",
@@ -6457,7 +6474,7 @@
         "src_jcb_card_w_s_compare",
         "src_jcb_jpoint_special"
       ],
-      "lastVerifiedAt": "2026-09-29",
+      "lastVerifiedAt": "2026-10-01",
       "status": "active",
       "priority": 100,
       "tags": [
@@ -6465,17 +6482,18 @@
         "point_up_program"
       ],
       "notes": [
-        "J-POINTパートナー（優待店）の優待倍率は「20倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が20ポイントになるよう差分の18ポイントを上乗せとして登録している（D-091・D-107）。",
+        "J-POINTパートナー（優待店）の優待倍率は「20倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が21ポイントになるよう差分の19ポイントを上乗せとして登録している（D-091・D-107）。",
         "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
         "倍率は利用者提示のJ-POINTパートナー掲載店舗一覧（2026年9月時点）で確認した。",
         "集計キーはルールごとに分けている（D-108）。",
-        "会員制ロードサービスの会員料金。"
+        "会員制ロードサービスの会員料金。",
+        "J-POINTパートナーの表示倍率には基本1倍が含まれる。JCBカードWは自前の+1倍があるため、表示倍率にさらに1倍が加算される（公式サイトの注記）。D-145で差分を+1修正した。"
       ]
     },
     {
       "id": "jcb_card_w_point_up_owndays",
       "name": "JCBカードW ポイントアップ（OWNDAYS 3倍）",
-      "description": "OWNDAYSでJCBカードWを利用したときのポイントアップ（3倍）。差分の1ポイントを上乗せする。",
+      "description": "OWNDAYSでJCBカードWを利用したときのポイントアップ（3倍）。差分の2ポイントを上乗せする。",
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
@@ -6512,7 +6530,7 @@
       "calculation": {
         "calculationType": "unitPoints",
         "amountUnitYen": 200,
-        "pointsPerUnit": 1,
+        "pointsPerUnit": 2,
         "rounding": "floor"
       },
       "outputPointProgramId": "j_point",
@@ -6543,7 +6561,7 @@
         "src_jcb_card_w_s_compare",
         "src_jcb_jpoint_special"
       ],
-      "lastVerifiedAt": "2026-09-29",
+      "lastVerifiedAt": "2026-10-01",
       "status": "active",
       "priority": 100,
       "tags": [
@@ -6551,16 +6569,17 @@
         "point_up_program"
       ],
       "notes": [
-        "J-POINTパートナー（優待店）の優待倍率は「3倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が3ポイントになるよう差分の1ポイントを上乗せとして登録している（D-091・D-107）。",
+        "J-POINTパートナー（優待店）の優待倍率は「3倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が4ポイントになるよう差分の2ポイントを上乗せとして登録している（D-091・D-107）。",
         "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
         "倍率は利用者提示のJ-POINTパートナー掲載店舗一覧（2026年9月時点）で確認した。",
-        "集計キーはルールごとに分けている（D-108）。"
+        "集計キーはルールごとに分けている（D-108）。",
+        "J-POINTパートナーの表示倍率には基本1倍が含まれる。JCBカードWは自前の+1倍があるため、表示倍率にさらに1倍が加算される（公式サイトの注記）。D-145で差分を+1修正した。"
       ]
     },
     {
       "id": "jcb_card_w_point_up_budget_rentacar",
       "name": "JCBカードW ポイントアップ（バジェット・レンタカー 3倍）",
-      "description": "バジェット・レンタカーでJCBカードWを利用したときのポイントアップ（3倍）。差分の1ポイントを上乗せする。",
+      "description": "バジェット・レンタカーでJCBカードWを利用したときのポイントアップ（3倍）。差分の2ポイントを上乗せする。",
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
@@ -6597,7 +6616,7 @@
       "calculation": {
         "calculationType": "unitPoints",
         "amountUnitYen": 200,
-        "pointsPerUnit": 1,
+        "pointsPerUnit": 2,
         "rounding": "floor"
       },
       "outputPointProgramId": "j_point",
@@ -6628,7 +6647,7 @@
         "src_jcb_card_w_s_compare",
         "src_jcb_jpoint_special"
       ],
-      "lastVerifiedAt": "2026-09-29",
+      "lastVerifiedAt": "2026-10-01",
       "status": "active",
       "priority": 100,
       "tags": [
@@ -6636,16 +6655,17 @@
         "point_up_program"
       ],
       "notes": [
-        "J-POINTパートナー（優待店）の優待倍率は「3倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が3ポイントになるよう差分の1ポイントを上乗せとして登録している（D-091・D-107）。",
+        "J-POINTパートナー（優待店）の優待倍率は「3倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が4ポイントになるよう差分の2ポイントを上乗せとして登録している（D-091・D-107）。",
         "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
         "倍率は利用者提示のJ-POINTパートナー掲載店舗一覧（2026年9月時点）で確認した。",
-        "集計キーはルールごとに分けている（D-108）。"
+        "集計キーはルールごとに分けている（D-108）。",
+        "J-POINTパートナーの表示倍率には基本1倍が含まれる。JCBカードWは自前の+1倍があるため、表示倍率にさらに1倍が加算される（公式サイトの注記）。D-145で差分を+1修正した。"
       ]
     },
     {
       "id": "jcb_card_w_point_up_keio_department",
       "name": "JCBカードW ポイントアップ（京王百貨店 3倍）",
-      "description": "京王百貨店でJCBカードWを利用したときのポイントアップ（3倍）。差分の1ポイントを上乗せする。",
+      "description": "京王百貨店でJCBカードWを利用したときのポイントアップ（3倍）。差分の2ポイントを上乗せする。",
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
@@ -6682,7 +6702,7 @@
       "calculation": {
         "calculationType": "unitPoints",
         "amountUnitYen": 200,
-        "pointsPerUnit": 1,
+        "pointsPerUnit": 2,
         "rounding": "floor"
       },
       "outputPointProgramId": "j_point",
@@ -6713,7 +6733,7 @@
         "src_jcb_card_w_s_compare",
         "src_jcb_jpoint_special"
       ],
-      "lastVerifiedAt": "2026-09-29",
+      "lastVerifiedAt": "2026-10-01",
       "status": "active",
       "priority": 100,
       "tags": [
@@ -6721,16 +6741,17 @@
         "point_up_program"
       ],
       "notes": [
-        "J-POINTパートナー（優待店）の優待倍率は「3倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が3ポイントになるよう差分の1ポイントを上乗せとして登録している（D-091・D-107）。",
+        "J-POINTパートナー（優待店）の優待倍率は「3倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が4ポイントになるよう差分の2ポイントを上乗せとして登録している（D-091・D-107）。",
         "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
         "倍率は利用者提示のJ-POINTパートナー掲載店舗一覧（2026年9月時点）で確認した。",
-        "集計キーはルールごとに分けている（D-108）。"
+        "集計キーはルールごとに分けている（D-108）。",
+        "J-POINTパートナーの表示倍率には基本1倍が含まれる。JCBカードWは自前の+1倍があるため、表示倍率にさらに1倍が加算される（公式サイトの注記）。D-145で差分を+1修正した。"
       ]
     },
     {
       "id": "jcb_card_w_point_up_daishin_drug",
       "name": "JCBカードW ポイントアップ（ダイシン 3倍）",
-      "description": "ダイシンでJCBカードWを利用したときのポイントアップ（3倍）。差分の1ポイントを上乗せする。",
+      "description": "ダイシンでJCBカードWを利用したときのポイントアップ（3倍）。差分の2ポイントを上乗せする。",
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
@@ -6767,7 +6788,7 @@
       "calculation": {
         "calculationType": "unitPoints",
         "amountUnitYen": 200,
-        "pointsPerUnit": 1,
+        "pointsPerUnit": 2,
         "rounding": "floor"
       },
       "outputPointProgramId": "j_point",
@@ -6798,7 +6819,7 @@
         "src_jcb_card_w_s_compare",
         "src_jcb_jpoint_special"
       ],
-      "lastVerifiedAt": "2026-09-29",
+      "lastVerifiedAt": "2026-10-01",
       "status": "active",
       "priority": 100,
       "tags": [
@@ -6806,17 +6827,18 @@
         "point_up_program"
       ],
       "notes": [
-        "J-POINTパートナー（優待店）の優待倍率は「3倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が3ポイントになるよう差分の1ポイントを上乗せとして登録している（D-091・D-107）。",
+        "J-POINTパートナー（優待店）の優待倍率は「3倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が4ポイントになるよう差分の2ポイントを上乗せとして登録している（D-091・D-107）。",
         "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
         "倍率は利用者提示のJ-POINTパートナー掲載店舗一覧（2026年9月時点）で確認した。",
         "集計キーはルールごとに分けている（D-108）。",
-        "地域系チェーン（四国中心）。"
+        "地域系チェーン（四国中心）。",
+        "J-POINTパートナーの表示倍率には基本1倍が含まれる。JCBカードWは自前の+1倍があるため、表示倍率にさらに1倍が加算される（公式サイトの注記）。D-145で差分を+1修正した。"
       ]
     },
     {
       "id": "jcb_card_w_point_up_hummingbird",
       "name": "JCBカードW ポイントアップ（ハミングバード・グループ 3倍）",
-      "description": "ハミングバード・グループでJCBカードWを利用したときのポイントアップ（3倍）。差分の1ポイントを上乗せする。",
+      "description": "ハミングバード・グループでJCBカードWを利用したときのポイントアップ（3倍）。差分の2ポイントを上乗せする。",
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
@@ -6853,7 +6875,7 @@
       "calculation": {
         "calculationType": "unitPoints",
         "amountUnitYen": 200,
-        "pointsPerUnit": 1,
+        "pointsPerUnit": 2,
         "rounding": "floor"
       },
       "outputPointProgramId": "j_point",
@@ -6884,7 +6906,7 @@
         "src_jcb_card_w_s_compare",
         "src_jcb_jpoint_special"
       ],
-      "lastVerifiedAt": "2026-09-29",
+      "lastVerifiedAt": "2026-10-01",
       "status": "active",
       "priority": 100,
       "tags": [
@@ -6892,17 +6914,18 @@
         "point_up_program"
       ],
       "notes": [
-        "J-POINTパートナー（優待店）の優待倍率は「3倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が3ポイントになるよう差分の1ポイントを上乗せとして登録している（D-091・D-107）。",
+        "J-POINTパートナー（優待店）の優待倍率は「3倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が4ポイントになるよう差分の2ポイントを上乗せとして登録している（D-091・D-107）。",
         "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
         "倍率は利用者提示のJ-POINTパートナー掲載店舗一覧（2026年9月時点）で確認した。",
         "集計キーはルールごとに分けている（D-108）。",
-        "地域系チェーン（長崎）。"
+        "地域系チェーン（長崎）。",
+        "J-POINTパートナーの表示倍率には基本1倍が含まれる。JCBカードWは自前の+1倍があるため、表示倍率にさらに1倍が加算される（公式サイトの注記）。D-145で差分を+1修正した。"
       ]
     },
     {
       "id": "jcb_card_w_point_up_paru_ezuriko",
       "name": "JCBカードW ポイントアップ（江釣子ショッピングセンター パル 3倍）",
-      "description": "江釣子ショッピングセンター パルでJCBカードWを利用したときのポイントアップ（3倍）。差分の1ポイントを上乗せする。",
+      "description": "江釣子ショッピングセンター パルでJCBカードWを利用したときのポイントアップ（3倍）。差分の2ポイントを上乗せする。",
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
@@ -6939,7 +6962,7 @@
       "calculation": {
         "calculationType": "unitPoints",
         "amountUnitYen": 200,
-        "pointsPerUnit": 1,
+        "pointsPerUnit": 2,
         "rounding": "floor"
       },
       "outputPointProgramId": "j_point",
@@ -6970,7 +6993,7 @@
         "src_jcb_card_w_s_compare",
         "src_jcb_jpoint_special"
       ],
-      "lastVerifiedAt": "2026-09-29",
+      "lastVerifiedAt": "2026-10-01",
       "status": "active",
       "priority": 100,
       "tags": [
@@ -6978,17 +7001,18 @@
         "point_up_program"
       ],
       "notes": [
-        "J-POINTパートナー（優待店）の優待倍率は「3倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が3ポイントになるよう差分の1ポイントを上乗せとして登録している（D-091・D-107）。",
+        "J-POINTパートナー（優待店）の優待倍率は「3倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が4ポイントになるよう差分の2ポイントを上乗せとして登録している（D-091・D-107）。",
         "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
         "倍率は利用者提示のJ-POINTパートナー掲載店舗一覧（2026年9月時点）で確認した。",
         "集計キーはルールごとに分けている（D-108）。",
-        "地域系施設（岩手）。"
+        "地域系施設（岩手）。",
+        "J-POINTパートナーの表示倍率には基本1倍が含まれる。JCBカードWは自前の+1倍があるため、表示倍率にさらに1倍が加算される（公式サイトの注記）。D-145で差分を+1修正した。"
       ]
     },
     {
       "id": "jcb_card_w_point_up_look_contact",
       "name": "JCBカードW ポイントアップ（メガネサロンルック 5倍）",
-      "description": "メガネサロンルックでJCBカードWを利用したときのポイントアップ（5倍）。差分の3ポイントを上乗せする。",
+      "description": "メガネサロンルックでJCBカードWを利用したときのポイントアップ（5倍）。差分の4ポイントを上乗せする。",
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
@@ -7025,7 +7049,7 @@
       "calculation": {
         "calculationType": "unitPoints",
         "amountUnitYen": 200,
-        "pointsPerUnit": 3,
+        "pointsPerUnit": 4,
         "rounding": "floor"
       },
       "outputPointProgramId": "j_point",
@@ -7056,7 +7080,7 @@
         "src_jcb_card_w_s_compare",
         "src_jcb_jpoint_special"
       ],
-      "lastVerifiedAt": "2026-09-29",
+      "lastVerifiedAt": "2026-10-01",
       "status": "active",
       "priority": 100,
       "tags": [
@@ -7064,17 +7088,18 @@
         "point_up_program"
       ],
       "notes": [
-        "J-POINTパートナー（優待店）の優待倍率は「5倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が5ポイントになるよう差分の3ポイントを上乗せとして登録している（D-091・D-107）。",
+        "J-POINTパートナー（優待店）の優待倍率は「5倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が6ポイントになるよう差分の4ポイントを上乗せとして登録している（D-091・D-107）。",
         "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
         "倍率は利用者提示のJ-POINTパートナー掲載店舗一覧（2026年9月時点）で確認した。",
         "集計キーはルールごとに分けている（D-108）。",
-        "地域系チェーン（九州中心）。"
+        "地域系チェーン（九州中心）。",
+        "J-POINTパートナーの表示倍率には基本1倍が含まれる。JCBカードWは自前の+1倍があるため、表示倍率にさらに1倍が加算される（公式サイトの注記）。D-145で差分を+1修正した。"
       ]
     },
     {
       "id": "jcb_card_w_point_up_fukudaya",
       "name": "JCBカードW ポイントアップ（福田屋百貨店 3倍）",
-      "description": "福田屋百貨店でJCBカードWを利用したときのポイントアップ（3倍）。差分の1ポイントを上乗せする。",
+      "description": "福田屋百貨店でJCBカードWを利用したときのポイントアップ（3倍）。差分の2ポイントを上乗せする。",
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
@@ -7111,7 +7136,7 @@
       "calculation": {
         "calculationType": "unitPoints",
         "amountUnitYen": 200,
-        "pointsPerUnit": 1,
+        "pointsPerUnit": 2,
         "rounding": "floor"
       },
       "outputPointProgramId": "j_point",
@@ -7142,7 +7167,7 @@
         "src_jcb_card_w_s_compare",
         "src_jcb_jpoint_special"
       ],
-      "lastVerifiedAt": "2026-09-29",
+      "lastVerifiedAt": "2026-10-01",
       "status": "active",
       "priority": 100,
       "tags": [
@@ -7150,11 +7175,12 @@
         "point_up_program"
       ],
       "notes": [
-        "J-POINTパートナー（優待店）の優待倍率は「3倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が3ポイントになるよう差分の1ポイントを上乗せとして登録している（D-091・D-107）。",
+        "J-POINTパートナー（優待店）の優待倍率は「3倍」。JCBカードWの基本還元が200円2ポイント（2倍）のため、合計が4ポイントになるよう差分の2ポイントを上乗せとして登録している（D-091・D-107）。",
         "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
         "倍率は利用者提示のJ-POINTパートナー掲載店舗一覧（2026年9月時点）で確認した。",
         "集計キーはルールごとに分けている（D-108）。",
-        "地域系百貨店（栃木）。"
+        "地域系百貨店（栃木）。",
+        "J-POINTパートナーの表示倍率には基本1倍が含まれる。JCBカードWは自前の+1倍があるため、表示倍率にさらに1倍が加算される（公式サイトの注記）。D-145で差分を+1修正した。"
       ]
     },
     {
@@ -9066,7 +9092,8 @@
         "対象決済はdカード（Visa/Mastercard）・dカード（iD）・dカードを支払い設定したd払い。",
         "dカード以外のクレジットカードでのiD、d払いタッチ／バーチャルカード、電話料金合算払いのd払いは対象外。",
         "一部対象外の店舗・商品がある。",
-        "2027年1月利用分からの基本還元改定後も特約店ポイントは上乗せされる。"
+        "2027年1月利用分からの基本還元改定後も特約店ポイントは上乗せされる。",
+        "iD払いは特約店ポイントの対象外（Visa/Mastercardのみ）。dポイントカードの提示分（100円税抜1P）は別制度で、公式の「最大2.5%」は決済1.0%＋特約店0.5%＋提示1.0%の合計。髙島屋オンラインストア・TBEAUT・通信販売・ローズキッチンも特約店ポイントの対象（D-145）。"
       ]
     },
     {
@@ -9134,7 +9161,8 @@
       "displayClaim": null,
       "sourceIds": [
         "src_dcard_official",
-        "src_dpoint_tokuyaku_about"
+        "src_dpoint_tokuyaku_about",
+        "src_dcard_official/std"
       ],
       "lastVerifiedAt": "2026-10-01",
       "status": "active",
@@ -9149,7 +9177,8 @@
         "対象決済はdカード（Visa/Mastercard）・dカード（iD）・dカードを支払い設定したd払い。",
         "dカード以外のクレジットカードでのiD、d払いタッチ／バーチャルカード、電話料金合算払いのd払いは対象外。",
         "一部対象外の店舗・商品がある。",
-        "2027年1月利用分からの基本還元改定後も特約店ポイントは上乗せされる。"
+        "2027年1月利用分からの基本還元改定後も特約店ポイントは上乗せされる。",
+        "紀伊國屋書店の「iD特約店」は2026-02-28までの利用分をもって終了した（公式のお知らせ）。Visa/Mastercardの特約店ポイントは継続しているが、iD払いでは加算されない。エンジンは支払い経路で除外できないため、iDで支払う場合はこの上乗せが過大になる（D-145）。"
       ]
     },
     {
@@ -9466,7 +9495,8 @@
       "displayClaim": null,
       "sourceIds": [
         "src_dcard_official",
-        "src_dpoint_tokuyaku_about"
+        "src_dpoint_tokuyaku_about",
+        "src_dcard_official/std"
       ],
       "lastVerifiedAt": "2026-10-01",
       "status": "active",
@@ -9481,7 +9511,8 @@
         "対象決済はdカード（Visa/Mastercard）・dカード（iD）・dカードを支払い設定したd払い。",
         "dカード以外のクレジットカードでのiD、d払いタッチ／バーチャルカード、電話料金合算払いのd払いは対象外。",
         "一部対象外の店舗・商品がある。",
-        "2027年1月利用分からの基本還元改定後も特約店ポイントは上乗せされる。"
+        "2027年1月利用分からの基本還元改定後も特約店ポイントは上乗せされる。",
+        "ビッグエコーの「iD特約店」は2026-03-31までの利用分をもって終了した（公式のお知らせ）。Visa/Mastercardの特約店ポイントは継続しているが、iD払いでは加算されない。エンジンは支払い経路で除外できないため、iDで支払う場合はこの上乗せが過大になる（D-145）。"
       ]
     },
     {
@@ -9881,7 +9912,8 @@
       "displayClaim": null,
       "sourceIds": [
         "src_dcard_official",
-        "src_dpoint_tokuyaku_about"
+        "src_dpoint_tokuyaku_about",
+        "src_dcard_official/std"
       ],
       "lastVerifiedAt": "2026-10-01",
       "status": "active",
@@ -9896,7 +9928,8 @@
         "対象決済はdカード（Visa/Mastercard）・dカード（iD）・dカードを支払い設定したd払い。",
         "dカード以外のクレジットカードでのiD、d払いタッチ／バーチャルカード、電話料金合算払いのd払いは対象外。",
         "一部対象外の店舗・商品がある。",
-        "2027年1月利用分からの基本還元改定後も特約店ポイントは上乗せされる。"
+        "2027年1月利用分からの基本還元改定後も特約店ポイントは上乗せされる。",
+        "SUIT SQUAREの「iD特約店」は2026-02-28までの利用分をもって終了した（公式のお知らせ）。Visa/Mastercardの特約店ポイントは継続しているが、iD払いでは加算されない。エンジンは支払い経路で除外できないため、iDで支払う場合はこの上乗せが過大になる（D-145）。"
       ]
     },
     {
@@ -10130,7 +10163,8 @@
       "displayClaim": null,
       "sourceIds": [
         "src_dcard_official",
-        "src_dpoint_tokuyaku_about"
+        "src_dpoint_tokuyaku_about",
+        "src_dcard_official/std"
       ],
       "lastVerifiedAt": "2026-10-01",
       "status": "active",
@@ -10145,7 +10179,8 @@
         "対象決済はdカード（Visa/Mastercard）・dカード（iD）・dカードを支払い設定したd払い。",
         "dカード以外のクレジットカードでのiD、d払いタッチ／バーチャルカード、電話料金合算払いのd払いは対象外。",
         "一部対象外の店舗・商品がある。",
-        "2027年1月利用分からの基本還元改定後も特約店ポイントは上乗せされる。"
+        "2027年1月利用分からの基本還元改定後も特約店ポイントは上乗せされる。",
+        "洋服の青山の「iD特約店」は2026-02-28までの利用分をもって終了した（公式のお知らせ）。Visa/Mastercardの特約店ポイントは継続しているが、iD払いでは加算されない。エンジンは支払い経路で除外できないため、iDで支払う場合はこの上乗せが過大になる（D-145）。"
       ]
     },
     {
