@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "catalogVersion": "2026.10.01.4",
+  "catalogVersion": "2026.10.02.2",
   "generatedAt": "2026-09-27T00:00:00+09:00",
   "items": [
     {
@@ -2241,12 +2241,11 @@
       "status": "active",
       "sourceIds": [
         "src_aeon_welcia_card",
-        "src_aeon_point_official",
-        "src_dcard_official",
-        "src_dpoint_tokuyaku_about"
+        "src_aeon_point_official"
       ],
       "notes": [
-        "ウエルシアグループの対象店舗。ウエルシアカードのクレジット払いで1.5%、毎月10日は10%。dカード特約店でもある（100円につき+2ポイント）。"
+        "ウエルシアグループの対象店舗。ウエルシアカードのクレジット払いで1.5%、毎月10日は10%。",
+        "dカード特約店ではない。dポイントカード提示は対象外で、d払いのみ利用可能（dポイントクラブ公式の店舗ページで確認・2026-10-02）。以前の「dカード特約店+2ポイント」の記載は誤り（D-152）。"
       ],
       "searchAliases": [
         "こくみん",

@@ -143,8 +143,8 @@ void main() {
   group('カタログのデコード', () {
     test('実カード6枚がデコードでき、Catalogが構築できる', () {
       expect(catalog.isNotEmpty, isTrue);
-      expect(catalog.catalogVersion, '2026.10.01.4');
-      expect(catalog.generatedAt, '2026-10-01T00:00:00+09:00');
+      expect(catalog.catalogVersion, '2026.10.02.2');
+      expect(catalog.generatedAt, '2026-10-02T00:00:00+09:00');
 
       expect(
         catalog.paymentInstrumentsById.keys.map((key) => key.value).toList()
@@ -177,7 +177,9 @@ void main() {
         ],
       );
 
-      expect(catalog.rewardRulesById.length, 117);
+      // 有効期間を過ぎたルール（iD特約店終了の4件）は読み込み時に除かれる（D-152）。
+      // ディスク上は117件、読み込み後は113件。
+      expect(catalog.rewardRulesById.length, 113);
       expect(catalog.sourcesById.length, 57);
 
       final mizuho = catalog.paymentInstrumentsById[id('mizuho_rakuten_card')]!;
@@ -209,7 +211,8 @@ void main() {
           .where((rule) => rule.status.value == 'draft')
           .toList();
 
-      expect(active.length, 111);
+      // 有効期間外を除いたactiveは107件（D-152）。
+      expect(active.length, 107);
       expect(draft.length, 6);
 
       for (final rule in catalog.rewardRulesById.values) {

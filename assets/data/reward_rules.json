@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "catalogVersion": "2026.10.01.4",
+  "catalogVersion": "2026.10.02.2",
   "generatedAt": "2026-09-27T00:00:00+09:00",
   "items": [
     {
@@ -2798,7 +2798,7 @@
         "src_jcb_card_w_s_compare",
         "src_jcb_jpoint_special"
       ],
-      "lastVerifiedAt": "2026-10-01",
+      "lastVerifiedAt": "2026-10-02",
       "status": "active",
       "priority": 100,
       "tags": [
@@ -2806,7 +2806,7 @@
         "point_up_program"
       ],
       "notes": [
-        "「クレカ乗車」は電車・バスなど全国190以上の対象路線で使えるJCBのタッチ決済乗車サービス。優待倍率は20倍で、JCBカードWの基本還元（200円2ポイント＝2倍）との差分18ポイントを上乗せとして登録している（D-107）。",
+        "「クレカ乗車」は電車・バスなど全国190以上の対象路線で使えるJCBのタッチ決済乗車サービス。優待倍率は20倍で、JCBカードWの基本還元（200円2ポイント＝2倍）との差分19ポイントを上乗せとして登録している（D-107）。",
         "上乗せを受けるには事前の「ポイントアップ登録」が必要。条件 jcb_point_up_registered が満たされているときだけ適用される。",
         "JCB公式の特典条件: 対象路線でJCB ORIGINALシリーズ対象カードで支払うこと。一部対象外の事業者があり、公共交通機関によっては一部の路線・駅・港でのみタッチ決済が利用可能。JCBデビットでは支払えない場合がある。",
         "表示倍率のうち1倍分が通常ポイント、残りの倍率分がボーナスポイントとして反映される（JCB公式の特典獲得タイミング）。差分方式と整合する。",
@@ -5674,7 +5674,7 @@
       "calculation": {
         "calculationType": "unitPoints",
         "amountUnitYen": 200,
-        "pointsPerUnit": 2,
+        "pointsPerUnit": 1,
         "rounding": "floor"
       },
       "outputPointProgramId": "v_point",
@@ -5705,7 +5705,7 @@
         "src_olive_gold_official",
         "src_smbc_gold_nl_official"
       ],
-      "lastVerifiedAt": "2026-09-29",
+      "lastVerifiedAt": "2026-10-02",
       "status": "active",
       "priority": 100,
       "tags": [
@@ -5714,9 +5714,10 @@
         "point_up_program"
       ],
       "notes": [
-        "加算率は対象のコンビニ・飲食店でのスマホタッチ決済・モバイルオーダーの利用額に対するもの（200円につき2ポイント＝+1%）。",
+        "加算率は対象のコンビニ・飲食店でのスマホタッチ決済・モバイルオーダーの利用額に対するもの（200円につき1ポイント＝+0.5%）。三井住友銀行公式のVポイントアッププログラムで確認（2026-10-02）。",
         "条件はアプリの「還元率の条件」でカードごとに選べる（D-114・D-122）。",
-        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。"
+        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。",
+        "NISA口座100万円以上の加算は三井住友カード仲介等の口座かつOlive会員限定。"
       ]
     },
     {
@@ -5781,7 +5782,7 @@
       "calculation": {
         "calculationType": "unitPoints",
         "amountUnitYen": 200,
-        "pointsPerUnit": 2,
+        "pointsPerUnit": 1,
         "rounding": "floor"
       },
       "outputPointProgramId": "v_point",
@@ -5812,7 +5813,7 @@
         "src_olive_gold_official",
         "src_smbc_gold_nl_official"
       ],
-      "lastVerifiedAt": "2026-09-29",
+      "lastVerifiedAt": "2026-10-02",
       "status": "active",
       "priority": 100,
       "tags": [
@@ -5821,7 +5822,7 @@
         "point_up_program"
       ],
       "notes": [
-        "加算率は対象のコンビニ・飲食店でのスマホタッチ決済・モバイルオーダーの利用額に対するもの（200円につき2ポイント＝+1%）。",
+        "加算率は対象のコンビニ・飲食店でのスマホタッチ決済・モバイルオーダーの利用額に対するもの（200円につき1ポイント＝+0.5%）。三井住友銀行公式のVポイントアッププログラムで確認（2026-10-02）。",
         "条件はアプリの「還元率の条件」でカードごとに選べる（D-114・D-122）。",
         "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。"
       ]
@@ -8848,89 +8849,6 @@
       ]
     },
     {
-      "id": "d_card_tokuyaku_kokumin",
-      "name": "dカード特約店 コクミン（100円につき+2ポイント）",
-      "description": "dカード特約店のコクミンで支払うと100円につき2ポイントを上乗せする。",
-      "ruleKind": "campaignBonus",
-      "selectors": {
-        "instrumentIds": [
-          "d_card"
-        ],
-        "modeIds": [],
-        "routeIds": [],
-        "fundingRelationIds": [],
-        "merchantIds": [
-          "kokumin"
-        ],
-        "merchantGroupIds": [],
-        "categoryIds": [],
-        "brandIds": [],
-        "locationIds": [],
-        "transactionTags": []
-      },
-      "exclusions": {
-        "instrumentIds": [],
-        "modeIds": [],
-        "routeIds": [],
-        "fundingRelationIds": [],
-        "merchantIds": [],
-        "merchantGroupIds": [],
-        "categoryIds": [],
-        "brandIds": [],
-        "locationIds": [],
-        "transactionTags": []
-      },
-      "conditionExpression": null,
-      "calculation": {
-        "calculationType": "unitPoints",
-        "amountUnitYen": 100,
-        "pointsPerUnit": 2,
-        "rounding": "floor"
-      },
-      "outputPointProgramId": "d_point",
-      "aggregation": {
-        "scope": "billingMonth",
-        "aggregationKey": "d_card_tokuyaku_kokumin_100",
-        "periodMinimumEligibleSpendYen": 0,
-        "conditionEvaluationTiming": "transaction",
-        "incrementalAward": true
-      },
-      "stacking": {
-        "policy": "stackable",
-        "exclusiveGroupId": null,
-        "replacesRuleIds": [],
-        "suppressesRuleIds": [],
-        "suppressesTags": [],
-        "dependsOnRuleIds": [],
-        "applicationOrder": 100
-      },
-      "cap": null,
-      "validFrom": "2026-10-01",
-      "validUntilExclusive": null,
-      "dateBasis": "transactionDate",
-      "timezone": "Asia/Tokyo",
-      "displayClaim": null,
-      "sourceIds": [
-        "src_dcard_official",
-        "src_dpoint_tokuyaku_about"
-      ],
-      "lastVerifiedAt": "2026-10-01",
-      "status": "active",
-      "priority": 100,
-      "tags": [
-        "campaign_bonus",
-        "store_list"
-      ],
-      "notes": [
-        "dカード特約店では決済ポイント（1%）に加えて特約店ポイントが上乗せされる。",
-        "100円につき+2ポイントを上乗せとして登録している。",
-        "対象決済はdカード（Visa/Mastercard）・dカード（iD）・dカードを支払い設定したd払い。",
-        "dカード以外のクレジットカードでのiD、d払いタッチ／バーチャルカード、電話料金合算払いのd払いは対象外。",
-        "一部対象外の店舗・商品がある。",
-        "2027年1月利用分からの基本還元改定後も特約店ポイントは上乗せされる。"
-      ]
-    },
-    {
       "id": "d_card_tokuyaku_takashimaya",
       "name": "dカード特約店 高島屋（100円につき+1ポイント）",
       "description": "dカード特約店の高島屋で支払うと200円につき1ポイントを上乗せする。",
@@ -9073,7 +8991,7 @@
       },
       "cap": null,
       "validFrom": "2026-10-01",
-      "validUntilExclusive": null,
+      "validUntilExclusive": "2026-03-01",
       "dateBasis": "transactionDate",
       "timezone": "Asia/Tokyo",
       "displayClaim": null,
@@ -9082,7 +9000,7 @@
         "src_dpoint_tokuyaku_about",
         "src_dcard_official/std"
       ],
-      "lastVerifiedAt": "2026-10-01",
+      "lastVerifiedAt": "2026-10-02",
       "status": "active",
       "priority": 100,
       "tags": [
@@ -9096,7 +9014,8 @@
         "dカード以外のクレジットカードでのiD、d払いタッチ／バーチャルカード、電話料金合算払いのd払いは対象外。",
         "一部対象外の店舗・商品がある。",
         "2027年1月利用分からの基本還元改定後も特約店ポイントは上乗せされる。",
-        "紀伊國屋書店の「iD特約店」は2026-02-28までの利用分をもって終了した（公式のお知らせ）。Visa/Mastercardの特約店ポイントは継続しているが、iD払いでは加算されない。エンジンは支払い経路で除外できないため、iDで支払う場合はこの上乗せが過大になる（D-145）。"
+        "紀伊國屋書店の「iD特約店」は2026-02-28までの利用分をもって終了した（公式のお知らせ）。Visa/Mastercardの特約店ポイントは継続しているが、iD払いでは加算されない。エンジンは支払い経路で除外できないため、iDで支払う場合はこの上乗せが過大になる（D-145）。",
+        "この店舗のdカード特約店はiD決済限定だったが、iD特約店契約が終了した（公式の契約終了のお知らせに基づく）。終了日以降は還元なし。"
       ]
     },
     {
@@ -9332,7 +9251,7 @@
         "src_dcard_official",
         "src_dpoint_tokuyaku_about"
       ],
-      "lastVerifiedAt": "2026-10-01",
+      "lastVerifiedAt": "2026-10-02",
       "status": "active",
       "priority": 100,
       "tags": [
@@ -9345,7 +9264,8 @@
         "対象決済はdカード（Visa/Mastercard）・dカード（iD）・dカードを支払い設定したd払い。",
         "dカード以外のクレジットカードでのiD、d払いタッチ／バーチャルカード、電話料金合算払いのd払いは対象外。",
         "一部対象外の店舗・商品がある。",
-        "2027年1月利用分からの基本還元改定後も特約店ポイントは上乗せされる。"
+        "2027年1月利用分からの基本還元改定後も特約店ポイントは上乗せされる。",
+        "特約店ポイントの対象決済はdカード（iD）のみ。エンジンは決済経路を区別できないため、Visa/Mastercardでの支払いでも加点されてしまう（第2期の課題）。"
       ]
     },
     {
@@ -9407,7 +9327,7 @@
       },
       "cap": null,
       "validFrom": "2026-10-01",
-      "validUntilExclusive": null,
+      "validUntilExclusive": "2026-04-01",
       "dateBasis": "transactionDate",
       "timezone": "Asia/Tokyo",
       "displayClaim": null,
@@ -9416,7 +9336,7 @@
         "src_dpoint_tokuyaku_about",
         "src_dcard_official/std"
       ],
-      "lastVerifiedAt": "2026-10-01",
+      "lastVerifiedAt": "2026-10-02",
       "status": "active",
       "priority": 100,
       "tags": [
@@ -9430,7 +9350,8 @@
         "dカード以外のクレジットカードでのiD、d払いタッチ／バーチャルカード、電話料金合算払いのd払いは対象外。",
         "一部対象外の店舗・商品がある。",
         "2027年1月利用分からの基本還元改定後も特約店ポイントは上乗せされる。",
-        "ビッグエコーの「iD特約店」は2026-03-31までの利用分をもって終了した（公式のお知らせ）。Visa/Mastercardの特約店ポイントは継続しているが、iD払いでは加算されない。エンジンは支払い経路で除外できないため、iDで支払う場合はこの上乗せが過大になる（D-145）。"
+        "ビッグエコーの「iD特約店」は2026-03-31までの利用分をもって終了した（公式のお知らせ）。Visa/Mastercardの特約店ポイントは継続しているが、iD払いでは加算されない。エンジンは支払い経路で除外できないため、iDで支払う場合はこの上乗せが過大になる（D-145）。",
+        "この店舗のdカード特約店はiD決済限定だったが、iD特約店契約が終了した（公式の契約終了のお知らせに基づく）。終了日以降は還元なし。"
       ]
     },
     {
@@ -9824,7 +9745,7 @@
       },
       "cap": null,
       "validFrom": "2026-10-01",
-      "validUntilExclusive": null,
+      "validUntilExclusive": "2026-03-01",
       "dateBasis": "transactionDate",
       "timezone": "Asia/Tokyo",
       "displayClaim": null,
@@ -9833,7 +9754,7 @@
         "src_dpoint_tokuyaku_about",
         "src_dcard_official/std"
       ],
-      "lastVerifiedAt": "2026-10-01",
+      "lastVerifiedAt": "2026-10-02",
       "status": "active",
       "priority": 100,
       "tags": [
@@ -9847,7 +9768,8 @@
         "dカード以外のクレジットカードでのiD、d払いタッチ／バーチャルカード、電話料金合算払いのd払いは対象外。",
         "一部対象外の店舗・商品がある。",
         "2027年1月利用分からの基本還元改定後も特約店ポイントは上乗せされる。",
-        "SUIT SQUAREの「iD特約店」は2026-02-28までの利用分をもって終了した（公式のお知らせ）。Visa/Mastercardの特約店ポイントは継続しているが、iD払いでは加算されない。エンジンは支払い経路で除外できないため、iDで支払う場合はこの上乗せが過大になる（D-145）。"
+        "SUIT SQUAREの「iD特約店」は2026-02-28までの利用分をもって終了した（公式のお知らせ）。Visa/Mastercardの特約店ポイントは継続しているが、iD払いでは加算されない。エンジンは支払い経路で除外できないため、iDで支払う場合はこの上乗せが過大になる（D-145）。",
+        "この店舗のdカード特約店はiD決済限定だったが、iD特約店契約が終了した（公式の契約終了のお知らせに基づく）。終了日以降は還元なし。"
       ]
     },
     {
@@ -10075,7 +9997,7 @@
       },
       "cap": null,
       "validFrom": "2026-10-01",
-      "validUntilExclusive": null,
+      "validUntilExclusive": "2026-03-01",
       "dateBasis": "transactionDate",
       "timezone": "Asia/Tokyo",
       "displayClaim": null,
@@ -10084,7 +10006,7 @@
         "src_dpoint_tokuyaku_about",
         "src_dcard_official/std"
       ],
-      "lastVerifiedAt": "2026-10-01",
+      "lastVerifiedAt": "2026-10-02",
       "status": "active",
       "priority": 100,
       "tags": [
@@ -10098,7 +10020,8 @@
         "dカード以外のクレジットカードでのiD、d払いタッチ／バーチャルカード、電話料金合算払いのd払いは対象外。",
         "一部対象外の店舗・商品がある。",
         "2027年1月利用分からの基本還元改定後も特約店ポイントは上乗せされる。",
-        "洋服の青山の「iD特約店」は2026-02-28までの利用分をもって終了した（公式のお知らせ）。Visa/Mastercardの特約店ポイントは継続しているが、iD払いでは加算されない。エンジンは支払い経路で除外できないため、iDで支払う場合はこの上乗せが過大になる（D-145）。"
+        "洋服の青山の「iD特約店」は2026-02-28までの利用分をもって終了した（公式のお知らせ）。Visa/Mastercardの特約店ポイントは継続しているが、iD払いでは加算されない。エンジンは支払い経路で除外できないため、iDで支払う場合はこの上乗せが過大になる（D-145）。",
+        "この店舗のdカード特約店はiD決済限定だったが、iD特約店契約が終了した（公式の契約終了のお知らせに基づく）。終了日以降は還元なし。"
       ]
     },
     {
@@ -10168,7 +10091,7 @@
         "src_dcard_official",
         "src_dpoint_tokuyaku_about"
       ],
-      "lastVerifiedAt": "2026-10-01",
+      "lastVerifiedAt": "2026-10-02",
       "status": "active",
       "priority": 100,
       "tags": [
@@ -10181,7 +10104,8 @@
         "対象決済はdカード（Visa/Mastercard）・dカード（iD）・dカードを支払い設定したd払い。",
         "dカード以外のクレジットカードでのiD、d払いタッチ／バーチャルカード、電話料金合算払いのd払いは対象外。",
         "一部対象外の店舗・商品がある。",
-        "2027年1月利用分からの基本還元改定後も特約店ポイントは上乗せされる。"
+        "2027年1月利用分からの基本還元改定後も特約店ポイントは上乗せされる。",
+        "特約店ポイントの対象決済はdカード（iD）のみ。エンジンは決済経路を区別できないため、Visa/Mastercardでの支払いでも加点されてしまう（第2期の課題）。"
       ]
     },
     {
@@ -10409,7 +10333,7 @@
       "sourceIds": [
         "src_paypay_card_point"
       ],
-      "lastVerifiedAt": "2026-10-01",
+      "lastVerifiedAt": "2026-10-02",
       "status": "active",
       "priority": 100,
       "tags": [
@@ -10420,8 +10344,8 @@
         "Yahoo!ショッピング・LOHACOで毎日最大5%（PayPayステップ1%＋ストアポイント1%＋毎日もらえる3%）。",
         "PayPayアプリ登録と本人確認（eKYC）が必要。",
         "基本還元200円2ポイントと合算して200円10ポイント＝5%。",
-        "「毎日もらえる3%」は期間限定ポイントで、付与上限がある（2026-09-05以降は1人あたり2,000円相当）。cap未対応のため計算には反映していない。",
-        "LYPプレミアム スタンダードプラン会員はさらに2%加算される（本カタログでは未登録）。"
+        "LYPプレミアム スタンダードプラン会員はさらに2%加算される（本カタログでは未登録）。",
+        "「LINEと連携で毎日もらえる」（+3%分）の付与上限は注文月ごとに5,000円相当（公式ページで確認・2026-10-02）。上限はエンジン未対応のため計算には反映していない。"
       ]
     },
     {
@@ -10493,7 +10417,7 @@
       "sourceIds": [
         "src_paypay_card_point"
       ],
-      "lastVerifiedAt": "2026-10-01",
+      "lastVerifiedAt": "2026-10-02",
       "status": "active",
       "priority": 100,
       "tags": [
@@ -10504,7 +10428,88 @@
         "Yahoo!ショッピング・LOHACOで毎日最大5%（PayPayステップ1%＋ストアポイント1%＋毎日もらえる3%）。",
         "PayPayアプリ登録と本人確認（eKYC）が必要。",
         "基本還元200円2ポイントと合算して200円10ポイント＝5%。",
-        "付与上限がある。cap未対応のため計算には反映していない。"
+        "「LINEと連携で毎日もらえる」（+3%分）の付与上限は注文月ごとに5,000円相当（公式ページで確認・2026-10-02）。上限はエンジン未対応のため計算には反映していない。"
+      ]
+    },
+    {
+      "id": "d_card_tokuyaku_starbucks",
+      "name": "dカード特約店 スターバックス カードへのオンライン入金（100円につき+2ポイント）",
+      "description": "スターバックス カードへのオンライン入金・オートチャージをdカードで支払うと100円につき2ポイントを上乗せする。",
+      "ruleKind": "campaignBonus",
+      "selectors": {
+        "instrumentIds": [
+          "d_card"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [
+          "starbucks"
+        ],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": null,
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 100,
+        "pointsPerUnit": 2,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "d_point",
+      "aggregation": {
+        "scope": "billingMonth",
+        "aggregationKey": "d_card_tokuyaku_starbucks_100",
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": true
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 100
+      },
+      "cap": null,
+      "validFrom": "2026-10-02",
+      "validUntilExclusive": null,
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_dcard_official",
+        "src_dpoint_tokuyaku_about"
+      ],
+      "lastVerifiedAt": "2026-10-02",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "campaign_bonus",
+        "store_list"
+      ],
+      "notes": [
+        "dカード特約店では決済ポイント（1%）に加えて特約店ポイントが上乗せされる。",
+        "スターバックス カードへのオンライン入金・オートチャージが対象で、店頭でのカード利用は対象外。エンジンは支払い経路を区別できないため店頭利用でも加点されてしまう（第2期の課題）。",
+        "100円につき+2ポイントを上乗せとして登録している。",
+        "対象決済はdカード（Visa/Mastercard）。"
       ]
     }
   ]
