@@ -225,7 +225,8 @@ final class RankingController extends ChangeNotifier {
     _isLoading = true;
     notifyListeners();
 
-    _catalog = await _repository.load();
+    final loaded = await _repository.load();
+    _catalog = loaded.effectiveOn(currentJstDate());
     _directory = await _directoryRepository.load();
     _conditionOptions = await _conditionOptionsRepository.load();
     _preferences = await _preferencesStore.load();

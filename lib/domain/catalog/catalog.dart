@@ -1,3 +1,4 @@
+import 'package:bestpay/core/value_objects/calculation_date.dart';
 import 'package:bestpay/core/value_objects/stable_id.dart';
 import 'package:bestpay/domain/catalog/models/catalog_entity.dart';
 import 'package:bestpay/domain/catalog/models/payment_instrument_models.dart';
@@ -63,6 +64,40 @@ final class Catalog {
     ]..sort((left, right) => left.id.value.compareTo(right.id.value));
 
     return List<RewardRule>.unmodifiable(rules);
+  }
+
+  /// 有効期間が終わったカードと、そのカード専用のルールを除いたカタログ（D-146）。
+  ///
+  /// カード自体が消えたあとも計算に残ると、存在しないカードが
+  /// 「いちばん得」として並んでしまうため、読み込み時に一度だけ絞り込む。
+  Catalog effectiveOn(CalculationDate date) {
+    final instruments = <PaymentInstrument>[
+      for (final instrument in paymentInstrumentsById.values)
+        if (instrument.validityPeriod.contains(date)) instrument,
+    ];
+
+    if (instruments.length == paymentInstrumentsById.length) {
+      return this;
+    }
+
+    final visibleIds = <StableId>{
+      for (final instrument in instruments) instrument.id,
+    };
+    final rules = <RewardRule>[
+      for (final rule in rewardRulesById.values)
+        if (rule.selectors.instrumentIds.isEmpty ||
+            rule.selectors.instrumentIds.any(visibleIds.contains))
+          rule,
+    ];
+
+    return Catalog(
+      catalogVersion: catalogVersion,
+      generatedAt: generatedAt,
+      paymentInstruments: instruments,
+      pointPrograms: pointProgramsById.values,
+      rewardRules: rules,
+      sources: sourcesById.values,
+    );
   }
 }
 

@@ -108,8 +108,8 @@ final class _CalculatorTabState extends State<CalculatorTab> {
               style: theme.textTheme.bodySmall,
             ),
             const SizedBox(height: 8),
-            for (final entry in ranking.allEntries)
-              _buildEntry(context, entry),
+            for (final (index, entry) in ranking.allEntries.indexed)
+              _buildEntry(context, entry, isTop: index == 0),
             const SizedBox(height: 12),
             Text(
               '※ 進呈上限（月50,000ポイント等）と、期間ごとの対象金額上限'
@@ -190,12 +190,16 @@ final class _CalculatorTabState extends State<CalculatorTab> {
     );
   }
 
-  Widget _buildEntry(BuildContext context, RewardRankingEntry entry) {
+  Widget _buildEntry(
+    BuildContext context,
+    RewardRankingEntry entry, {
+    required bool isTop,
+  }) {
     final theme = Theme.of(context);
 
     return Card(
       clipBehavior: Clip.antiAlias,
-      shape: entry.isBaseline
+      shape: isTop
           ? RoundedRectangleBorder(
               side: BorderSide(color: theme.colorScheme.primary),
               borderRadius: BorderRadius.circular(12),
@@ -224,6 +228,14 @@ final class _CalculatorTabState extends State<CalculatorTab> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
+                    if (isTop)
+                      Text(
+                        'いちばん得',
+                        style: theme.textTheme.labelMedium?.copyWith(
+                          color: theme.colorScheme.primary,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     Text(
                       entry.instrumentName,
                       style: theme.textTheme.titleMedium,
@@ -237,7 +249,7 @@ final class _CalculatorTabState extends State<CalculatorTab> {
                       _formatPoints(entry),
                       style: theme.textTheme.bodySmall,
                     ),
-                    if (entry.isBaseline)
+                    if (entry.isBaseline && !isTop)
                       Text(
                         '基準のカード',
                         style: theme.textTheme.labelSmall,

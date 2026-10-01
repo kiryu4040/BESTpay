@@ -33,8 +33,7 @@ final class MerchantCompareScreen extends StatelessWidget {
                 const SizedBox(height: 16),
                 Text('カードごとの比較', style: theme.textTheme.titleMedium),
                 const SizedBox(height: 4),
-                for (final entry in controller.ranking!.allEntries)
-                  _buildEntry(context, entry),
+                ..._buildEntries(context, controller.ranking!.allEntries),
                 if (merchant.notes.isNotEmpty) ...<Widget>[
                   const SizedBox(height: 16),
                   Card(
@@ -75,26 +74,21 @@ final class MerchantCompareScreen extends StatelessWidget {
   /// 結論。左に大きく券面、右に名称と還元率だけを出す（D-103）。
   Widget _buildConclusion(BuildContext context, RewardRanking ranking) {
     final theme = Theme.of(context);
-    final baseline = ranking.baselineEntry;
-    final better = ranking.betterThanBaseline;
+    final winner = ranking.bestEntry;
 
-    if (baseline == null) {
+    if (winner == null) {
       return const Card(
         child: Padding(
           padding: EdgeInsets.all(16),
-          child: Text('基準にするみずほ楽天カードがカード一覧にありません。'),
+          child: Text('比較できるカードがカード一覧にありません。'),
         ),
       );
     }
 
-    final isBaselineBest = better.isEmpty;
-    final winner = isBaselineBest ? baseline : better.first;
     final colorScheme = theme.colorScheme;
 
     return Card(
-      color: isBaselineBest
-          ? colorScheme.surfaceContainerHighest
-          : colorScheme.primaryContainer,
+      color: colorScheme.primaryContainer,
       child: InkWell(
         onTap: () => Navigator.of(context).push(
           MaterialPageRoute<void>(
@@ -138,14 +132,33 @@ final class MerchantCompareScreen extends StatelessWidget {
   }
 
   /// 一覧の1枚。左に券面、右に名称と還元率（D-103）。
-  Widget _buildEntry(BuildContext context, RewardRankingEntry entry) {
+  ///
+  /// いちばん得なカード（並び順の先頭）を強調する（D-147）。
+  List<Widget> _buildEntries(
+    BuildContext context,
+    List<RewardRankingEntry> entries,
+  ) {
+    return <Widget>[
+      for (var index = 0; index < entries.length; index++)
+        _buildEntry(context, entries[index], isTop: index == 0),
+    ];
+  }
+
+  Widget _buildEntry(
+    BuildContext context,
+    RewardRankingEntry entry, {
+    required bool isTop,
+  }) {
     final theme = Theme.of(context);
 
     return Card(
       clipBehavior: Clip.antiAlias,
-      shape: entry.isBaseline
+      shape: isTop
           ? RoundedRectangleBorder(
-              side: BorderSide(color: theme.colorScheme.primary),
+              side: BorderSide(
+                color: theme.colorScheme.primary,
+                width: 2,
+              ),
               borderRadius: BorderRadius.circular(12),
             )
           : null,
@@ -173,6 +186,14 @@ final class MerchantCompareScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
+                    if (isTop)
+                      Text(
+                        'いちばん得',
+                        style: theme.textTheme.labelMedium?.copyWith(
+                          color: theme.colorScheme.primary,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     Text(
                       entry.instrumentName,
                       style: theme.textTheme.titleMedium,
