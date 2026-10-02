@@ -10,7 +10,7 @@ import 'package:bestpay/domain/catalog/models/reward_rule_models.dart';
 import 'package:bestpay/domain/ranking/reward_ranking.dart';
 import 'package:bestpay/domain/ranking/reward_ranking_evaluator.dart';
 
-/// カード1枚の年間概算（D-102）。
+/// カード1枚の年間集計（D-102・D-160）。
 final class AnnualRewardEntry {
   const AnnualRewardEntry({
     required this.instrumentId,
@@ -22,13 +22,14 @@ final class AnnualRewardEntry {
     required this.effectiveRate,
     required this.feeWaivedNextYear,
     required this.hasUnresolvedConditions,
+    this.isExact = false,
   });
 
   final StableId instrumentId;
   final String instrumentName;
   final MoneyYen annualFee;
 
-  /// 利用額から計算した基本還元（年間利用額をまとめて1回の計算として評価）。
+  /// 利用額から計算した基本還元。取引が渡された場合は実際の取引から積み上げた値。
   final MicrosYen baseValue;
 
   /// 100万円などの到達で得られる年間ボーナス。
@@ -41,6 +42,9 @@ final class AnnualRewardEntry {
   final bool feeWaivedNextYear;
 
   final bool hasUnresolvedConditions;
+
+  /// 実際の取引から積み上げた確定値か（false は概算）。
+  final bool isExact;
 }
 
 /// 年間タブの集計結果。
@@ -48,10 +52,14 @@ final class AnnualRewardSummary {
   AnnualRewardSummary({
     required this.annualSpend,
     required Iterable<AnnualRewardEntry> entries,
+    this.isExact = false,
   }) : entries = List<AnnualRewardEntry>.unmodifiable(entries);
 
   final MoneyYen annualSpend;
   final List<AnnualRewardEntry> entries;
+
+  /// 会計記録から積み上げた確定値か。false なら概算。
+  final bool isExact;
 
   /// 合計額の多い順。
   List<AnnualRewardEntry> get ordered {
@@ -65,16 +73,40 @@ final class AnnualRewardSummary {
   }
 }
 
-/// 年間の還元額をカードごとに概算する（D-102）。
+/// 年間集計に渡す1回の支払い（D-160）。
 ///
-/// 年間利用額は利用者が入力する（金額入力はこのタブだけ・D-088）。
-/// 基本還元は「年間利用額をまとめて1回計算した」概算である。取引単位・月単位で
-/// 端数を切り捨てる制度では、実際の獲得ポイントを上回る場合がある
-/// （例: 200円1ポイント・取引ごと切り捨ての制度で199円を2回払うと実際は0ptだが、
-/// 合計398円を1回とみなすと1ptになる）。
+/// 会計記録から作る。月間合算のルールは同じ月の取引をまとめて評価し、
+/// 取引単位のルールは1件ずつ評価する。
+final class AnnualSpendTransaction {
+  const AnnualSpendTransaction({
+    required this.date,
+    required this.amount,
+    this.merchantId,
+    this.merchantGroupIds = const <StableId>[],
+    this.categoryIds = const <StableId>[],
+  });
+
+  final CalculationDate date;
+  final MoneyYen amount;
+  final StableId? merchantId;
+  final List<StableId> merchantGroupIds;
+  final List<StableId> categoryIds;
+
+  int get year => date.year;
+  int get month => date.month;
+}
+
+/// 年間の還元額をカードごとに集計する（D-102・D-160）。
 ///
-/// したがって、この結果は「端数処理・利用先・利用時期に依存する概算」であり、
-/// 実際の年間獲得額を確定したものではない。
+/// 取引（会計記録）が渡された場合は、カードごとに次のように積み上げる。
+///
+/// - 取引単位のルール: 1件ずつ端数処理する（`floor(A / U)` を毎回適用）
+/// - 月間合算のルール: 同じ月の取引を合算してから端数処理する
+///   （`floor(月合計 / U)`。取引ごとの増分の総和がこれに一致する）
+/// - 年間到達ボーナス: 年間の合計額が閾値以上なら加算する
+///
+/// 取引が渡されない場合のみ、年間利用額を1回の支払いとみなした概算に
+/// フォールバックする（[AnnualRewardSummary.isExact] が false）。
 final class AnnualRewardSummaryUseCase {
   const AnnualRewardSummaryUseCase({
     RewardRankingEvaluator evaluator = const RewardRankingEvaluator(),
@@ -88,13 +120,156 @@ final class AnnualRewardSummaryUseCase {
     required CalculationDate transactionDate,
     ConditionEvaluationContext? conditionContext,
     Set<String> hiddenCardIds = const <String>{},
+    List<AnnualSpendTransaction> transactions = const <AnnualSpendTransaction>[],
   }) {
     final context = conditionContext ?? ConditionEvaluationContext();
+    final usable = <AnnualSpendTransaction>[
+      for (final transaction in transactions)
+        if (transaction.amount.yen > 0) transaction,
+    ];
+
+    if (usable.isNotEmpty) {
+      return _fromTransactions(
+        catalog: catalog,
+        transactions: usable,
+        conditionContext: context,
+        hiddenCardIds: hiddenCardIds,
+      );
+    }
+
+    return _estimate(
+      catalog: catalog,
+      annualSpend: annualSpend,
+      transactionDate: transactionDate,
+      conditionContext: context,
+      hiddenCardIds: hiddenCardIds,
+    );
+  }
+
+  /// 実際の取引から、カードごとに月次・取引単位を分けて積み上げる（D-160）。
+  AnnualRewardSummary _fromTransactions({
+    required Catalog catalog,
+    required List<AnnualSpendTransaction> transactions,
+    required ConditionEvaluationContext conditionContext,
+    required Set<String> hiddenCardIds,
+  }) {
+    // 月ごとにまとめる。月が変わると期間の集計は0から始まる。
+    final byMonth = <String, List<AnnualSpendTransaction>>{};
+    for (final transaction in transactions) {
+      final key = '${transaction.year}-'
+          '${transaction.month.toString().padLeft(2, '0')}';
+      byMonth.putIfAbsent(key, () => <AnnualSpendTransaction>[]).add(transaction);
+    }
+
+    final monthKeys = byMonth.keys.toList()..sort();
+    for (final key in monthKeys) {
+      byMonth[key]!.sort((left, right) => left.date.compareTo(right.date));
+    }
+
+    // 期間集計のキー（月間合算のルールが使う）。
+    final periodKeys = <StableId>{};
+    for (final rule in catalog.rewardRulesById.values) {
+      if (rule.status == CatalogItemStatus.draft) {
+        continue;
+      }
+      if (rule.aggregation.scope == RewardAggregationScope.transaction) {
+        continue;
+      }
+      final key = rule.aggregation.aggregationKey;
+      if (key != null) {
+        periodKeys.add(key);
+      }
+    }
+
+    final valueMicros = <StableId, int>{};
+    final unresolved = <StableId>{};
+    var totalSpendYen = 0;
+
+    for (final monthKey in monthKeys) {
+      final running = <StableId, MoneyYen>{};
+
+      for (final transaction in byMonth[monthKey]!) {
+        totalSpendYen += transaction.amount.yen;
+
+        final ranking = _evaluator.evaluate(
+          catalog: catalog,
+          amount: transaction.amount,
+          transactionDate: transaction.date,
+          conditionContext: conditionContext,
+          merchantId: transaction.merchantId,
+          merchantGroupIds: transaction.merchantGroupIds,
+          categoryIds: transaction.categoryIds,
+          periodSpendBeforeByKey: running,
+        );
+
+        for (final entry in ranking.allEntries) {
+          valueMicros[entry.instrumentId] =
+              (valueMicros[entry.instrumentId] ?? 0) +
+                  entry.confirmedValue.micros;
+          if (entry.hasUnresolvedConditions) {
+            unresolved.add(entry.instrumentId);
+          }
+        }
+
+        for (final key in periodKeys) {
+          running[key] = (running[key] ?? MoneyYen.zero) + transaction.amount;
+        }
+      }
+    }
+
+    final annualSpend = MoneyYen(totalSpendYen);
+
+    final entries = <AnnualRewardEntry>[];
+    for (final instrument in catalog.paymentInstrumentsById.values) {
+      if (hiddenCardIds.contains(instrument.id.value)) {
+        continue;
+      }
+
+      final base = MicrosYen(valueMicros[instrument.id] ?? 0);
+      final bonus = _bonusFor(
+        catalog: catalog,
+        instrumentId: instrument.id,
+        annualSpend: annualSpend,
+        transactionDate: transactions.last.date,
+      );
+      final total = base + bonus.value;
+
+      entries.add(
+        AnnualRewardEntry(
+          instrumentId: instrument.id,
+          instrumentName: instrument.name,
+          annualFee: instrument.annualFee,
+          baseValue: base,
+          bonusValue: bonus.value,
+          totalValue: total,
+          effectiveRate: _rate(total, annualSpend),
+          feeWaivedNextYear: bonus.waivesFee,
+          hasUnresolvedConditions: unresolved.contains(instrument.id),
+          isExact: true,
+        ),
+      );
+    }
+
+    return AnnualRewardSummary(
+      annualSpend: annualSpend,
+      entries: entries,
+      isExact: true,
+    );
+  }
+
+  /// 取引が無いときの概算（年間利用額を1回の支払いとみなす）。
+  AnnualRewardSummary _estimate({
+    required Catalog catalog,
+    required MoneyYen annualSpend,
+    required CalculationDate transactionDate,
+    required ConditionEvaluationContext conditionContext,
+    required Set<String> hiddenCardIds,
+  }) {
     final ranking = _evaluator.evaluate(
       catalog: catalog,
       amount: annualSpend,
       transactionDate: transactionDate,
-      conditionContext: context,
+      conditionContext: conditionContext,
     );
 
     final entries = <AnnualRewardEntry>[];
@@ -123,11 +298,16 @@ final class AnnualRewardSummaryUseCase {
           effectiveRate: _rate(total, annualSpend),
           feeWaivedNextYear: bonus.waivesFee,
           hasUnresolvedConditions: entry.hasUnresolvedConditions,
+          isExact: false,
         ),
       );
     }
 
-    return AnnualRewardSummary(annualSpend: annualSpend, entries: entries);
+    return AnnualRewardSummary(
+      annualSpend: annualSpend,
+      entries: entries,
+      isExact: false,
+    );
   }
 
   /// 年間の到達ボーナス（100万円で10,000ptなど）をカタログから直接合計する。

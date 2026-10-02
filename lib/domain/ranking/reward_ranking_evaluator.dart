@@ -49,6 +49,8 @@ final class RewardRankingEvaluator {
     StableId? merchantId,
     Iterable<StableId> merchantGroupIds = const <StableId>[],
     Iterable<StableId> categoryIds = const <StableId>[],
+    Map<StableId, MoneyYen> periodSpendBeforeByKey =
+        const <StableId, MoneyYen>{},
   }) {
     final context = conditionContext ?? ConditionEvaluationContext();
     final baseline = baselineCardId ?? baselineInstrumentId;
@@ -68,6 +70,7 @@ final class RewardRankingEvaluator {
           merchantId: merchantId,
           merchantGroupIds: merchantGroupIds,
           categoryIds: categoryIds,
+          periodSpendBeforeByKey: periodSpendBeforeByKey,
         ),
       );
     }
@@ -129,6 +132,7 @@ final class RewardRankingEvaluator {
     required StableId? merchantId,
     required Iterable<StableId> merchantGroupIds,
     required Iterable<StableId> categoryIds,
+    required Map<StableId, MoneyYen> periodSpendBeforeByKey,
   }) {
     final rules = catalog.rulesApplicableToInstrument(instrument.id);
 
@@ -151,6 +155,7 @@ final class RewardRankingEvaluator {
         rules: rules,
         amount: amount,
         transactionDate: transactionDate,
+        periodSpendBeforeByKey: periodSpendBeforeByKey,
       ),
     );
 
@@ -184,6 +189,8 @@ final class RewardRankingEvaluator {
     required List<RewardRule> rules,
     required MoneyYen amount,
     required CalculationDate transactionDate,
+    Map<StableId, MoneyYen> periodSpendBeforeByKey =
+        const <StableId, MoneyYen>{},
   }) {
     final snapshots = <StableId, PeriodAggregationSnapshot>{};
     final periodEnd = _nextMonthStart(transactionDate);
@@ -203,9 +210,11 @@ final class RewardRankingEvaluator {
         continue;
       }
 
+      final before = periodSpendBeforeByKey[key] ?? MoneyYen.zero;
+
       final increment = _periodIncrementCalculator.compute(
         calculation: rule.calculation,
-        periodSpendBefore: MoneyYen.zero,
+        periodSpendBefore: before,
         amount: amount,
       );
 
@@ -215,14 +224,13 @@ final class RewardRankingEvaluator {
             snapshots[key] = PeriodAggregationSnapshot.validated(
               periodStart: transactionDate,
               periodEndExclusive: periodEnd,
-              periodSpendBefore: MoneyYen.zero,
-              periodSpendAfter: amount,
+              periodSpendBefore: before,
+              periodSpendAfter: before + amount,
               pointsBefore: value.pointsBefore,
               pointsAfter: value.pointsAfter,
               currentIncrement: value.increment,
-              // 期間利用額は「この支払いの時点で0円から始まる」と仮定した
-              // 比較モデル（D-087）。利用者の実際の期間利用額を確認した
-              // データではないため、表示側でその前提を示す（AUD-04）。
+              // 期間の開始額は呼び出し側が渡す。単発比較では0円（D-087）、
+              // 年間集計では同じ月の実際の累計を渡す（D-160）。
               confidence: PeriodDataConfidence.exact,
             );
           } on ArgumentError {

@@ -521,14 +521,38 @@ final class RankingController extends ChangeNotifier {
     return null;
   }
 
-  /// 年間の還元額を概算する（年間タブ専用・D-102）。
+  /// 年間の還元額を集計する（年間タブ専用・D-102）。
+  ///
+  /// 会計記録があれば実際の取引からカードごとに積み上げる（D-160）。
+  /// 記録が無い場合のみ、入力された年間利用額から概算する。
   void computeAnnualSummary({required MoneyYen annualSpend}) {
+    _ensureCatalogForToday();
+
+    final transactions = <AnnualSpendTransaction>[];
+    for (final record in _records) {
+      if (record.amountYen <= 0) {
+        continue;
+      }
+
+      final merchant = merchantById(record.merchantId);
+      transactions.add(
+        AnnualSpendTransaction(
+          date: record.date,
+          amount: MoneyYen(record.amountYen),
+          merchantId: merchant?.id,
+          merchantGroupIds: merchant?.groupIds ?? const <StableId>[],
+          categoryIds: merchant?.categoryIds ?? const <StableId>[],
+        ),
+      );
+    }
+
     _annualSummary = _annualUseCase.execute(
       catalog: _catalog,
       annualSpend: annualSpend,
       transactionDate: currentJstDate(),
       conditionContext: conditionContext,
       hiddenCardIds: _preferences.hiddenCardIds,
+      transactions: transactions,
     );
     notifyListeners();
   }
