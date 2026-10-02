@@ -4,9 +4,11 @@ import 'dart:io';
 import 'package:bestpay/core/value_objects/calculation_date.dart';
 import 'package:bestpay/core/value_objects/micros_yen.dart';
 import 'package:bestpay/core/value_objects/money_yen.dart';
+import 'package:bestpay/core/value_objects/point_amount.dart';
 import 'package:bestpay/core/value_objects/stable_id.dart';
 import 'package:bestpay/core/value_objects/tri_state.dart';
 import 'package:bestpay/domain/calculation/condition_evaluation_context.dart';
+import 'package:bestpay/domain/calculation/period_aggregation_snapshot.dart';
 import 'package:bestpay/domain/calculation/reward_confidence.dart';
 import 'package:bestpay/domain/calculation/reward_evaluation_input.dart';
 import 'package:bestpay/domain/calculation/reward_rule_set_evaluation_result.dart';
@@ -143,7 +145,7 @@ void main() {
   group('カタログのデコード', () {
     test('実カード6枚がデコードでき、Catalogが構築できる', () {
       expect(catalog.isNotEmpty, isTrue);
-      expect(catalog.catalogVersion, '2026.10.02.3');
+      expect(catalog.catalogVersion, '2026.10.02.4');
       expect(catalog.generatedAt, '2026-10-02T00:00:00+09:00');
 
       expect(
@@ -437,6 +439,20 @@ void main() {
             merchantId: null,
             transactionDate: transactionDate,
             conditionContext: ConditionEvaluationContext(),
+            // 基本還元は月合計で計算する（D-158）。0円から1万円の1回と仮定する。
+            periodAggregationSnapshots: {
+              id('olive_flexible_pay_gold_billing_month'):
+                  PeriodAggregationSnapshot.validated(
+                periodStart: transactionDate,
+                periodEndExclusive: date('2030-01-01'),
+                periodSpendBefore: yen(0),
+                periodSpendAfter: yen(10000),
+                pointsBefore: PointAmount.zero,
+                pointsAfter: const PointAmount(50),
+                currentIncrement: const PointAmount(50),
+                confidence: PeriodDataConfidence.exact,
+              ),
+            },
           ),
         );
 
@@ -748,7 +764,7 @@ void main() {
     }
 
     test('店舗一覧が16件読み込め、得意店舗なしの受け皿は登録しない', () {
-      expect(directory.merchants.length, 109);
+      expect(directory.merchants.length, 110);
       expect(
         directory.merchants.any((m) => m.id.value == 'other_merchant'),
         isFalse,

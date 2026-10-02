@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "catalogVersion": "2026.10.02.3",
+  "catalogVersion": "2026.10.02.4",
   "generatedAt": "2026-09-27T00:00:00+09:00",
   "items": [
     {
@@ -70,7 +70,7 @@
         "src_jcb_point_about",
         "src_jcb_point_news"
       ],
-      "lastVerifiedAt": "2026-09-27",
+      "lastVerifiedAt": "2026-10-02",
       "status": "active",
       "priority": 100,
       "tags": [
@@ -85,7 +85,7 @@
         "J-POINTボーナス（年間50万円ごと、集計期間は毎年12月16日〜翌年12月15日、段階的な付与数、上限なし）は thresholdBonus では表現できないため今回は登録しない（第2期）。",
         "JCBカードWのJ-POINTボーナス区分（一般会員／プレミアム会員）は公式に明記がなく未確認。",
         "基本ポイントの上限の記載はなし（未確認）。国際ブランド（JCBのみか）、iD等の決済経路差も未確認。",
-        "J-POINTボーナス（優待倍率）の対象外とする情報があるが、公式ページでの直接確認が取れていない（要確認）。"
+        "JCBカードWはJ-POINTボーナスの対象外（2026-10-02 ユーザー確認・D-158）。優待店のポイントアップ（J-POINTパートナー）は別制度で、そちらは対象。"
       ]
     },
     {
@@ -703,11 +703,11 @@
       },
       "outputPointProgramId": "v_point",
       "aggregation": {
-        "scope": "transaction",
-        "aggregationKey": null,
+        "scope": "billingMonth",
+        "aggregationKey": "olive_flexible_pay_gold_billing_month",
         "periodMinimumEligibleSpendYen": 0,
         "conditionEvaluationTiming": "transaction",
-        "incrementalAward": false
+        "incrementalAward": true
       },
       "stacking": {
         "policy": "stackable",
@@ -729,7 +729,7 @@
         "src_olive_gold_official",
         "src_olive_point_rate"
       ],
-      "lastVerifiedAt": "2026-09-27",
+      "lastVerifiedAt": "2026-10-02",
       "status": "active",
       "priority": 100,
       "tags": [
@@ -742,9 +742,8 @@
         "「追加した支払いモード」は追加先カードのサービスが適用され、Oliveの0.5%とは異なる（年100万円特典の集計対象外）。",
         "端数処理が公式に明記されていないため、切り捨て（rounding=floor）を仮定して登録した。実利用前に公式で確認すること。",
         "月次のVポイント集計期間の公式明記は未確認のため、取引単位（transaction）で登録した。",
-        "「200円につき1ポイント」に相当する計算単位の公式明記は未確認。率（0.5%）から登録している。",
         "対象コンビニ・飲食店のスマホタッチ決済上乗せ（通常0.5%＋7.5%）は店舗個別データが必要なため今回は登録しない（第2期）。",
-        "基本還元の計算単位は公式ページで直接確認できていない（要確認）。"
+        "基本還元は毎月の利用金額の合計に対して計算する（月合計）。取引ごとではない（2026-10-02 ユーザー確認・D-158）。"
       ]
     },
     {
@@ -868,11 +867,11 @@
       },
       "outputPointProgramId": "v_point",
       "aggregation": {
-        "scope": "transaction",
-        "aggregationKey": null,
+        "scope": "billingMonth",
+        "aggregationKey": "smbc_gold_nl_billing_month",
         "periodMinimumEligibleSpendYen": 0,
         "conditionEvaluationTiming": "transaction",
-        "incrementalAward": false
+        "incrementalAward": true
       },
       "stacking": {
         "policy": "stackable",
@@ -894,7 +893,7 @@
         "src_smbc_gold_nl_official",
         "src_smbc_vpoint_up_program"
       ],
-      "lastVerifiedAt": "2026-09-27",
+      "lastVerifiedAt": "2026-10-02",
       "status": "active",
       "priority": 100,
       "tags": [
@@ -909,7 +908,7 @@
         "月間7%還元分の上限は未確認（Vポイントアッププログラム全体の月50,000ポイント上限は適用）。",
         "Vポイントアッププログラムの月間上限50,000ポイントは cap 未対応のため計算に反映しない（第2期）。",
         "ポイント付与自体の対象外リストは公式ページに明示がなく未確認。",
-        "基本還元は「毎月のお支払い金額の合計200円（税込）ごとに1ポイント」とされるが、本カタログは取引単位で計算している。公式ページでの直接確認が取れていないため未変更（要確認）。"
+        "基本還元は毎月の利用金額の合計に対して計算する（月合計）。取引ごとではない（2026-10-02 ユーザー確認・D-158）。"
       ]
     },
     {

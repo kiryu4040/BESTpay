@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "catalogVersion": "2026.10.02.3",
+  "catalogVersion": "2026.10.02.4",
   "generatedAt": "2026-09-27T00:00:00+09:00",
   "items": [
     {
@@ -2735,6 +2735,29 @@
       "searchAliases": [
         "ろはこ",
         "LOHACO"
+      ]
+    },
+    {
+      "id": "gyoza_ohsho",
+      "name": "餃子の王将",
+      "merchantGroupIds": [
+        "family_restaurant_chain"
+      ],
+      "categoryIds": [
+        "family_restaurant"
+      ],
+      "locationIds": [],
+      "status": "active",
+      "sourceIds": [
+        "src_smbc_vpoint_up_stores"
+      ],
+      "notes": [
+        "2026年11月より三井住友カード／Oliveの対象店舗に追加予定。対象はテイクアウトネット予約の事前決済のみで、店内モバイルオーダーは対象外（公式・2026-10-02確認）。追加された時点で対象ルールに加える（第1期では基本還元のみ）。"
+      ],
+      "searchAliases": [
+        "ぎょうざのおうしょう",
+        "王将",
+        "おうしょう"
       ]
     }
   ]
