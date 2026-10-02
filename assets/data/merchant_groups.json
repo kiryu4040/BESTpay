@@ -1,231 +1,242 @@
 {
- "schemaVersion": "1.0.0",
- "catalogVersion": "2026.09.29.2",
- "generatedAt": "2026-09-27T00:00:00+09:00",
- "items": [
-  {
-   "id": "convenience_chain",
-   "name": "コンビニチェーン",
-   "status": "active",
-   "sourceIds": [
-    "src_olive_gold_official",
-    "src_olive_point_rate",
-    "src_olive_gold_attention",
-    "src_smbc_vpoint_up_program",
-    "src_mufg_global_point",
-    "src_mufg_global_plus",
-    "src_mufg_annual_bonus",
-    "src_mufg_store_bonus"
-   ],
-   "notes": [
-    "第1期の店舗グループ。"
-   ]
-  },
-  {
-   "id": "fast_food_chain",
-   "name": "ファストフードチェーン",
-   "status": "active",
-   "sourceIds": [
-    "src_olive_gold_official",
-    "src_olive_point_rate",
-    "src_olive_gold_attention",
-    "src_smbc_vpoint_up_program",
-    "src_mufg_global_point",
-    "src_mufg_global_plus",
-    "src_mufg_annual_bonus",
-    "src_mufg_store_bonus"
-   ],
-   "notes": [
-    "第1期の店舗グループ。"
-   ]
-  },
-  {
-   "id": "cafe_chain",
-   "name": "カフェチェーン",
-   "status": "active",
-   "sourceIds": [
-    "src_olive_gold_official",
-    "src_olive_point_rate",
-    "src_olive_gold_attention",
-    "src_smbc_vpoint_up_program",
-    "src_mufg_global_point",
-    "src_mufg_global_plus",
-    "src_mufg_annual_bonus",
-    "src_mufg_store_bonus"
-   ],
-   "notes": [
-    "第1期の店舗グループ。"
-   ]
-  },
-  {
-   "id": "kaiten_sushi_chain",
-   "name": "回転寿司チェーン",
-   "status": "active",
-   "sourceIds": [
-    "src_olive_gold_official",
-    "src_olive_point_rate",
-    "src_olive_gold_attention",
-    "src_smbc_vpoint_up_program",
-    "src_mufg_global_point",
-    "src_mufg_global_plus",
-    "src_mufg_annual_bonus",
-    "src_mufg_store_bonus"
-   ],
-   "notes": [
-    "第1期の店舗グループ。"
-   ]
-  },
-  {
-   "id": "pizza_chain",
-   "name": "ピザチェーン",
-   "status": "active",
-   "sourceIds": [
-    "src_olive_gold_official",
-    "src_olive_point_rate",
-    "src_olive_gold_attention",
-    "src_smbc_vpoint_up_program",
-    "src_mufg_global_point",
-    "src_mufg_global_plus",
-    "src_mufg_annual_bonus",
-    "src_mufg_store_bonus"
-   ],
-   "notes": [
-    "第1期の店舗グループ。"
-   ]
-  },
-  {
-   "id": "supermarket_chain",
-   "name": "スーパーチェーン",
-   "status": "active",
-   "sourceIds": [
-    "src_olive_gold_official",
-    "src_olive_point_rate",
-    "src_olive_gold_attention",
-    "src_smbc_vpoint_up_program",
-    "src_mufg_global_point",
-    "src_mufg_global_plus",
-    "src_mufg_annual_bonus",
-    "src_mufg_store_bonus"
-   ],
-   "notes": [
-    "第1期の店舗グループ。"
-   ]
-  },
-  {
-   "id": "online_chain",
-   "name": "ネット通販チェーン",
-   "status": "active",
-   "sourceIds": [
-    "src_olive_gold_official",
-    "src_olive_point_rate",
-    "src_olive_gold_attention",
-    "src_smbc_vpoint_up_program",
-    "src_mufg_global_point",
-    "src_mufg_global_plus",
-    "src_mufg_annual_bonus",
-    "src_mufg_store_bonus"
-   ],
-   "notes": [
-    "第1期の店舗グループ。"
-   ]
-  },
-  {
-   "id": "ファミリーレストランチェーン",
-   "name": "ファミリーレストラン",
-   "status": "active",
-   "sourceIds": [
-    "src_jcb_point_partner",
-    "src_jcb_point_partner_guide",
-    "src_jcb_card_w_s_compare"
-   ],
-   "notes": [
-    "JCBカードWのポイントアップ対応で追加した店舗グループ（D-105）。"
-   ]
-  },
-  {
-   "id": "配車・タクシーチェーン",
-   "name": "配車・タクシー",
-   "status": "active",
-   "sourceIds": [
-    "src_jcb_point_partner",
-    "src_jcb_point_partner_guide",
-    "src_jcb_card_w_s_compare"
-   ],
-   "notes": [
-    "JCBカードWのポイントアップ対応で追加した店舗グループ（D-105）。"
-   ]
-  },
-  {
-   "id": "ファッションチェーン",
-   "name": "ファッション",
-   "status": "active",
-   "sourceIds": [
-    "src_jcb_point_partner",
-    "src_jcb_point_partner_guide",
-    "src_jcb_card_w_s_compare"
-   ],
-   "notes": [
-    "JCBカードWのポイントアップ対応で追加した店舗グループ（D-105）。"
-   ]
-  },
-  {
-   "id": "card_ride_chain",
-   "name": "クレカ乗車",
-   "status": "active",
-   "sourceIds": [
-    "src_jcb_point_partner",
-    "src_jcb_card_w_s_compare"
-   ],
-   "notes": [
-    "JCBカードWのポイントアップ対象「クレカ乗車」のグループ（D-110）。"
-   ]
-  },
-  {
-   "id": "vending_machine_chain",
-   "name": "自販機",
-   "status": "active",
-   "sourceIds": [
-    "src_mufg_store_bonus",
-    "src_mufg_pup_release"
-   ],
-   "notes": [
-    "三菱UFJカードの対象店舗追加に伴い新設（D-113）。"
-   ]
-  },
-  {
-   "id": "lifestyle_chain",
-   "name": "生活用品・フィットネス",
-   "status": "active",
-   "sourceIds": [
-    "src_mufg_store_bonus",
-    "src_mufg_pup_release"
-   ],
-   "notes": [
-    "三菱UFJカードの対象店舗追加に伴い新設（D-113）。"
-   ]
-  },
-  {
-   "id": "drugstore_chain",
-   "name": "ドラッグストア／家電・ホームセンター",
-   "status": "active",
-   "sourceIds": [
-    "src_jcb_point_partner",
-    "src_mufg_store_bonus"
-   ],
-   "notes": [
-    "有名チェーンの追加に伴い新設（D-129）。"
-   ]
-  },
-  {
-   "id": "car_life_chain",
-   "name": "レンタカー・カーライフ",
-   "status": "active",
-   "sourceIds": [
-    "src_jcb_point_partner"
-   ],
-   "notes": [
-    "JCBカードWの優待店の追加に伴い新設（D-135）。"
-   ]
-  }
- ]
+  "schemaVersion": "1.0.0",
+  "catalogVersion": "2026.10.02.3",
+  "generatedAt": "2026-09-27T00:00:00+09:00",
+  "items": [
+    {
+      "id": "convenience_chain",
+      "name": "コンビニチェーン",
+      "status": "active",
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_olive_point_rate",
+        "src_olive_gold_attention",
+        "src_smbc_vpoint_up_program",
+        "src_mufg_global_point",
+        "src_mufg_global_plus",
+        "src_mufg_annual_bonus",
+        "src_mufg_store_bonus"
+      ],
+      "notes": [
+        "第1期の店舗グループ。"
+      ]
+    },
+    {
+      "id": "fast_food_chain",
+      "name": "ファストフードチェーン",
+      "status": "active",
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_olive_point_rate",
+        "src_olive_gold_attention",
+        "src_smbc_vpoint_up_program",
+        "src_mufg_global_point",
+        "src_mufg_global_plus",
+        "src_mufg_annual_bonus",
+        "src_mufg_store_bonus"
+      ],
+      "notes": [
+        "第1期の店舗グループ。"
+      ]
+    },
+    {
+      "id": "cafe_chain",
+      "name": "カフェチェーン",
+      "status": "active",
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_olive_point_rate",
+        "src_olive_gold_attention",
+        "src_smbc_vpoint_up_program",
+        "src_mufg_global_point",
+        "src_mufg_global_plus",
+        "src_mufg_annual_bonus",
+        "src_mufg_store_bonus"
+      ],
+      "notes": [
+        "第1期の店舗グループ。"
+      ]
+    },
+    {
+      "id": "kaiten_sushi_chain",
+      "name": "回転寿司チェーン",
+      "status": "active",
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_olive_point_rate",
+        "src_olive_gold_attention",
+        "src_smbc_vpoint_up_program",
+        "src_mufg_global_point",
+        "src_mufg_global_plus",
+        "src_mufg_annual_bonus",
+        "src_mufg_store_bonus"
+      ],
+      "notes": [
+        "第1期の店舗グループ。"
+      ]
+    },
+    {
+      "id": "pizza_chain",
+      "name": "ピザチェーン",
+      "status": "active",
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_olive_point_rate",
+        "src_olive_gold_attention",
+        "src_smbc_vpoint_up_program",
+        "src_mufg_global_point",
+        "src_mufg_global_plus",
+        "src_mufg_annual_bonus",
+        "src_mufg_store_bonus"
+      ],
+      "notes": [
+        "第1期の店舗グループ。"
+      ]
+    },
+    {
+      "id": "supermarket_chain",
+      "name": "スーパーチェーン",
+      "status": "active",
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_olive_point_rate",
+        "src_olive_gold_attention",
+        "src_smbc_vpoint_up_program",
+        "src_mufg_global_point",
+        "src_mufg_global_plus",
+        "src_mufg_annual_bonus",
+        "src_mufg_store_bonus"
+      ],
+      "notes": [
+        "第1期の店舗グループ。"
+      ]
+    },
+    {
+      "id": "online_chain",
+      "name": "ネット通販チェーン",
+      "status": "active",
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_olive_point_rate",
+        "src_olive_gold_attention",
+        "src_smbc_vpoint_up_program",
+        "src_mufg_global_point",
+        "src_mufg_global_plus",
+        "src_mufg_annual_bonus",
+        "src_mufg_store_bonus"
+      ],
+      "notes": [
+        "第1期の店舗グループ。"
+      ]
+    },
+    {
+      "id": "family_restaurant_chain",
+      "name": "ファミリーレストラン",
+      "status": "active",
+      "sourceIds": [
+        "src_jcb_point_partner",
+        "src_jcb_point_partner_guide",
+        "src_jcb_card_w_s_compare"
+      ],
+      "notes": [
+        "JCBカードWのポイントアップ対応で追加した店舗グループ（D-105）。"
+      ]
+    },
+    {
+      "id": "ride_hailing_chain",
+      "name": "配車・タクシー",
+      "status": "active",
+      "sourceIds": [
+        "src_jcb_point_partner",
+        "src_jcb_point_partner_guide",
+        "src_jcb_card_w_s_compare"
+      ],
+      "notes": [
+        "JCBカードWのポイントアップ対応で追加した店舗グループ（D-105）。"
+      ]
+    },
+    {
+      "id": "fashion_chain",
+      "name": "ファッション",
+      "status": "active",
+      "sourceIds": [
+        "src_jcb_point_partner",
+        "src_jcb_point_partner_guide",
+        "src_jcb_card_w_s_compare"
+      ],
+      "notes": [
+        "JCBカードWのポイントアップ対応で追加した店舗グループ（D-105）。"
+      ]
+    },
+    {
+      "id": "card_ride_chain",
+      "name": "クレカ乗車",
+      "status": "active",
+      "sourceIds": [
+        "src_jcb_point_partner",
+        "src_jcb_card_w_s_compare"
+      ],
+      "notes": [
+        "JCBカードWのポイントアップ対象「クレカ乗車」のグループ（D-110）。"
+      ]
+    },
+    {
+      "id": "vending_machine_chain",
+      "name": "自販機",
+      "status": "active",
+      "sourceIds": [
+        "src_mufg_store_bonus",
+        "src_mufg_pup_release"
+      ],
+      "notes": [
+        "三菱UFJカードの対象店舗追加に伴い新設（D-113）。"
+      ]
+    },
+    {
+      "id": "lifestyle_chain",
+      "name": "生活用品・フィットネス",
+      "status": "active",
+      "sourceIds": [
+        "src_mufg_store_bonus",
+        "src_mufg_pup_release"
+      ],
+      "notes": [
+        "三菱UFJカードの対象店舗追加に伴い新設（D-113）。"
+      ]
+    },
+    {
+      "id": "drugstore_chain",
+      "name": "ドラッグストア／家電・ホームセンター",
+      "status": "active",
+      "sourceIds": [
+        "src_jcb_point_partner",
+        "src_mufg_store_bonus"
+      ],
+      "notes": [
+        "有名チェーンの追加に伴い新設（D-129）。"
+      ]
+    },
+    {
+      "id": "car_life_chain",
+      "name": "レンタカー・カーライフ",
+      "status": "active",
+      "sourceIds": [
+        "src_jcb_point_partner"
+      ],
+      "notes": [
+        "JCBカードWの優待店の追加に伴い新設（D-135）。"
+      ]
+    },
+    {
+      "id": "department_store_chain",
+      "name": "百貨店",
+      "status": "active",
+      "sourceIds": [
+        "src_dcard_official"
+      ],
+      "notes": [
+        "百貨店チェーン。店舗IDの department_store_chain 参照切れを解消するため追加（D-154）。"
+      ]
+    }
+  ]
 }

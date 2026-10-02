@@ -196,3 +196,60 @@ mc = defaultdict(int)
 for r in act_rules:
     for mid in (r.get('selectors', {}).get('merchantIds') or []): mc[mid] += 1
 print('  ルールが1本も無い店舗:', sorted(set(cov) - set(mc)) or 'なし')
+
+# ===== 追加検査（D-154 / 他AI監査 AUD-06 の指摘に対応）=====
+import os as _os
+import sys as _sys
+
+_errors = list(E)
+
+
+def _load_optional(name):
+    path = D + name
+    if not _os.path.exists(path):
+        return None
+    return json.load(open(path, encoding='utf-8')).get('items', [])
+
+
+_groups = _load_optional('merchant_groups.json') or []
+_brands = _load_optional('brands.json')
+_group_ids = {g['id'] for g in _groups}
+_brand_ids = {b['id'] for b in _brands} if _brands is not None else None
+
+# 1) 店舗の merchantGroupIds
+for _m in merchants:
+    for _g in (_m.get('merchantGroupIds') or []):
+        if _g not in _group_ids:
+            _errors.append('参照切れ [merchantGroup] %s <- merchant:%s' % (_g, _m['id']))
+
+# 2) ルールの merchantGroupIds / brandIds
+for _r in rules:
+    for _g in ((_r.get('selectors') or {}).get('merchantGroupIds') or []):
+        if _g not in _group_ids:
+            _errors.append('参照切れ [merchantGroup] %s <- rule:%s' % (_g, _r['id']))
+    for _b in ((_r.get('selectors') or {}).get('brandIds') or []):
+        if _brand_ids is not None and _b not in _brand_ids:
+            _errors.append('参照切れ [brand] %s <- rule:%s' % (_b, _r['id']))
+
+# 3) ルール直下の sourceIds
+for _r in rules:
+    for _sid in (_r.get('sourceIds') or []):
+        if _sid not in ids['source']:
+            _errors.append('参照切れ [source] %s <- rule:%s' % (_sid, _r['id']))
+
+# 4) カードの brandIds
+for _i in insts:
+    for _b in (_i.get('availableBrandIds') or []):
+        if _brand_ids is not None and _b not in _brand_ids:
+            _errors.append('参照切れ [brand] %s <- instrument:%s' % (_b, _i['id']))
+
+print()
+print('=== 追加検査 ===')
+print('  merchantGroup参照:', len(_group_ids), 'グループ定義')
+print('  brand定義:', 'なし（ファイル未作成のため検査スキップ）' if _brand_ids is None else '%d件' % len(_brand_ids))
+print('  エラー合計: %d件' % len(_errors))
+for _e in _errors:
+    print('   E:', _e)
+
+if _errors:
+    _sys.exit(1)

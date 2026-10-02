@@ -143,7 +143,7 @@ void main() {
   group('カタログのデコード', () {
     test('実カード6枚がデコードでき、Catalogが構築できる', () {
       expect(catalog.isNotEmpty, isTrue);
-      expect(catalog.catalogVersion, '2026.10.02.2');
+      expect(catalog.catalogVersion, '2026.10.02.3');
       expect(catalog.generatedAt, '2026-10-02T00:00:00+09:00');
 
       expect(

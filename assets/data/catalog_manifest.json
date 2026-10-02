@@ -1,12 +1,12 @@
 {
   "schemaVersion": "1.0.0",
-  "catalogVersion": "2026.10.02.2",
+  "catalogVersion": "2026.10.02.3",
   "generatedAt": "2026-10-02T00:00:00+09:00",
   "items": [
     {
       "fileName": "payment_instruments.json",
       "schemaId": "urn:bestpay:schema:payment-instrument:1.0.0",
-      "contentHash": "3cc11788f55b168140569761a8a461c95727e9a3cf5a236393333deaf89f4769",
+      "contentHash": "27a5184d147ff4520c23bd07e2ab4a15a47045a61c67b01f8ca357f3ca3bdf41",
       "required": true
     },
     {
@@ -30,43 +30,43 @@
     {
       "fileName": "merchant_groups.json",
       "schemaId": "urn:bestpay:schema:merchant-group:1.0.0",
-      "contentHash": "65e7ec5d8485e36f4d8afbc5222c25373c137a7cb02ca08e64a3ad15f92e103e",
+      "contentHash": "d52893157053049e904188b810310f348a2ddce648f7b215b13f101b60663b12",
       "required": true
     },
     {
       "fileName": "merchants.json",
       "schemaId": "urn:bestpay:schema:merchant:1.0.0",
-      "contentHash": "5caca07db705c814f9581b447f6a9e4961619181c1b0ab68cc3a5b12ad2d993b",
+      "contentHash": "7f48fdf83925851f37799560b5da36983878aa439339b9d9da77af54d0467eb9",
       "required": true
     },
     {
       "fileName": "merchant_categories.json",
       "schemaId": "urn:bestpay:schema:merchant-category:1.0.0",
-      "contentHash": "db3ea71c6b9fe72378e22c830224080ecafd80705b729e968557c636e6e3ebdb",
+      "contentHash": "4ea5a7a16399400d72df0d8908ba8ce2d128d4c6e0c7a0b986a469716df3f1a9",
       "required": true
     },
     {
       "fileName": "point_programs.json",
       "schemaId": "urn:bestpay:schema:point-program:1.0.0",
-      "contentHash": "9d610e8e8c88e771e56e1386c0589e7b814d6ed2ddcf873c0663ca0493247196",
+      "contentHash": "3bdecc4614c4c9acabec973765401b96717b1f3d79da1d8b2512fc6ed7f963c6",
       "required": true
     },
     {
       "fileName": "condition_definitions.json",
       "schemaId": "urn:bestpay:schema:condition-definition:1.0.0",
-      "contentHash": "dd714cf4d65700ba8e7815369a7031e09d2f4a2b787bb341e7a5d885271668eb",
+      "contentHash": "369ddce877d920cfacd7dcae8de8add7aadb4fc2dae0bda8f3f284ac84386729",
       "required": true
     },
     {
       "fileName": "reward_rules.json",
       "schemaId": "urn:bestpay:schema:reward-rule:1.0.0",
-      "contentHash": "c55bd6bf75e4b87cdfc8398cf73349e968eb01d3d3b749042387a951203c44a4",
+      "contentHash": "729e6b0136dd8873b44616ffad60e31346825a8086ba4d529b2a35e791fd4f2a",
       "required": true
     },
     {
       "fileName": "sources.json",
       "schemaId": "urn:bestpay:schema:source:1.0.0",
-      "contentHash": "4bce52a5b9b73717c5c8be60ba1f5432bb93011a4aa1933843e45b04412477f8",
+      "contentHash": "dfa397a16b8be9a0eea8a0b6ee5700700de3afb482f3d8d2793f6972f4cd661a",
       "required": true
     },
     {

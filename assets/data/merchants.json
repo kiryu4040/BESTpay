@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "catalogVersion": "2026.10.02.2",
+  "catalogVersion": "2026.10.02.3",
   "generatedAt": "2026-09-27T00:00:00+09:00",
   "items": [
     {
@@ -2673,7 +2673,7 @@
       "id": "adidas_online",
       "name": "アディダス オンラインショップ",
       "merchantGroupIds": [
-        "ファッションチェーン"
+        "fashion_chain"
       ],
       "categoryIds": [
         "fashion"
@@ -2696,7 +2696,7 @@
       "id": "suit_square",
       "name": "SUIT SQUARE",
       "merchantGroupIds": [
-        "ファッションチェーン"
+        "fashion_chain"
       ],
       "categoryIds": [
         "fashion"
