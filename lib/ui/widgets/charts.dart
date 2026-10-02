@@ -240,7 +240,7 @@ final class SimpleColumnChart extends StatelessWidget {
     final theme = Theme.of(context);
     final maxValue = data.fold<int>(
       0,
-      (max, item) => math.max(max, item.value + item.reward),
+      (max, item) => math.max(max, item.value),
     );
     final hasReward = data.any((item) => item.reward > 0);
 
@@ -277,7 +277,8 @@ final class SimpleColumnChart extends StatelessWidget {
         ),
         const SizedBox(height: 4),
         Text(
-          '※ 棒の青緑が利用金額、上に重ねたオレンジが還元額です。'
+          '※ 棒の青緑が利用金額、その根元（下側）に重ねたオレンジが還元額です。'
+          'オレンジの高さが、利用金額に対する還元の割合を表します。'
           '月の内訳は下の「月を選ぶ」から開けます。',
           style: theme.textTheme.bodySmall,
         ),
@@ -328,11 +329,6 @@ final class _ColumnPainter extends CustomPainter {
       final baseY = size.height - bottom;
 
       final spendHeight = chartHeight * (item.value / maxValue);
-      var rewardHeight = chartHeight * (item.reward / maxValue);
-      // 小さくても見えるように最小の高さを確保する。
-      if (item.reward > 0 && rewardHeight < 3) {
-        rewardHeight = 3;
-      }
 
       final bar = Paint()..color = barColor;
       canvas.drawRRect(
@@ -350,17 +346,22 @@ final class _ColumnPainter extends CustomPainter {
       );
 
       if (item.reward > 0) {
+        // 還元額は棒の根元（下側）に重ね、利用金額に対する割合として見せる（D-164）。
+        var rewardHeight = chartHeight * (item.reward / maxValue);
+        if (rewardHeight < 2) {
+          rewardHeight = 2;
+        }
+        if (rewardHeight > spendHeight) {
+          rewardHeight = spendHeight;
+        }
+
         final reward = Paint()..color = rewardColor;
-        canvas.drawRRect(
-          RRect.fromRectAndCorners(
-            Rect.fromLTWH(
-              centerX - barWidth / 2,
-              baseY - spendHeight - rewardHeight,
-              barWidth,
-              rewardHeight,
-            ),
-            topLeft: const Radius.circular(4),
-            topRight: const Radius.circular(4),
+        canvas.drawRect(
+          Rect.fromLTWH(
+            centerX - barWidth / 2,
+            baseY - rewardHeight,
+            barWidth,
+            rewardHeight,
           ),
           reward,
         );
@@ -418,7 +419,7 @@ final class SimpleBarRows extends StatelessWidget {
     final theme = Theme.of(context);
     final maxValue = data.fold<int>(
       0,
-      (max, item) => math.max(max, item.value + item.reward),
+      (max, item) => math.max(max, item.value),
     );
     final hasReward = data.any((item) => item.reward > 0);
 
@@ -450,13 +451,13 @@ final class SimpleBarRows extends StatelessWidget {
                     builder: (context, constraints) {
                       final width = constraints.maxWidth;
                       final item = data[index];
-                      var spendWidth = width * (item.value / maxValue);
+                      final spendWidth = width * (item.value / maxValue);
                       var rewardWidth = width * (item.reward / maxValue);
-                      if (item.reward > 0 && rewardWidth < 3) {
-                        rewardWidth = 3;
+                      if (item.reward > 0 && rewardWidth < 2) {
+                        rewardWidth = 2;
                       }
-                      if (spendWidth + rewardWidth > width) {
-                        spendWidth = math.max(0, width - rewardWidth);
+                      if (rewardWidth > spendWidth) {
+                        rewardWidth = spendWidth;
                       }
 
                       return Stack(
@@ -468,33 +469,30 @@ final class SimpleBarRows extends StatelessWidget {
                               borderRadius: BorderRadius.circular(4),
                             ),
                           ),
-                          Row(
-                            children: <Widget>[
-                              Container(
-                                width: spendWidth,
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Container(
+                              width: spendWidth,
+                              height: 18,
+                              decoration: BoxDecoration(
+                                color: chartColorAt(index),
+                                borderRadius: BorderRadius.circular(4),
+                              ),
+                            ),
+                          ),
+                          if (rewardWidth > 0)
+                            // 還元額は棒の根元（左側）に重ねる（D-164）。
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Container(
+                                width: rewardWidth,
                                 height: 18,
                                 decoration: BoxDecoration(
-                                  color: chartColorAt(index),
-                                  borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(4),
-                                    bottomLeft: Radius.circular(4),
-                                  ),
+                                  color: rewardOrange,
+                                  borderRadius: BorderRadius.circular(4),
                                 ),
                               ),
-                              if (rewardWidth > 0)
-                                Container(
-                                  width: rewardWidth,
-                                  height: 18,
-                                  decoration: BoxDecoration(
-                                    color: rewardOrange,
-                                    borderRadius: const BorderRadius.only(
-                                      topRight: Radius.circular(4),
-                                      bottomRight: Radius.circular(4),
-                                    ),
-                                  ),
-                                ),
-                            ],
-                          ),
+                            ),
                         ],
                       );
                     },
@@ -528,7 +526,7 @@ final class SimpleBarRows extends StatelessWidget {
         if (hasReward)
           const ChartLegend(
             items: <ChartLegendItem>[
-              ChartLegendItem(color: rewardOrange, label: '還元額（右端のオレンジ）'),
+              ChartLegendItem(color: rewardOrange, label: '還元額（棒の左端のオレンジ）'),
             ],
           ),
       ],
