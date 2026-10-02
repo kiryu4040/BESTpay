@@ -1,12 +1,12 @@
 {
   "schemaVersion": "1.0.0",
-  "catalogVersion": "2026.10.02.4",
+  "catalogVersion": "2026.10.02.5",
   "generatedAt": "2026-10-02T00:00:00+09:00",
   "items": [
     {
       "fileName": "payment_instruments.json",
       "schemaId": "urn:bestpay:schema:payment-instrument:1.0.0",
-      "contentHash": "20081f900dce38b5ebd89d8fe84bcb660f4219036eaa6ccd44e996ba546cec75",
+      "contentHash": "c0a3d2e40dba9c87f8bce7d67b9d8a5df43594ad974730a8f19e8b6716d65d89",
       "required": true
     },
     {
@@ -60,7 +60,7 @@
     {
       "fileName": "reward_rules.json",
       "schemaId": "urn:bestpay:schema:reward-rule:1.0.0",
-      "contentHash": "c9b390783ffd7d6bf3b1934c39d6048228489c4689d57d8b89c3f24258bdd0e5",
+      "contentHash": "8d92a3140cf66e9ff5ea167012757d880d64e001a54b4fabaa3ef7455ee9e341",
       "required": true
     },
     {

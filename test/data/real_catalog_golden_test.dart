@@ -146,7 +146,7 @@ void main() {
   group('カタログのデコード', () {
     test('実カード6枚がデコードでき、Catalogが構築できる', () {
       expect(catalog.isNotEmpty, isTrue);
-      expect(catalog.catalogVersion, '2026.10.02.4');
+      expect(catalog.catalogVersion, '2026.10.02.5');
       expect(catalog.generatedAt, '2026-10-02T00:00:00+09:00');
 
       expect(
@@ -181,8 +181,8 @@ void main() {
       );
 
       // 有効期間を過ぎたルール（iD特約店終了の4件）は読み込み時に除かれる（D-152）。
-      // ディスク上は117件、読み込み後は113件。
-      expect(catalog.rewardRulesById.length, 113);
+      // P-UPボーナスをカードごとに分離し、ディスク上は134件、読み込み後は130件（D-166）。
+      expect(catalog.rewardRulesById.length, 130);
       expect(catalog.sourcesById.length, 57);
 
       final mizuho = catalog.paymentInstrumentsById[id('mizuho_rakuten_card')]!;
@@ -214,8 +214,8 @@ void main() {
           .where((rule) => rule.status.value == 'draft')
           .toList();
 
-      // 有効期間外を除いたactiveは107件（D-152）。
-      expect(active.length, 107);
+      // 有効期間外を除いたactiveは124件（D-152・D-166）。
+      expect(active.length, 124);
       expect(draft.length, 6);
 
       for (final rule in catalog.rewardRulesById.values) {
@@ -1118,6 +1118,44 @@ void main() {
   });
 
   group('年間集計の月次／取引単位の分離（D-160）', () {
+    test('記録ごとの還元額の合計が月の合計と一致する（D-163・D-166）', () {
+      const useCase = AnnualRewardSummaryUseCase();
+
+      final transactions = <AnnualSpendTransaction>[
+        for (final day in <String>['2027-06-05', '2027-06-12', '2027-06-20'])
+          AnnualSpendTransaction(
+            date: date(day),
+            amount: yen(650),
+            instrumentId: id('smbc_gold_nl_card'),
+          ),
+        AnnualSpendTransaction(
+          date: date('2027-06-18'),
+          amount: yen(1200),
+          instrumentId: id('mizuho_rakuten_card'),
+        ),
+      ];
+
+      final perRecord = useCase.rewardYenPerTransaction(
+        catalog: catalog,
+        transactions: transactions,
+      );
+      final summary = useCase.execute(
+        catalog: catalog,
+        annualSpend: yen(3150),
+        transactionDate: date('2027-06-30'),
+        transactions: transactions,
+      );
+
+      final perRecordTotal = perRecord.fold<int>(0, (sum, value) => sum + value);
+      final summaryTotal = summary.entries.fold<int>(
+        0,
+        (sum, entry) => sum + entry.totalValue.micros ~/ 1000000,
+      );
+
+      // 明細の「◯◯円還元」を足すと、月の合計に一致すること。
+      expect(perRecordTotal, summaryTotal);
+    });
+
     test('月間合算のカードは月ごとに端数処理する', () {
       const useCase = AnnualRewardSummaryUseCase();
 

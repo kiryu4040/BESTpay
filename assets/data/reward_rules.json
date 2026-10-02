@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "catalogVersion": "2026.10.02.4",
+  "catalogVersion": "2026.10.02.5",
   "generatedAt": "2026-09-27T00:00:00+09:00",
   "items": [
     {
@@ -4982,8 +4982,7 @@
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
-          "smbc_gold_nl_card",
-          "olive_flexible_pay_gold"
+          "smbc_gold_nl_card"
         ],
         "modeIds": [],
         "routeIds": [],
@@ -5079,7 +5078,8 @@
       "notes": [
         "加算率は対象のコンビニ・飲食店でのスマホタッチ決済・モバイルオーダーの利用額に対するもの（200円につき2ポイント＝+1%）。",
         "条件はアプリの「還元率の条件」でカードごとに選べる（D-114・D-122）。",
-        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。"
+        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。",
+        "集計キーをカードごとに分離した（D-166）。本ルールは三井住友カード ゴールド（NL）専用。"
       ]
     },
     {
@@ -5089,8 +5089,7 @@
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
-          "smbc_gold_nl_card",
-          "olive_flexible_pay_gold"
+          "smbc_gold_nl_card"
         ],
         "modeIds": [],
         "routeIds": [],
@@ -5188,7 +5187,8 @@
         "円預金の段階は250万〜500万未満+0.5%／500万〜750万未満+1%／750万〜1,000万未満+1.5%／1,000万〜2,000万未満+2%／2,000万以上+3%。",
         "当初は上限値（+1%）で登録していたが、公式に段階が記載されていることを確認し+0.5%に修正した（D-145）。",
         "残高が大きい上位段階は条件を分けていない。上の段階に当てはまる場合はこの条件をオフにし、必要なら上位段階を追加すること。",
-        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。"
+        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。",
+        "集計キーをカードごとに分離した（D-166）。本ルールは三井住友カード ゴールド（NL）専用。"
       ]
     },
     {
@@ -5198,8 +5198,7 @@
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
-          "smbc_gold_nl_card",
-          "olive_flexible_pay_gold"
+          "smbc_gold_nl_card"
         ],
         "modeIds": [],
         "routeIds": [],
@@ -5295,7 +5294,8 @@
       "notes": [
         "加算率は対象のコンビニ・飲食店でのスマホタッチ決済・モバイルオーダーの利用額に対するもの（200円につき2ポイント＝+1%）。",
         "条件はアプリの「還元率の条件」でカードごとに選べる（D-114・D-122）。",
-        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。"
+        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。",
+        "集計キーをカードごとに分離した（D-166）。本ルールは三井住友カード ゴールド（NL）専用。"
       ]
     },
     {
@@ -5305,8 +5305,7 @@
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
-          "smbc_gold_nl_card",
-          "olive_flexible_pay_gold"
+          "smbc_gold_nl_card"
         ],
         "modeIds": [],
         "routeIds": [],
@@ -5402,7 +5401,8 @@
       "notes": [
         "加算率は対象のコンビニ・飲食店でのスマホタッチ決済・モバイルオーダーの利用額に対するもの（200円につき2ポイント＝+1%）。",
         "条件はアプリの「還元率の条件」でカードごとに選べる（D-114・D-122）。",
-        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。"
+        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。",
+        "集計キーをカードごとに分離した（D-166）。本ルールは三井住友カード ゴールド（NL）専用。"
       ]
     },
     {
@@ -5412,8 +5412,7 @@
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
-          "smbc_gold_nl_card",
-          "olive_flexible_pay_gold"
+          "smbc_gold_nl_card"
         ],
         "modeIds": [],
         "routeIds": [],
@@ -5509,7 +5508,8 @@
       "notes": [
         "加算率は対象のコンビニ・飲食店でのスマホタッチ決済・モバイルオーダーの利用額に対するもの（200円につき2ポイント＝+1%）。",
         "条件はアプリの「還元率の条件」でカードごとに選べる（D-114・D-122）。",
-        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。"
+        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。",
+        "集計キーをカードごとに分離した（D-166）。本ルールは三井住友カード ゴールド（NL）専用。"
       ]
     },
     {
@@ -5519,8 +5519,7 @@
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
-          "smbc_gold_nl_card",
-          "olive_flexible_pay_gold"
+          "smbc_gold_nl_card"
         ],
         "modeIds": [],
         "routeIds": [],
@@ -5616,7 +5615,8 @@
       "notes": [
         "加算率は対象のコンビニ・飲食店でのスマホタッチ決済・モバイルオーダーの利用額に対するもの（200円につき2ポイント＝+1%）。",
         "条件はアプリの「還元率の条件」でカードごとに選べる（D-114・D-122）。",
-        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。"
+        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。",
+        "集計キーをカードごとに分離した（D-166）。本ルールは三井住友カード ゴールド（NL）専用。"
       ]
     },
     {
@@ -5626,8 +5626,7 @@
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
-          "smbc_gold_nl_card",
-          "olive_flexible_pay_gold"
+          "smbc_gold_nl_card"
         ],
         "modeIds": [],
         "routeIds": [],
@@ -5724,7 +5723,8 @@
         "加算率は対象のコンビニ・飲食店でのスマホタッチ決済・モバイルオーダーの利用額に対するもの（200円につき1ポイント＝+0.5%）。三井住友銀行公式のVポイントアッププログラムで確認（2026-10-02）。",
         "条件はアプリの「還元率の条件」でカードごとに選べる（D-114・D-122）。",
         "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。",
-        "NISA口座100万円以上の加算は三井住友カード仲介等の口座かつOlive会員限定。"
+        "NISA口座100万円以上の加算は三井住友カード仲介等の口座かつOlive会員限定。",
+        "集計キーをカードごとに分離した（D-166）。本ルールは三井住友カード ゴールド（NL）専用。"
       ]
     },
     {
@@ -5734,8 +5734,7 @@
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
-          "smbc_gold_nl_card",
-          "olive_flexible_pay_gold"
+          "smbc_gold_nl_card"
         ],
         "modeIds": [],
         "routeIds": [],
@@ -5831,7 +5830,8 @@
       "notes": [
         "加算率は対象のコンビニ・飲食店でのスマホタッチ決済・モバイルオーダーの利用額に対するもの（200円につき1ポイント＝+0.5%）。三井住友銀行公式のVポイントアッププログラムで確認（2026-10-02）。",
         "条件はアプリの「還元率の条件」でカードごとに選べる（D-114・D-122）。",
-        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。"
+        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。",
+        "集計キーをカードごとに分離した（D-166）。本ルールは三井住友カード ゴールド（NL）専用。"
       ]
     },
     {
@@ -5841,8 +5841,7 @@
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
-          "smbc_gold_nl_card",
-          "olive_flexible_pay_gold"
+          "smbc_gold_nl_card"
         ],
         "modeIds": [],
         "routeIds": [],
@@ -5938,7 +5937,8 @@
       "notes": [
         "加算率は対象のコンビニ・飲食店でのスマホタッチ決済・モバイルオーダーの利用額に対するもの（200円につき2ポイント＝+1%）。",
         "条件はアプリの「還元率の条件」でカードごとに選べる（D-114・D-122）。",
-        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。"
+        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。",
+        "集計キーをカードごとに分離した（D-166）。本ルールは三井住友カード ゴールド（NL）専用。"
       ]
     },
     {
@@ -5948,8 +5948,7 @@
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
-          "smbc_gold_nl_card",
-          "olive_flexible_pay_gold"
+          "smbc_gold_nl_card"
         ],
         "modeIds": [],
         "routeIds": [],
@@ -6045,7 +6044,8 @@
       "notes": [
         "加算率は対象のコンビニ・飲食店でのスマホタッチ決済・モバイルオーダーの利用額に対するもの（200円につき6ポイント＝+3%）。",
         "条件はアプリの「還元率の条件」でカードごとに選べる（D-114・D-122）。",
-        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。"
+        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。",
+        "集計キーをカードごとに分離した（D-166）。本ルールは三井住友カード ゴールド（NL）専用。"
       ]
     },
     {
@@ -6055,8 +6055,7 @@
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
-          "smbc_gold_nl_card",
-          "olive_flexible_pay_gold"
+          "smbc_gold_nl_card"
         ],
         "modeIds": [],
         "routeIds": [],
@@ -6152,7 +6151,8 @@
       "notes": [
         "加算率は対象のコンビニ・飲食店でのスマホタッチ決済・モバイルオーダーの利用額に対するもの（200円につき4ポイント＝+2%）。",
         "条件はアプリの「還元率の条件」でカードごとに選べる（D-114・D-122）。",
-        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。"
+        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。",
+        "集計キーをカードごとに分離した（D-166）。本ルールは三井住友カード ゴールド（NL）専用。"
       ]
     },
     {
@@ -7116,8 +7116,7 @@
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
-          "smbc_gold_nl_card",
-          "olive_flexible_pay_gold"
+          "smbc_gold_nl_card"
         ],
         "modeIds": [],
         "routeIds": [],
@@ -7214,7 +7213,8 @@
         "加算率は対象のコンビニ・飲食店でのスマホタッチ決済・モバイルオーダーの利用額に対するもの（200円につき4ポイント＝+2.0%）。",
         "住友生命Vitalityの4段階（ゴールド+2.0%／シルバー+1.5%／ブロンズ+1.0%／ブルー+0.5%）ごとにルールを分けている。自分のステータスのルールだけが効くように、条件は1つだけオンにすること。",
         "条件はアプリの「還元率の条件」でカードごとに選べる（D-114・D-122）。",
-        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。"
+        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。",
+        "集計キーをカードごとに分離した（D-166）。本ルールは三井住友カード ゴールド（NL）専用。"
       ]
     },
     {
@@ -7224,8 +7224,7 @@
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
-          "smbc_gold_nl_card",
-          "olive_flexible_pay_gold"
+          "smbc_gold_nl_card"
         ],
         "modeIds": [],
         "routeIds": [],
@@ -7322,7 +7321,8 @@
         "加算率は対象のコンビニ・飲食店でのスマホタッチ決済・モバイルオーダーの利用額に対するもの（200円につき3ポイント＝+1.5%）。",
         "住友生命Vitalityの4段階（ゴールド+2.0%／シルバー+1.5%／ブロンズ+1.0%／ブルー+0.5%）ごとにルールを分けている。自分のステータスのルールだけが効くように、条件は1つだけオンにすること。",
         "条件はアプリの「還元率の条件」でカードごとに選べる（D-114・D-122）。",
-        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。"
+        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。",
+        "集計キーをカードごとに分離した（D-166）。本ルールは三井住友カード ゴールド（NL）専用。"
       ]
     },
     {
@@ -7332,8 +7332,7 @@
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
-          "smbc_gold_nl_card",
-          "olive_flexible_pay_gold"
+          "smbc_gold_nl_card"
         ],
         "modeIds": [],
         "routeIds": [],
@@ -7430,7 +7429,8 @@
         "加算率は対象のコンビニ・飲食店でのスマホタッチ決済・モバイルオーダーの利用額に対するもの（200円につき2ポイント＝+1.0%）。",
         "住友生命Vitalityの4段階（ゴールド+2.0%／シルバー+1.5%／ブロンズ+1.0%／ブルー+0.5%）ごとにルールを分けている。自分のステータスのルールだけが効くように、条件は1つだけオンにすること。",
         "条件はアプリの「還元率の条件」でカードごとに選べる（D-114・D-122）。",
-        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。"
+        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。",
+        "集計キーをカードごとに分離した（D-166）。本ルールは三井住友カード ゴールド（NL）専用。"
       ]
     },
     {
@@ -7440,8 +7440,7 @@
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
-          "smbc_gold_nl_card",
-          "olive_flexible_pay_gold"
+          "smbc_gold_nl_card"
         ],
         "modeIds": [],
         "routeIds": [],
@@ -7538,7 +7537,8 @@
         "加算率は対象のコンビニ・飲食店でのスマホタッチ決済・モバイルオーダーの利用額に対するもの（200円につき1ポイント＝+0.5%）。",
         "住友生命Vitalityの4段階（ゴールド+2.0%／シルバー+1.5%／ブロンズ+1.0%／ブルー+0.5%）ごとにルールを分けている。自分のステータスのルールだけが効くように、条件は1つだけオンにすること。",
         "条件はアプリの「還元率の条件」でカードごとに選べる（D-114・D-122）。",
-        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。"
+        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。",
+        "集計キーをカードごとに分離した（D-166）。本ルールは三井住友カード ゴールド（NL）専用。"
       ]
     },
     {
@@ -7548,8 +7548,7 @@
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
-          "smbc_gold_nl_card",
-          "olive_flexible_pay_gold"
+          "smbc_gold_nl_card"
         ],
         "modeIds": [],
         "routeIds": [],
@@ -7645,7 +7644,8 @@
       "notes": [
         "加算率は対象のコンビニ・飲食店でのスマホタッチ決済・モバイルオーダーの利用額に対するもの（200円につき1ポイント＝+0.5%）。",
         "SMBC日興証券の公式ページで確定。投信積立3万円以上で+0.5%、NISA口座での投信積立3万円以上でさらに+0.5%（合計最大+1.0%）。2つは同時に満たせるためルールを分けている。",
-        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。"
+        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。",
+        "集計キーをカードごとに分離した（D-166）。本ルールは三井住友カード ゴールド（NL）専用。"
       ]
     },
     {
@@ -7655,8 +7655,7 @@
       "ruleKind": "campaignBonus",
       "selectors": {
         "instrumentIds": [
-          "smbc_gold_nl_card",
-          "olive_flexible_pay_gold"
+          "smbc_gold_nl_card"
         ],
         "modeIds": [],
         "routeIds": [],
@@ -7752,7 +7751,8 @@
       "notes": [
         "加算率は対象のコンビニ・飲食店でのスマホタッチ決済・モバイルオーダーの利用額に対するもの（200円につき1ポイント＝+0.5%）。",
         "SMBC日興証券の公式ページで確定。投信積立3万円以上で+0.5%、NISA口座での投信積立3万円以上でさらに+0.5%（合計最大+1.0%）。2つは同時に満たせるためルールを分けている。",
-        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。"
+        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。",
+        "集計キーをカードごとに分離した（D-166）。本ルールは三井住友カード ゴールド（NL）専用。"
       ]
     },
     {
@@ -10513,6 +10513,1832 @@
         "スターバックス カードへのオンライン入金・オートチャージが対象で、店頭でのカード利用は対象外。エンジンは支払い経路を区別できないため店頭利用でも加点されてしまう（第2期の課題）。",
         "100円につき+2ポイントを上乗せとして登録している。",
         "対象決済はdカード（Visa/Mastercard）。"
+      ]
+    },
+    {
+      "id": "olive_card_smbc_pup_eraberu_tokuten_bonus",
+      "name": "三井住友カード／Olive Vポイントアップ Oliveアカウントの選べる特典で「+1%」を選ぶ（Olive）",
+      "description": "Oliveアカウントの選べる特典で「Vポイントアッププログラム＋1％」を選択すると対象店舗の還元率に+1%。",
+      "ruleKind": "campaignBonus",
+      "selectors": {
+        "instrumentIds": [
+          "olive_flexible_pay_gold"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [
+          "seicomart",
+          "seven_eleven",
+          "poplar",
+          "ministop",
+          "lawson",
+          "mcdonalds",
+          "mos_burger",
+          "kfc",
+          "yoshinoya",
+          "freshness_burger",
+          "saizeriya",
+          "gusto",
+          "bamiyan",
+          "shabu_you",
+          "jonathan",
+          "yumean",
+          "sukiya",
+          "hama_sushi",
+          "cocos",
+          "doutor",
+          "excelsior",
+          "kappa_sushi"
+        ],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": {
+        "nodeType": "condition",
+        "conditionId": "smbc_pup_eraberu_tokuten"
+      },
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 200,
+        "pointsPerUnit": 2,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "v_point",
+      "aggregation": {
+        "scope": "billingMonth",
+        "aggregationKey": "olive_card_smbc_pup_eraberu_tokuten_bonus_200",
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": true
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 100
+      },
+      "cap": null,
+      "validFrom": "2026-09-29",
+      "validUntilExclusive": null,
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_smbc_gold_nl_official",
+        "src_smbc_vpoint_up_program"
+      ],
+      "lastVerifiedAt": "2026-09-29",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "campaign_bonus",
+        "conditional",
+        "point_up_program"
+      ],
+      "notes": [
+        "加算率は対象のコンビニ・飲食店でのスマホタッチ決済・モバイルオーダーの利用額に対するもの（200円につき2ポイント＝+1%）。",
+        "条件はアプリの「還元率の条件」でカードごとに選べる（D-114・D-122）。",
+        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。",
+        "集計キーをカードごとに分離した（D-166）。本ルールはOliveフレキシブルペイ ゴールド専用。"
+      ]
+    },
+    {
+      "id": "olive_card_smbc_pup_yen_deposit_250man_bonus",
+      "name": "三井住友カード／Olive Vポイントアップ 円預金250万円以上500万円未満（+0.5%）（Olive）",
+      "description": "Olive口座の円普通預金の月末残高が250万円以上500万円未満のとき、対象店舗のVポイント還元率が+0.5%される（200円につき1ポイントの上乗せ）。",
+      "ruleKind": "campaignBonus",
+      "selectors": {
+        "instrumentIds": [
+          "olive_flexible_pay_gold"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [
+          "seicomart",
+          "seven_eleven",
+          "poplar",
+          "ministop",
+          "lawson",
+          "mcdonalds",
+          "mos_burger",
+          "kfc",
+          "yoshinoya",
+          "freshness_burger",
+          "saizeriya",
+          "gusto",
+          "bamiyan",
+          "shabu_you",
+          "jonathan",
+          "yumean",
+          "sukiya",
+          "hama_sushi",
+          "cocos",
+          "doutor",
+          "excelsior",
+          "kappa_sushi"
+        ],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": {
+        "nodeType": "condition",
+        "conditionId": "smbc_pup_yen_deposit_250man"
+      },
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 200,
+        "pointsPerUnit": 1,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "v_point",
+      "aggregation": {
+        "scope": "billingMonth",
+        "aggregationKey": "olive_card_smbc_pup_yen_deposit_250man_bonus_200",
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": true
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 100
+      },
+      "cap": null,
+      "validFrom": "2026-09-29",
+      "validUntilExclusive": null,
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_smbc_gold_nl_official",
+        "src_smbc_vpoint_up_program"
+      ],
+      "lastVerifiedAt": "2026-10-01",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "campaign_bonus",
+        "conditional",
+        "point_up_program"
+      ],
+      "notes": [
+        "加算率は対象のコンビニ・飲食店でのスマホタッチ決済・モバイルオーダーの利用額に対するもの（200円につき1ポイント＝+0.5%）。",
+        "円預金の段階は250万〜500万未満+0.5%／500万〜750万未満+1%／750万〜1,000万未満+1.5%／1,000万〜2,000万未満+2%／2,000万以上+3%。",
+        "当初は上限値（+1%）で登録していたが、公式に段階が記載されていることを確認し+0.5%に修正した（D-145）。",
+        "残高が大きい上位段階は条件を分けていない。上の段階に当てはまる場合はこの条件をオフにし、必要なら上位段階を追加すること。",
+        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。",
+        "集計キーをカードごとに分離した（D-166）。本ルールはOliveフレキシブルペイ ゴールド専用。"
+      ]
+    },
+    {
+      "id": "olive_card_smbc_pup_foreign_deposit_accumulate_bonus",
+      "name": "三井住友カード／Olive Vポイントアップ 外貨積立を1万円以上実行（Olive）",
+      "description": "当月に1回あたり1万円以上の外貨積立を実行すると+1%。",
+      "ruleKind": "campaignBonus",
+      "selectors": {
+        "instrumentIds": [
+          "olive_flexible_pay_gold"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [
+          "seicomart",
+          "seven_eleven",
+          "poplar",
+          "ministop",
+          "lawson",
+          "mcdonalds",
+          "mos_burger",
+          "kfc",
+          "yoshinoya",
+          "freshness_burger",
+          "saizeriya",
+          "gusto",
+          "bamiyan",
+          "shabu_you",
+          "jonathan",
+          "yumean",
+          "sukiya",
+          "hama_sushi",
+          "cocos",
+          "doutor",
+          "excelsior",
+          "kappa_sushi"
+        ],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": {
+        "nodeType": "condition",
+        "conditionId": "smbc_pup_foreign_deposit_accumulate"
+      },
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 200,
+        "pointsPerUnit": 2,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "v_point",
+      "aggregation": {
+        "scope": "billingMonth",
+        "aggregationKey": "olive_card_smbc_pup_foreign_deposit_accumulate_bonus_200",
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": true
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 100
+      },
+      "cap": null,
+      "validFrom": "2026-09-29",
+      "validUntilExclusive": null,
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_smbc_gold_nl_official",
+        "src_smbc_vpoint_up_program"
+      ],
+      "lastVerifiedAt": "2026-09-29",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "campaign_bonus",
+        "conditional",
+        "point_up_program"
+      ],
+      "notes": [
+        "加算率は対象のコンビニ・飲食店でのスマホタッチ決済・モバイルオーダーの利用額に対するもの（200円につき2ポイント＝+1%）。",
+        "条件はアプリの「還元率の条件」でカードごとに選べる（D-114・D-122）。",
+        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。",
+        "集計キーをカードごとに分離した（D-166）。本ルールはOliveフレキシブルペイ ゴールド専用。"
+      ]
+    },
+    {
+      "id": "olive_card_smbc_pup_foreign_deposit_balance_bonus",
+      "name": "三井住友カード／Olive Vポイントアップ 外貨預金の残高1万米ドル相当以上（Olive）",
+      "description": "外貨預金の毎月最終営業日の残高が1万米ドル相当額以上で+1%。",
+      "ruleKind": "campaignBonus",
+      "selectors": {
+        "instrumentIds": [
+          "olive_flexible_pay_gold"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [
+          "seicomart",
+          "seven_eleven",
+          "poplar",
+          "ministop",
+          "lawson",
+          "mcdonalds",
+          "mos_burger",
+          "kfc",
+          "yoshinoya",
+          "freshness_burger",
+          "saizeriya",
+          "gusto",
+          "bamiyan",
+          "shabu_you",
+          "jonathan",
+          "yumean",
+          "sukiya",
+          "hama_sushi",
+          "cocos",
+          "doutor",
+          "excelsior",
+          "kappa_sushi"
+        ],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": {
+        "nodeType": "condition",
+        "conditionId": "smbc_pup_foreign_deposit_balance"
+      },
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 200,
+        "pointsPerUnit": 2,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "v_point",
+      "aggregation": {
+        "scope": "billingMonth",
+        "aggregationKey": "olive_card_smbc_pup_foreign_deposit_balance_bonus_200",
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": true
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 100
+      },
+      "cap": null,
+      "validFrom": "2026-09-29",
+      "validUntilExclusive": null,
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_smbc_gold_nl_official",
+        "src_smbc_vpoint_up_program"
+      ],
+      "lastVerifiedAt": "2026-09-29",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "campaign_bonus",
+        "conditional",
+        "point_up_program"
+      ],
+      "notes": [
+        "加算率は対象のコンビニ・飲食店でのスマホタッチ決済・モバイルオーダーの利用額に対するもの（200円につき2ポイント＝+1%）。",
+        "条件はアプリの「還元率の条件」でカードごとに選べる（D-114・D-122）。",
+        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。",
+        "集計キーをカードごとに分離した（D-166）。本ルールはOliveフレキシブルペイ ゴールド専用。"
+      ]
+    },
+    {
+      "id": "olive_card_smbc_pup_housing_loan_bonus",
+      "name": "三井住友カード／Olive Vポイントアップ 住宅ローンをOliveアカウントで契約（Olive）",
+      "description": "Oliveアカウントにご契約のうえ、住宅ローンの契約があると+1%。",
+      "ruleKind": "campaignBonus",
+      "selectors": {
+        "instrumentIds": [
+          "olive_flexible_pay_gold"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [
+          "seicomart",
+          "seven_eleven",
+          "poplar",
+          "ministop",
+          "lawson",
+          "mcdonalds",
+          "mos_burger",
+          "kfc",
+          "yoshinoya",
+          "freshness_burger",
+          "saizeriya",
+          "gusto",
+          "bamiyan",
+          "shabu_you",
+          "jonathan",
+          "yumean",
+          "sukiya",
+          "hama_sushi",
+          "cocos",
+          "doutor",
+          "excelsior",
+          "kappa_sushi"
+        ],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": {
+        "nodeType": "condition",
+        "conditionId": "smbc_pup_housing_loan"
+      },
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 200,
+        "pointsPerUnit": 2,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "v_point",
+      "aggregation": {
+        "scope": "billingMonth",
+        "aggregationKey": "olive_card_smbc_pup_housing_loan_bonus_200",
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": true
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 100
+      },
+      "cap": null,
+      "validFrom": "2026-09-29",
+      "validUntilExclusive": null,
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_smbc_gold_nl_official",
+        "src_smbc_vpoint_up_program"
+      ],
+      "lastVerifiedAt": "2026-09-29",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "campaign_bonus",
+        "conditional",
+        "point_up_program"
+      ],
+      "notes": [
+        "加算率は対象のコンビニ・飲食店でのスマホタッチ決済・モバイルオーダーの利用額に対するもの（200円につき2ポイント＝+1%）。",
+        "条件はアプリの「還元率の条件」でカードごとに選べる（D-114・D-122）。",
+        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。",
+        "集計キーをカードごとに分離した（D-166）。本ルールはOliveフレキシブルペイ ゴールド専用。"
+      ]
+    },
+    {
+      "id": "olive_card_smbc_pup_sbi_v_point_invest_bonus",
+      "name": "三井住友カード／Olive Vポイントアップ SBI証券でVポイント投資を1万ポイント以上（Olive）",
+      "description": "当月のVポイント投資で合計10,000ポイント以上利用すると+1%。",
+      "ruleKind": "campaignBonus",
+      "selectors": {
+        "instrumentIds": [
+          "olive_flexible_pay_gold"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [
+          "seicomart",
+          "seven_eleven",
+          "poplar",
+          "ministop",
+          "lawson",
+          "mcdonalds",
+          "mos_burger",
+          "kfc",
+          "yoshinoya",
+          "freshness_burger",
+          "saizeriya",
+          "gusto",
+          "bamiyan",
+          "shabu_you",
+          "jonathan",
+          "yumean",
+          "sukiya",
+          "hama_sushi",
+          "cocos",
+          "doutor",
+          "excelsior",
+          "kappa_sushi"
+        ],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": {
+        "nodeType": "condition",
+        "conditionId": "smbc_pup_sbi_v_point_invest"
+      },
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 200,
+        "pointsPerUnit": 2,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "v_point",
+      "aggregation": {
+        "scope": "billingMonth",
+        "aggregationKey": "olive_card_smbc_pup_sbi_v_point_invest_bonus_200",
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": true
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 100
+      },
+      "cap": null,
+      "validFrom": "2026-09-29",
+      "validUntilExclusive": null,
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_smbc_gold_nl_official",
+        "src_smbc_vpoint_up_program"
+      ],
+      "lastVerifiedAt": "2026-09-29",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "campaign_bonus",
+        "conditional",
+        "point_up_program"
+      ],
+      "notes": [
+        "加算率は対象のコンビニ・飲食店でのスマホタッチ決済・モバイルオーダーの利用額に対するもの（200円につき2ポイント＝+1%）。",
+        "条件はアプリの「還元率の条件」でカードごとに選べる（D-114・D-122）。",
+        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。",
+        "集計キーをカードごとに分離した（D-166）。本ルールはOliveフレキシブルペイ ゴールド専用。"
+      ]
+    },
+    {
+      "id": "olive_card_smbc_pup_sbi_nisa_100man_bonus",
+      "name": "三井住友カード／Olive Vポイントアップ NISA口座の投信100万円以上（Olive）",
+      "description": "NISA口座における投資信託の保有資産評価額が100万円以上で+0.5%。",
+      "ruleKind": "campaignBonus",
+      "selectors": {
+        "instrumentIds": [
+          "olive_flexible_pay_gold"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [
+          "seicomart",
+          "seven_eleven",
+          "poplar",
+          "ministop",
+          "lawson",
+          "mcdonalds",
+          "mos_burger",
+          "kfc",
+          "yoshinoya",
+          "freshness_burger",
+          "saizeriya",
+          "gusto",
+          "bamiyan",
+          "shabu_you",
+          "jonathan",
+          "yumean",
+          "sukiya",
+          "hama_sushi",
+          "cocos",
+          "doutor",
+          "excelsior",
+          "kappa_sushi"
+        ],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": {
+        "nodeType": "condition",
+        "conditionId": "smbc_pup_sbi_nisa_100man"
+      },
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 200,
+        "pointsPerUnit": 1,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "v_point",
+      "aggregation": {
+        "scope": "billingMonth",
+        "aggregationKey": "olive_card_smbc_pup_sbi_nisa_100man_bonus_200",
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": true
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 100
+      },
+      "cap": null,
+      "validFrom": "2026-09-29",
+      "validUntilExclusive": null,
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_smbc_gold_nl_official",
+        "src_smbc_vpoint_up_program"
+      ],
+      "lastVerifiedAt": "2026-10-02",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "campaign_bonus",
+        "conditional",
+        "point_up_program"
+      ],
+      "notes": [
+        "加算率は対象のコンビニ・飲食店でのスマホタッチ決済・モバイルオーダーの利用額に対するもの（200円につき1ポイント＝+0.5%）。三井住友銀行公式のVポイントアッププログラムで確認（2026-10-02）。",
+        "条件はアプリの「還元率の条件」でカードごとに選べる（D-114・D-122）。",
+        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。",
+        "NISA口座100万円以上の加算は三井住友カード仲介等の口座かつOlive会員限定。",
+        "集計キーをカードごとに分離した（D-166）。本ルールはOliveフレキシブルペイ ゴールド専用。"
+      ]
+    },
+    {
+      "id": "olive_card_smbc_pup_sbi_nisa_200man_bonus",
+      "name": "三井住友カード／Olive Vポイントアップ NISA口座の投信200万円以上（Olive）",
+      "description": "NISA口座における投資信託の保有資産評価額が200万円以上で+0.5%。",
+      "ruleKind": "campaignBonus",
+      "selectors": {
+        "instrumentIds": [
+          "olive_flexible_pay_gold"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [
+          "seicomart",
+          "seven_eleven",
+          "poplar",
+          "ministop",
+          "lawson",
+          "mcdonalds",
+          "mos_burger",
+          "kfc",
+          "yoshinoya",
+          "freshness_burger",
+          "saizeriya",
+          "gusto",
+          "bamiyan",
+          "shabu_you",
+          "jonathan",
+          "yumean",
+          "sukiya",
+          "hama_sushi",
+          "cocos",
+          "doutor",
+          "excelsior",
+          "kappa_sushi"
+        ],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": {
+        "nodeType": "condition",
+        "conditionId": "smbc_pup_sbi_nisa_200man"
+      },
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 200,
+        "pointsPerUnit": 1,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "v_point",
+      "aggregation": {
+        "scope": "billingMonth",
+        "aggregationKey": "olive_card_smbc_pup_sbi_nisa_200man_bonus_200",
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": true
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 100
+      },
+      "cap": null,
+      "validFrom": "2026-09-29",
+      "validUntilExclusive": null,
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_smbc_gold_nl_official",
+        "src_smbc_vpoint_up_program"
+      ],
+      "lastVerifiedAt": "2026-10-02",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "campaign_bonus",
+        "conditional",
+        "point_up_program"
+      ],
+      "notes": [
+        "加算率は対象のコンビニ・飲食店でのスマホタッチ決済・モバイルオーダーの利用額に対するもの（200円につき1ポイント＝+0.5%）。三井住友銀行公式のVポイントアッププログラムで確認（2026-10-02）。",
+        "条件はアプリの「還元率の条件」でカードごとに選べる（D-114・D-122）。",
+        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。",
+        "集計キーをカードごとに分離した（D-166）。本ルールはOliveフレキシブルペイ ゴールド専用。"
+      ]
+    },
+    {
+      "id": "olive_card_smbc_pup_olive_healthcare_bonus",
+      "name": "三井住友カード／Olive Vポイントアップ Oliveヘルスケアに加入（Olive）",
+      "description": "Oliveヘルスケアに加入し、無料期間終了後に月額利用料を支払うと+1%。",
+      "ruleKind": "campaignBonus",
+      "selectors": {
+        "instrumentIds": [
+          "olive_flexible_pay_gold"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [
+          "seicomart",
+          "seven_eleven",
+          "poplar",
+          "ministop",
+          "lawson",
+          "mcdonalds",
+          "mos_burger",
+          "kfc",
+          "yoshinoya",
+          "freshness_burger",
+          "saizeriya",
+          "gusto",
+          "bamiyan",
+          "shabu_you",
+          "jonathan",
+          "yumean",
+          "sukiya",
+          "hama_sushi",
+          "cocos",
+          "doutor",
+          "excelsior",
+          "kappa_sushi"
+        ],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": {
+        "nodeType": "condition",
+        "conditionId": "smbc_pup_olive_healthcare"
+      },
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 200,
+        "pointsPerUnit": 2,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "v_point",
+      "aggregation": {
+        "scope": "billingMonth",
+        "aggregationKey": "olive_card_smbc_pup_olive_healthcare_bonus_200",
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": true
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 100
+      },
+      "cap": null,
+      "validFrom": "2026-09-29",
+      "validUntilExclusive": null,
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_smbc_gold_nl_official",
+        "src_smbc_vpoint_up_program"
+      ],
+      "lastVerifiedAt": "2026-09-29",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "campaign_bonus",
+        "conditional",
+        "point_up_program"
+      ],
+      "notes": [
+        "加算率は対象のコンビニ・飲食店でのスマホタッチ決済・モバイルオーダーの利用額に対するもの（200円につき2ポイント＝+1%）。",
+        "条件はアプリの「還元率の条件」でカードごとに選べる（D-114・D-122）。",
+        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。",
+        "集計キーをカードごとに分離した（D-166）。本ルールはOliveフレキシブルペイ ゴールド専用。"
+      ]
+    },
+    {
+      "id": "olive_card_smbc_pup_card_loan_bonus",
+      "name": "三井住友カード／Olive Vポイントアップ 三井住友カードのカードローンを契約（Olive）",
+      "description": "返済口座をOliveアカウントご契約口座に設定すると最大+3%。公式は「最大」表記のため上限値で登録している。",
+      "ruleKind": "campaignBonus",
+      "selectors": {
+        "instrumentIds": [
+          "olive_flexible_pay_gold"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [
+          "seicomart",
+          "seven_eleven",
+          "poplar",
+          "ministop",
+          "lawson",
+          "mcdonalds",
+          "mos_burger",
+          "kfc",
+          "yoshinoya",
+          "freshness_burger",
+          "saizeriya",
+          "gusto",
+          "bamiyan",
+          "shabu_you",
+          "jonathan",
+          "yumean",
+          "sukiya",
+          "hama_sushi",
+          "cocos",
+          "doutor",
+          "excelsior",
+          "kappa_sushi"
+        ],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": {
+        "nodeType": "condition",
+        "conditionId": "smbc_pup_card_loan"
+      },
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 200,
+        "pointsPerUnit": 6,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "v_point",
+      "aggregation": {
+        "scope": "billingMonth",
+        "aggregationKey": "olive_card_smbc_pup_card_loan_bonus_200",
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": true
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 100
+      },
+      "cap": null,
+      "validFrom": "2026-09-29",
+      "validUntilExclusive": null,
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_smbc_gold_nl_official",
+        "src_smbc_vpoint_up_program"
+      ],
+      "lastVerifiedAt": "2026-09-29",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "campaign_bonus",
+        "conditional",
+        "point_up_program"
+      ],
+      "notes": [
+        "加算率は対象のコンビニ・飲食店でのスマホタッチ決済・モバイルオーダーの利用額に対するもの（200円につき6ポイント＝+3%）。",
+        "条件はアプリの「還元率の条件」でカードごとに選べる（D-114・D-122）。",
+        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。",
+        "集計キーをカードごとに分離した（D-166）。本ルールはOliveフレキシブルペイ ゴールド専用。"
+      ]
+    },
+    {
+      "id": "olive_card_smbc_pup_vtrip_bonus",
+      "name": "三井住友カード／Olive Vポイントアップ Vトリップで国内・海外ホテルを予約（Olive）",
+      "description": "Vトリップで国内または海外のホテルを予約・決済し宿泊すると最大+2%。",
+      "ruleKind": "campaignBonus",
+      "selectors": {
+        "instrumentIds": [
+          "olive_flexible_pay_gold"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [
+          "seicomart",
+          "seven_eleven",
+          "poplar",
+          "ministop",
+          "lawson",
+          "mcdonalds",
+          "mos_burger",
+          "kfc",
+          "yoshinoya",
+          "freshness_burger",
+          "saizeriya",
+          "gusto",
+          "bamiyan",
+          "shabu_you",
+          "jonathan",
+          "yumean",
+          "sukiya",
+          "hama_sushi",
+          "cocos",
+          "doutor",
+          "excelsior",
+          "kappa_sushi"
+        ],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": {
+        "nodeType": "condition",
+        "conditionId": "smbc_pup_vtrip"
+      },
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 200,
+        "pointsPerUnit": 4,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "v_point",
+      "aggregation": {
+        "scope": "billingMonth",
+        "aggregationKey": "olive_card_smbc_pup_vtrip_bonus_200",
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": true
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 100
+      },
+      "cap": null,
+      "validFrom": "2026-09-29",
+      "validUntilExclusive": null,
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_smbc_gold_nl_official",
+        "src_smbc_vpoint_up_program"
+      ],
+      "lastVerifiedAt": "2026-09-29",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "campaign_bonus",
+        "conditional",
+        "point_up_program"
+      ],
+      "notes": [
+        "加算率は対象のコンビニ・飲食店でのスマホタッチ決済・モバイルオーダーの利用額に対するもの（200円につき4ポイント＝+2%）。",
+        "条件はアプリの「還元率の条件」でカードごとに選べる（D-114・D-122）。",
+        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。",
+        "集計キーをカードごとに分離した（D-166）。本ルールはOliveフレキシブルペイ ゴールド専用。"
+      ]
+    },
+    {
+      "id": "olive_card_smbc_pup_vitality_gold_bonus",
+      "name": "三井住友カード／Olive Vポイントアップ 住友生命Vitality（+2.0%）（Olive）",
+      "description": "住友生命のVitalityでステータスが該当段階にあると、対象店舗のVポイント還元率が+2.0%される（200円につき4ポイントの上乗せ）。",
+      "ruleKind": "campaignBonus",
+      "selectors": {
+        "instrumentIds": [
+          "olive_flexible_pay_gold"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [
+          "seicomart",
+          "seven_eleven",
+          "poplar",
+          "ministop",
+          "lawson",
+          "mcdonalds",
+          "mos_burger",
+          "kfc",
+          "yoshinoya",
+          "freshness_burger",
+          "saizeriya",
+          "gusto",
+          "bamiyan",
+          "shabu_you",
+          "jonathan",
+          "yumean",
+          "sukiya",
+          "hama_sushi",
+          "cocos",
+          "doutor",
+          "excelsior",
+          "kappa_sushi"
+        ],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": {
+        "nodeType": "condition",
+        "conditionId": "smbc_pup_vitality_gold"
+      },
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 200,
+        "pointsPerUnit": 4,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "v_point",
+      "aggregation": {
+        "scope": "billingMonth",
+        "aggregationKey": "olive_card_smbc_pup_vitality_gold_bonus_200",
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": true
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 100
+      },
+      "cap": null,
+      "validFrom": "2026-09-29",
+      "validUntilExclusive": null,
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_smbc_gold_nl_official",
+        "src_smbc_vpoint_up_program"
+      ],
+      "lastVerifiedAt": "2026-09-29",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "campaign_bonus",
+        "conditional",
+        "point_up_program"
+      ],
+      "notes": [
+        "加算率は対象のコンビニ・飲食店でのスマホタッチ決済・モバイルオーダーの利用額に対するもの（200円につき4ポイント＝+2.0%）。",
+        "住友生命Vitalityの4段階（ゴールド+2.0%／シルバー+1.5%／ブロンズ+1.0%／ブルー+0.5%）ごとにルールを分けている。自分のステータスのルールだけが効くように、条件は1つだけオンにすること。",
+        "条件はアプリの「還元率の条件」でカードごとに選べる（D-114・D-122）。",
+        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。",
+        "集計キーをカードごとに分離した（D-166）。本ルールはOliveフレキシブルペイ ゴールド専用。"
+      ]
+    },
+    {
+      "id": "olive_card_smbc_pup_vitality_silver_bonus",
+      "name": "三井住友カード／Olive Vポイントアップ 住友生命Vitality（+1.5%）（Olive）",
+      "description": "住友生命のVitalityでステータスが該当段階にあると、対象店舗のVポイント還元率が+1.5%される（200円につき3ポイントの上乗せ）。",
+      "ruleKind": "campaignBonus",
+      "selectors": {
+        "instrumentIds": [
+          "olive_flexible_pay_gold"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [
+          "seicomart",
+          "seven_eleven",
+          "poplar",
+          "ministop",
+          "lawson",
+          "mcdonalds",
+          "mos_burger",
+          "kfc",
+          "yoshinoya",
+          "freshness_burger",
+          "saizeriya",
+          "gusto",
+          "bamiyan",
+          "shabu_you",
+          "jonathan",
+          "yumean",
+          "sukiya",
+          "hama_sushi",
+          "cocos",
+          "doutor",
+          "excelsior",
+          "kappa_sushi"
+        ],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": {
+        "nodeType": "condition",
+        "conditionId": "smbc_pup_vitality_silver"
+      },
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 200,
+        "pointsPerUnit": 3,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "v_point",
+      "aggregation": {
+        "scope": "billingMonth",
+        "aggregationKey": "olive_card_smbc_pup_vitality_silver_bonus_200",
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": true
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 100
+      },
+      "cap": null,
+      "validFrom": "2026-09-29",
+      "validUntilExclusive": null,
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_smbc_gold_nl_official",
+        "src_smbc_vpoint_up_program"
+      ],
+      "lastVerifiedAt": "2026-09-29",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "campaign_bonus",
+        "conditional",
+        "point_up_program"
+      ],
+      "notes": [
+        "加算率は対象のコンビニ・飲食店でのスマホタッチ決済・モバイルオーダーの利用額に対するもの（200円につき3ポイント＝+1.5%）。",
+        "住友生命Vitalityの4段階（ゴールド+2.0%／シルバー+1.5%／ブロンズ+1.0%／ブルー+0.5%）ごとにルールを分けている。自分のステータスのルールだけが効くように、条件は1つだけオンにすること。",
+        "条件はアプリの「還元率の条件」でカードごとに選べる（D-114・D-122）。",
+        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。",
+        "集計キーをカードごとに分離した（D-166）。本ルールはOliveフレキシブルペイ ゴールド専用。"
+      ]
+    },
+    {
+      "id": "olive_card_smbc_pup_vitality_bronze_bonus",
+      "name": "三井住友カード／Olive Vポイントアップ 住友生命Vitality（+1.0%）（Olive）",
+      "description": "住友生命のVitalityでステータスが該当段階にあると、対象店舗のVポイント還元率が+1.0%される（200円につき2ポイントの上乗せ）。",
+      "ruleKind": "campaignBonus",
+      "selectors": {
+        "instrumentIds": [
+          "olive_flexible_pay_gold"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [
+          "seicomart",
+          "seven_eleven",
+          "poplar",
+          "ministop",
+          "lawson",
+          "mcdonalds",
+          "mos_burger",
+          "kfc",
+          "yoshinoya",
+          "freshness_burger",
+          "saizeriya",
+          "gusto",
+          "bamiyan",
+          "shabu_you",
+          "jonathan",
+          "yumean",
+          "sukiya",
+          "hama_sushi",
+          "cocos",
+          "doutor",
+          "excelsior",
+          "kappa_sushi"
+        ],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": {
+        "nodeType": "condition",
+        "conditionId": "smbc_pup_vitality_bronze"
+      },
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 200,
+        "pointsPerUnit": 2,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "v_point",
+      "aggregation": {
+        "scope": "billingMonth",
+        "aggregationKey": "olive_card_smbc_pup_vitality_bronze_bonus_200",
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": true
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 100
+      },
+      "cap": null,
+      "validFrom": "2026-09-29",
+      "validUntilExclusive": null,
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_smbc_gold_nl_official",
+        "src_smbc_vpoint_up_program"
+      ],
+      "lastVerifiedAt": "2026-09-29",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "campaign_bonus",
+        "conditional",
+        "point_up_program"
+      ],
+      "notes": [
+        "加算率は対象のコンビニ・飲食店でのスマホタッチ決済・モバイルオーダーの利用額に対するもの（200円につき2ポイント＝+1.0%）。",
+        "住友生命Vitalityの4段階（ゴールド+2.0%／シルバー+1.5%／ブロンズ+1.0%／ブルー+0.5%）ごとにルールを分けている。自分のステータスのルールだけが効くように、条件は1つだけオンにすること。",
+        "条件はアプリの「還元率の条件」でカードごとに選べる（D-114・D-122）。",
+        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。",
+        "集計キーをカードごとに分離した（D-166）。本ルールはOliveフレキシブルペイ ゴールド専用。"
+      ]
+    },
+    {
+      "id": "olive_card_smbc_pup_vitality_blue_bonus",
+      "name": "三井住友カード／Olive Vポイントアップ 住友生命Vitality（+0.5%）（Olive）",
+      "description": "住友生命のVitalityでステータスが該当段階にあると、対象店舗のVポイント還元率が+0.5%される（200円につき1ポイントの上乗せ）。",
+      "ruleKind": "campaignBonus",
+      "selectors": {
+        "instrumentIds": [
+          "olive_flexible_pay_gold"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [
+          "seicomart",
+          "seven_eleven",
+          "poplar",
+          "ministop",
+          "lawson",
+          "mcdonalds",
+          "mos_burger",
+          "kfc",
+          "yoshinoya",
+          "freshness_burger",
+          "saizeriya",
+          "gusto",
+          "bamiyan",
+          "shabu_you",
+          "jonathan",
+          "yumean",
+          "sukiya",
+          "hama_sushi",
+          "cocos",
+          "doutor",
+          "excelsior",
+          "kappa_sushi"
+        ],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": {
+        "nodeType": "condition",
+        "conditionId": "smbc_pup_vitality_blue"
+      },
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 200,
+        "pointsPerUnit": 1,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "v_point",
+      "aggregation": {
+        "scope": "billingMonth",
+        "aggregationKey": "olive_card_smbc_pup_vitality_blue_bonus_200",
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": true
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 100
+      },
+      "cap": null,
+      "validFrom": "2026-09-29",
+      "validUntilExclusive": null,
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_smbc_gold_nl_official",
+        "src_smbc_vpoint_up_program"
+      ],
+      "lastVerifiedAt": "2026-09-29",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "campaign_bonus",
+        "conditional",
+        "point_up_program"
+      ],
+      "notes": [
+        "加算率は対象のコンビニ・飲食店でのスマホタッチ決済・モバイルオーダーの利用額に対するもの（200円につき1ポイント＝+0.5%）。",
+        "住友生命Vitalityの4段階（ゴールド+2.0%／シルバー+1.5%／ブロンズ+1.0%／ブルー+0.5%）ごとにルールを分けている。自分のステータスのルールだけが効くように、条件は1つだけオンにすること。",
+        "条件はアプリの「還元率の条件」でカードごとに選べる（D-114・D-122）。",
+        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。",
+        "集計キーをカードごとに分離した（D-166）。本ルールはOliveフレキシブルペイ ゴールド専用。"
+      ]
+    },
+    {
+      "id": "olive_card_smbc_pup_nikko_tsumitate_bonus",
+      "name": "三井住友カード／Olive Vポイントアップ SMBC日興証券（投信積立3万円以上）（Olive）",
+      "description": "Oliveアカウントを契約のうえSMBC日興証券で投信積立3万円以上とすると、対象店舗のVポイント還元率が+0.5%される。",
+      "ruleKind": "campaignBonus",
+      "selectors": {
+        "instrumentIds": [
+          "olive_flexible_pay_gold"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [
+          "seicomart",
+          "seven_eleven",
+          "poplar",
+          "ministop",
+          "lawson",
+          "mcdonalds",
+          "mos_burger",
+          "kfc",
+          "yoshinoya",
+          "freshness_burger",
+          "saizeriya",
+          "gusto",
+          "bamiyan",
+          "shabu_you",
+          "jonathan",
+          "yumean",
+          "sukiya",
+          "hama_sushi",
+          "cocos",
+          "doutor",
+          "excelsior",
+          "kappa_sushi"
+        ],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": {
+        "nodeType": "condition",
+        "conditionId": "smbc_pup_nikko_tsumitate"
+      },
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 200,
+        "pointsPerUnit": 1,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "v_point",
+      "aggregation": {
+        "scope": "billingMonth",
+        "aggregationKey": "olive_card_smbc_pup_nikko_tsumitate_bonus_200",
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": true
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 100
+      },
+      "cap": null,
+      "validFrom": "2026-09-29",
+      "validUntilExclusive": null,
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_smbc_gold_nl_official",
+        "src_smbc_vpoint_up_program"
+      ],
+      "lastVerifiedAt": "2026-09-29",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "campaign_bonus",
+        "conditional",
+        "point_up_program"
+      ],
+      "notes": [
+        "加算率は対象のコンビニ・飲食店でのスマホタッチ決済・モバイルオーダーの利用額に対するもの（200円につき1ポイント＝+0.5%）。",
+        "SMBC日興証券の公式ページで確定。投信積立3万円以上で+0.5%、NISA口座での投信積立3万円以上でさらに+0.5%（合計最大+1.0%）。2つは同時に満たせるためルールを分けている。",
+        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。",
+        "集計キーをカードごとに分離した（D-166）。本ルールはOliveフレキシブルペイ ゴールド専用。"
+      ]
+    },
+    {
+      "id": "olive_card_smbc_pup_nikko_nisa_bonus",
+      "name": "三井住友カード／Olive Vポイントアップ SMBC日興証券（NISA口座で投信積立3万円以上）（Olive）",
+      "description": "Oliveアカウントを契約のうえSMBC日興証券でNISA口座で投信積立3万円以上とすると、対象店舗のVポイント還元率が+0.5%される。",
+      "ruleKind": "campaignBonus",
+      "selectors": {
+        "instrumentIds": [
+          "olive_flexible_pay_gold"
+        ],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [
+          "seicomart",
+          "seven_eleven",
+          "poplar",
+          "ministop",
+          "lawson",
+          "mcdonalds",
+          "mos_burger",
+          "kfc",
+          "yoshinoya",
+          "freshness_burger",
+          "saizeriya",
+          "gusto",
+          "bamiyan",
+          "shabu_you",
+          "jonathan",
+          "yumean",
+          "sukiya",
+          "hama_sushi",
+          "cocos",
+          "doutor",
+          "excelsior",
+          "kappa_sushi"
+        ],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "exclusions": {
+        "instrumentIds": [],
+        "modeIds": [],
+        "routeIds": [],
+        "fundingRelationIds": [],
+        "merchantIds": [],
+        "merchantGroupIds": [],
+        "categoryIds": [],
+        "brandIds": [],
+        "locationIds": [],
+        "transactionTags": []
+      },
+      "conditionExpression": {
+        "nodeType": "condition",
+        "conditionId": "smbc_pup_nikko_nisa"
+      },
+      "calculation": {
+        "calculationType": "unitPoints",
+        "amountUnitYen": 200,
+        "pointsPerUnit": 1,
+        "rounding": "floor"
+      },
+      "outputPointProgramId": "v_point",
+      "aggregation": {
+        "scope": "billingMonth",
+        "aggregationKey": "olive_card_smbc_pup_nikko_nisa_bonus_200",
+        "periodMinimumEligibleSpendYen": 0,
+        "conditionEvaluationTiming": "transaction",
+        "incrementalAward": true
+      },
+      "stacking": {
+        "policy": "stackable",
+        "exclusiveGroupId": null,
+        "replacesRuleIds": [],
+        "suppressesRuleIds": [],
+        "suppressesTags": [],
+        "dependsOnRuleIds": [],
+        "applicationOrder": 100
+      },
+      "cap": null,
+      "validFrom": "2026-09-29",
+      "validUntilExclusive": null,
+      "dateBasis": "transactionDate",
+      "timezone": "Asia/Tokyo",
+      "displayClaim": null,
+      "sourceIds": [
+        "src_olive_gold_official",
+        "src_smbc_gold_nl_official",
+        "src_smbc_vpoint_up_program"
+      ],
+      "lastVerifiedAt": "2026-09-29",
+      "status": "active",
+      "priority": 100,
+      "tags": [
+        "campaign_bonus",
+        "conditional",
+        "point_up_program"
+      ],
+      "notes": [
+        "加算率は対象のコンビニ・飲食店でのスマホタッチ決済・モバイルオーダーの利用額に対するもの（200円につき1ポイント＝+0.5%）。",
+        "SMBC日興証券の公式ページで確定。投信積立3万円以上で+0.5%、NISA口座での投信積立3万円以上でさらに+0.5%（合計最大+1.0%）。2つは同時に満たせるためルールを分けている。",
+        "付与上限は1カードあたり月間50,000ポイント。上限はエンジン未対応のため計算には反映していない。",
+        "集計キーをカードごとに分離した（D-166）。本ルールはOliveフレキシブルペイ ゴールド専用。"
       ]
     }
   ]
