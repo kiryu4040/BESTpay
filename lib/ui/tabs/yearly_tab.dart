@@ -100,6 +100,14 @@ final class _YearlyTabState extends State<YearlyTab> {
     return months;
   }
 
+  /// 記入履歴に出す記録（新しい記入が先頭・D-165）。
+  List<TransactionRecord> get _historyRecords {
+    final records = _yearRecords.toList()
+      ..sort((a, b) => b.id.compareTo(a.id));
+
+    return records;
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -111,6 +119,7 @@ final class _YearlyTabState extends State<YearlyTab> {
     }
 
     final records = _yearRecords;
+    final history = _historyRecords;
     final summary = _summaryOf(records);
     final rewards = _perRecordRewards(records);
 
@@ -193,13 +202,13 @@ final class _YearlyTabState extends State<YearlyTab> {
             Text('記入履歴', style: theme.textTheme.titleMedium),
             const SizedBox(height: 4),
             Text(
-              '新しい記入から$_historyLimit件を表示します。'
+              '新しい記入から$_historyLimit件を、上から新しい順に表示します。'
               'それより前の記録は、月の内訳画面から直せます。'
               '押すと金額・日付・お店・カードを直したり、削除したりできます。',
               style: theme.textTheme.bodySmall,
             ),
             const SizedBox(height: 8),
-            for (final record in records.take(_historyLimit))
+            for (final record in history.take(_historyLimit))
               _buildRecordTile(theme, record, rewards[record.id] ?? 0),
             const SizedBox(height: 20),
             Text(
