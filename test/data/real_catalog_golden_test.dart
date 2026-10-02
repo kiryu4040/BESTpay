@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:bestpay/application/ranking/annual_reward_summary_usecase.dart';
 import 'package:bestpay/core/value_objects/calculation_date.dart';
 import 'package:bestpay/core/value_objects/micros_yen.dart';
 import 'package:bestpay/core/value_objects/money_yen.dart';
@@ -1115,4 +1116,107 @@ void main() {
       expect(ids, contains('smbc_pup_nikko_nisa'));
     });
   });
+
+  group('年間集計の月次／取引単位の分離（D-160）', () {
+    test('月間合算のカードは月ごとに端数処理する', () {
+      const useCase = AnnualRewardSummaryUseCase();
+
+      final monthly = useCase.execute(
+        catalog: catalog,
+        annualSpend: yen(2388),
+        transactionDate: date('2027-06-15'),
+        transactions: <AnnualSpendTransaction>[
+          for (var month = 1; month <= 12; month++)
+            AnnualSpendTransaction(
+              date: date('2027-${month.toString().padLeft(2, '0')}-15'),
+              amount: yen(199),
+            ),
+        ],
+      );
+
+      final single = useCase.execute(
+        catalog: catalog,
+        annualSpend: yen(2388),
+        transactionDate: date('2027-06-15'),
+        transactions: <AnnualSpendTransaction>[
+          AnnualSpendTransaction(date: date('2027-06-15'), amount: yen(2388)),
+        ],
+      );
+
+      expect(monthly.isExact, isTrue);
+
+      final monthlySmbc = monthly.entries
+          .firstWhere((entry) => entry.instrumentId.value == 'smbc_gold_nl_card');
+      final singleSmbc = single.entries
+          .firstWhere((entry) => entry.instrumentId.value == 'smbc_gold_nl_card');
+
+      // 月ごとに200円未満ならどの月も0ポイント。まとめて1回なら切り捨てが
+      // 1回しか効かないため多く出る。
+      expect(monthlySmbc.baseValue.micros, 0);
+      expect(singleSmbc.baseValue.micros, greaterThan(0));
+
+      // 月ごとに200円ちょうどなら、12か月分が正しく積み上がる（200円1pt）。
+      final even = useCase.execute(
+        catalog: catalog,
+        annualSpend: yen(2400),
+        transactionDate: date('2027-06-15'),
+        transactions: <AnnualSpendTransaction>[
+          for (var month = 1; month <= 12; month++)
+            AnnualSpendTransaction(
+              date: date('2027-${month.toString().padLeft(2, '0')}-15'),
+              amount: yen(200),
+            ),
+        ],
+      );
+      final evenSmbc = even.entries
+          .firstWhere((entry) => entry.instrumentId.value == 'smbc_gold_nl_card');
+      expect(evenSmbc.baseValue.micros, 12 * 1000000);
+    });
+
+    test('取引単位のカードは1件ずつ端数処理する', () {
+      const useCase = AnnualRewardSummaryUseCase();
+
+      final two = useCase.execute(
+        catalog: catalog,
+        annualSpend: yen(198),
+        transactionDate: date('2027-06-15'),
+        transactions: <AnnualSpendTransaction>[
+          AnnualSpendTransaction(date: date('2027-06-10'), amount: yen(99)),
+          AnnualSpendTransaction(date: date('2027-06-20'), amount: yen(99)),
+        ],
+      );
+
+      final one = useCase.execute(
+        catalog: catalog,
+        annualSpend: yen(198),
+        transactionDate: date('2027-06-15'),
+        transactions: <AnnualSpendTransaction>[
+          AnnualSpendTransaction(date: date('2027-06-15'), amount: yen(198)),
+        ],
+      );
+
+      final twoMizuho = two.entries.firstWhere(
+          (entry) => entry.instrumentId.value == 'mizuho_rakuten_card');
+      final oneMizuho = one.entries.firstWhere(
+          (entry) => entry.instrumentId.value == 'mizuho_rakuten_card');
+
+      // 100円未満の取引は1件ごとに切り捨てられる。
+      expect(twoMizuho.baseValue.micros, 0);
+      expect(oneMizuho.baseValue.micros, greaterThan(0));
+    });
+
+    test('取引が無いときは概算として印を付ける', () {
+      const useCase = AnnualRewardSummaryUseCase();
+
+      final estimate = useCase.execute(
+        catalog: catalog,
+        annualSpend: yen(120000),
+        transactionDate: date('2027-06-15'),
+      );
+
+      expect(estimate.isExact, isFalse);
+      expect(estimate.entries, isNotEmpty);
+    });
+  });
+
 }
