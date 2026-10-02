@@ -521,6 +521,29 @@ final class RankingController extends ChangeNotifier {
     return null;
   }
 
+  /// 取引の一覧から年間集計を出す（年間タブ専用・D-160・D-161）。
+  ///
+  /// 月ごとの内訳を出すため、対象の取引だけを渡して呼べるようにしている。
+  AnnualRewardSummary annualSummaryFor(
+    List<AnnualSpendTransaction> transactions,
+  ) {
+    _ensureCatalogForToday();
+
+    var total = 0;
+    for (final transaction in transactions) {
+      total += transaction.amount.yen;
+    }
+
+    return _annualUseCase.execute(
+      catalog: _catalog,
+      annualSpend: MoneyYen(total),
+      transactionDate: currentJstDate(),
+      conditionContext: conditionContext,
+      hiddenCardIds: _preferences.hiddenCardIds,
+      transactions: transactions,
+    );
+  }
+
   /// 年間の還元額を集計する（年間タブ専用・D-102）。
   ///
   /// 会計記録があれば実際の取引からカードごとに積み上げる（D-160）。

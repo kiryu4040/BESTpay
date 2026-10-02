@@ -7,7 +7,6 @@ import 'package:bestpay/domain/calculation/condition_evaluation_context.dart';
 import 'package:bestpay/domain/catalog/catalog.dart';
 import 'package:bestpay/domain/catalog/models/catalog_types.dart';
 import 'package:bestpay/domain/catalog/models/reward_rule_models.dart';
-import 'package:bestpay/domain/ranking/reward_ranking.dart';
 import 'package:bestpay/domain/ranking/reward_ranking_evaluator.dart';
 
 /// カード1枚の年間集計（D-102・D-160）。
@@ -357,7 +356,7 @@ final class AnnualRewardSummaryUseCase {
         continue;
       }
 
-      if (rule.tags.contains('annual_fee_waiver')) {
+      if (rule.tags.any((tag) => tag.value == 'annual_fee_waiver')) {
         waivesFee = true;
       }
 

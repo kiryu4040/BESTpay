@@ -1,8 +1,9 @@
+import 'package:bestpay/application/ranking/annual_reward_summary_usecase.dart';
 import 'package:bestpay/application/records/transaction_record_store.dart';
 import 'package:bestpay/core/value_objects/calculation_date.dart';
-import 'package:bestpay/core/value_objects/micros_yen.dart';
 import 'package:bestpay/core/value_objects/money_yen.dart';
 import 'package:bestpay/core/value_objects/rational.dart';
+import 'package:bestpay/core/value_objects/stable_id.dart';
 import 'package:bestpay/domain/merchant/merchant_directory.dart';
 import 'package:bestpay/domain/records/transaction_record.dart';
 import 'package:bestpay/infrastructure/records/shared_preferences_transaction_record_store.dart';
@@ -11,12 +12,19 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import '../ranking_controller.dart';
+import '../screens/monthly_detail_screen.dart';
+import '../widgets/charts.dart';
 
-/// 年間タブ（D-121）。
+/// 年間タブ（D-121・D-161）。
 ///
-/// 会計ごとに「いつ・どの店で・いくら使ったか」を記録し、
-/// 1月から12月末までの1年ごとに、使った額と還元された額をまとめて見る。
-/// 年が変わると新しい年の集計が自動で始まる。
+/// 会計ごとに「いつ・どの店で・いくら使ったか」を記録し、1年ごとに
+/// 「いくら還元されたか」を見える化する。
+///
+/// - 上: その年のカード別の還元ポイント（円グラフ）
+/// - 中: 月ごとの利用金額（棒グラフ）
+/// - 月を選ぶと、カード別／店舗別の内訳画面へ移動する
+///
+/// 会計の入力は右上の「＋」からのみ行う。
 final class YearlyTab extends StatefulWidget {
   const YearlyTab({super.key, this.store});
 
@@ -32,8 +40,6 @@ final class _YearlyTabState extends State<YearlyTab> {
       widget.store ?? const SharedPreferencesTransactionRecordStore();
 
   List<TransactionRecord> _records = const <TransactionRecord>[];
-  final Map<String, int> _rewardYen = <String, int>{};
-  final Map<String, String> _rewardPoints = <String, String>{};
   int? _selectedYear;
   bool _isLoading = true;
 
@@ -45,9 +51,10 @@ final class _YearlyTabState extends State<YearlyTab> {
 
   Future<void> _load() async {
     // 保存先が応答しない場合でも画面は開けるようにする。
-    final records = await _store
-        .load()
-        .timeout(const Duration(seconds: 5), onTimeout: () => const <TransactionRecord>[]);
+    final records = await _store.load().timeout(
+          const Duration(seconds: 5),
+          onTimeout: () => const <TransactionRecord>[],
+        );
     if (!mounted) {
       return;
     }
@@ -56,44 +63,6 @@ final class _YearlyTabState extends State<YearlyTab> {
       _records = records;
       _isLoading = false;
     });
-    _recomputeRewards();
-  }
-
-  /// 記録ごとの還元額をカタログから計算し直す（保存はしない）。
-  void _recomputeRewards() {
-    final controller = context.read<RankingController>();
-    _rewardYen.clear();
-    _rewardPoints.clear();
-
-    for (final record in _records) {
-      final merchant = controller.merchantById(record.merchantId);
-      if (merchant == null) {
-        continue;
-      }
-
-      final date = CalculationDate.parse(record.occurredOn).fold(
-            onSuccess: (value) => value,
-            onFailure: (_) => controller.currentJstDate(),
-          );
-
-      final ranking = controller.evaluateAtMerchant(
-        merchant: merchant,
-        amount: MoneyYen(record.amountYen),
-        date: date,
-      );
-
-      for (final entry in ranking.allEntries) {
-        if (entry.instrumentId.value != record.instrumentId) {
-          continue;
-        }
-
-        _rewardYen[record.id] = entry.confirmedValue.micros ~/
-            MicrosYen.microsPerYen;
-        _rewardPoints[record.id] = entry.programAwards
-            .map((award) => '${award.points.points}${award.unitName}')
-            .join('＋');
-      }
-    }
   }
 
   List<int> get _years {
@@ -121,22 +90,11 @@ final class _YearlyTabState extends State<YearlyTab> {
     return records;
   }
 
-  int get _totalSpend {
-    var total = 0;
-    for (final record in _yearRecords) {
-      total += record.amountYen;
-    }
+  List<int> get _months {
+    final months = <int>{for (final record in _yearRecords) record.month}.toList()
+      ..sort();
 
-    return total;
-  }
-
-  int get _totalReward {
-    var total = 0;
-    for (final record in _yearRecords) {
-      total += _rewardYen[record.id] ?? 0;
-    }
-
-    return total;
+    return months;
   }
 
   @override
@@ -149,12 +107,15 @@ final class _YearlyTabState extends State<YearlyTab> {
       );
     }
 
+    final records = _yearRecords;
+    final summary = _summaryOf(records);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('年間'),
         actions: <Widget>[
           IconButton(
-            tooltip: '記録を追加',
+            tooltip: '会計を記録する',
             onPressed: _addRecord,
             icon: const Icon(Icons.add),
           ),
@@ -163,15 +124,7 @@ final class _YearlyTabState extends State<YearlyTab> {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: <Widget>[
-                const Padding(
-                  padding: EdgeInsets.only(bottom: 8),
-                  child: Text(
-                    '※ 年間の還元額は概算です。端数処理・利用先・利用時期によって'
-                    '実際の獲得額と異なります（取引ごとに端数処理する制度では、'
-                    '実際より多く表示される場合があります）。',
-                  ),
-                ),
-          Text('記録する年', style: theme.textTheme.labelLarge),
+          Text('見る年', style: theme.textTheme.labelLarge),
           const SizedBox(height: 6),
           Wrap(
             spacing: 8,
@@ -189,52 +142,91 @@ final class _YearlyTabState extends State<YearlyTab> {
             '1月から12月末までを1年として数えます。年が変わると集計は新しく始まります。',
             style: theme.textTheme.bodySmall,
           ),
-          const SizedBox(height: 12),
-          _buildSummary(context),
           const SizedBox(height: 16),
-          FilledButton.icon(
-            onPressed: _addRecord,
-            icon: const Icon(Icons.add),
-            label: const Text('会計を記録する'),
-          ),
-          const SizedBox(height: 20),
-          if (_yearRecords.isEmpty)
-            Text(
-              'まだ記録がありません。「会計を記録する」から追加してください。',
-              style: theme.textTheme.bodySmall,
+          if (records.isEmpty)
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Text(
+                  'まだ記録がありません。右上の「＋」から会計を記録してください。',
+                  style: theme.textTheme.bodyMedium,
+                ),
+              ),
             )
           else ...<Widget>[
-            Text('店舗ごとの集計', style: theme.textTheme.titleMedium),
-            const SizedBox(height: 8),
-            _buildMerchantTotals(context),
+            _buildSummary(theme, records, summary),
             const SizedBox(height: 20),
-            Text('会計の記録', style: theme.textTheme.titleMedium),
+            Text(
+              'カード別の還元（$_year年）',
+              style: theme.textTheme.titleMedium,
+            ),
             const SizedBox(height: 8),
-            for (final month in _monthsOf(_yearRecords)) ...<Widget>[
-              Padding(
-                padding: const EdgeInsets.only(top: 8, bottom: 4),
-                child: Text('$month月', style: theme.textTheme.titleSmall),
-              ),
-              for (final record in _yearRecords)
-                if (record.month == month) _buildRecord(context, record),
-            ],
+            _buildRewardPie(theme, summary),
+            const SizedBox(height: 24),
+            Text('月ごとの利用金額', style: theme.textTheme.titleMedium),
+            const SizedBox(height: 8),
+            SimpleColumnChart(
+              data: <BarDatum>[
+                for (var month = 1; month <= 12; month++)
+                  BarDatum(
+                    label: '$month月',
+                    value: _spendOfMonth(records, month),
+                  ),
+              ],
+            ),
+            const SizedBox(height: 12),
+            Text('月を選ぶ', style: theme.textTheme.labelLarge),
+            const SizedBox(height: 6),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: <Widget>[
+                for (final month in _months)
+                  ActionChip(
+                    avatar: const Icon(Icons.chevron_right, size: 18),
+                    label: Text('$month月'),
+                    onPressed: () => _openMonth(month),
+                  ),
+              ],
+            ),
+            const SizedBox(height: 20),
+            Text(
+              '※ 還元額はカードごとの計算方法（月間の合計から計算するカードと、'
+              '取引ごとに計算するカード）に合わせて積み上げています。'
+              '条件つきの上乗せは「設定」タブの状態が反映されます。',
+              style: theme.textTheme.bodySmall,
+            ),
           ],
         ],
       ),
     );
   }
 
-  List<int> _monthsOf(List<TransactionRecord> records) {
-    final months = <int>{for (final record in records) record.month}.toList()
-      ..sort((a, b) => b.compareTo(a));
+  int _spendOfMonth(List<TransactionRecord> records, int month) {
+    var total = 0;
+    for (final record in records) {
+      if (record.month == month) {
+        total += record.amountYen;
+      }
+    }
 
-    return months;
+    return total;
   }
 
-  Widget _buildSummary(BuildContext context) {
-    final theme = Theme.of(context);
-    final spend = _totalSpend;
-    final reward = _totalReward;
+  Widget _buildSummary(
+    ThemeData theme,
+    List<TransactionRecord> records,
+    AnnualRewardSummary summary,
+  ) {
+    var spend = 0;
+    for (final record in records) {
+      spend += record.amountYen;
+    }
+    var reward = 0;
+    for (final entry in summary.entries) {
+      reward += entry.totalValue.micros ~/ 1000000;
+    }
+
     final rate = spend == 0
         ? Rational.zero
         : Rational.create(reward, spend).fold(
@@ -259,10 +251,7 @@ final class _YearlyTabState extends State<YearlyTab> {
               ],
             ),
             const SizedBox(height: 4),
-            Text(
-              '記録 ${_yearRecords.length} 件',
-              style: theme.textTheme.bodySmall,
-            ),
+            Text('記録 ${records.length} 件', style: theme.textTheme.bodySmall),
           ],
         ),
       ),
@@ -286,115 +275,93 @@ final class _YearlyTabState extends State<YearlyTab> {
     );
   }
 
-  Widget _buildMerchantTotals(BuildContext context) {
-    final theme = Theme.of(context);
-    final totals = <String, _MerchantTotal>{};
+  Widget _buildRewardPie(ThemeData theme, AnnualRewardSummary summary) {
+    final ordered = summary.entries.toList()
+      ..sort((a, b) => b.totalValue.compareTo(a.totalValue));
 
-    for (final record in _yearRecords) {
-      final total = totals.putIfAbsent(
-        record.merchantId,
-        () => _MerchantTotal(name: record.merchantName),
+    final slices = <PieSlice>[];
+    for (var index = 0; index < ordered.length; index++) {
+      final entry = ordered[index];
+      final yen = entry.totalValue.micros ~/ 1000000;
+      if (yen <= 0) {
+        continue;
+      }
+
+      slices.add(
+        PieSlice(
+          label: entry.instrumentName,
+          value: yen,
+          color: chartColorAt(index),
+        ),
       );
-      total
-        ..count += 1
-        ..spend += record.amountYen
-        ..reward += _rewardYen[record.id] ?? 0;
     }
 
-    final ordered = totals.values.toList()
-      ..sort((a, b) => b.spend.compareTo(a.spend));
-
-    return Column(
-      children: <Widget>[
-        for (final total in ordered)
-          Card(
-            child: Padding(
-              padding: const EdgeInsets.all(12),
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(total.name, style: theme.textTheme.titleSmall),
-                        Text(
-                          '${total.count}件 ・ ${_group(total.spend)}円',
-                          style: theme.textTheme.bodySmall,
-                        ),
-                      ],
-                    ),
-                  ),
-                  Text(
-                    '${_group(total.reward)}円',
-                    style: theme.textTheme.titleMedium,
-                  ),
-                ],
-              ),
-            ),
+    if (slices.isEmpty) {
+      return Card(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Text(
+            'この年の還元はまだありません。',
+            style: theme.textTheme.bodyMedium,
           ),
-      ],
-    );
-  }
+        ),
+      );
+    }
 
-  Widget _buildRecord(BuildContext context, TransactionRecord record) {
-    final theme = Theme.of(context);
-    final reward = _rewardYen[record.id];
-    final points = _rewardPoints[record.id];
-    final cardName = context
-            .watch<RankingController>()
-            .catalog
-            .paymentInstrumentsById[
-                _stableIdOrNull(record.instrumentId)]
-            ?.name ??
-        record.instrumentId;
+    var total = 0;
+    for (final slice in slices) {
+      total += slice.value;
+    }
 
     return Card(
-      child: ListTile(
-        title: Text(record.merchantName),
-        subtitle: Text(
-          '${record.occurredOn} ・ $cardName'
-          '${points == null || points.isEmpty ? '' : ' ・ $points'}',
-          style: theme.textTheme.bodySmall,
-        ),
-        trailing: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: <Widget>[
-                Text(
-                  '${_group(record.amountYen)}円',
-                  style: theme.textTheme.bodyMedium,
-                ),
-                Text(
-                  reward == null ? '—' : '還元 ${_group(reward)}円',
-                  style: theme.textTheme.bodySmall,
-                ),
-              ],
-            ),
-            IconButton(
-              tooltip: '削除',
-              onPressed: () => _deleteRecord(record),
-              icon: const Icon(Icons.delete_outline),
-            ),
-          ],
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Center(
+          child: SimplePieChart(
+            slices: slices,
+            centerTitle: '合計',
+            centerValue: '${_group(total)}円',
+          ),
         ),
       ),
     );
   }
 
-  void _deleteRecord(TransactionRecord record) {
-    final remaining = <TransactionRecord>[
-      for (final item in _records)
-        if (item.id != record.id) item,
-    ];
-    setState(() {
-      _records = remaining;
-      _rewardYen.remove(record.id);
-      _rewardPoints.remove(record.id);
-    });
-    _store.save(remaining);
+  void _openMonth(int month) {
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => MonthlyDetailScreen(
+          year: _year,
+          month: month,
+          records: _records,
+        ),
+      ),
+    );
+  }
+
+  AnnualRewardSummary _summaryOf(List<TransactionRecord> records) {
+    final controller = context.read<RankingController>();
+    final transactions = <AnnualSpendTransaction>[];
+
+    for (final record in records) {
+      final merchant = controller.merchantById(record.merchantId);
+      final date = CalculationDate.parse(record.occurredOn).fold(
+        onSuccess: (value) => value,
+        onFailure: (_) => controller.currentJstDate(),
+      );
+
+      transactions.add(
+        AnnualSpendTransaction(
+          date: date,
+          amount: MoneyYen(record.amountYen),
+          merchantId: merchant?.id,
+          merchantGroupIds: merchant?.groupIds ?? const <StableId>[],
+          categoryIds: merchant?.categoryIds ?? const <StableId>[],
+        ),
+      );
+    }
+
+    return controller.annualSummaryFor(transactions);
   }
 
   Future<void> _addRecord() async {
@@ -411,8 +378,6 @@ final class _YearlyTabState extends State<YearlyTab> {
 
     final updated = <TransactionRecord>[..._records, draft];
     setState(() => _records = updated);
-    _recomputeRewards();
-    setState(() {});
     await _store.save(updated);
   }
 }
@@ -576,8 +541,8 @@ final class _RecordEditorState extends State<_RecordEditor> {
         merchant: merchant,
         amount: MoneyYen(amount),
       );
-      instrumentId = ranking.bestEntry?.instrumentId.value ??
-          'mizuho_rakuten_card';
+      instrumentId =
+          ranking.bestEntry?.instrumentId.value ?? 'mizuho_rakuten_card';
     }
 
     Navigator.of(context).pop(
@@ -592,17 +557,6 @@ final class _RecordEditorState extends State<_RecordEditor> {
     );
   }
 }
-
-final class _MerchantTotal {
-  _MerchantTotal({required this.name});
-
-  final String name;
-  int count = 0;
-  int spend = 0;
-  int reward = 0;
-}
-
-String _stableIdOrNull(String value) => value;
 
 String _formatRate(Rational rate) {
   final hundredths = (BigInt.from(rate.numerator) * BigInt.from(10000)) ~/
