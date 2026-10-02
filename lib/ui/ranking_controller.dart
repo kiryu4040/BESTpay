@@ -66,7 +66,10 @@ final class RankingController extends ChangeNotifier {
   final AnnualRewardSummaryUseCase _annualUseCase;
   final Clock _clock;
 
+  Catalog _rawCatalog = Catalog.empty();
   Catalog _catalog = Catalog.empty();
+  CalculationDate? _catalogDate;
+  MoneyYen? _comparisonAmount;
   MerchantDirectory _directory = MerchantDirectory.empty();
   List<ConditionOption> _conditionOptions = const <ConditionOption>[];
   UserPreferences _preferences = const UserPreferences();
@@ -226,7 +229,9 @@ final class RankingController extends ChangeNotifier {
     notifyListeners();
 
     final loaded = await _repository.load();
-    _catalog = loaded.effectiveOn(currentJstDate());
+    _rawCatalog = loaded;
+    _catalogDate = currentJstDate();
+    _catalog = loaded.effectiveOn(_catalogDate!);
     _directory = await _directoryRepository.load();
     _conditionOptions = await _conditionOptionsRepository.load();
     _preferences = await _preferencesStore.load();
@@ -242,11 +247,26 @@ final class RankingController extends ChangeNotifier {
   void clearRanking() {
     _ranking = null;
     _selectedMerchant = null;
+    _comparisonAmount = null;
     notifyListeners();
+  }
+
+  /// 日付が変わったらカタログを現在日で作り直す（AUD-07）。
+  void _ensureCatalogForToday() {
+    final today = currentJstDate();
+    if (_catalogDate == today) {
+      return;
+    }
+
+    _catalogDate = today;
+    _catalog = _rawCatalog.effectiveOn(today);
+    _bestRateCache.clear();
+    _recordSummary = null;
   }
 
   /// その店舗で最も高い還元率（100分の1%単位。8.00%なら800）。
   int bestRateHundredthsPercentAt(MerchantEntry merchant) {
+    _ensureCatalogForToday();
     final key = merchant.id.value;
     final cached = _bestRateCache[key];
     if (cached != null) {
@@ -286,7 +306,9 @@ final class RankingController extends ChangeNotifier {
 
   /// 店舗を選んだだけで比較する（D-088）。金額は入力させない。
   void compareAtMerchant(MerchantEntry merchant) {
+    _ensureCatalogForToday();
     _selectedMerchant = merchant;
+    _comparisonAmount = RewardRankingUseCase.comparisonAmount;
     _ranking = _applyVisibility(
       _useCase.execute(
         catalog: _catalog,
@@ -449,7 +471,9 @@ final class RankingController extends ChangeNotifier {
     required MerchantEntry merchant,
     required MoneyYen amount,
   }) {
+    _ensureCatalogForToday();
     _selectedMerchant = merchant;
+    _comparisonAmount = amount;
     _ranking = _applyVisibility(
       _useCase.execute(
         catalog: _catalog,
@@ -574,10 +598,12 @@ final class RankingController extends ChangeNotifier {
       return null;
     }
 
+    _ensureCatalogForToday();
+
     return _applyVisibility(
       _useCase.execute(
         catalog: _catalog,
-        amount: RewardRankingUseCase.comparisonAmount,
+        amount: _comparisonAmount ?? RewardRankingUseCase.comparisonAmount,
         transactionDate: currentJstDate(),
         conditionContext: conditionContext,
         merchantId: merchant.id,
@@ -608,6 +634,7 @@ final class RankingController extends ChangeNotifier {
 
   /// 金額を指定して比較する（年間タブ用）。
   void showRankingFor({required MoneyYen amount}) {
+    _ensureCatalogForToday();
     _ranking = _applyVisibility(
       _useCase.execute(
         catalog: _catalog,

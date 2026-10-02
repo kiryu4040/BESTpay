@@ -220,6 +220,9 @@ final class RewardRankingEvaluator {
               pointsBefore: value.pointsBefore,
               pointsAfter: value.pointsAfter,
               currentIncrement: value.increment,
+              // 期間利用額は「この支払いの時点で0円から始まる」と仮定した
+              // 比較モデル（D-087）。利用者の実際の期間利用額を確認した
+              // データではないため、表示側でその前提を示す（AUD-04）。
               confidence: PeriodDataConfidence.exact,
             );
           } on ArgumentError {

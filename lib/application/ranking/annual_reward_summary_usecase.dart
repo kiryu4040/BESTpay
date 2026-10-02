@@ -68,9 +68,13 @@ final class AnnualRewardSummary {
 /// 年間の還元額をカードごとに概算する（D-102）。
 ///
 /// 年間利用額は利用者が入力する（金額入力はこのタブだけ・D-088）。
-/// 基本還元は「年間利用額をまとめて1回計算した」ものとして評価し、切り捨てが
-/// 1回分しか効かないため過大評価にならない。年間ボーナスはカタログの到達条件
-/// から直接足す（エンジンは期間スナップショットを必要とするため）。
+/// 基本還元は「年間利用額をまとめて1回計算した」概算である。取引単位・月単位で
+/// 端数を切り捨てる制度では、実際の獲得ポイントを上回る場合がある
+/// （例: 200円1ポイント・取引ごと切り捨ての制度で199円を2回払うと実際は0ptだが、
+/// 合計398円を1回とみなすと1ptになる）。
+///
+/// したがって、この結果は「端数処理・利用先・利用時期に依存する概算」であり、
+/// 実際の年間獲得額を確定したものではない。
 final class AnnualRewardSummaryUseCase {
   const AnnualRewardSummaryUseCase({
     RewardRankingEvaluator evaluator = const RewardRankingEvaluator(),
@@ -103,6 +107,7 @@ final class AnnualRewardSummaryUseCase {
         catalog: catalog,
         instrumentId: entry.instrumentId,
         annualSpend: annualSpend,
+        transactionDate: transactionDate,
       );
 
       final total = entry.confirmedValue + bonus.value;
@@ -126,10 +131,16 @@ final class AnnualRewardSummaryUseCase {
   }
 
   /// 年間の到達ボーナス（100万円で10,000ptなど）をカタログから直接合計する。
+  ///
+  /// 有効期間外のルールは加算しない（AUD-03）。条件式をもつボーナスは、
+  /// この経路では達成状況を判定しないため確定加算しない（不明分は足さない・D-50）。
+  /// 年会費免除はポイントボーナスとは別の判定とし、明示的なタグ
+  /// `annual_fee_waiver` をもつルールだけを根拠にする。
   _AnnualBonus _bonusFor({
     required Catalog catalog,
     required StableId instrumentId,
     required MoneyYen annualSpend,
+    required CalculationDate transactionDate,
   }) {
     var valueMicros = 0;
     var waivesFee = false;
@@ -149,6 +160,14 @@ final class AnnualRewardSummaryUseCase {
         continue;
       }
 
+      if (!rule.validityPeriod.contains(transactionDate)) {
+        continue;
+      }
+
+      if (rule.conditionExpression != null) {
+        continue;
+      }
+
       final calculation = rule.calculation;
       if (calculation is! ThresholdBonusRewardCalculation) {
         continue;
@@ -158,7 +177,9 @@ final class AnnualRewardSummaryUseCase {
         continue;
       }
 
-      waivesFee = true;
+      if (rule.tags.contains('annual_fee_waiver')) {
+        waivesFee = true;
+      }
 
       final program = catalog.pointProgramsById[rule.outputPointProgramId];
       final converted = program?.valueOf(calculation.bonusPoints);

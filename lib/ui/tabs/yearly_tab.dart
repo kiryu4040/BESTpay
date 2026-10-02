@@ -163,6 +163,14 @@ final class _YearlyTabState extends State<YearlyTab> {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: <Widget>[
+                const Padding(
+                  padding: EdgeInsets.only(bottom: 8),
+                  child: Text(
+                    '※ 年間の還元額は概算です。端数処理・利用先・利用時期によって'
+                    '実際の獲得額と異なります（取引ごとに端数処理する制度では、'
+                    '実際より多く表示される場合があります）。',
+                  ),
+                ),
           Text('記録する年', style: theme.textTheme.labelLarge),
           const SizedBox(height: 6),
           Wrap(

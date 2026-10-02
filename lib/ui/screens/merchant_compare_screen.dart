@@ -58,6 +58,12 @@ final class MerchantCompareScreen extends StatelessWidget {
                   style: theme.textTheme.bodySmall,
                 ),
                 Text(
+                  '※ 月間・期間の集計が必要な特典は、この支払いの時点で期間利用額が'
+                  '0円から始まると仮定して計算しています。実際の利用状況によって'
+                  '結果が変わることがあります。',
+                  style: theme.textTheme.bodySmall,
+                ),
+                Text(
                   '※ 条件つきの上乗せは「設定」タブの還元率の基準（条件）で'
                   '達成状況を選ぶと反映されます。',
                   style: theme.textTheme.bodySmall,
