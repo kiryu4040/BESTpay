@@ -47,34 +47,49 @@ final class TransactionRecord {
     };
   }
 
+  /// カードが特定できない記録の既定カード（基準カード・D-084）。
+  static const String fallbackInstrumentId = 'mizuho_rakuten_card';
+
   /// 壊れた行は捨てる（null を返す）。
+  ///
+  /// 古い形式（カードや店舗の項目が無い）の記録も読めるように、
+  /// 欠けた項目は既定値で補う（D-168）。読み込みで一部の記録が
+  /// 消えてしまうのを防ぐ。
   static TransactionRecord? fromJson(Map<String, Object?> json) {
     final id = json['id'];
     final on = json['on'];
+
+    if (id is! String || id.isEmpty || on is! String || on.length != 10) {
+      return null;
+    }
+
+    final rawAmount = json['amountYen'];
+    final amount = rawAmount is int
+        ? rawAmount
+        : rawAmount is num
+            ? rawAmount.toInt()
+            : rawAmount is String
+                ? int.tryParse(rawAmount)
+                : null;
+    if (amount == null || amount < 0) {
+      return null;
+    }
+
     final merchantId = json['merchantId'];
     final instrumentId = json['instrumentId'];
-    final amount = json['amountYen'];
-
-    if (id is! String || on is! String || merchantId is! String) {
-      return null;
-    }
-
-    if (instrumentId is! String || amount is! int || amount < 0) {
-      return null;
-    }
-
-    if (on.length != 10) {
-      return null;
-    }
-
     final name = json['merchantName'];
+    final merchant = merchantId is String ? merchantId : '';
 
     return TransactionRecord(
       id: id,
       occurredOn: on,
-      merchantId: merchantId,
-      merchantName: name is String ? name : merchantId,
-      instrumentId: instrumentId,
+      merchantId: merchant,
+      merchantName: name is String && name.isNotEmpty
+          ? name
+          : (merchant.isEmpty ? 'その他' : merchant),
+      instrumentId: instrumentId is String && instrumentId.isNotEmpty
+          ? instrumentId
+          : fallbackInstrumentId,
       amountYen: amount,
     );
   }

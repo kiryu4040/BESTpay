@@ -189,7 +189,6 @@ final class SimplePieChart extends StatelessWidget {
 
     final limit = legendLimit ?? slices.length;
     final shown = slices.take(limit).toList();
-    final hidden = slices.length - shown.length;
 
     return Column(
       children: <Widget>[
@@ -230,16 +229,7 @@ final class SimplePieChart extends StatelessWidget {
             ],
           ),
         ],
-        if (onTap != null) ...<Widget>[
-          const SizedBox(height: 4),
-          Text(
-            hidden > 0
-                ? '上位$limit件を表示中。タップすると全${slices.length}件の内訳を見られます。'
-                : 'タップすると内訳を見られます。',
-            textAlign: TextAlign.center,
-            style: theme.textTheme.labelSmall,
-          ),
-        ],
+
       ],
     );
   }

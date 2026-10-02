@@ -113,7 +113,12 @@ final class _YearlyTabState extends State<YearlyTab> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    if (_isLoading) {
+    // カタログは非同期で読み込まれる。読み込み前に還元額を計算すると
+    // すべて0円で表示され、そのまま操作するまで直らなかった（D-168）。
+    // ここで購読しておき、カタログの準備ができたら自動で計算し直す。
+    final controller = context.watch<RankingController>();
+
+    if (_isLoading || controller.isCatalogEmpty) {
       return const Scaffold(
         body: Center(child: Text('記録を読み込んでいます…')),
       );
@@ -276,36 +281,42 @@ final class _YearlyTabState extends State<YearlyTab> {
       total += slice.value;
     }
 
+    // 枠の内側（タイトル・色分け名称を含む）のどこをタップしても内訳へ（D-168）。
     return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(12),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(title, style: theme.textTheme.titleSmall),
-            const SizedBox(height: 8),
-            if (slices.isEmpty)
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                child: Text('まだありません。', style: theme.textTheme.bodySmall),
-              )
-            else
-              Center(
-                child: SimplePieChart(
-                  slices: slices,
-                  size: 140,
-                  centerTitle: centerTitle,
-                  centerValue: '${_group(total)}円',
-                  legendLimit: 3,
-                  onTap: () => _openBreakdown(
-                    title: title,
-                    items: items,
-                    pieBySpend: pieBySpend,
-                    pieLabel: centerTitle,
+      clipBehavior: Clip.antiAlias,
+      child: InkWell(
+        onTap: slices.isEmpty
+            ? null
+            : () => _openBreakdown(
+                  title: title,
+                  items: items,
+                  pieBySpend: pieBySpend,
+                  pieLabel: centerTitle,
+                ),
+        child: Padding(
+          padding: const EdgeInsets.all(12),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(title, style: theme.textTheme.titleSmall),
+              const SizedBox(height: 8),
+              if (slices.isEmpty)
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  child: Text('まだありません。', style: theme.textTheme.bodySmall),
+                )
+              else
+                Center(
+                  child: SimplePieChart(
+                    slices: slices,
+                    size: 140,
+                    centerTitle: centerTitle,
+                    centerValue: '${_group(total)}円',
+                    legendLimit: 3,
                   ),
                 ),
-              ),
-          ],
+            ],
+          ),
         ),
       ),
     );

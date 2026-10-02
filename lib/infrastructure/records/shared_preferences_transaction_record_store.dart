@@ -22,18 +22,24 @@ final class SharedPreferencesTransactionRecordStore
         return const <TransactionRecord>[];
       }
 
+      // 壊れた1行があっても、残りの記録は読み込む（D-168）。
+      // 以前は1行の失敗で全件が空になっていた。
       final records = <TransactionRecord>[];
       for (final line in raw) {
-        final decoded = json.decode(line);
-        if (decoded is! Map) {
-          continue;
-        }
+        try {
+          final decoded = json.decode(line);
+          if (decoded is! Map) {
+            continue;
+          }
 
-        final record = TransactionRecord.fromJson(
-          decoded.cast<String, Object?>(),
-        );
-        if (record != null) {
-          records.add(record);
+          final record = TransactionRecord.fromJson(
+            decoded.cast<String, Object?>(),
+          );
+          if (record != null) {
+            records.add(record);
+          }
+        } on Object {
+          continue;
         }
       }
 
