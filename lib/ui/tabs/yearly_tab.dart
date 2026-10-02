@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../ranking_controller.dart';
+import '../screens/breakdown_detail_screen.dart';
 import '../screens/monthly_detail_screen.dart';
 import '../widgets/charts.dart';
 import '../widgets/record_editor_sheet.dart';
@@ -169,7 +170,7 @@ final class _YearlyTabState extends State<YearlyTab> {
           else ...<Widget>[
             _buildSummary(theme, records, summary),
             const SizedBox(height: 20),
-            _buildPies(theme, records, summary),
+            _buildPies(theme, records, summary, rewards),
             const SizedBox(height: 24),
             Text('月ごとの利用金額と還元額', style: theme.textTheme.titleMedium),
             const SizedBox(height: 8),
@@ -230,7 +231,11 @@ final class _YearlyTabState extends State<YearlyTab> {
     ThemeData theme,
     List<TransactionRecord> records,
     AnnualRewardSummary summary,
+    Map<String, int> rewards,
   ) {
+    final storeItems = _storeItems(records, rewards);
+    final cardItems = _cardItems(records, summary);
+
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -238,7 +243,8 @@ final class _YearlyTabState extends State<YearlyTab> {
           child: _pieCard(
             theme,
             title: '店舗別の利用額（$_year年）',
-            slices: _storeSlices(records),
+            items: storeItems,
+            pieBySpend: true,
             centerTitle: '使った額',
           ),
         ),
@@ -247,7 +253,8 @@ final class _YearlyTabState extends State<YearlyTab> {
           child: _pieCard(
             theme,
             title: 'カード別の還元（$_year年）',
-            slices: _rewardSlices(summary),
+            items: cardItems,
+            pieBySpend: false,
             centerTitle: '還元額',
           ),
         ),
@@ -255,12 +262,15 @@ final class _YearlyTabState extends State<YearlyTab> {
     );
   }
 
+  /// 円グラフのカード（凡例は上位3件のみ・タップで別画面・D-167）。
   Widget _pieCard(
     ThemeData theme, {
     required String title,
-    required List<PieSlice> slices,
+    required List<BreakdownItem> items,
+    required bool pieBySpend,
     required String centerTitle,
   }) {
+    final slices = _slicesOf(items, pieBySpend);
     var total = 0;
     for (final slice in slices) {
       total += slice.value;
@@ -286,6 +296,13 @@ final class _YearlyTabState extends State<YearlyTab> {
                   size: 140,
                   centerTitle: centerTitle,
                   centerValue: '${_group(total)}円',
+                  legendLimit: 3,
+                  onTap: () => _openBreakdown(
+                    title: title,
+                    items: items,
+                    pieBySpend: pieBySpend,
+                    pieLabel: centerTitle,
+                  ),
                 ),
               ),
           ],
@@ -294,50 +311,106 @@ final class _YearlyTabState extends State<YearlyTab> {
     );
   }
 
-  /// 店舗ごとの年間利用額（D-163）。
-  List<PieSlice> _storeSlices(List<TransactionRecord> records) {
-    final spend = <String, int>{};
-    final names = <String, String>{};
-    for (final record in records) {
-      spend[record.merchantId] =
-          (spend[record.merchantId] ?? 0) + record.amountYen;
-      names[record.merchantId] = _storeName(record);
-    }
+  void _openBreakdown({
+    required String title,
+    required List<BreakdownItem> items,
+    required bool pieBySpend,
+    required String pieLabel,
+  }) {
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => BreakdownDetailScreen(
+          title: title,
+          items: items,
+          pieBySpend: pieBySpend,
+          pieLabel: pieLabel,
+        ),
+      ),
+    );
+  }
 
-    final ordered = spend.entries.toList()
-      ..sort((a, b) => b.value.compareTo(a.value));
+  List<PieSlice> _slicesOf(List<BreakdownItem> items, bool pieBySpend) {
+    final ordered = items.toList()
+      ..sort((a, b) => pieBySpend
+          ? b.spendYen.compareTo(a.spendYen)
+          : b.rewardYen.compareTo(a.rewardYen));
 
     return <PieSlice>[
+      for (final item in ordered)
+        if ((pieBySpend ? item.spendYen : item.rewardYen) > 0)
+          PieSlice(
+            label: item.label,
+            value: pieBySpend ? item.spendYen : item.rewardYen,
+            color: item.color,
+          ),
+    ];
+  }
+
+  /// 店舗ごとの年間利用額と還元額（D-163・D-167）。
+  List<BreakdownItem> _storeItems(
+    List<TransactionRecord> records,
+    Map<String, int> rewards,
+  ) {
+    final spend = <String, int>{};
+    final reward = <String, int>{};
+    final names = <String, String>{};
+    for (final record in records) {
+      final key = record.merchantId.isEmpty ? '__other__' : record.merchantId;
+      spend[key] = (spend[key] ?? 0) + record.amountYen;
+      reward[key] = (reward[key] ?? 0) + (rewards[record.id] ?? 0);
+      names[key] = record.merchantId.isEmpty ? 'その他' : _storeName(record);
+    }
+
+    final ordered = spend.keys.toList()
+      ..sort((a, b) => (spend[b] ?? 0).compareTo(spend[a] ?? 0));
+
+    return <BreakdownItem>[
       for (var index = 0; index < ordered.length; index++)
-        PieSlice(
-          label: names[ordered[index].key] ?? ordered[index].key,
-          value: ordered[index].value,
+        BreakdownItem(
+          label: names[ordered[index]] ?? ordered[index],
           color: chartColorAt(index),
+          spendYen: spend[ordered[index]] ?? 0,
+          rewardYen: reward[ordered[index]] ?? 0,
         ),
     ];
   }
 
-  /// カードごとの年間還元額。
-  List<PieSlice> _rewardSlices(AnnualRewardSummary summary) {
-    final ordered = summary.entries.toList()
-      ..sort((a, b) => b.totalValue.compareTo(a.totalValue));
-
-    final slices = <PieSlice>[];
-    for (var index = 0; index < ordered.length; index++) {
-      final yen = ordered[index].totalValue.micros ~/ 1000000;
-      if (yen <= 0) {
-        continue;
-      }
-      slices.add(
-        PieSlice(
-          label: ordered[index].instrumentName,
-          value: yen,
-          color: chartColorAt(index),
-        ),
-      );
+  /// カードごとの年間利用額と還元額。
+  List<BreakdownItem> _cardItems(
+    List<TransactionRecord> records,
+    AnnualRewardSummary summary,
+  ) {
+    final spend = <String, int>{};
+    for (final record in records) {
+      spend[record.instrumentId] =
+          (spend[record.instrumentId] ?? 0) + record.amountYen;
     }
 
-    return slices;
+    final reward = <String, int>{};
+    final names = <String, String>{};
+    for (final entry in summary.entries) {
+      reward[entry.instrumentId.value] = entry.totalValue.micros ~/ 1000000;
+      names[entry.instrumentId.value] = entry.instrumentName;
+    }
+
+    final keys = <String>{...spend.keys, ...reward.keys}.toList()
+      ..sort((a, b) {
+        final byReward = (reward[b] ?? 0).compareTo(reward[a] ?? 0);
+        if (byReward != 0) {
+          return byReward;
+        }
+        return (spend[b] ?? 0).compareTo(spend[a] ?? 0);
+      });
+
+    return <BreakdownItem>[
+      for (var index = 0; index < keys.length; index++)
+        BreakdownItem(
+          label: names[keys[index]] ?? keys[index],
+          color: chartColorAt(index),
+          spendYen: spend[keys[index]] ?? 0,
+          rewardYen: reward[keys[index]] ?? 0,
+        ),
+    ];
   }
 
   // ---------- 部品 ----------

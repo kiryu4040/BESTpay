@@ -15,13 +15,30 @@ final class PieSlice {
   final Color color;
 }
 
-/// 棒グラフの1本（D-161・D-163）。
+/// 内訳画面で使う1項目（利用金額と還元金額の両方を持つ・D-167）。
+final class BreakdownItem {
+  const BreakdownItem({
+    required this.label,
+    required this.color,
+    required this.spendYen,
+    required this.rewardYen,
+  });
+
+  final String label;
+  final Color color;
+  final int spendYen;
+  final int rewardYen;
+}
+
+/// 棒グラフの1本（D-161・D-163・D-167）。
 final class BarDatum {
   const BarDatum({
     required this.label,
     required this.value,
     this.reward = 0,
     this.detail,
+    this.color,
+    this.separated = false,
   });
 
   final String label;
@@ -34,6 +51,12 @@ final class BarDatum {
 
   /// 棒の下に出す補足（「還元 120円」など）。
   final String? detail;
+
+  /// 棒の色。null のときは [chartColorAt] が順番に割り当てる。
+  final Color? color;
+
+  /// グラフの最下部に分離して表示するか（「その他」用・D-167）。
+  final bool separated;
 }
 
 /// グラフ用の色。カードや店舗に順番に割り当てる（D-163）。
@@ -101,7 +124,7 @@ final class ChartLegend extends StatelessWidget {
   }
 }
 
-/// 依存を増やさないための簡易円グラフ（D-161）。
+/// 依存を増やさないための簡易円グラフ（D-161・D-167）。
 final class SimplePieChart extends StatelessWidget {
   const SimplePieChart({
     super.key,
@@ -109,12 +132,23 @@ final class SimplePieChart extends StatelessWidget {
     this.size = 180,
     this.centerTitle,
     this.centerValue,
+    this.legendLimit,
+    this.onTap,
+    this.showLegend = true,
   });
 
   final List<PieSlice> slices;
   final double size;
   final String? centerTitle;
   final String? centerValue;
+
+  /// 凡例に出す最大件数。null ならすべて表示する。
+  final int? legendLimit;
+
+  /// タップしたときの動作（別画面で全件を見る・D-167）。
+  final VoidCallback? onTap;
+
+  final bool showLegend;
 
   @override
   Widget build(BuildContext context) {
@@ -125,62 +159,87 @@ final class SimplePieChart extends StatelessWidget {
       return Text('データがありません。', style: theme.textTheme.bodySmall);
     }
 
-    return Column(
-      children: <Widget>[
-        SizedBox(
-          width: size,
-          height: size,
-          child: CustomPaint(
-            painter: _PiePainter(
-              slices: slices,
-              total: total,
-              surface: theme.colorScheme.surface,
-            ),
-            child: Center(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  if (centerTitle != null)
-                    Text(centerTitle!, style: theme.textTheme.labelSmall),
-                  if (centerValue != null)
-                    Text(
-                      centerValue!,
-                      style: theme.textTheme.titleSmall?.copyWith(
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                ],
-              ),
-            ),
+    final chart = SizedBox(
+      width: size,
+      height: size,
+      child: CustomPaint(
+        painter: _PiePainter(
+          slices: slices,
+          total: total,
+          surface: theme.colorScheme.surface,
+        ),
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              if (centerTitle != null)
+                Text(centerTitle!, style: theme.textTheme.labelSmall),
+              if (centerValue != null)
+                Text(
+                  centerValue!,
+                  style: theme.textTheme.titleSmall?.copyWith(
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+            ],
           ),
         ),
-        const SizedBox(height: 8),
-        Wrap(
-          spacing: 12,
-          runSpacing: 4,
-          alignment: WrapAlignment.center,
-          children: <Widget>[
-            for (final slice in slices)
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  Container(
-                    width: 10,
-                    height: 10,
-                    decoration: BoxDecoration(
-                      color: slice.color,
-                      borderRadius: BorderRadius.circular(2),
+      ),
+    );
+
+    final limit = legendLimit ?? slices.length;
+    final shown = slices.take(limit).toList();
+    final hidden = slices.length - shown.length;
+
+    return Column(
+      children: <Widget>[
+        if (onTap == null)
+          chart
+        else
+          InkWell(
+            borderRadius: BorderRadius.circular(size / 2),
+            onTap: onTap,
+            child: chart,
+          ),
+        if (showLegend) ...<Widget>[
+          const SizedBox(height: 8),
+          Wrap(
+            spacing: 12,
+            runSpacing: 4,
+            alignment: WrapAlignment.center,
+            children: <Widget>[
+              for (final slice in shown)
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Container(
+                      width: 10,
+                      height: 10,
+                      decoration: BoxDecoration(
+                        color: slice.color,
+                        borderRadius: BorderRadius.circular(2),
+                      ),
                     ),
-                  ),
-                  const SizedBox(width: 4),
-                  Text(
-                    '${slice.label} ${_group(slice.value)}円',
-                    style: theme.textTheme.labelSmall,
-                  ),
-                ],
-              ),
-          ],
-        ),
+                    const SizedBox(width: 4),
+                    Text(
+                      '${slice.label} ${_group(slice.value)}円',
+                      style: theme.textTheme.labelSmall,
+                    ),
+                  ],
+                ),
+            ],
+          ),
+        ],
+        if (onTap != null) ...<Widget>[
+          const SizedBox(height: 4),
+          Text(
+            hidden > 0
+                ? '上位$limit件を表示中。タップすると全${slices.length}件の内訳を見られます。'
+                : 'タップすると内訳を見られます。',
+            textAlign: TextAlign.center,
+            style: theme.textTheme.labelSmall,
+          ),
+        ],
       ],
     );
   }
@@ -222,7 +281,7 @@ final class _PiePainter extends CustomPainter {
 
 /// 縦棒グラフ（月ごとの利用金額・D-161・D-163）。
 ///
-/// 棒の青緑が利用金額、上に重ねたオレンジが還元額。
+/// 棒の青緑が利用金額、根元（下側）に重ねたオレンジが還元額。
 final class SimpleColumnChart extends StatelessWidget {
   const SimpleColumnChart({
     super.key,
@@ -330,7 +389,7 @@ final class _ColumnPainter extends CustomPainter {
 
       final spendHeight = chartHeight * (item.value / maxValue);
 
-      final bar = Paint()..color = barColor;
+      final bar = Paint()..color = item.color ?? barColor;
       canvas.drawRRect(
         RRect.fromRectAndCorners(
           Rect.fromLTWH(
@@ -401,127 +460,158 @@ final class _ColumnPainter extends CustomPainter {
   }
 }
 
-/// 横棒グラフ（カード別・店舗別の比較・D-161・D-163）。
+/// 横棒グラフ（カード別・店舗別の比較・D-161・D-163・D-167）。
 ///
-/// 棒の色が利用金額、右端に重ねたオレンジが還元額。
+/// 棒の色が利用金額、左端に重ねたオレンジが還元額。
+/// [BarDatum.separated] を立てた行は、いったん区切ってグラフの最下部に表示する
+/// （「その他」が大きいときに他の行が埋もれるのを防ぐ）。棒の長さは（分離行を
+/// 除く）最大値を基準に、[maxBarRatio] までの長さに固定する。
 final class SimpleBarRows extends StatelessWidget {
   const SimpleBarRows({
     super.key,
     required this.data,
     this.valueSuffix = '円',
+    this.maxBarRatio = 1.0,
   });
 
   final List<BarDatum> data;
   final String valueSuffix;
 
+  /// 最大値の棒が占める幅の割合（例 0.9 で 90%）。
+  final double maxBarRatio;
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final maxValue = data.fold<int>(
-      0,
-      (max, item) => math.max(max, item.value),
-    );
+    final main = data.where((item) => !item.separated).toList();
+    final separated = data.where((item) => item.separated).toList();
+    final maxValue = main.isEmpty
+        ? 0
+        : main.fold<int>(0, (max, item) => math.max(max, item.value));
     final hasReward = data.any((item) => item.reward > 0);
 
-    if (data.isEmpty || maxValue <= 0) {
+    if (data.isEmpty || (maxValue <= 0 && separated.isEmpty)) {
       return Text('データがありません。', style: theme.textTheme.bodySmall);
+    }
+
+    double ratioOf(int value) {
+      if (maxValue <= 0) {
+        return 1.0;
+      }
+      final raw = value / maxValue;
+      return raw.clamp(0.0, 1.0) * maxBarRatio;
+    }
+
+    Widget row(int index, BarDatum item, Color color) {
+      return Padding(
+        padding: const EdgeInsets.symmetric(vertical: 3),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            SizedBox(
+              width: 96,
+              child: Text(
+                item.label,
+                style: theme.textTheme.bodySmall,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+            const SizedBox(width: 6),
+            Expanded(
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  final width = constraints.maxWidth;
+                  final spendWidth = width * ratioOf(item.value);
+                  var rewardWidth = width * ratioOf(item.reward);
+                  if (item.reward > 0 && rewardWidth < 2) {
+                    rewardWidth = 2;
+                  }
+                  if (rewardWidth > spendWidth) {
+                    rewardWidth = spendWidth;
+                  }
+
+                  return Stack(
+                    children: <Widget>[
+                      Container(
+                        height: 18,
+                        decoration: BoxDecoration(
+                          color: theme.colorScheme.surfaceContainerHighest,
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Container(
+                          width: spendWidth,
+                          height: 18,
+                          decoration: BoxDecoration(
+                            color: color,
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                        ),
+                      ),
+                      if (rewardWidth > 0)
+                        // 還元額は棒の根元（左側）に重ねる（D-164）。
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Container(
+                            width: rewardWidth,
+                            height: 18,
+                            decoration: BoxDecoration(
+                              color: rewardOrange,
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                          ),
+                        ),
+                    ],
+                  );
+                },
+              ),
+            ),
+            const SizedBox(width: 6),
+            SizedBox(
+              width: 92,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: <Widget>[
+                  Text(
+                    '${_group(item.value)}$valueSuffix',
+                    style: theme.textTheme.bodySmall,
+                  ),
+                  if (item.reward > 0)
+                    Text(
+                      '還元 ${_group(item.reward)}$valueSuffix',
+                      style: theme.textTheme.labelSmall?.copyWith(
+                        color: rewardOrange,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      );
     }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        for (var index = 0; index < data.length; index++)
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 3),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                SizedBox(
-                  width: 96,
-                  child: Text(
-                    data[index].label,
-                    style: theme.textTheme.bodySmall,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-                const SizedBox(width: 6),
-                Expanded(
-                  child: LayoutBuilder(
-                    builder: (context, constraints) {
-                      final width = constraints.maxWidth;
-                      final item = data[index];
-                      final spendWidth = width * (item.value / maxValue);
-                      var rewardWidth = width * (item.reward / maxValue);
-                      if (item.reward > 0 && rewardWidth < 2) {
-                        rewardWidth = 2;
-                      }
-                      if (rewardWidth > spendWidth) {
-                        rewardWidth = spendWidth;
-                      }
-
-                      return Stack(
-                        children: <Widget>[
-                          Container(
-                            height: 18,
-                            decoration: BoxDecoration(
-                              color: theme.colorScheme.surfaceContainerHighest,
-                              borderRadius: BorderRadius.circular(4),
-                            ),
-                          ),
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Container(
-                              width: spendWidth,
-                              height: 18,
-                              decoration: BoxDecoration(
-                                color: chartColorAt(index),
-                                borderRadius: BorderRadius.circular(4),
-                              ),
-                            ),
-                          ),
-                          if (rewardWidth > 0)
-                            // 還元額は棒の根元（左側）に重ねる（D-164）。
-                            Align(
-                              alignment: Alignment.centerLeft,
-                              child: Container(
-                                width: rewardWidth,
-                                height: 18,
-                                decoration: BoxDecoration(
-                                  color: rewardOrange,
-                                  borderRadius: BorderRadius.circular(4),
-                                ),
-                              ),
-                            ),
-                        ],
-                      );
-                    },
-                  ),
-                ),
-                const SizedBox(width: 6),
-                SizedBox(
-                  width: 92,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: <Widget>[
-                      Text(
-                        '${_group(data[index].value)}$valueSuffix',
-                        style: theme.textTheme.bodySmall,
-                      ),
-                      if (data[index].reward > 0)
-                        Text(
-                          '還元 ${_group(data[index].reward)}$valueSuffix',
-                          style: theme.textTheme.labelSmall?.copyWith(
-                            color: rewardOrange,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
+        for (var index = 0; index < main.length; index++)
+          row(index, main[index], main[index].color ?? chartColorAt(index)),
+        if (separated.isNotEmpty) ...<Widget>[
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 6),
+            child: Divider(height: 1),
           ),
+          for (final item in separated)
+            row(
+              main.length,
+              item,
+              item.color ?? theme.colorScheme.outline,
+            ),
+        ],
         const SizedBox(height: 6),
         if (hasReward)
           const ChartLegend(

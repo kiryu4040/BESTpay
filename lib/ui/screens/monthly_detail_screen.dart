@@ -10,10 +10,11 @@ import '../ranking_controller.dart';
 import '../widgets/charts.dart';
 import '../widgets/record_editor_sheet.dart';
 
-/// 1か月分の内訳を見る画面（D-161・D-162・D-163）。
+/// 1か月分の内訳を見る画面（D-161・D-162・D-163・D-167）。
 ///
 /// 「カード別」と「店舗別」を切り替えられる。どちらも上に比較の棒グラフ
 /// （利用金額＋還元額はオレンジで重ねる）、下に入力した順の利用明細を並べる。
+/// 明細はまとまりごとに最新3件だけを表示し、それを超える分は折りたたむ。
 /// 明細を押すと修正・削除ができる。
 final class MonthlyDetailScreen extends StatefulWidget {
   const MonthlyDetailScreen({
@@ -40,8 +41,12 @@ final class MonthlyDetailScreen extends StatefulWidget {
 enum _DetailMode { card, store }
 
 final class _MonthlyDetailScreenState extends State<MonthlyDetailScreen> {
+  /// 常時表示する明細の件数（D-167）。
+  static const int _visibleRecords = 3;
+
   _DetailMode _mode = _DetailMode.card;
   late List<TransactionRecord> _all = widget.records;
+  final Set<String> _expanded = <String>{};
 
   List<TransactionRecord> get _records {
     final list = <TransactionRecord>[
@@ -116,11 +121,12 @@ final class _MonthlyDetailScreenState extends State<MonthlyDetailScreen> {
       ..sort((a, b) => b.value.compareTo(a.value));
 
     final rows = <BarDatum>[
-      for (final item in ordered)
+      for (var index = 0; index < ordered.length; index++)
         BarDatum(
-          label: _cardName(item.key),
-          value: item.value,
-          reward: rewardByCard[item.key] ?? 0,
+          label: _cardName(ordered[index].key),
+          value: ordered[index].value,
+          reward: rewardByCard[ordered[index].key] ?? 0,
+          color: chartColorAt(index),
         ),
     ];
 
@@ -137,19 +143,28 @@ final class _MonthlyDetailScreenState extends State<MonthlyDetailScreen> {
       const SizedBox(height: 20),
       Text('カードごとの利用明細', style: theme.textTheme.titleMedium),
       const SizedBox(height: 4),
-      Text('明細を押すと、修正・削除ができます。', style: theme.textTheme.bodySmall),
+      Text(
+        '明細を押すと、修正・削除ができます。最新$_visibleRecords件を表示しています。',
+        style: theme.textTheme.bodySmall,
+      ),
       const SizedBox(height: 8),
-      for (final cardId in _cardOrder(records)) ...<Widget>[
+      for (final entry in ordered) ...<Widget>[
         _groupHeader(
           theme,
-          _cardName(cardId),
-          '${records.where((r) => r.instrumentId == cardId).length}件 ・ '
-              '${_group(spendByCard[cardId] ?? 0)}円',
-          '還元 ${_group(rewardByCard[cardId] ?? 0)}円',
+          _cardName(entry.key),
+          '${records.where((r) => r.instrumentId == entry.key).length}件 ・ '
+              '${_group(entry.value)}円',
+          '還元 ${_group(rewardByCard[entry.key] ?? 0)}円',
         ),
-        for (final record in records)
-          if (record.instrumentId == cardId)
-            _recordTile(theme, record, rewards[record.id] ?? 0),
+        ..._recordList(
+          theme,
+          groupKey: 'card:${entry.key}',
+          records: <TransactionRecord>[
+            for (final record in records)
+              if (record.instrumentId == entry.key) record,
+          ],
+          rewards: rewards,
+        ),
       ],
     ];
   }
@@ -172,54 +187,116 @@ final class _MonthlyDetailScreenState extends State<MonthlyDetailScreen> {
       nameByStore[record.merchantId] = _storeName(record);
     }
 
-    final ordered = spendByStore.entries.toList()
-      ..sort((a, b) => b.value.compareTo(a.value));
+    // グラフと明細を連動させ、利用金額の多い順、その他は最後にする（D-167）。
+    final ordered = spendByStore.keys.toList()
+      ..sort((a, b) {
+        final aOther = a.isEmpty;
+        final bOther = b.isEmpty;
+        if (aOther != bOther) {
+          return aOther ? 1 : -1;
+        }
+        return (spendByStore[b] ?? 0).compareTo(spendByStore[a] ?? 0);
+      });
 
-    final rows = <BarDatum>[
-      for (final item in ordered)
+    final rows = <BarDatum>[];
+    var colorIndex = 0;
+    for (final key in ordered) {
+      final isOther = key.isEmpty;
+      rows.add(
         BarDatum(
-          label: nameByStore[item.key] ?? item.key,
-          value: item.value,
-          reward: rewardByStore[item.key] ?? 0,
+          label: nameByStore[key] ?? key,
+          value: spendByStore[key] ?? 0,
+          reward: rewardByStore[key] ?? 0,
+          color: isOther ? null : chartColorAt(colorIndex),
+          separated: isOther,
         ),
-    ];
+      );
+      if (!isOther) {
+        colorIndex += 1;
+      }
+    }
 
     return <Widget>[
       Text('店舗ごとの利用金額と還元額', style: theme.textTheme.titleMedium),
       const SizedBox(height: 8),
-      SimpleBarRows(data: rows),
+      SimpleBarRows(data: rows, maxBarRatio: 0.9),
+      const SizedBox(height: 8),
+      Text(
+        '※ 店舗を指定しなかった「その他」は、他店舗と混ざらないようグラフの最下部に分けて表示します。'
+        '棒の長さは最大値の90%までに収めています。',
+        style: theme.textTheme.bodySmall,
+      ),
       const SizedBox(height: 20),
       Text('店舗ごとの利用明細', style: theme.textTheme.titleMedium),
       const SizedBox(height: 4),
-      Text('明細を押すと、修正・削除ができます。', style: theme.textTheme.bodySmall),
+      Text(
+        '明細を押すと、修正・削除ができます。最新$_visibleRecords件を表示しています。',
+        style: theme.textTheme.bodySmall,
+      ),
       const SizedBox(height: 8),
-      for (final item in ordered) ...<Widget>[
+      for (final key in ordered) ...<Widget>[
         _groupHeader(
           theme,
-          nameByStore[item.key] ?? item.key,
-          '${records.where((r) => r.merchantId == item.key).length}件 ・ '
-              '${_group(item.value)}円',
-          '還元 ${_group(rewardByStore[item.key] ?? 0)}円',
+          nameByStore[key] ?? key,
+          '${records.where((r) => r.merchantId == key).length}件 ・ '
+              '${_group(spendByStore[key] ?? 0)}円',
+          '還元 ${_group(rewardByStore[key] ?? 0)}円',
         ),
-        for (final record in records)
-          if (record.merchantId == item.key)
-            _recordTile(theme, record, rewards[record.id] ?? 0),
+        ..._recordList(
+          theme,
+          groupKey: 'store:$key',
+          records: <TransactionRecord>[
+            for (final record in records)
+              if (record.merchantId == key) record,
+          ],
+          rewards: rewards,
+        ),
       ],
     ];
   }
 
   // ---------- 部品 ----------
 
-  List<String> _cardOrder(List<TransactionRecord> records) {
-    final spend = <String, int>{};
-    for (final record in records) {
-      spend[record.instrumentId] =
-          (spend[record.instrumentId] ?? 0) + record.amountYen;
+  /// まとまり（カード／店舗）ごとの明細。最新3件のみ表示し、残りは折りたたむ（D-167）。
+  List<Widget> _recordList(
+    ThemeData theme, {
+    required String groupKey,
+    required List<TransactionRecord> records,
+    required Map<String, int> rewards,
+  }) {
+    if (records.isEmpty) {
+      return const <Widget>[];
     }
-    final ordered = spend.keys.toList()
-      ..sort((a, b) => (spend[b] ?? 0).compareTo(spend[a] ?? 0));
 
-    return ordered;
+    final expanded = _expanded.contains(groupKey);
+    final visible =
+        expanded ? records : records.take(_visibleRecords).toList();
+    final hidden = records.length - visible.length;
+
+    return <Widget>[
+      for (final record in visible)
+        _recordTile(theme, record, rewards[record.id] ?? 0),
+      if (records.length > _visibleRecords)
+        Align(
+          alignment: Alignment.centerLeft,
+          child: TextButton.icon(
+            onPressed: () => setState(() {
+              if (expanded) {
+                _expanded.remove(groupKey);
+              } else {
+                _expanded.add(groupKey);
+              }
+            }),
+            icon: Icon(
+              expanded ? Icons.expand_less : Icons.expand_more,
+              size: 18,
+            ),
+            label: Text(
+              expanded ? '折りたたむ' : '残り$hidden件を表示（全${records.length}件）',
+            ),
+          ),
+        ),
+    ];
   }
 
   String _cardName(String instrumentId) {
