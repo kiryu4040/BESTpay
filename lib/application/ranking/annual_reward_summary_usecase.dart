@@ -153,6 +153,81 @@ final class AnnualRewardSummaryUseCase {
     );
   }
 
+  /// 各取引の還元額（円）を、月内の累計を踏まえて求める（D-163）。
+  ///
+  /// [transactions] は同じ月の取引を日付順に並べたもの。返り値は同じ並びで、
+  /// それぞれの取引で増えた還元額（円・切り捨て）を返す。月間合算のルールは
+  /// そのカードの月内の累計から増分を出し、取引単位のルールは1件ずつ出す。
+  List<int> rewardYenPerTransaction({
+    required Catalog catalog,
+    required List<AnnualSpendTransaction> transactions,
+    ConditionEvaluationContext? conditionContext,
+  }) {
+    final context = conditionContext ?? ConditionEvaluationContext();
+    final periodKeyInstruments = _periodKeyInstruments(catalog);
+    final running = <StableId, MoneyYen>{};
+    final result = <int>[];
+
+    for (final transaction in transactions) {
+      final used = transaction.instrumentId;
+
+      final ranking = _evaluator.evaluate(
+        catalog: catalog,
+        amount: transaction.amount,
+        transactionDate: transaction.date,
+        conditionContext: context,
+        merchantId: transaction.merchantId,
+        merchantGroupIds: transaction.merchantGroupIds,
+        categoryIds: transaction.categoryIds,
+        periodSpendBeforeByKey: running,
+      );
+
+      var micros = 0;
+      for (final entry in ranking.allEntries) {
+        if (used != null && entry.instrumentId != used) {
+          continue;
+        }
+        micros += entry.confirmedValue.micros;
+      }
+      result.add(micros ~/ 1000000);
+
+      for (final periodEntry in periodKeyInstruments.entries) {
+        final instruments = periodEntry.value;
+        if (used != null &&
+            instruments.isNotEmpty &&
+            !instruments.contains(used)) {
+          continue;
+        }
+        running[periodEntry.key] =
+            (running[periodEntry.key] ?? MoneyYen.zero) + transaction.amount;
+      }
+    }
+
+    return result;
+  }
+
+  /// 期間集計のキーと、そのキーを使うカードの対応（D-161）。
+  Map<StableId, Set<StableId>> _periodKeyInstruments(Catalog catalog) {
+    final result = <StableId, Set<StableId>>{};
+    for (final rule in catalog.rewardRulesById.values) {
+      if (rule.status == CatalogItemStatus.draft) {
+        continue;
+      }
+      if (rule.aggregation.scope == RewardAggregationScope.transaction) {
+        continue;
+      }
+      final key = rule.aggregation.aggregationKey;
+      if (key == null) {
+        continue;
+      }
+      result.putIfAbsent(key, () => <StableId>{}).addAll(
+            rule.selectors.instrumentIds,
+          );
+    }
+
+    return result;
+  }
+
   /// 実際の取引から、カードごとに月次・取引単位を分けて積み上げる（D-160）。
   AnnualRewardSummary _fromTransactions({
     required Catalog catalog,
@@ -175,22 +250,7 @@ final class AnnualRewardSummaryUseCase {
 
     // 期間集計のキー（月間合算のルールが使う）と、そのキーを使うカード（D-161）。
     // カードごとに月の合計は別なので、他のカードの利用を混ぜない。
-    final periodKeyInstruments = <StableId, Set<StableId>>{};
-    for (final rule in catalog.rewardRulesById.values) {
-      if (rule.status == CatalogItemStatus.draft) {
-        continue;
-      }
-      if (rule.aggregation.scope == RewardAggregationScope.transaction) {
-        continue;
-      }
-      final key = rule.aggregation.aggregationKey;
-      if (key == null) {
-        continue;
-      }
-      periodKeyInstruments
-          .putIfAbsent(key, () => <StableId>{})
-          .addAll(rule.selectors.instrumentIds);
-    }
+    final periodKeyInstruments = _periodKeyInstruments(catalog);
 
     final valueMicros = <StableId, int>{};
     final spendByInstrument = <StableId, int>{};

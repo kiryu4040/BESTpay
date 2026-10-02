@@ -544,6 +544,19 @@ final class RankingController extends ChangeNotifier {
     );
   }
 
+  /// 記録ごとの還元額（円）を求める（月内の累計を踏まえる・D-163）。
+  ///
+  /// [transactions] は同じ月の取引を日付順に並べたもの。返り値は同じ並び。
+  List<int> rewardYenPerTransaction(List<AnnualSpendTransaction> transactions) {
+    _ensureCatalogForToday();
+
+    return _annualUseCase.rewardYenPerTransaction(
+      catalog: _catalog,
+      transactions: transactions,
+      conditionContext: conditionContext,
+    );
+  }
+
   /// 年間の還元額を集計する（年間タブ専用・D-102）。
   ///
   /// 会計記録があれば実際の取引からカードごとに積み上げる（D-160）。

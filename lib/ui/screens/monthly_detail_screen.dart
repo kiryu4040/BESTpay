@@ -10,10 +10,11 @@ import '../ranking_controller.dart';
 import '../widgets/charts.dart';
 import '../widgets/record_editor_sheet.dart';
 
-/// 1か月分の内訳を見る画面（D-161・D-162）。
+/// 1か月分の内訳を見る画面（D-161・D-162・D-163）。
 ///
-/// 「カード別」と「店舗別」を切り替えられる。どちらも上に比較の棒グラフ、
-/// 下に入力した順の利用明細を並べる。明細を押すと修正・削除ができる。
+/// 「カード別」と「店舗別」を切り替えられる。どちらも上に比較の棒グラフ
+/// （利用金額＋還元額はオレンジで重ねる）、下に入力した順の利用明細を並べる。
+/// 明細を押すと修正・削除ができる。
 final class MonthlyDetailScreen extends StatefulWidget {
   const MonthlyDetailScreen({
     super.key,
@@ -57,6 +58,7 @@ final class _MonthlyDetailScreenState extends State<MonthlyDetailScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final records = _records;
+    final rewards = _perRecordRewards(records);
 
     return Scaffold(
       appBar: AppBar(
@@ -86,9 +88,9 @@ final class _MonthlyDetailScreenState extends State<MonthlyDetailScreen> {
                 ),
                 const SizedBox(height: 16),
                 if (_mode == _DetailMode.card)
-                  ..._buildCardView(theme, records)
+                  ..._buildCardView(theme, records, rewards)
                 else
-                  ..._buildStoreView(theme, records),
+                  ..._buildStoreView(theme, records, rewards),
               ],
             ),
     );
@@ -99,35 +101,31 @@ final class _MonthlyDetailScreenState extends State<MonthlyDetailScreen> {
   List<Widget> _buildCardView(
     ThemeData theme,
     List<TransactionRecord> records,
+    Map<String, int> rewards,
   ) {
-    final summary = _summaryOf(records);
     final spendByCard = <String, int>{};
+    final rewardByCard = <String, int>{};
     for (final record in records) {
       spendByCard[record.instrumentId] =
           (spendByCard[record.instrumentId] ?? 0) + record.amountYen;
+      rewardByCard[record.instrumentId] =
+          (rewardByCard[record.instrumentId] ?? 0) + (rewards[record.id] ?? 0);
     }
 
-    final rewardByCard = <String, int>{
-      for (final entry in summary.entries)
-        entry.instrumentId.value: entry.totalValue.micros ~/ 1000000,
-    };
-
-    final rows = <BarDatum>[];
     final ordered = spendByCard.entries.toList()
       ..sort((a, b) => b.value.compareTo(a.value));
-    for (final item in ordered) {
-      final reward = rewardByCard[item.key] ?? 0;
-      rows.add(
+
+    final rows = <BarDatum>[
+      for (final item in ordered)
         BarDatum(
           label: _cardName(item.key),
           value: item.value,
-          detail: '還元 ${_group(reward)}円',
+          reward: rewardByCard[item.key] ?? 0,
         ),
-      );
-    }
+    ];
 
     return <Widget>[
-      Text('カードごとの利用金額', style: theme.textTheme.titleMedium),
+      Text('カードごとの利用金額と還元額', style: theme.textTheme.titleMedium),
       const SizedBox(height: 8),
       SimpleBarRows(data: rows),
       const SizedBox(height: 8),
@@ -150,7 +148,8 @@ final class _MonthlyDetailScreenState extends State<MonthlyDetailScreen> {
           '還元 ${_group(rewardByCard[cardId] ?? 0)}円',
         ),
         for (final record in records)
-          if (record.instrumentId == cardId) _recordTile(theme, record),
+          if (record.instrumentId == cardId)
+            _recordTile(theme, record, rewards[record.id] ?? 0),
       ],
     ];
   }
@@ -160,12 +159,16 @@ final class _MonthlyDetailScreenState extends State<MonthlyDetailScreen> {
   List<Widget> _buildStoreView(
     ThemeData theme,
     List<TransactionRecord> records,
+    Map<String, int> rewards,
   ) {
     final spendByStore = <String, int>{};
+    final rewardByStore = <String, int>{};
     final nameByStore = <String, String>{};
     for (final record in records) {
       spendByStore[record.merchantId] =
           (spendByStore[record.merchantId] ?? 0) + record.amountYen;
+      rewardByStore[record.merchantId] =
+          (rewardByStore[record.merchantId] ?? 0) + (rewards[record.id] ?? 0);
       nameByStore[record.merchantId] = _storeName(record);
     }
 
@@ -174,11 +177,15 @@ final class _MonthlyDetailScreenState extends State<MonthlyDetailScreen> {
 
     final rows = <BarDatum>[
       for (final item in ordered)
-        BarDatum(label: nameByStore[item.key] ?? item.key, value: item.value),
+        BarDatum(
+          label: nameByStore[item.key] ?? item.key,
+          value: item.value,
+          reward: rewardByStore[item.key] ?? 0,
+        ),
     ];
 
     return <Widget>[
-      Text('店舗ごとの利用金額', style: theme.textTheme.titleMedium),
+      Text('店舗ごとの利用金額と還元額', style: theme.textTheme.titleMedium),
       const SizedBox(height: 8),
       SimpleBarRows(data: rows),
       const SizedBox(height: 20),
@@ -192,10 +199,11 @@ final class _MonthlyDetailScreenState extends State<MonthlyDetailScreen> {
           nameByStore[item.key] ?? item.key,
           '${records.where((r) => r.merchantId == item.key).length}件 ・ '
               '${_group(item.value)}円',
-          null,
+          '還元 ${_group(rewardByStore[item.key] ?? 0)}円',
         ),
         for (final record in records)
-          if (record.merchantId == item.key) _recordTile(theme, record),
+          if (record.merchantId == item.key)
+            _recordTile(theme, record, rewards[record.id] ?? 0),
       ],
     ];
   }
@@ -256,17 +264,35 @@ final class _MonthlyDetailScreenState extends State<MonthlyDetailScreen> {
             ),
           ),
           if (trailing != null)
-            Text(trailing, style: theme.textTheme.bodyMedium),
+            Text(
+              trailing,
+              style: theme.textTheme.bodyMedium?.copyWith(
+                color: rewardOrange,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
         ],
       ),
     );
   }
 
-  Widget _recordTile(ThemeData theme, TransactionRecord record) {
+  Widget _recordTile(ThemeData theme, TransactionRecord record, int reward) {
     return Card(
       child: ListTile(
         dense: true,
-        title: Text('${_group(record.amountYen)}円'),
+        title: Row(
+          children: <Widget>[
+            Text('${_group(record.amountYen)}円'),
+            const SizedBox(width: 8),
+            Text(
+              '${_group(reward)}円還元',
+              style: theme.textTheme.labelMedium?.copyWith(
+                color: rewardOrange,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ],
+        ),
         subtitle: Text(
           '${record.occurredOn} ・ ${_storeName(record)} ・ '
           '${_cardName(record.instrumentId)}',
@@ -315,34 +341,45 @@ final class _MonthlyDetailScreenState extends State<MonthlyDetailScreen> {
     widget.onRecordsChanged?.call(next);
   }
 
-  AnnualRewardSummary _summaryOf(List<TransactionRecord> records) {
+  /// 記録ごとの還元額（円）を、月内の累計を踏まえて求める（D-163）。
+  Map<String, int> _perRecordRewards(List<TransactionRecord> records) {
     final controller = context.read<RankingController>();
-    final transactions = <AnnualSpendTransaction>[];
+    final list = records.toList()
+      ..sort((a, b) => a.occurredOn.compareTo(b.occurredOn));
+    final rewards = controller.rewardYenPerTransaction(
+      <AnnualSpendTransaction>[
+        for (final record in list) _toTransaction(controller, record),
+      ],
+    );
 
-    for (final record in records) {
-      final merchant = controller.merchantById(record.merchantId);
-      final date = CalculationDate.parse(record.occurredOn).fold(
-        onSuccess: (value) => value,
-        onFailure: (_) => controller.currentJstDate(),
-      );
-      final instrumentId = StableId.create(record.instrumentId).fold<StableId?>(
-        onSuccess: (value) => value,
-        onFailure: (_) => null,
-      );
+    return <String, int>{
+      for (var index = 0; index < list.length; index++)
+        list[index].id: rewards[index],
+    };
+  }
 
-      transactions.add(
-        AnnualSpendTransaction(
-          date: date,
-          amount: MoneyYen(record.amountYen),
-          instrumentId: instrumentId,
-          merchantId: merchant?.id,
-          merchantGroupIds: merchant?.groupIds ?? const <StableId>[],
-          categoryIds: merchant?.categoryIds ?? const <StableId>[],
-        ),
-      );
-    }
+  AnnualSpendTransaction _toTransaction(
+    RankingController controller,
+    TransactionRecord record,
+  ) {
+    final merchant = controller.merchantById(record.merchantId);
+    final date = CalculationDate.parse(record.occurredOn).fold(
+      onSuccess: (value) => value,
+      onFailure: (_) => controller.currentJstDate(),
+    );
+    final instrumentId = StableId.create(record.instrumentId).fold<StableId?>(
+      onSuccess: (value) => value,
+      onFailure: (_) => null,
+    );
 
-    return controller.annualSummaryFor(transactions);
+    return AnnualSpendTransaction(
+      date: date,
+      amount: MoneyYen(record.amountYen),
+      instrumentId: instrumentId,
+      merchantId: merchant?.id,
+      merchantGroupIds: merchant?.groupIds ?? const <StableId>[],
+      categoryIds: merchant?.categoryIds ?? const <StableId>[],
+    );
   }
 }
 

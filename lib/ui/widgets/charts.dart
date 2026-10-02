@@ -15,36 +15,91 @@ final class PieSlice {
   final Color color;
 }
 
-/// 棒グラフの1本（D-161）。
+/// 棒グラフの1本（D-161・D-163）。
 final class BarDatum {
   const BarDatum({
     required this.label,
     required this.value,
+    this.reward = 0,
     this.detail,
   });
 
   final String label;
+
+  /// 利用金額（円）。
   final int value;
+
+  /// 還元額（円）。グラフではオレンジで重ねて表示する（D-163）。
+  final int reward;
 
   /// 棒の下に出す補足（「還元 120円」など）。
   final String? detail;
 }
 
-/// グラフ用の色。カードや店舗に順番に割り当てる。
+/// グラフ用の色。カードや店舗に順番に割り当てる（D-163）。
+///
+/// 還元額のオレンジ（[rewardOrange]）と同化しないよう、オレンジ系・茶系は
+/// 使わない。
 const List<Color> chartPalette = <Color>[
   Color(0xFF1F6F8B),
   Color(0xFF3FA7A0),
   Color(0xFF7FB069),
-  Color(0xFFE0A458),
-  Color(0xFFC86A6A),
-  Color(0xFF7A6FB0),
   Color(0xFF4E8FD0),
-  Color(0xFFB08968),
-  Color(0xFF6A9E7F),
+  Color(0xFF7A6FB0),
+  Color(0xFFC86A6A),
   Color(0xFFA96FA0),
+  Color(0xFF5B8C5A),
+  Color(0xFF3D6E9E),
+  Color(0xFF8E7CC3),
 ];
 
 Color chartColorAt(int index) => chartPalette[index % chartPalette.length];
+
+/// 還元額を表す色。すべてのグラフでオレンジに統一する（D-163）。
+const Color rewardOrange = Color(0xFFE07A1F);
+
+/// グラフの凡例の1項目（D-163）。
+final class ChartLegendItem {
+  const ChartLegendItem({required this.color, required this.label});
+
+  final Color color;
+  final String label;
+}
+
+/// グラフの凡例（D-163）。
+final class ChartLegend extends StatelessWidget {
+  const ChartLegend({super.key, required this.items});
+
+  final List<ChartLegendItem> items;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return Wrap(
+      spacing: 14,
+      runSpacing: 4,
+      children: <Widget>[
+        for (final item in items)
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Container(
+                width: 12,
+                height: 12,
+                decoration: BoxDecoration(
+                  color: item.color,
+                  borderRadius: BorderRadius.circular(3),
+                ),
+              ),
+              const SizedBox(width: 4),
+              Text(item.label, style: theme.textTheme.labelSmall),
+            ],
+          ),
+      ],
+    );
+  }
+}
 
 /// 依存を増やさないための簡易円グラフ（D-161）。
 final class SimplePieChart extends StatelessWidget {
@@ -66,8 +121,8 @@ final class SimplePieChart extends StatelessWidget {
     final theme = Theme.of(context);
     final total = slices.fold<int>(0, (sum, slice) => sum + slice.value);
 
-    if (total <= 0) {
-      return const SizedBox.shrink();
+    if (slices.isEmpty || total <= 0) {
+      return Text('データがありません。', style: theme.textTheme.bodySmall);
     }
 
     return Column(
@@ -75,18 +130,14 @@ final class SimplePieChart extends StatelessWidget {
         SizedBox(
           width: size,
           height: size,
-          child: Stack(
-            alignment: Alignment.center,
-            children: <Widget>[
-              CustomPaint(
-                size: Size.square(size),
-                painter: _PiePainter(
-                  slices: slices,
-                  total: total,
-                  surface: theme.colorScheme.surface,
-                ),
-              ),
-              Column(
+          child: CustomPaint(
+            painter: _PiePainter(
+              slices: slices,
+              total: total,
+              surface: theme.colorScheme.surface,
+            ),
+            child: Center(
+              child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   if (centerTitle != null)
@@ -94,40 +145,40 @@ final class SimplePieChart extends StatelessWidget {
                   if (centerValue != null)
                     Text(
                       centerValue!,
-                      style: theme.textTheme.titleMedium?.copyWith(
+                      style: theme.textTheme.titleSmall?.copyWith(
                         fontWeight: FontWeight.w700,
                       ),
                     ),
                 ],
               ),
-            ],
+            ),
           ),
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: 8),
         Wrap(
           spacing: 12,
-          runSpacing: 6,
+          runSpacing: 4,
+          alignment: WrapAlignment.center,
           children: <Widget>[
             for (final slice in slices)
-              if (slice.value > 0)
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    Container(
-                      width: 10,
-                      height: 10,
-                      decoration: BoxDecoration(
-                        color: slice.color,
-                        borderRadius: BorderRadius.circular(2),
-                      ),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Container(
+                    width: 10,
+                    height: 10,
+                    decoration: BoxDecoration(
+                      color: slice.color,
+                      borderRadius: BorderRadius.circular(2),
                     ),
-                    const SizedBox(width: 4),
-                    Text(
-                      '${slice.label} ${_group(slice.value)}円',
-                      style: theme.textTheme.bodySmall,
-                    ),
-                  ],
-                ),
+                  ),
+                  const SizedBox(width: 4),
+                  Text(
+                    '${slice.label} ${_group(slice.value)}円',
+                    style: theme.textTheme.labelSmall,
+                  ),
+                ],
+              ),
           ],
         ),
       ],
@@ -148,33 +199,30 @@ final class _PiePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final rect = Offset.zero & size;
-    final paint = Paint()..style = PaintingStyle.fill;
+    final rect = Rect.fromLTWH(0, 0, size.width, size.height);
     var start = -math.pi / 2;
 
     for (final slice in slices) {
-      if (slice.value <= 0) {
-        continue;
-      }
-
       final sweep = 2 * math.pi * (slice.value / total);
-      paint.color = slice.color;
+      final paint = Paint()..color = slice.color;
       canvas.drawArc(rect.deflate(2), start, sweep, true, paint);
       start += sweep;
     }
 
-    // 真ん中をくり抜いてドーナツにする。
+    // 中心をくり抜いてドーナツにする。
     final hole = Paint()..color = surface;
-    canvas.drawCircle(size.center(Offset.zero), size.width * 0.28, hole);
+    canvas.drawCircle(size.center(Offset.zero), size.width * 0.3, hole);
   }
 
   @override
   bool shouldRepaint(_PiePainter oldDelegate) {
-    return oldDelegate.total != total || oldDelegate.slices != slices;
+    return oldDelegate.slices != slices || oldDelegate.total != total;
   }
 }
 
-/// 縦棒グラフ（月ごとの利用金額など・D-161）。
+/// 縦棒グラフ（月ごとの利用金額・D-161・D-163）。
+///
+/// 棒の青緑が利用金額、上に重ねたオレンジが還元額。
 final class SimpleColumnChart extends StatelessWidget {
   const SimpleColumnChart({
     super.key,
@@ -190,7 +238,11 @@ final class SimpleColumnChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final maxValue = data.fold<int>(0, (max, item) => math.max(max, item.value));
+    final maxValue = data.fold<int>(
+      0,
+      (max, item) => math.max(max, item.value + item.reward),
+    );
+    final hasReward = data.any((item) => item.reward > 0);
 
     if (data.isEmpty || maxValue <= 0) {
       return Text('この年の利用はまだありません。', style: theme.textTheme.bodySmall);
@@ -206,17 +258,27 @@ final class SimpleColumnChart extends StatelessWidget {
             painter: _ColumnPainter(
               data: data,
               maxValue: maxValue,
-              labelStyle: theme.textTheme.labelSmall ?? const TextStyle(fontSize: 11),
-              valueStyle: theme.textTheme.labelSmall ?? const TextStyle(fontSize: 11),
+              labelStyle:
+                  theme.textTheme.labelSmall ?? const TextStyle(fontSize: 11),
               axisColor: theme.colorScheme.outlineVariant,
               barColor: theme.colorScheme.primary,
+              rewardColor: rewardOrange,
               onSurface: theme.colorScheme.onSurface,
             ),
           ),
         ),
+        const SizedBox(height: 6),
+        ChartLegend(
+          items: <ChartLegendItem>[
+            ChartLegendItem(color: theme.colorScheme.primary, label: '利用金額'),
+            if (hasReward)
+              const ChartLegendItem(color: rewardOrange, label: '還元額'),
+          ],
+        ),
         const SizedBox(height: 4),
         Text(
-          '※ 棒の高さは利用金額です。タップすると月ごとの内訳を開けます。',
+          '※ 棒の青緑が利用金額、上に重ねたオレンジが還元額です。'
+          '月の内訳は下の「月を選ぶ」から開けます。',
           style: theme.textTheme.bodySmall,
         ),
       ],
@@ -229,18 +291,18 @@ final class _ColumnPainter extends CustomPainter {
     required this.data,
     required this.maxValue,
     required this.labelStyle,
-    required this.valueStyle,
     required this.axisColor,
     required this.barColor,
+    required this.rewardColor,
     required this.onSurface,
   });
 
   final List<BarDatum> data;
   final int maxValue;
   final TextStyle labelStyle;
-  final TextStyle valueStyle;
   final Color axisColor;
   final Color barColor;
+  final Color rewardColor;
   final Color onSurface;
 
   @override
@@ -263,26 +325,54 @@ final class _ColumnPainter extends CustomPainter {
     for (var index = 0; index < data.length; index++) {
       final item = data[index];
       final centerX = slot * index + slot / 2;
-      final barHeight = chartHeight * (item.value / maxValue);
-      final rect = Rect.fromLTWH(
-        centerX - barWidth / 2,
-        size.height - bottom - barHeight,
-        barWidth,
-        barHeight,
-      );
+      final baseY = size.height - bottom;
+
+      final spendHeight = chartHeight * (item.value / maxValue);
+      var rewardHeight = chartHeight * (item.reward / maxValue);
+      // 小さくても見えるように最小の高さを確保する。
+      if (item.reward > 0 && rewardHeight < 3) {
+        rewardHeight = 3;
+      }
 
       final bar = Paint()..color = barColor;
       canvas.drawRRect(
         RRect.fromRectAndCorners(
-          rect,
+          Rect.fromLTWH(
+            centerX - barWidth / 2,
+            baseY - spendHeight,
+            barWidth,
+            spendHeight,
+          ),
           topLeft: const Radius.circular(4),
           topRight: const Radius.circular(4),
         ),
         bar,
       );
 
-      _text(canvas, item.label, Offset(centerX, size.height - bottom + 2),
-          labelStyle, TextAlign.center, maxWidth: slot);
+      if (item.reward > 0) {
+        final reward = Paint()..color = rewardColor;
+        canvas.drawRRect(
+          RRect.fromRectAndCorners(
+            Rect.fromLTWH(
+              centerX - barWidth / 2,
+              baseY - spendHeight - rewardHeight,
+              barWidth,
+              rewardHeight,
+            ),
+            topLeft: const Radius.circular(4),
+            topRight: const Radius.circular(4),
+          ),
+          reward,
+        );
+      }
+
+      _text(
+        canvas,
+        item.label,
+        Offset(centerX, size.height - bottom + 2),
+        labelStyle,
+        maxWidth: slot,
+      );
     }
   }
 
@@ -290,22 +380,18 @@ final class _ColumnPainter extends CustomPainter {
     Canvas canvas,
     String text,
     Offset center,
-    TextStyle style,
-    TextAlign align, {
+    TextStyle style, {
     required double maxWidth,
   }) {
     final painter = TextPainter(
       text: TextSpan(text: text, style: style.copyWith(color: onSurface)),
-      textAlign: align,
+      textAlign: TextAlign.center,
       textDirection: TextDirection.ltr,
       maxLines: 1,
       ellipsis: '…',
     )..layout(maxWidth: maxWidth);
 
-    painter.paint(
-      canvas,
-      Offset(center.dx - painter.width / 2, center.dy),
-    );
+    painter.paint(canvas, Offset(center.dx - painter.width / 2, center.dy));
   }
 
   @override
@@ -314,7 +400,9 @@ final class _ColumnPainter extends CustomPainter {
   }
 }
 
-/// 横棒グラフ（カード別・店舗別の比較・D-161）。
+/// 横棒グラフ（カード別・店舗別の比較・D-161・D-163）。
+///
+/// 棒の色が利用金額、右端に重ねたオレンジが還元額。
 final class SimpleBarRows extends StatelessWidget {
   const SimpleBarRows({
     super.key,
@@ -328,13 +416,18 @@ final class SimpleBarRows extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final maxValue = data.fold<int>(0, (max, item) => math.max(max, item.value));
+    final maxValue = data.fold<int>(
+      0,
+      (max, item) => math.max(max, item.value + item.reward),
+    );
+    final hasReward = data.any((item) => item.reward > 0);
 
     if (data.isEmpty || maxValue <= 0) {
       return Text('データがありません。', style: theme.textTheme.bodySmall);
     }
 
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         for (var index = 0; index < data.length; index++)
           Padding(
@@ -353,31 +446,63 @@ final class SimpleBarRows extends StatelessWidget {
                 ),
                 const SizedBox(width: 6),
                 Expanded(
-                  child: Stack(
-                    children: <Widget>[
-                      Container(
-                        height: 18,
-                        decoration: BoxDecoration(
-                          color: theme.colorScheme.surfaceContainerHighest,
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                      ),
-                      FractionallySizedBox(
-                        widthFactor: (data[index].value / maxValue).clamp(0.0, 1.0),
-                        child: Container(
-                          height: 18,
-                          decoration: BoxDecoration(
-                            color: chartColorAt(index),
-                            borderRadius: BorderRadius.circular(4),
+                  child: LayoutBuilder(
+                    builder: (context, constraints) {
+                      final width = constraints.maxWidth;
+                      final item = data[index];
+                      var spendWidth = width * (item.value / maxValue);
+                      var rewardWidth = width * (item.reward / maxValue);
+                      if (item.reward > 0 && rewardWidth < 3) {
+                        rewardWidth = 3;
+                      }
+                      if (spendWidth + rewardWidth > width) {
+                        spendWidth = math.max(0, width - rewardWidth);
+                      }
+
+                      return Stack(
+                        children: <Widget>[
+                          Container(
+                            height: 18,
+                            decoration: BoxDecoration(
+                              color: theme.colorScheme.surfaceContainerHighest,
+                              borderRadius: BorderRadius.circular(4),
+                            ),
                           ),
-                        ),
-                      ),
-                    ],
+                          Row(
+                            children: <Widget>[
+                              Container(
+                                width: spendWidth,
+                                height: 18,
+                                decoration: BoxDecoration(
+                                  color: chartColorAt(index),
+                                  borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(4),
+                                    bottomLeft: Radius.circular(4),
+                                  ),
+                                ),
+                              ),
+                              if (rewardWidth > 0)
+                                Container(
+                                  width: rewardWidth,
+                                  height: 18,
+                                  decoration: BoxDecoration(
+                                    color: rewardOrange,
+                                    borderRadius: const BorderRadius.only(
+                                      topRight: Radius.circular(4),
+                                      bottomRight: Radius.circular(4),
+                                    ),
+                                  ),
+                                ),
+                            ],
+                          ),
+                        ],
+                      );
+                    },
                   ),
                 ),
                 const SizedBox(width: 6),
                 SizedBox(
-                  width: 86,
+                  width: 92,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: <Widget>[
@@ -385,16 +510,26 @@ final class SimpleBarRows extends StatelessWidget {
                         '${_group(data[index].value)}$valueSuffix',
                         style: theme.textTheme.bodySmall,
                       ),
-                      if (data[index].detail != null)
+                      if (data[index].reward > 0)
                         Text(
-                          data[index].detail!,
-                          style: theme.textTheme.labelSmall,
+                          '還元 ${_group(data[index].reward)}$valueSuffix',
+                          style: theme.textTheme.labelSmall?.copyWith(
+                            color: rewardOrange,
+                            fontWeight: FontWeight.w700,
+                          ),
                         ),
                     ],
                   ),
                 ),
               ],
             ),
+          ),
+        const SizedBox(height: 6),
+        if (hasReward)
+          const ChartLegend(
+            items: <ChartLegendItem>[
+              ChartLegendItem(color: rewardOrange, label: '還元額（右端のオレンジ）'),
+            ],
           ),
       ],
     );
