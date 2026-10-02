@@ -8,22 +8,29 @@ import 'package:provider/provider.dart';
 
 import '../ranking_controller.dart';
 import '../widgets/charts.dart';
+import '../widgets/record_editor_sheet.dart';
 
-/// 1か月分の内訳を見る画面（D-161）。
+/// 1か月分の内訳を見る画面（D-161・D-162）。
 ///
 /// 「カード別」と「店舗別」を切り替えられる。どちらも上に比較の棒グラフ、
-/// 下に入力した順の利用明細を並べる。
+/// 下に入力した順の利用明細を並べる。明細を押すと修正・削除ができる。
 final class MonthlyDetailScreen extends StatefulWidget {
   const MonthlyDetailScreen({
     super.key,
     required this.year,
     required this.month,
     required this.records,
+    this.onRecordsChanged,
   });
 
   final int year;
   final int month;
+
+  /// 全期間の記録。この画面で年・月に絞って表示する。
   final List<TransactionRecord> records;
+
+  /// 記録を修正・削除したときに呼ばれる。
+  final ValueChanged<List<TransactionRecord>>? onRecordsChanged;
 
   @override
   State<MonthlyDetailScreen> createState() => _MonthlyDetailScreenState();
@@ -33,10 +40,11 @@ enum _DetailMode { card, store }
 
 final class _MonthlyDetailScreenState extends State<MonthlyDetailScreen> {
   _DetailMode _mode = _DetailMode.card;
+  late List<TransactionRecord> _all = widget.records;
 
   List<TransactionRecord> get _records {
     final list = <TransactionRecord>[
-      for (final record in widget.records)
+      for (final record in _all)
         if (record.year == widget.year && record.month == widget.month) record,
     ];
     // 入力した順（新しい入力が上）。
@@ -101,8 +109,7 @@ final class _MonthlyDetailScreenState extends State<MonthlyDetailScreen> {
 
     final rewardByCard = <String, int>{
       for (final entry in summary.entries)
-        entry.instrumentId.value:
-            entry.baseValue.micros ~/ 1000000,
+        entry.instrumentId.value: entry.totalValue.micros ~/ 1000000,
     };
 
     final rows = <BarDatum>[];
@@ -125,12 +132,14 @@ final class _MonthlyDetailScreenState extends State<MonthlyDetailScreen> {
       SimpleBarRows(data: rows),
       const SizedBox(height: 8),
       Text(
-        '※ 還元額はこの月の利用をまとめて計算した値です。'
+        '※ 還元額は、その記録で使ったカードとお店の組み合わせで計算します。'
         '月間で合算するカードは月の合計から、取引ごとに計算するカードは1件ずつ計算します。',
         style: theme.textTheme.bodySmall,
       ),
       const SizedBox(height: 20),
       Text('カードごとの利用明細', style: theme.textTheme.titleMedium),
+      const SizedBox(height: 4),
+      Text('明細を押すと、修正・削除ができます。', style: theme.textTheme.bodySmall),
       const SizedBox(height: 8),
       for (final cardId in _cardOrder(records)) ...<Widget>[
         _groupHeader(
@@ -157,7 +166,7 @@ final class _MonthlyDetailScreenState extends State<MonthlyDetailScreen> {
     for (final record in records) {
       spendByStore[record.merchantId] =
           (spendByStore[record.merchantId] ?? 0) + record.amountYen;
-      nameByStore[record.merchantId] = record.merchantName;
+      nameByStore[record.merchantId] = _storeName(record);
     }
 
     final ordered = spendByStore.entries.toList()
@@ -174,6 +183,8 @@ final class _MonthlyDetailScreenState extends State<MonthlyDetailScreen> {
       SimpleBarRows(data: rows),
       const SizedBox(height: 20),
       Text('店舗ごとの利用明細', style: theme.textTheme.titleMedium),
+      const SizedBox(height: 4),
+      Text('明細を押すと、修正・削除ができます。', style: theme.textTheme.bodySmall),
       const SizedBox(height: 8),
       for (final item in ordered) ...<Widget>[
         _groupHeader(
@@ -217,6 +228,14 @@ final class _MonthlyDetailScreenState extends State<MonthlyDetailScreen> {
     return catalog.paymentInstrumentsById[id]?.name ?? instrumentId;
   }
 
+  String _storeName(TransactionRecord record) {
+    if (record.merchantName.isEmpty || record.merchantId.isEmpty) {
+      return 'その他';
+    }
+
+    return record.merchantName;
+  }
+
   Widget _groupHeader(
     ThemeData theme,
     String title,
@@ -249,12 +268,51 @@ final class _MonthlyDetailScreenState extends State<MonthlyDetailScreen> {
         dense: true,
         title: Text('${_group(record.amountYen)}円'),
         subtitle: Text(
-          '${record.occurredOn} ・ ${record.merchantName} ・ '
+          '${record.occurredOn} ・ ${_storeName(record)} ・ '
           '${_cardName(record.instrumentId)}',
           style: theme.textTheme.bodySmall,
         ),
+        trailing: const Icon(Icons.edit_outlined, size: 20),
+        onTap: () => _editRecord(record),
       ),
     );
+  }
+
+  /// 記録を修正・削除する（D-162）。
+  Future<void> _editRecord(TransactionRecord record) async {
+    final controller = context.read<RankingController>();
+    final result = await showModalBottomSheet<RecordEditorResult>(
+      context: context,
+      isScrollControlled: true,
+      builder: (_) => RecordEditorSheet(
+        controller: controller,
+        initial: record,
+      ),
+    );
+
+    if (result == null || !mounted) {
+      return;
+    }
+
+    final List<TransactionRecord> next;
+    if (result.deleted) {
+      next = <TransactionRecord>[
+        for (final item in _all)
+          if (item.id != record.id) item,
+      ];
+    } else {
+      final updated = result.record;
+      if (updated == null) {
+        return;
+      }
+      next = <TransactionRecord>[
+        for (final item in _all)
+          if (item.id == record.id) updated else item,
+      ];
+    }
+
+    setState(() => _all = next);
+    widget.onRecordsChanged?.call(next);
   }
 
   AnnualRewardSummary _summaryOf(List<TransactionRecord> records) {
@@ -267,11 +325,16 @@ final class _MonthlyDetailScreenState extends State<MonthlyDetailScreen> {
         onSuccess: (value) => value,
         onFailure: (_) => controller.currentJstDate(),
       );
+      final instrumentId = StableId.create(record.instrumentId).fold<StableId?>(
+        onSuccess: (value) => value,
+        onFailure: (_) => null,
+      );
 
       transactions.add(
         AnnualSpendTransaction(
           date: date,
           amount: MoneyYen(record.amountYen),
+          instrumentId: instrumentId,
           merchantId: merchant?.id,
           merchantGroupIds: merchant?.groupIds ?? const <StableId>[],
           categoryIds: merchant?.categoryIds ?? const <StableId>[],

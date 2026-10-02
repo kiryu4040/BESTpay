@@ -4,25 +4,25 @@ import 'package:bestpay/core/value_objects/calculation_date.dart';
 import 'package:bestpay/core/value_objects/money_yen.dart';
 import 'package:bestpay/core/value_objects/rational.dart';
 import 'package:bestpay/core/value_objects/stable_id.dart';
-import 'package:bestpay/domain/merchant/merchant_directory.dart';
 import 'package:bestpay/domain/records/transaction_record.dart';
 import 'package:bestpay/infrastructure/records/shared_preferences_transaction_record_store.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import '../ranking_controller.dart';
 import '../screens/monthly_detail_screen.dart';
 import '../widgets/charts.dart';
+import '../widgets/record_editor_sheet.dart';
 
-/// 年間タブ（D-121・D-161）。
+/// 年間タブ（D-121・D-161・D-162）。
 ///
 /// 会計ごとに「いつ・どの店で・いくら使ったか」を記録し、1年ごとに
 /// 「いくら還元されたか」を見える化する。
 ///
-/// - 上: その年のカード別の還元ポイント（円グラフ）
+/// - 上: その年のカード別の還元額（円グラフ）
 /// - 中: 月ごとの利用金額（棒グラフ）
 /// - 月を選ぶと、カード別／店舗別の内訳画面へ移動する
+/// - 記録の一覧から、1件ずつ修正・削除できる
 ///
 /// 会計の入力は右上の「＋」からのみ行う。
 final class YearlyTab extends StatefulWidget {
@@ -160,6 +160,11 @@ final class _YearlyTabState extends State<YearlyTab> {
               'カード別の還元（$_year年）',
               style: theme.textTheme.titleMedium,
             ),
+            const SizedBox(height: 4),
+            Text(
+              '実際に使ったカードとお店の組み合わせで計算した還元額です。',
+              style: theme.textTheme.bodySmall,
+            ),
             const SizedBox(height: 8),
             _buildRewardPie(theme, summary),
             const SizedBox(height: 24),
@@ -190,14 +195,41 @@ final class _YearlyTabState extends State<YearlyTab> {
               ],
             ),
             const SizedBox(height: 20),
+            Text('記録の一覧', style: theme.textTheme.titleMedium),
+            const SizedBox(height: 4),
             Text(
-              '※ 還元額はカードごとの計算方法（月間の合計から計算するカードと、'
+              '記録を押すと、金額・日付・お店・カードを直したり、'
+              'その記録を削除したりできます。',
+              style: theme.textTheme.bodySmall,
+            ),
+            const SizedBox(height: 8),
+            for (final record in records) _buildRecordTile(theme, record),
+            const SizedBox(height: 20),
+            Text(
+              '※ 還元額は、その記録で使ったカードとお店の組み合わせで計算し、'
+              'カードごとの計算方法（月間の合計から計算するカードと、'
               '取引ごとに計算するカード）に合わせて積み上げています。'
               '条件つきの上乗せは「設定」タブの状態が反映されます。',
               style: theme.textTheme.bodySmall,
             ),
           ],
         ],
+      ),
+    );
+  }
+
+  Widget _buildRecordTile(ThemeData theme, TransactionRecord record) {
+    return Card(
+      child: ListTile(
+        dense: true,
+        title: Text('${_group(record.amountYen)}円'),
+        subtitle: Text(
+          '${record.occurredOn} ・ ${_storeName(record)} ・ '
+          '${_cardName(record.instrumentId)}',
+          style: theme.textTheme.bodySmall,
+        ),
+        trailing: const Icon(Icons.edit_outlined, size: 20),
+        onTap: () => _editRecord(record),
       ),
     );
   }
@@ -334,9 +366,32 @@ final class _YearlyTabState extends State<YearlyTab> {
           year: _year,
           month: month,
           records: _records,
+          onRecordsChanged: _applyRecords,
         ),
       ),
     );
+  }
+
+  String _storeName(TransactionRecord record) {
+    if (record.merchantName.isEmpty || record.merchantId.isEmpty) {
+      return 'その他';
+    }
+
+    return record.merchantName;
+  }
+
+  String _cardName(String instrumentId) {
+    final catalog = context.read<RankingController>().catalog;
+    final id = StableId.create(instrumentId).fold<StableId?>(
+      onSuccess: (value) => value,
+      onFailure: (_) => null,
+    );
+
+    if (id == null) {
+      return instrumentId;
+    }
+
+    return catalog.paymentInstrumentsById[id]?.name ?? instrumentId;
   }
 
   AnnualRewardSummary _summaryOf(List<TransactionRecord> records) {
@@ -349,11 +404,16 @@ final class _YearlyTabState extends State<YearlyTab> {
         onSuccess: (value) => value,
         onFailure: (_) => controller.currentJstDate(),
       );
+      final instrumentId = StableId.create(record.instrumentId).fold<StableId?>(
+        onSuccess: (value) => value,
+        onFailure: (_) => null,
+      );
 
       transactions.add(
         AnnualSpendTransaction(
           date: date,
           amount: MoneyYen(record.amountYen),
+          instrumentId: instrumentId,
           merchantId: merchant?.id,
           merchantGroupIds: merchant?.groupIds ?? const <StableId>[],
           categoryIds: merchant?.categoryIds ?? const <StableId>[],
@@ -364,197 +424,66 @@ final class _YearlyTabState extends State<YearlyTab> {
     return controller.annualSummaryFor(transactions);
   }
 
+  /// 記録を差し替えて保存する（D-162）。
+  Future<void> _applyRecords(List<TransactionRecord> next) async {
+    if (mounted) {
+      setState(() => _records = next);
+    }
+    await _store.save(next);
+  }
+
   Future<void> _addRecord() async {
     final controller = context.read<RankingController>();
-    final draft = await showModalBottomSheet<TransactionRecord>(
+    final result = await showModalBottomSheet<RecordEditorResult>(
       context: context,
       isScrollControlled: true,
-      builder: (_) => _RecordEditor(controller: controller),
+      builder: (_) => RecordEditorSheet(
+        controller: controller,
+        allowDate: false,
+      ),
     );
 
-    if (draft == null) {
+    final record = result?.record;
+    if (record == null) {
       return;
     }
 
-    final updated = <TransactionRecord>[..._records, draft];
-    setState(() => _records = updated);
-    await _store.save(updated);
-  }
-}
-
-/// 会計1件を入力するシート。
-final class _RecordEditor extends StatefulWidget {
-  const _RecordEditor({required this.controller});
-
-  final RankingController controller;
-
-  @override
-  State<_RecordEditor> createState() => _RecordEditorState();
-}
-
-final class _RecordEditorState extends State<_RecordEditor> {
-  late final TextEditingController _amount = TextEditingController();
-  late String _date = _today();
-  MerchantEntry? _merchant;
-  String? _instrumentId;
-  String? _error;
-
-  static String _today() {
-    final now = DateTime.now();
-    return '${now.year.toString().padLeft(4, '0')}-'
-        '${now.month.toString().padLeft(2, '0')}-'
-        '${now.day.toString().padLeft(2, '0')}';
+    await _applyRecords(<TransactionRecord>[..._records, record]);
   }
 
-  @override
-  void dispose() {
-    _amount.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final cards = widget.controller.catalog.paymentInstrumentsById.values
-        .where((card) => widget.controller.isCardVisible(card.id.value))
-        .toList()
-      ..sort((a, b) => a.name.compareTo(b.name));
-
-    return Padding(
-      padding: EdgeInsets.only(
-        left: 16,
-        right: 16,
-        top: 16,
-        bottom: MediaQuery.of(context).viewInsets.bottom + 16,
-      ),
-      child: ListView(
-        shrinkWrap: true,
-        children: <Widget>[
-          Text('会計を記録する', style: theme.textTheme.titleLarge),
-          const SizedBox(height: 12),
-          TextField(
-            controller: _amount,
-            keyboardType: TextInputType.number,
-            inputFormatters: <TextInputFormatter>[
-              FilteringTextInputFormatter.digitsOnly,
-            ],
-            decoration: InputDecoration(
-              labelText: '使った金額（円）',
-              border: const OutlineInputBorder(),
-              errorText: _error,
-            ),
-          ),
-          const SizedBox(height: 12),
-          Card(
-            child: ListTile(
-              leading: const Icon(Icons.storefront),
-              title: Text(_merchant?.name ?? 'お店を選ぶ'),
-              trailing: const Icon(Icons.chevron_right),
-              onTap: _pickMerchant,
-            ),
-          ),
-          const SizedBox(height: 12),
-          DropdownButtonFormField<String>(
-            value: _instrumentId,
-            decoration: const InputDecoration(
-              labelText: '使ったカード',
-              border: OutlineInputBorder(),
-            ),
-            items: <DropdownMenuItem<String>>[
-              for (final card in cards)
-                DropdownMenuItem<String>(
-                  value: card.id.value,
-                  child: Text(card.name),
-                ),
-            ],
-            onChanged: (value) => setState(() => _instrumentId = value),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            'カードを選ばないときは、その店でいちばん得なカードとして記録します。',
-            style: theme.textTheme.bodySmall,
-          ),
-          const SizedBox(height: 16),
-          FilledButton(
-            onPressed: _submit,
-            child: const Text('記録する'),
-          ),
-        ],
-      ),
-    );
-  }
-
-  void _pickMerchant() {
-    final controller = widget.controller;
-    final categories = controller.orderedCategories;
-
-    showModalBottomSheet<void>(
+  Future<void> _editRecord(TransactionRecord record) async {
+    final controller = context.read<RankingController>();
+    final result = await showModalBottomSheet<RecordEditorResult>(
       context: context,
       isScrollControlled: true,
-      builder: (sheetContext) => DraggableScrollableSheet(
-        expand: false,
-        initialChildSize: 0.8,
-        builder: (_, scrollController) => ListView(
-          controller: scrollController,
-          children: <Widget>[
-            for (final category in categories) ...<Widget>[
-              Padding(
-                padding: const EdgeInsets.fromLTRB(16, 12, 16, 4),
-                child: Text(
-                  category.name,
-                  style: Theme.of(sheetContext).textTheme.titleSmall,
-                ),
-              ),
-              for (final merchant
-                  in controller.merchantsInCategoryOrdered(category.id))
-                ListTile(
-                  title: Text(merchant.name),
-                  onTap: () {
-                    Navigator.of(sheetContext).pop();
-                    setState(() => _merchant = merchant);
-                  },
-                ),
-            ],
-          ],
-        ),
+      builder: (_) => RecordEditorSheet(
+        controller: controller,
+        initial: record,
       ),
     );
-  }
 
-  void _submit() {
-    final amount = int.tryParse(_amount.text.trim()) ?? 0;
-    final merchant = _merchant;
-
-    if (merchant == null) {
-      setState(() => _error = 'お店を選んでください。');
+    if (result == null) {
       return;
     }
 
-    if (amount < 1) {
-      setState(() => _error = '1円以上の整数を入力してください。');
-      return;
+    final List<TransactionRecord> next;
+    if (result.deleted) {
+      next = <TransactionRecord>[
+        for (final item in _records)
+          if (item.id != record.id) item,
+      ];
+    } else {
+      final updated = result.record;
+      if (updated == null) {
+        return;
+      }
+      next = <TransactionRecord>[
+        for (final item in _records)
+          if (item.id == record.id) updated else item,
+      ];
     }
 
-    var instrumentId = _instrumentId;
-    if (instrumentId == null) {
-      final ranking = widget.controller.evaluateAtMerchant(
-        merchant: merchant,
-        amount: MoneyYen(amount),
-      );
-      instrumentId =
-          ranking.bestEntry?.instrumentId.value ?? 'mizuho_rakuten_card';
-    }
-
-    Navigator.of(context).pop(
-      TransactionRecord(
-        id: '${DateTime.now().microsecondsSinceEpoch}',
-        occurredOn: _date,
-        merchantId: merchant.id.value,
-        merchantName: merchant.name,
-        instrumentId: instrumentId,
-        amountYen: amount,
-      ),
-    );
+    await _applyRecords(next);
   }
 }
 

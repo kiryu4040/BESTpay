@@ -80,6 +80,7 @@ final class AnnualSpendTransaction {
   const AnnualSpendTransaction({
     required this.date,
     required this.amount,
+    this.instrumentId,
     this.merchantId,
     this.merchantGroupIds = const <StableId>[],
     this.categoryIds = const <StableId>[],
@@ -87,6 +88,13 @@ final class AnnualSpendTransaction {
 
   final CalculationDate date;
   final MoneyYen amount;
+
+  /// 実際に使ったカード（D-161）。
+  ///
+  /// 指定すると、そのカードの還元だけを積み上げる。null のときだけ
+  /// 従来どおり全カード分を合算する（カードが特定できない旧形式の記録用）。
+  final StableId? instrumentId;
+
   final StableId? merchantId;
   final List<StableId> merchantGroupIds;
   final List<StableId> categoryIds;
@@ -165,8 +173,9 @@ final class AnnualRewardSummaryUseCase {
       byMonth[key]!.sort((left, right) => left.date.compareTo(right.date));
     }
 
-    // 期間集計のキー（月間合算のルールが使う）。
-    final periodKeys = <StableId>{};
+    // 期間集計のキー（月間合算のルールが使う）と、そのキーを使うカード（D-161）。
+    // カードごとに月の合計は別なので、他のカードの利用を混ぜない。
+    final periodKeyInstruments = <StableId, Set<StableId>>{};
     for (final rule in catalog.rewardRulesById.values) {
       if (rule.status == CatalogItemStatus.draft) {
         continue;
@@ -175,20 +184,32 @@ final class AnnualRewardSummaryUseCase {
         continue;
       }
       final key = rule.aggregation.aggregationKey;
-      if (key != null) {
-        periodKeys.add(key);
+      if (key == null) {
+        continue;
       }
+      periodKeyInstruments
+          .putIfAbsent(key, () => <StableId>{})
+          .addAll(rule.selectors.instrumentIds);
     }
 
     final valueMicros = <StableId, int>{};
+    final spendByInstrument = <StableId, int>{};
     final unresolved = <StableId>{};
     var totalSpendYen = 0;
+    var hasInstrumentInfo = false;
 
     for (final monthKey in monthKeys) {
       final running = <StableId, MoneyYen>{};
 
       for (final transaction in byMonth[monthKey]!) {
         totalSpendYen += transaction.amount.yen;
+
+        final used = transaction.instrumentId;
+        if (used != null) {
+          hasInstrumentInfo = true;
+          spendByInstrument[used] =
+              (spendByInstrument[used] ?? 0) + transaction.amount.yen;
+        }
 
         final ranking = _evaluator.evaluate(
           catalog: catalog,
@@ -202,6 +223,11 @@ final class AnnualRewardSummaryUseCase {
         );
 
         for (final entry in ranking.allEntries) {
+          // 実際に使ったカードの分だけを積み上げる（D-161）。
+          // 全カードで使った想定の合計を足すと、意味のない額になるため。
+          if (used != null && entry.instrumentId != used) {
+            continue;
+          }
           valueMicros[entry.instrumentId] =
               (valueMicros[entry.instrumentId] ?? 0) +
                   entry.confirmedValue.micros;
@@ -210,8 +236,15 @@ final class AnnualRewardSummaryUseCase {
           }
         }
 
-        for (final key in periodKeys) {
-          running[key] = (running[key] ?? MoneyYen.zero) + transaction.amount;
+        for (final periodEntry in periodKeyInstruments.entries) {
+          final instruments = periodEntry.value;
+          if (used != null &&
+              instruments.isNotEmpty &&
+              !instruments.contains(used)) {
+            continue;
+          }
+          running[periodEntry.key] =
+              (running[periodEntry.key] ?? MoneyYen.zero) + transaction.amount;
         }
       }
     }
@@ -228,7 +261,11 @@ final class AnnualRewardSummaryUseCase {
       final bonus = _bonusFor(
         catalog: catalog,
         instrumentId: instrument.id,
-        annualSpend: annualSpend,
+        // 年間到達ボーナスは、そのカードで使った額で判定する（D-161）。
+        // カードが特定できない旧形式の記録だけ、年間の合計額で判定する。
+        annualSpend: hasInstrumentInfo
+            ? MoneyYen(spendByInstrument[instrument.id] ?? 0)
+            : annualSpend,
         transactionDate: transactions.last.date,
       );
       final total = base + bonus.value;
